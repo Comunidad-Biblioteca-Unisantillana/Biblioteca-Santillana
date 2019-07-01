@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="BibliotecaSantiPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entitys.MateriaPorLibro</class>
+    <class>entitys.Periodico</class>
+    <class>entitys.AutorLibro</class>
+    <class>entitys.Enciclopedia</class>
+    <class>entitys.AutorPorEnciclopedia</class>
+    <class>entitys.MateriaPorDiccionario</class>
+    <class>entitys.Mapa</class>
+    <class>entitys.AutorDiccionario</class>
+    <class>entitys.MateriaPorEnciclopedia</class>
+    <class>entitys.Revista</class>
+    <class>entitys.AutorPorLibro</class>
+    <class>entitys.Diccionario</class>
+    <class>entitys.Libro</class>
+    <class>entitys.AutorEnciclopedia</class>
+    <class>entitys.AutorPorDiccionario</class>
+    <class>entitys.MateriaPorRevista</class>
+    <class>entitys.CategoriaColeccion</class>
+    <class>entitys.Reservalibrocolecciongeneral</class>
+    <class>entitys.Estudiante_1</class>
+    <class>entitys.Bibliotecario</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="1234"/>
+    </properties>
+  </persistence-unit>
+</persistence>

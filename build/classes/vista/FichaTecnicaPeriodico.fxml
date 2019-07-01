@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="608.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FichaTecnicaPeriodicoController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.8" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label text="ISSN" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Fecha de publicación" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="ciudad" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Paginas" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Editorial" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Disponibilidad" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Estado fisico" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="txtISSN" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="txtFechaPublicacion" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="txtCiudad" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="txtPaginas" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="txtEditorial" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <TextField fx:id="txtDisponibilidad" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <TextField fx:id="txtEstadoFisico" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <TextField fx:id="txtNombrePeriodico" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+      <Label text="Nombre ">
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </Label>
+      <Label text="Categoria" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="txtCategoria" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+   </children>
+</GridPane>
