@@ -1,12 +1,12 @@
 package control;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import modeloDAO.LoginBibliotecarioDAO;
@@ -25,11 +25,11 @@ import vista.LoginUnisantillanaStage;
 public class LoginUnisantillanaController implements Initializable {
 
     @FXML
-    private TextField codEstudianteTxt;
+    private JFXTextField codEstudianteTxt;
     @FXML
-    private TextField idBibliotecarioTxt;
+    private JFXTextField idBibliotecarioTxt;
     @FXML
-    private PasswordField pwdBibliotecarioTxt;
+    private JFXPasswordField pwdBibliotecarioTxt;
     @FXML
     private ImageView imgEstudiante;
     @FXML
