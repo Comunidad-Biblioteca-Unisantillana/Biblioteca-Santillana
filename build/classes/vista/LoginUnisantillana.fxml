@@ -45,7 +45,7 @@
                            </topInput>
                         </Blend>
                      </effect></ImageView>
-                  <JFXTextField fx:id="idBibliotecarioTxt" focusColor="#0ea18b" layoutX="139.0" layoutY="178.0" prefHeight="42.0" prefWidth="173.0" promptText="Identificación" unFocusColor="WHITE">
+                  <JFXTextField fx:id="idBibliotecarioTxt" focusColor="#0ea18b" layoutX="139.0" layoutY="188.0" prefHeight="42.0" prefWidth="173.0" promptText="Identificación" unFocusColor="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
