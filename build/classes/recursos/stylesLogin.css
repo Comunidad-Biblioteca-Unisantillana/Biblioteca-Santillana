@@ -9,15 +9,23 @@ and open the template in the editor.
 */
 
 .jfx-text-field, .jfx-password-field {
-    -fx-prompt-text-fill: WHITE;
-    -fx-text-fill: WHITE;
+    -fx-prompt-text-fill: #4fc3ad;
+    -fx-text-fill: #155c6b;
+}
+
+.tab-pane .tab:selected{
+    -fx-focus-traversable: false;
+}
+
+.jfx-tab-pane .tab-header-background { 
+    -fx-background-color: #0ea18b;
 }
 
 AnchorPane{
     -fx-background-color: #0a878d;
 }
 .tab:selected {
-    -fx-background-color: #53b8c4 ;
+    -fx-background-color: #0a878d ;
 }
 
 .button{

@@ -7,8 +7,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import modeloDAO.LoginBibliotecarioDAO;
 import modeloDAO.LoginEstudianteDAO;
 import vista.AlertBox;
@@ -54,6 +57,12 @@ public class LoginUnisantillanaController implements Initializable {
     private void btnLoginBibPressed(ActionEvent event) {
         loguearBibliotecario(idBibliotecarioTxt.getText().trim(), pwdBibliotecarioTxt.getText().trim());
 
+    }
+    
+    @FXML
+    private void btnMaximizePressed(ActionEvent event){
+        LoginUnisantillanaStage.getInstance().setMaximized(true);
+        System.out.println("awdu");
     }
 
     /**
