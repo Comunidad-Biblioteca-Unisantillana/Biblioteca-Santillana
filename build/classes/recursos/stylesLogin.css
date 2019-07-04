@@ -10,7 +10,7 @@ and open the template in the editor.
 
 .jfx-text-field, .jfx-password-field {
     -fx-prompt-text-fill: #4fc3ad;
-    -fx-text-fill: #155c6b;
+    -fx-text-fill: white;
 }
 
 .tab-pane .tab:selected{
