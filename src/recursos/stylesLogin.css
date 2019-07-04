@@ -22,7 +22,7 @@ and open the template in the editor.
 }
 
 AnchorPane{
-    -fx-background-color: #0a878d;
+    -fx-background-color: #036368;
 }
 .tab:selected {
     -fx-background-color: #0a878d ;
