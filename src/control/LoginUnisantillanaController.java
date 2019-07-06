@@ -1,6 +1,6 @@
 package control;
 
-import com.jfoenix.controls.JFXButton;
+
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import modeloDAO.LoginBibliotecarioDAO;
 import modeloDAO.LoginEstudianteDAO;
 import vista.AlertBox;
@@ -54,9 +55,9 @@ public class LoginUnisantillanaController implements Initializable {
     private ImageView imgFondoBlancoBib;
     
     @FXML
-    private JFXButton btnLoginEstudiante;
+    private AnchorPane rootEstudiante;
     @FXML
-    private JFXButton btnLoginBibliotecario;
+    private AnchorPane rootBibliotecario;
     
     private boolean btnMinMaxPressed = false;
 
@@ -73,7 +74,9 @@ public class LoginUnisantillanaController implements Initializable {
         imgOcultar.setImage(new Image("/recursos/ocultar.png"));
         imgFondoBlancoEst.setImage(new Image("/recursos/fondo-blanco.png"));
         imgFondoBlancoBib.setImage(new Image("/recursos/fondo-blanco.png"));
-        
+        imgIconTxtEstud.setImage(new Image("/recursos/login-textfield.png"));
+        imgIconTxtBiblio.setImage(new Image("/recursos/login-textfield.png"));
+        imgIconPwdBiblio.setImage(new Image("/recursos/pasword-textfield.png"));
     }
 
     @FXML
@@ -95,12 +98,12 @@ public class LoginUnisantillanaController implements Initializable {
     @FXML
     private void btnMinMaxPressed(ActionEvent event){
         if(!btnMinMaxPressed){
-            modificarPosComponentes();
             LoginUnisantillanaStage.getInstance().setMaximized(true);
+            rootEstudiante.setMaxSize(450, 393);
+            rootBibliotecario.setMaxSize(450, 393);
             imgMinMax.setImage(new Image("/recursos/minimizar.png"));
             btnMinMaxPressed = true;
         }else{
-            restablecerPosComponentes();
             LoginUnisantillanaStage.getInstance().setMaximized(false);
             imgMinMax.setImage(new Image("/recursos/maximizar.png"));
             btnMinMaxPressed = false;
@@ -167,74 +170,6 @@ public class LoginUnisantillanaController implements Initializable {
      */
     private void limpiarCamposTextosLoginEstudiante() {
         codEstudianteTxt.setText("");
-    }
-    
-    /**
-     * Metodo que acomoda los  componentes cuando se maximiza la ventana
-     */
-    private void modificarPosComponentes(){
-        //modifica posX en apartado estudiante
-        imgFondoBlancoEst.setLayoutX(imgFondoBlancoEst.getLayoutX()+450);
-        imgEstudiante.setLayoutX(imgEstudiante.getLayoutX()+450);
-        imgIconTxtEstud.setLayoutX(imgIconTxtEstud.getLayoutX()+450);
-        codEstudianteTxt.setLayoutX(codEstudianteTxt.getLayoutX()+450);
-        btnLoginEstudiante.setLayoutX(btnLoginEstudiante.getLayoutX()+450);
-        //modifica posX en apartado bibliotecario
-        imgFondoBlancoBib.setLayoutX(imgFondoBlancoBib.getLayoutX()+450);
-        imgBibliotecario.setLayoutX(imgBibliotecario.getLayoutX()+450);
-        imgIconTxtBiblio.setLayoutX(imgIconTxtBiblio.getLayoutX()+450);
-        imgIconPwdBiblio.setLayoutX(imgIconPwdBiblio.getLayoutX()+450);
-        idBibliotecarioTxt.setLayoutX(idBibliotecarioTxt.getLayoutX()+450);
-        pwdBibliotecarioTxt.setLayoutX(pwdBibliotecarioTxt.getLayoutX()+450);
-        btnLoginBibliotecario.setLayoutX(btnLoginBibliotecario.getLayoutX()+450);
-        //modifica posY en apartado estudiante
-        imgFondoBlancoEst.setLayoutY(imgFondoBlancoEst.getLayoutY()+100);
-        imgEstudiante.setLayoutY(imgEstudiante.getLayoutY()+100);
-        imgIconTxtEstud.setLayoutY(imgIconTxtEstud.getLayoutY()+100);
-        codEstudianteTxt.setLayoutY(codEstudianteTxt.getLayoutY()+100);
-        btnLoginEstudiante.setLayoutY(btnLoginEstudiante.getLayoutY()+100);
-        //modifica posY en apartado bibliotecario
-        imgFondoBlancoBib.setLayoutY(imgFondoBlancoBib.getLayoutY()+100);
-        imgBibliotecario.setLayoutY(imgBibliotecario.getLayoutY()+100);
-        imgIconTxtBiblio.setLayoutY(imgIconTxtBiblio.getLayoutY()+100);
-        imgIconPwdBiblio.setLayoutY(imgIconPwdBiblio.getLayoutY()+100);
-        idBibliotecarioTxt.setLayoutY(idBibliotecarioTxt.getLayoutY()+100);
-        pwdBibliotecarioTxt.setLayoutY(pwdBibliotecarioTxt.getLayoutY()+100);
-        btnLoginBibliotecario.setLayoutY(btnLoginBibliotecario.getLayoutY()+100);
-    }
-    
-    /**
-     * Metodo que acomoda los componentes cuando se minimiza la ventana
-     */
-    private void restablecerPosComponentes(){
-        //restablece posX en apartado estudiante
-        imgFondoBlancoEst.setLayoutX(imgFondoBlancoEst.getLayoutX()-450);
-        imgEstudiante.setLayoutX(imgEstudiante.getLayoutX()-450);
-        imgIconTxtEstud.setLayoutX(imgIconTxtEstud.getLayoutX()-450);
-        codEstudianteTxt.setLayoutX(codEstudianteTxt.getLayoutX()-450);
-        btnLoginEstudiante.setLayoutX(btnLoginEstudiante.getLayoutX()-450);
-        //restablece posX en apartado bibliotecario
-        imgFondoBlancoBib.setLayoutX(imgFondoBlancoBib.getLayoutX()-450);
-        imgBibliotecario.setLayoutX(imgBibliotecario.getLayoutX()-450);
-        imgIconTxtBiblio.setLayoutX(imgIconTxtBiblio.getLayoutX()-450);
-        imgIconPwdBiblio.setLayoutX(imgIconPwdBiblio.getLayoutX()-450);
-        idBibliotecarioTxt.setLayoutX(idBibliotecarioTxt.getLayoutX()-450);
-        pwdBibliotecarioTxt.setLayoutX(pwdBibliotecarioTxt.getLayoutX()-450);
-        btnLoginBibliotecario.setLayoutX(btnLoginBibliotecario.getLayoutX()-450);
-        //restablece posY en apartado estudiante
-        imgFondoBlancoEst.setLayoutY(imgFondoBlancoEst.getLayoutY()-100);
-        imgEstudiante.setLayoutY(imgEstudiante.getLayoutY()-100);
-        imgIconTxtEstud.setLayoutY(imgIconTxtEstud.getLayoutY()-100);
-        codEstudianteTxt.setLayoutY(codEstudianteTxt.getLayoutY()-100);
-        btnLoginEstudiante.setLayoutY(btnLoginEstudiante.getLayoutY()-100);
-        //restablece posY en apartado bibliotecario
-        imgFondoBlancoBib.setLayoutY(imgFondoBlancoBib.getLayoutY()-100);
-        imgBibliotecario.setLayoutY(imgBibliotecario.getLayoutY()-100);
-        imgIconTxtBiblio.setLayoutY(imgIconTxtBiblio.getLayoutY()-100);
-        imgIconPwdBiblio.setLayoutY(imgIconPwdBiblio.getLayoutY()-100);
-        idBibliotecarioTxt.setLayoutY(idBibliotecarioTxt.getLayoutY()-100);
-        pwdBibliotecarioTxt.setLayoutY(pwdBibliotecarioTxt.getLayoutY()-100);
-        btnLoginBibliotecario.setLayoutY(btnLoginBibliotecario.getLayoutY()-100);
     }
 
 }
