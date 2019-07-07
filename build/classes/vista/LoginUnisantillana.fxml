@@ -28,12 +28,12 @@
                               <ImageView fx:id="imgBackground" fitHeight="75.0" fitWidth="361.0" layoutX="97.0" layoutY="222.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" />
                               <JFXTextField fx:id="codEstudianteTxt" focusColor="#7ae0cc" labelFloat="true" layoutX="161.0" layoutY="248.0" prefHeight="40.0" prefWidth="274.0" promptText="Codigo" unFocusColor="#4fc3ad">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="17.0" />
                                  </font>
                               </JFXTextField>
                               <JFXButton layoutX="180.0" layoutY="408.0" onAction="#btnLoginEstPressed" prefHeight="43.0" prefWidth="194.0" ripplerFill="WHITE" text="LOGIN" textFill="WHITE">
                                  <font>
-                                    <Font size="13.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </JFXButton>
                               <ImageView fx:id="imgIconTxtEstud" fitHeight="41.0" fitWidth="39.0" layoutX="115.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
@@ -54,12 +54,12 @@
                               <ImageView fx:id="imgBackground3" fitHeight="75.0" fitWidth="361.0" layoutX="97.0" layoutY="222.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" />
                               <JFXTextField fx:id="codEstudianteTxt1" focusColor="#7ae0cc" labelFloat="true" layoutX="161.0" layoutY="248.0" prefHeight="40.0" prefWidth="274.0" promptText="Identificación" unFocusColor="#4fc3ad">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="17.0" />
                                  </font>
                               </JFXTextField>
                               <JFXButton layoutX="180.0" layoutY="408.0" onAction="#btnLoginProfPressed" prefHeight="43.0" prefWidth="194.0" ripplerFill="WHITE" text="LOGIN" textFill="WHITE">
                                  <font>
-                                    <Font size="13.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </JFXButton>
                               <ImageView fx:id="imgIconTxtProf" fitHeight="41.0" fitWidth="39.0" layoutX="115.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
@@ -89,17 +89,17 @@
                               <ImageView fx:id="imgBackground2" fitHeight="75.0" fitWidth="361.0" layoutX="97.0" layoutY="284.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" />
                               <JFXTextField fx:id="idBibliotecarioTxt" focusColor="#7ae0cc" labelFloat="true" layoutX="161.0" layoutY="206.0" prefHeight="40.0" prefWidth="274.0" promptText="Identificación" unFocusColor="#4fc3ad">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="17.0" />
                                  </font>
                               </JFXTextField>
                               <JFXPasswordField fx:id="pwdBibliotecarioTxt" focusColor="#7ae0cc" labelFloat="true" layoutX="161.0" layoutY="309.0" prefHeight="40.0" prefWidth="274.0" promptText="Contraseña" unFocusColor="#4fc3ad">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="17.0" />
                                  </font>
                               </JFXPasswordField>
                               <JFXButton layoutX="180.0" layoutY="408.0" onAction="#btnLoginBibPressed" prefHeight="43.0" prefWidth="194.0" ripplerFill="WHITE" text="LOGIN" textFill="WHITE">
                                  <font>
-                                    <Font size="13.0" />
+                                    <Font size="16.0" />
                                  </font>
                                  <effect>
                                     <DropShadow color="RED">
