@@ -38,34 +38,29 @@ public class LoginUnisantillanaController implements Initializable {
     @FXML
     private ImageView imgBibliotecario;
     @FXML
+    private ImageView imgProfesor;
+    @FXML
     private ImageView imgIconTxtEstud;
     @FXML
     private ImageView imgIconTxtBiblio;
     @FXML
     private ImageView imgIconPwdBiblio;
     @FXML
-    private ImageView imgClose;
-    @FXML
-    private ImageView imgMinMax;
-    @FXML
-    private ImageView imgOcultar;
+    private ImageView imgIconTxtProf;
     @FXML
     private ImageView imgFondoBlancoEst;
     @FXML
     private ImageView imgFondoBlancoBib;
+    @FXML
+    private ImageView imgFondoBlancoProf;
     @FXML
     private ImageView imgBackground;
     @FXML
     private ImageView imgBackground1;
     @FXML
     private ImageView imgBackground2;
-    
     @FXML
-    private AnchorPane rootEstudiante;
-    @FXML
-    private AnchorPane rootBibliotecario;
-    
-    private boolean btnMinMaxPressed = false;
+    private ImageView imgBackground3;
 
     /**
      * Initializes the controller class.
@@ -75,17 +70,18 @@ public class LoginUnisantillanaController implements Initializable {
         imgEstudiante.setImage(new Image("/recursos/iconStudent.png"));
         imgEstudiante.setPreserveRatio(false);  
         imgBibliotecario.setImage(new Image("/recursos/iconBibliotecario.png"));
-        imgClose.setImage(new Image("/recursos/cerrar.png"));
-        imgMinMax.setImage(new Image("/recursos/maximizar.png"));
-        imgOcultar.setImage(new Image("/recursos/ocultar.png"));
+        imgProfesor.setImage(new Image("/recursos/iconTeacher.png"));
         imgFondoBlancoEst.setImage(new Image("/recursos/fondo-blanco.png"));
         imgFondoBlancoBib.setImage(new Image("/recursos/fondo-blanco.png"));
+        imgFondoBlancoProf.setImage(new Image("/recursos/fondo-blanco.png"));
         imgIconTxtEstud.setImage(new Image("/recursos/login-textfield.png"));
         imgIconTxtBiblio.setImage(new Image("/recursos/login-textfield.png"));
         imgIconPwdBiblio.setImage(new Image("/recursos/pasword-textfield.png"));
+        imgIconTxtProf.setImage(new Image("/recursos/login-textfield.png"));
         imgBackground.setImage(new Image("/recursos/background-field.png"));
         imgBackground1.setImage(new Image("/recursos/background-field.png"));
         imgBackground2.setImage(new Image("/recursos/background-field.png"));
+        imgBackground3.setImage(new Image("/recursos/background-field.png"));
     }
 
     @FXML
@@ -100,28 +96,8 @@ public class LoginUnisantillanaController implements Initializable {
     }
     
     @FXML
-    private void btnClosePressed(ActionEvent event){
-        System.exit(0);
-    }
-    
-    @FXML
-    private void btnMinMaxPressed(ActionEvent event){
-        if(!btnMinMaxPressed){
-            LoginUnisantillanaStage.getInstance().setMaximized(true);
-            rootEstudiante.setMaxSize(450, 393);
-            rootBibliotecario.setMaxSize(450, 393);
-            imgMinMax.setImage(new Image("/recursos/minimizar.png"));
-            btnMinMaxPressed = true;
-        }else{
-            LoginUnisantillanaStage.getInstance().setMaximized(false);
-            imgMinMax.setImage(new Image("/recursos/maximizar.png"));
-            btnMinMaxPressed = false;
-        }
-    }
-    
-    @FXML
-    private void btnOcultarPressed(ActionEvent event){
-        LoginUnisantillanaStage.getInstance().setIconified(true);
+    private void btnLoginProfPressed(ActionEvent event){
+        
     }
 
     /**
@@ -165,6 +141,7 @@ public class LoginUnisantillanaController implements Initializable {
         }
         limpiarCamposTextosLoginEstudiante();
     }
+    
 
     /**
      * Método que limpia los campos de texto de identificiación y contrasena.

@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -25,7 +24,9 @@ public class LoginUnisantillanaStage extends Stage {
             setScene(scene);
             setTitle("Login Unisantillana");
             getIcons().add(new Image("/recursos/iconUniversity.png"));
-            initStyle(StageStyle.UNDECORATED);
+            setMinWidth(560);
+            setMinHeight(578);
+            setMaximized(true);
             show();
         } catch (IOException e) {
             e.printStackTrace();
