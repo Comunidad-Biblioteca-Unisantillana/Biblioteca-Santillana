@@ -53,6 +53,12 @@ public class LoginUnisantillanaController implements Initializable {
     private ImageView imgFondoBlancoEst;
     @FXML
     private ImageView imgFondoBlancoBib;
+    @FXML
+    private ImageView imgBackground;
+    @FXML
+    private ImageView imgBackground1;
+    @FXML
+    private ImageView imgBackground2;
     
     @FXML
     private AnchorPane rootEstudiante;
@@ -77,6 +83,9 @@ public class LoginUnisantillanaController implements Initializable {
         imgIconTxtEstud.setImage(new Image("/recursos/login-textfield.png"));
         imgIconTxtBiblio.setImage(new Image("/recursos/login-textfield.png"));
         imgIconPwdBiblio.setImage(new Image("/recursos/pasword-textfield.png"));
+        imgBackground.setImage(new Image("/recursos/background-field.png"));
+        imgBackground1.setImage(new Image("/recursos/background-field.png"));
+        imgBackground2.setImage(new Image("/recursos/background-field.png"));
     }
 
     @FXML
