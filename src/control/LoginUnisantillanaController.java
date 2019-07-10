@@ -1,8 +1,8 @@
 package control;
 
-
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.base.ValidatorBase;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -10,13 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import modeloDAO.LoginBibliotecarioDAO;
-import modeloDAO.LoginEstudianteDAO;
-import vista.AlertBox;
+import modelo.ValidatorCodEstudiante;
+import modelo.ValidatorIdBibliotecario;
+import modelo.ValidatorPwdBibliotecario;
 import vista.CuentaBibliotecarioStage;
 import vista.CuentaEstudianteStage;
-import vista.IAlertBox;
 import vista.LoginUnisantillanaStage;
 
 /**
@@ -31,8 +29,10 @@ public class LoginUnisantillanaController implements Initializable {
     @FXML
     private JFXTextField idBibliotecarioTxt;
     @FXML
+    private JFXTextField idProfesorTxt;
+    @FXML
     private JFXPasswordField pwdBibliotecarioTxt;
-    
+
     @FXML
     private ImageView imgEstudiante;
     @FXML
@@ -68,9 +68,11 @@ public class LoginUnisantillanaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgEstudiante.setImage(new Image("/recursos/iconStudent.png"));
-        imgEstudiante.setPreserveRatio(false);  
+        imgEstudiante.setPreserveRatio(false);
         imgBibliotecario.setImage(new Image("/recursos/iconBibliotecario.png"));
+        imgBibliotecario.setPreserveRatio(false);
         imgProfesor.setImage(new Image("/recursos/iconTeacher.png"));
+        imgProfesor.setPreserveRatio(false);
         imgFondoBlancoEst.setImage(new Image("/recursos/fondo-blanco.png"));
         imgFondoBlancoBib.setImage(new Image("/recursos/fondo-blanco.png"));
         imgFondoBlancoProf.setImage(new Image("/recursos/fondo-blanco.png"));
@@ -82,6 +84,9 @@ public class LoginUnisantillanaController implements Initializable {
         imgBackground1.setImage(new Image("/recursos/background-field.png"));
         imgBackground2.setImage(new Image("/recursos/background-field.png"));
         imgBackground3.setImage(new Image("/recursos/background-field.png"));
+        agregarValidator(new ValidatorCodEstudiante(codEstudianteTxt), "No existe un estudiante con ese codigo", codEstudianteTxt,null);
+        agregarValidator(new ValidatorIdBibliotecario(idBibliotecarioTxt), "No existe un bibliotecario con esa identificación", idBibliotecarioTxt,null);
+        agregarValidator(new ValidatorPwdBibliotecario(idBibliotecarioTxt, pwdBibliotecarioTxt), "La contraseña es incorrecta", null, pwdBibliotecarioTxt);
     }
 
     @FXML
@@ -91,13 +96,13 @@ public class LoginUnisantillanaController implements Initializable {
 
     @FXML
     private void btnLoginBibPressed(ActionEvent event) {
-        loguearBibliotecario(idBibliotecarioTxt.getText().trim(), pwdBibliotecarioTxt.getText().trim());
+        loguearBibliotecario(idBibliotecarioTxt.getText().trim());
 
     }
-    
+
     @FXML
-    private void btnLoginProfPressed(ActionEvent event){
-        
+    private void btnLoginProfPressed(ActionEvent event) {
+
     }
 
     /**
@@ -107,19 +112,14 @@ public class LoginUnisantillanaController implements Initializable {
      * @param idBibliotecario
      * @param codPassword
      */
-    private void loguearBibliotecario(String idBibliotecario, String codPassword) {
-        LoginBibliotecarioDAO loginBibliotecario = new LoginBibliotecarioDAO();
-        
-        if (loginBibliotecario.readDAO(idBibliotecario, codPassword)) {            
+    private void loguearBibliotecario(String idBibliotecario) {
+        if ((idBibliotecarioTxt.validate()) && (pwdBibliotecarioTxt.validate())) {
             limpiarCamposTextosLoginBibliotecario();
             CuentaBibliotecarioStage.getInstance();
             CuentaBibliotecarioStage.getInstance().cargarIdBibliotecario(idBibliotecario);
             LoginUnisantillanaStage.getInstance().close();
-        } else {
-            limpiarCamposTextosLoginBibliotecario();
-            IAlertBox alert = new AlertBox();
-            alert.showAlert("Anuncio", "Login Bibliotecario", "No existe un bibliotecario con ese código");
         }
+        limpiarCamposTextosLoginBibliotecario();
     }
 
     /**
@@ -128,20 +128,29 @@ public class LoginUnisantillanaController implements Initializable {
      * @param codEstudiante
      */
     private void loguearEstudiante(String codEstudiante) {
-        LoginEstudianteDAO loginEstudiante = new LoginEstudianteDAO();
-
-        if (loginEstudiante.readDAO(codEstudiante)) {                       
+        if (codEstudianteTxt.validate()) {
             CuentaEstudianteStage.getInstance();
             CuentaEstudianteStage.getInstance().cargarCodEstudiante(codEstudiante);
             LoginUnisantillanaStage.getInstance().close();
-        } else {
-            
-            IAlertBox alert = new AlertBox();
-            alert.showAlert("Anuncio", "Login Estudiante", "No existe un estudiante con ese código");
         }
         limpiarCamposTextosLoginEstudiante();
     }
     
+    /**
+     * Metodo que agrega un validador a un JFXTextField
+     * @param validator
+     * @param mensaje
+     * @param txt 
+     */
+    private void agregarValidator(ValidatorBase validator,String mensaje,JFXTextField txt,JFXPasswordField pwd){
+        validator.setMessage(mensaje);
+        validator.setIcon(new ImageView("/recursos/error.png"));
+        if(pwd == null){
+            txt.getValidators().add(validator);
+        }else{
+            pwd.getValidators().add(validator);
+        }
+    }
 
     /**
      * Método que limpia los campos de texto de identificiación y contrasena.
@@ -157,5 +166,6 @@ public class LoginUnisantillanaController implements Initializable {
     private void limpiarCamposTextosLoginEstudiante() {
         codEstudianteTxt.setText("");
     }
+    
 
 }
