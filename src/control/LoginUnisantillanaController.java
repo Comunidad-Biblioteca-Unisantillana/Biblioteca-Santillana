@@ -125,6 +125,7 @@ public class LoginUnisantillanaController implements Initializable {
      */
     private void iniciarComponentesBib() {
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
+        UsuarioTxt.setPromptText("Identificación");
 
         ComponentesBib(true);
         imgLogin.setImage(new Image("/recursos/iconBibliotecario.png"));
@@ -139,6 +140,7 @@ public class LoginUnisantillanaController implements Initializable {
      */
     private void iniciarComponentesEstudiante() {
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese codigo");
+        UsuarioTxt.setPromptText("Codigo");
 
         ComponentesBib(false);
         imgLogin.setImage(new Image("/recursos/iconStudent.png"));
@@ -153,6 +155,7 @@ public class LoginUnisantillanaController implements Initializable {
      */
     private void iniciarComponentesProf() {
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
+        UsuarioTxt.setPromptText("Identificación");
         
         ComponentesBib(false);
         imgLogin.setImage(new Image("/recursos/iconTeacher.png"));
