@@ -1,18 +1,22 @@
 package control;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import modelo.ValidatorCodEstudiante;
-import modelo.ValidatorIdBibliotecario;
-import modelo.ValidatorPwdBibliotecario;
+import modelo.ValidatorLoginEstudiante;
+import modelo.ValidatorLoginProfesor;
+import modelo.ValidatorLoginBibliotecario;
 import vista.CuentaBibliotecarioStage;
 import vista.CuentaEstudianteStage;
 import vista.LoginUnisantillanaStage;
@@ -25,84 +29,186 @@ import vista.LoginUnisantillanaStage;
 public class LoginUnisantillanaController implements Initializable {
 
     @FXML
-    private JFXTextField codEstudianteTxt;
+    private JFXComboBox<String> comboLogin;
     @FXML
-    private JFXTextField idBibliotecarioTxt;
+    private JFXTextField UsuarioTxt;
     @FXML
-    private JFXTextField idProfesorTxt;
+    private JFXPasswordField PasswordTxt;
     @FXML
-    private JFXPasswordField pwdBibliotecarioTxt;
-
+    private ImageView imgLogin;
     @FXML
-    private ImageView imgEstudiante;
+    private ImageView imgIconUsuarioTxt;
     @FXML
-    private ImageView imgBibliotecario;
+    private ImageView imgIconPasswordTxt;
     @FXML
-    private ImageView imgProfesor;
+    private ImageView imgFondoBlanco;
     @FXML
-    private ImageView imgIconTxtEstud;
+    private ImageView imgFondoBlancoTxt;
     @FXML
-    private ImageView imgIconTxtBiblio;
-    @FXML
-    private ImageView imgIconPwdBiblio;
-    @FXML
-    private ImageView imgIconTxtProf;
-    @FXML
-    private ImageView imgFondoBlancoEst;
-    @FXML
-    private ImageView imgFondoBlancoBib;
-    @FXML
-    private ImageView imgFondoBlancoProf;
-    @FXML
-    private ImageView imgBackground;
-    @FXML
-    private ImageView imgBackground1;
-    @FXML
-    private ImageView imgBackground2;
-    @FXML
-    private ImageView imgBackground3;
+    private ImageView imgFondoBlancoTxt1;
+    
+    private ValidatorLoginEstudiante validatorEst;
+    
+    private ValidatorLoginProfesor validatorProf;
+    
+    private ValidatorLoginBibliotecario validatorBib;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imgEstudiante.setImage(new Image("/recursos/iconStudent.png"));
-        imgEstudiante.setPreserveRatio(false);
-        imgBibliotecario.setImage(new Image("/recursos/iconBibliotecario.png"));
-        imgBibliotecario.setPreserveRatio(false);
-        imgProfesor.setImage(new Image("/recursos/iconTeacher.png"));
-        imgProfesor.setPreserveRatio(false);
-        imgFondoBlancoEst.setImage(new Image("/recursos/fondo-blanco.png"));
-        imgFondoBlancoBib.setImage(new Image("/recursos/fondo-blanco.png"));
-        imgFondoBlancoProf.setImage(new Image("/recursos/fondo-blanco.png"));
-        imgIconTxtEstud.setImage(new Image("/recursos/login-textfield.png"));
-        imgIconTxtBiblio.setImage(new Image("/recursos/login-textfield.png"));
-        imgIconPwdBiblio.setImage(new Image("/recursos/pasword-textfield.png"));
-        imgIconTxtProf.setImage(new Image("/recursos/login-textfield.png"));
-        imgBackground.setImage(new Image("/recursos/background-field.png"));
-        imgBackground1.setImage(new Image("/recursos/background-field.png"));
-        imgBackground2.setImage(new Image("/recursos/background-field.png"));
-        imgBackground3.setImage(new Image("/recursos/background-field.png"));
-        agregarValidator(new ValidatorCodEstudiante(codEstudianteTxt), "No existe un estudiante con ese codigo", codEstudianteTxt,null);
-        agregarValidator(new ValidatorIdBibliotecario(idBibliotecarioTxt), "No existe un bibliotecario con esa identificación", idBibliotecarioTxt,null);
-        agregarValidator(new ValidatorPwdBibliotecario(idBibliotecarioTxt, pwdBibliotecarioTxt), "La contraseña es incorrecta", null, pwdBibliotecarioTxt);
+        comboLogin.getItems().add("Estudiante");
+        comboLogin.getItems().add("Bibliotecario");
+        comboLogin.getItems().add("Docente");
+        comboLogin.getSelectionModel().select(0);
+
+        RequiredFieldValidator v1 = new RequiredFieldValidator();
+        iniciarValidador(v1, "","informacion");
+        UsuarioTxt.getValidators().add(v1);
+        
+        RequiredFieldValidator v2 = new RequiredFieldValidator();
+        iniciarValidador(v2, "Ingrese contraseña","informacion");
+        PasswordTxt.getValidators().add(v2);
+        
+        validatorEst = new ValidatorLoginEstudiante(UsuarioTxt);
+        iniciarValidador(validatorEst, "Codigo incorrecto", "error");
+        
+        validatorBib = new  ValidatorLoginBibliotecario(UsuarioTxt, PasswordTxt);
+        iniciarValidador(validatorBib, "Identificación o contraseña incorrecta", "error");
+        
+        addEventValidador();
+
+        iniciarComponentesEstudiante();
+        imgFondoBlanco.setImage(new Image("/recursos/fondo-blanco.png"));
+        imgIconUsuarioTxt.setImage(new Image("/recursos/login-textfield.png"));
+        imgFondoBlancoTxt.setImage(new Image("/recursos/background-field.png"));
+        imgIconPasswordTxt.setImage(new Image("/recursos/pasword-textfield.png"));
+        imgFondoBlancoTxt1.setImage(new Image("/recursos/background-field.png"));
     }
 
     @FXML
-    private void btnLoginEstPressed(ActionEvent event) {
-        loguearEstudiante(codEstudianteTxt.getText().trim());
+    private void btnComboLoginPressed(ActionEvent event) {
+        if (comboLogin.getSelectionModel().getSelectedItem().equals("Estudiante")) {
+            iniciarComponentesEstudiante();
+        }
+        if (comboLogin.getSelectionModel().getSelectedItem().equals("Bibliotecario")) {
+            iniciarComponentesBib();
+        }
+        if (comboLogin.getSelectionModel().getSelectedItem().equals("Docente")) {
+            iniciarComponentesProf();
+        }
+        UsuarioTxt.setText("1");
+        UsuarioTxt.validate();
+        PasswordTxt.setText("1");
+        PasswordTxt.validate();
+        limpiarCamposTextosLogin();
+        UsuarioTxt.validate();
+        PasswordTxt.validate();
     }
 
     @FXML
-    private void btnLoginBibPressed(ActionEvent event) {
-        loguearBibliotecario(idBibliotecarioTxt.getText().trim());
+    private void btnAccederPressed(ActionEvent event) {
+        if (comboLogin.getSelectionModel().getSelectedItem().equals("Estudiante")) {
+            loguearEstudiante(UsuarioTxt.getText().trim());
+        }
+        if (comboLogin.getSelectionModel().getSelectedItem().equals("Bibliotecario")) {
+            loguearBibliotecario(UsuarioTxt.getText().trim());
+        }
+        if (comboLogin.getSelectionModel().getSelectedItem().equals("Docente")) {
 
+        }
     }
 
-    @FXML
-    private void btnLoginProfPressed(ActionEvent event) {
+    /**
+     * Metodo que inicia los componentes del bibliotecario
+     */
+    private void iniciarComponentesBib() {
+        UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
 
+        ComponentesBib(true);
+        imgLogin.setImage(new Image("/recursos/iconBibliotecario.png"));
+
+        UsuarioTxt.setLayoutY(271);
+        imgIconUsuarioTxt.setLayoutY(272);
+        imgFondoBlancoTxt.setLayoutY(253);
+    }
+
+    /**
+     * Metodo que inicia los componentes del login estudiante
+     */
+    private void iniciarComponentesEstudiante() {
+        UsuarioTxt.getValidators().get(0).setMessage("Ingrese codigo");
+
+        ComponentesBib(false);
+        imgLogin.setImage(new Image("/recursos/iconStudent.png"));
+
+        UsuarioTxt.setLayoutY(320);
+        imgIconUsuarioTxt.setLayoutY(325);
+        imgFondoBlancoTxt.setLayoutY(302);
+    }
+
+    /**
+     * Metodo que inicia los componentes del profesor
+     */
+    private void iniciarComponentesProf() {
+        UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
+        
+        ComponentesBib(false);
+        imgLogin.setImage(new Image("/recursos/iconTeacher.png"));
+
+        UsuarioTxt.setLayoutY(320);
+        imgIconUsuarioTxt.setLayoutY(325);
+        imgFondoBlancoTxt.setLayoutY(302);
+    }
+
+    /**
+     * Metodo que oculta los componentes que solo se tienen en cuenta en el
+     * bibliotecario
+     */
+    private void ComponentesBib(boolean v) {
+        imgIconPasswordTxt.setVisible(v);
+        imgFondoBlancoTxt1.setVisible(v);
+        PasswordTxt.setVisible(v);
+    }
+
+    /**
+     * Metodo que agrega un validador a un JFXTextField
+     *
+     * @param validador
+     * @param mensaje
+     * @param txt
+     */
+    private void iniciarValidador(ValidatorBase validador, String mensaje,String nombreImagen) {
+        validador.setMessage(mensaje);
+        validador.setIcon(new ImageView("/recursos/" + nombreImagen + ".png"));
+    }
+
+    /**
+     * metodo que inicializa la escucha de los campos
+     */
+    private void addEventValidador() {
+        UsuarioTxt.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (!newValue) {
+                    UsuarioTxt.validate();
+                    return;
+                }
+                if (newValue) {
+                    UsuarioTxt.validate();
+                }
+            }
+        });
+        PasswordTxt.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (!newValue) {
+                    PasswordTxt.validate();
+                }
+            }
+
+        });
     }
 
     /**
@@ -113,13 +219,19 @@ public class LoginUnisantillanaController implements Initializable {
      * @param codPassword
      */
     private void loguearBibliotecario(String idBibliotecario) {
-        if ((idBibliotecarioTxt.validate()) && (pwdBibliotecarioTxt.validate())) {
-            limpiarCamposTextosLoginBibliotecario();
+        if((UsuarioTxt.getText().equals("")) || (PasswordTxt.getText().equals(""))){
+            UsuarioTxt.validate();
+            PasswordTxt.validate();
+            return;
+        }
+        UsuarioTxt.getValidators().add(validatorBib);
+        if (UsuarioTxt.validate()) {
             CuentaBibliotecarioStage.getInstance();
             CuentaBibliotecarioStage.getInstance().cargarIdBibliotecario(idBibliotecario);
             LoginUnisantillanaStage.getInstance().close();
         }
-        limpiarCamposTextosLoginBibliotecario();
+        UsuarioTxt.getValidators().remove(1);
+        limpiarCamposTextosLogin();
     }
 
     /**
@@ -128,44 +240,22 @@ public class LoginUnisantillanaController implements Initializable {
      * @param codEstudiante
      */
     private void loguearEstudiante(String codEstudiante) {
-        if (codEstudianteTxt.validate()) {
+        UsuarioTxt.getValidators().add(validatorEst);
+        if (UsuarioTxt.validate()) {
             CuentaEstudianteStage.getInstance();
             CuentaEstudianteStage.getInstance().cargarCodEstudiante(codEstudiante);
             LoginUnisantillanaStage.getInstance().close();
         }
-        limpiarCamposTextosLoginEstudiante();
-    }
-    
-    /**
-     * Metodo que agrega un validador a un JFXTextField
-     * @param validator
-     * @param mensaje
-     * @param txt 
-     */
-    private void agregarValidator(ValidatorBase validator,String mensaje,JFXTextField txt,JFXPasswordField pwd){
-        validator.setMessage(mensaje);
-        validator.setIcon(new ImageView("/recursos/error.png"));
-        if(pwd == null){
-            txt.getValidators().add(validator);
-        }else{
-            pwd.getValidators().add(validator);
-        }
+        UsuarioTxt.getValidators().remove(1);
+        limpiarCamposTextosLogin();
     }
 
     /**
      * Método que limpia los campos de texto de identificiación y contrasena.
      */
-    private void limpiarCamposTextosLoginBibliotecario() {
-        idBibliotecarioTxt.setText("");
-        pwdBibliotecarioTxt.setText("");
+    private void limpiarCamposTextosLogin() {
+        UsuarioTxt.setText("");
+        PasswordTxt.setText("");
     }
-
-    /**
-     * Método que limpia los campos de textos del código del estudiante.
-     */
-    private void limpiarCamposTextosLoginEstudiante() {
-        codEstudianteTxt.setText("");
-    }
-    
 
 }
