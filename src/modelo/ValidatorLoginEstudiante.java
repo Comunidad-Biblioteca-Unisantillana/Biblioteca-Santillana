@@ -7,13 +7,12 @@ package modelo;
 
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.base.ValidatorBase;
-import java.util.Optional;
 import javafx.scene.control.TextInputControl;
 import modeloDAO.LoginEstudianteDAO;
 
 /**
  *
- * @author Storkolm
+ * @author Julian
  */
 public class ValidatorLoginEstudiante extends ValidatorBase{
     

@@ -13,7 +13,7 @@ import modeloDAO.LoginBibliotecarioDAO;
 
 /**
  *
- * @author Storkolm
+ * @author Julian
  */
 public class ValidatorLoginBibliotecario extends ValidatorBase{
     

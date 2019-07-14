@@ -8,18 +8,17 @@ package modelo;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.base.ValidatorBase;
 import javafx.scene.control.TextInputControl;
-import modeloDAO.LoginBibliotecarioDAO;
 
 /**
  *
- * @author Storkolm
+ * @author Julian
  */
 public class ValidatorLoginProfesor extends ValidatorBase {
 
-    private final JFXTextField idBibliotecario;
+    private final JFXTextField idProfesor;
 
-    public ValidatorLoginProfesor(JFXTextField idBIbliotecario) {
-        this.idBibliotecario = idBIbliotecario;
+    public ValidatorLoginProfesor(JFXTextField idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     @Override
@@ -28,7 +27,6 @@ public class ValidatorLoginProfesor extends ValidatorBase {
     }
 
     private void evalTextField() {
-        LoginBibliotecarioDAO loginBibliotecario = new LoginBibliotecarioDAO();
-        hasErrors.set(!loginBibliotecario.readDAO(idBibliotecario.getText().trim(), null));
+        //utilizar metodo hasErrors
     }
 }

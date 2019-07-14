@@ -58,11 +58,10 @@ public class LoginUnisantillanaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comboLogin.getItems().add("Estudiante");
-        comboLogin.getItems().add("Bibliotecario");
-        comboLogin.getItems().add("Docente");
-        comboLogin.getSelectionModel().select(0);
-
+        //iniciar evento tecla
+        KeyEventJFXTextFieldController control = new KeyEventJFXTextFieldController();
+        control.soloNumeros(UsuarioTxt);
+        //iniciar validadores
         RequiredFieldValidator v1 = new RequiredFieldValidator();
         iniciarValidador(v1, "","informacion");
         UsuarioTxt.getValidators().add(v1);
@@ -78,6 +77,11 @@ public class LoginUnisantillanaController implements Initializable {
         iniciarValidador(validatorBib, "Identificación o contraseña incorrecta", "error");
         
         addEventValidador();
+        //Iniciar componentes vista
+        comboLogin.getItems().add("Estudiante");
+        comboLogin.getItems().add("Bibliotecario");
+        comboLogin.getItems().add("Docente");
+        comboLogin.getSelectionModel().select(0);
 
         iniciarComponentesEstudiante();
         imgFondoBlanco.setImage(new Image("/recursos/fondo-blanco.png"));
@@ -98,13 +102,11 @@ public class LoginUnisantillanaController implements Initializable {
         if (comboLogin.getSelectionModel().getSelectedItem().equals("Docente")) {
             iniciarComponentesProf();
         }
+        //Actualizar validadores
         UsuarioTxt.setText("1");
         UsuarioTxt.validate();
-        PasswordTxt.setText("1");
-        PasswordTxt.validate();
         limpiarCamposTextosLogin();
         UsuarioTxt.validate();
-        PasswordTxt.validate();
     }
 
     @FXML
