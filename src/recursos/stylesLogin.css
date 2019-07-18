@@ -36,11 +36,11 @@ JFXComboBox{
 }
 
 AnchorPane{
-    
+    -fx-background-image: url(fondo_pequeno.png);
 }
 
 BorderPane{
-    -fx-background-image: url(fondo2.png);
+    -fx-background-image: url(fondo_grande.png);
     -fx-background-position: center bottom;
 }
 
