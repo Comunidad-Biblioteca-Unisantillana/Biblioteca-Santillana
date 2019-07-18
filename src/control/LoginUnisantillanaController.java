@@ -55,6 +55,8 @@ public class LoginUnisantillanaController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -178,7 +180,7 @@ public class LoginUnisantillanaController implements Initializable {
     }
 
     /**
-     * Metodo que agrega un validador a un JFXTextField
+     * Metodo que carga los componentes de un validador
      *
      * @param validador
      * @param mensaje
@@ -190,7 +192,7 @@ public class LoginUnisantillanaController implements Initializable {
     }
 
     /**
-     * metodo que inicializa la escucha de los campos
+     * metodo que inicializa la escucha del JFXTextField y JFXPasswordField
      */
     private void addEventValidador() {
         UsuarioTxt.focusedProperty().addListener(new ChangeListener<Boolean>() {

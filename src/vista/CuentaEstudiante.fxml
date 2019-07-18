@@ -1,179 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CuentaEstudianteController">
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-         <tabs>
-            <Tab text="Préstamos">
-               <content>
-                  <GridPane>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.0" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="682.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="384.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="364.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TableView fx:id="tablePrestamo" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2">
-                           <columns>
-                              <TableColumn fx:id="codPrestamosTable" editable="false" prefWidth="300.0" text="Código de prestamos" />
-                              <TableColumn fx:id="tituloTable" editable="false" prefWidth="300.0" text="Titúlo del recurso bibliográfico" />
-                              <TableColumn fx:id="fechaPrestamoTable" editable="false" prefWidth="300.0" text="Fecha de préstamo" />
-                              <TableColumn fx:id="fechaDevolucionTable" editable="false" prefWidth="300.0" text="Fecha de devolución " />
-                           </columns>
-                           <GridPane.margin>
-                              <Insets bottom="50.0" top="150.0" />
-                           </GridPane.margin>
-                        </TableView>
-                        <Label text="PRÉSTAMOS" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets top="35.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#btnConsultarPrestamosPressed" text="Consultar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets top="100.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab text="Historial de Multas">
-               <content>
-                  <GridPane fx:id="gridPaneMultas">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="682.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="384.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="364.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TableView fx:id="tableMulta" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="2">
-                           <columns>
-                              <TableColumn fx:id="colCodMulta" editable="false" prefWidth="200.0" text="Código multa" />
-                              <TableColumn fx:id="colCodPrestamo" editable="false" prefWidth="200.0" text="Código préstamo" />
-                              <TableColumn fx:id="colDiasAtrasados" editable="false" prefWidth="200.0" text="Días atrasados" />
-                              <TableColumn fx:id="colValorTot" editable="false" prefWidth="200.0" text="Valor multa" />
-                              <TableColumn fx:id="colCancelado" prefWidth="200.0" text="Cancelado" />
-                              <TableColumn fx:id="colTipo" prefWidth="200.0" text="Tipo" />
-                           </columns>
-                           <GridPane.margin>
-                              <Insets bottom="50.0" top="150.0" />
-                           </GridPane.margin>
-                        </TableView>
-                        <Button fx:id="btnConsultarMultasPressed" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnconsultarHisMulPressed" prefWidth="100.0" text="Consultar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets top="100.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Label text="HISTORIAL DE MULTAS" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets top="40.0" />
-                           </GridPane.margin>
-                        </Label>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab text="OPAC">
-               <content>
-                  <GridPane prefHeight="671.0" prefWidth="947.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.75" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="600.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="codBarrasOpacTxt" GridPane.columnIndex="4">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="tituloOpacTxt" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label text="Código de barras" GridPane.columnIndex="3">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Titúlo del recurso" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#handledBtnBuscarTitulo" prefHeight="31.0" prefWidth="150.0" text="Buscar recursos" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="15.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Label text="Bibliográfico" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#handledBtnBuscarCodBarras" prefHeight="32.0" prefWidth="150.0" text="Buscar recurso" GridPane.columnIndex="5">
-                           <GridPane.margin>
-                              <Insets left="15.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <GridPane fx:id="panelOpac" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="579.0" prefWidth="1341.0" GridPane.columnSpan="8" GridPane.rowIndex="2">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
-   </center>
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CuentaEstudianteController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -190,4 +30,54 @@
         </menus>
       </MenuBar>
    </top>
+   <left>
+      <AnchorPane prefHeight="738.0" prefWidth="103.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXHamburger fx:id="hamburger" alignment="CENTER" layoutX="8.0" prefHeight="50.0" prefWidth="54.0" />
+            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="152.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane fx:id="anchorDrawer" prefHeight="148.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="151.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="54.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo ">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="90.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="89.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </JFXDrawer>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </AnchorPane>
+   </center>
 </BorderPane>

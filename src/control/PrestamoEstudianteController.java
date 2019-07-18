@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package control;
+
+import entitys.Prestamo;
+import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modelo.ConsultaPrestamo;
+
+/**
+ * Clase que controla el panel prestamo del estudiante
+ * @author Julian
+ */
+public class PrestamoEstudianteController{
+    
+    @FXML
+    private TableView<Prestamo> tablePrestamo;
+    @FXML
+    private TableColumn<Prestamo, Integer> codPrestamosTable;
+    @FXML
+    private TableColumn<Prestamo, Date> fechaPrestamoTable;
+    @FXML
+    private TableColumn<Prestamo, Date> fechaDevolucionTable;
+    @FXML
+    private TableColumn<Prestamo, String> tituloTable;
+    
+    private String codEstudiante;
+    
+    @FXML
+    private void btnConsultarPrestamosPressed(ActionEvent event) {
+         try {
+            cargarDatosTablePrestamos(codEstudiante);
+        } catch (Exception ex) {
+            Logger.getLogger(CuentaEstudianteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cargarDatosTablePrestamos(String codEstudiante) throws Exception {
+        ConsultaPrestamo consulta = new ConsultaPrestamo();
+
+        codPrestamosTable.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
+        tituloTable.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        fechaPrestamoTable.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
+        fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
+        tablePrestamo.setItems(consulta.getPrestamos(codEstudiante));
+    }
+
+    /**
+     * Metodo que obtiene el codigo del estudiante
+     * @param codEstudiante 
+     */
+    public void setCodEstudiante(String codEstudiante) {
+        this.codEstudiante = codEstudiante;
+    }
+}

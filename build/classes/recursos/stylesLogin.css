@@ -23,6 +23,7 @@ JFXComboBox{
     -fx-fill: WHITE;
     -fx-background-color: #0ea18b;
     -fx-font-size: 11pt;
+    -fx-cursor: hand;
 }
 
 .error-label {
@@ -35,11 +36,12 @@ JFXComboBox{
 }
 
 AnchorPane{
-    -fx-background-color: #036368;
+    
 }
 
 BorderPane{
-    -fx-background-color: #036368;
+    -fx-background-image: url(fondo2.png);
+    -fx-background-position: center bottom;
 }
 
 .tab:selected {
@@ -47,6 +49,7 @@ BorderPane{
 }
 
 .button {
+    -fx-cursor: hand;
     -fx-background-color: #0ea18b;
     -fx-background-radius: 20;
 }
@@ -54,6 +57,3 @@ BorderPane{
 .button:hover {
     -fx-background-color: #0C8A78;
 }
-
-
-
