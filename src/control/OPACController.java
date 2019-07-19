@@ -9,10 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import modelo.ConsultaOPAC;
 import vista.AlertBox;
 import vista.CargarFichaTecnica;
-import vista.CuentaBibliotecarioStage;
 import vista.IAlertBox;
 import vista.StageTableOPAC;
 
@@ -20,9 +20,9 @@ import vista.StageTableOPAC;
  *
  * @author Julian
  */
-public class OPACBibliotecarioController {
+public class OPACController {
     
-    private CuentaBibliotecarioStage stage;
+    private Stage stage;
     @FXML
     private GridPane panelOpac;
     @FXML
@@ -64,10 +64,12 @@ public class OPACBibliotecarioController {
     
     @FXML
     private void btnOpacLimpiarPressed(ActionEvent event) {
-        cft.limpiarCamposTextos();
+        if(cft != null){
+            cft.limpiarCamposTextos();
+        }
     }
     
-    public void setStage(CuentaBibliotecarioStage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 }

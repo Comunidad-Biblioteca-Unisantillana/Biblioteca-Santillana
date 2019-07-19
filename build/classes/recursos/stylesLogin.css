@@ -36,7 +36,6 @@ JFXComboBox{
 }
 
 AnchorPane{
-    -fx-background-radius: 1223;
     -fx-background-image: url(fondo_pequeno.png);
 }
 

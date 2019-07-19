@@ -2,7 +2,6 @@ package control;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,10 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import vista.CuentaEstudianteStage;
+import vista.IniciarMenuDesplegable;
 import vista.LoginUnisantillanaStage;
 
 /**
@@ -26,7 +25,7 @@ import vista.LoginUnisantillanaStage;
 public class CuentaEstudianteController implements Initializable {
 
     @FXML
-    private BorderPane root;
+    private BorderPane rootEstudiante;
     @FXML
     private JFXHamburger hamburger;
     @FXML
@@ -51,25 +50,11 @@ public class CuentaEstudianteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //cargar prestamo
-        loadPrestamo();
-        //cargar imagenes botones
+        IniciarMenuDesplegable imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
+        loadOPAC();
         imgIconPrestamo.setImage(new Image("/recursos/iconPrestamo.png"));
         imgIconMulta.setImage(new Image("/recursos/iconPrestamo.png"));
         imgIconOPAC.setImage(new Image("/recursos/iconPrestamo.png"));
-        //iniciar hamburger
-        drawer.setSidePane(anchorDrawer);
-        HamburgerBackArrowBasicTransition burgerTask2 = new HamburgerBackArrowBasicTransition(hamburger);
-        burgerTask2.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            burgerTask2.setRate(burgerTask2.getRate() * -1);
-            burgerTask2.play();
-            if (drawer.isShown()) {
-                drawer.close();
-            } else {
-                drawer.open();
-            }
-        });
     }
 
     @FXML
@@ -104,7 +89,7 @@ public class CuentaEstudianteController implements Initializable {
     private void loadPrestamo(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoEstudiante.fxml"));
-            root.setCenter(loader.load());
+            rootEstudiante.setCenter(loader.load());
             PrestamoEstudianteController control = loader.getController();
             control.setCodEstudiante(codEstudiante);
         } catch (IOException ex) {
@@ -113,12 +98,12 @@ public class CuentaEstudianteController implements Initializable {
     }
     
     /**
-     * Metodo que carga el modulo multa
+     * Metodo que carga el modulo multa del estudiante
      */
     private void loadMulta(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaEstudiante.fxml"));
-            root.setCenter(loader.load());
+            rootEstudiante.setCenter(loader.load());
             MultaEstudianteController control = loader.getController();
             control.setCodEstudiante(codEstudiante);
         } catch (IOException ex) {
@@ -127,14 +112,14 @@ public class CuentaEstudianteController implements Initializable {
     }
     
     /**
-     * Metodo que carga el modulo OPAC
+     * Metodo que carga el modulo OPAC del estudiante
      */
     private void loadOPAC(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/OPACEstudiante.fxml"));
-            root.setCenter(loader.load());
-            OPACEstudianteController control = loader.getController();
-            control.setStageEst(stageEst);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/OPAC.fxml"));
+            rootEstudiante.setCenter(loader.load());
+            OPACController control = loader.getController();
+            control.setStage(stageEst);
         } catch (IOException ex) {
             
         }

@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -77,6 +76,16 @@ public class PrestamoBibliotecarioController implements Initializable{
     
     @FXML
     private void btnPrestamosLimpiarPressed(ActionEvent event) {
-        cft.limpiarCamposTextos();
+        if(cft != null){
+            cft.limpiarCamposTextos();
+        }
+    }
+    
+    /**
+     * Metodo que carga la identificación del bibliotecario
+     * @param idBibliotecario 
+     */
+    public void cargarIdBibliotecario(String idBibliotecario){
+        bibliotecarioPresTxt.setText(idBibliotecario);
     }
 }

@@ -75,6 +75,16 @@ public class DevolucionBibliotecarioController implements Initializable{
     
     @FXML
     private void btnDevolucionesLimpiarPressed(ActionEvent event) {
-        cft.limpiarCamposTextos();
+        if(cft != null){
+            cft.limpiarCamposTextos();
+        }
+    }
+    
+    /**
+     * Metodo que carga la identificación del bibliotecario
+     * @param idBibliotecario 
+     */
+    public void cargarIdBibliotecario(String idBibliotecario){
+        bibliotecarioDevTxt.setText(idBibliotecario);
     }
 }

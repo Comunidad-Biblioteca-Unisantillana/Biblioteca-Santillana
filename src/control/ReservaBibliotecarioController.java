@@ -61,6 +61,16 @@ public class ReservaBibliotecarioController {
     
     @FXML
     private void btnReservasLimpiarPressed(ActionEvent event) {
-        cft.limpiarCamposTextos();
+        if(cft != null){
+            cft.limpiarCamposTextos();
+        }
+    }
+    
+    /**
+     * Metodo que carga la identificación del bibliotecario
+     * @param idBibliotecario 
+     */
+    public void cargarIdBibliotecario(String idBibliotecario){
+        bibliotecarioResTxt.setText(idBibliotecario);
     }
 }

@@ -1,19 +1,20 @@
 package control;
 
-import entitys.Multa;
-import javafx.beans.value.ObservableValue;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.ConsultaMulta;
-import vista.AlertBox;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import vista.CuentaBibliotecarioStage;
-import vista.IAlertBox;
+import vista.IniciarMenuDesplegable;
 import vista.LoginUnisantillanaStage;
 
 /**
@@ -21,94 +22,158 @@ import vista.LoginUnisantillanaStage;
  *
  * @author stiven valencia
  */
-public class CuentaBibliotecarioController {
-
-    private CuentaBibliotecarioStage stage;
-
-    @FXML
-    private TextField  bibliotecarioPresTxt, bibliotecarioResTxt , bibliotecarioDevTxt, codEstudianteHisMulTxt;
-
-    private FichaTecnicaLibroController ftlc;
-    private FichaTecnicaEnciclopediaController ftec;
-    private FichaTecnicaMapaController ftmc;
-    private FichaTecnicaPeriodicoController ftpc;
-    private FichaTecnicaRevistaController ftrc;
-    private FichaTecnicaDiccionarioController ftdc;
-
-    private Parent rootFTLibro, rootFTEnciclopedia, rootFTMapa, rootFTPeriodico, rootFTRevista, rootFTDiccionario;
-
-    @FXML
-    private TableView<Multa> tableMulta;
-    @FXML
-    private TableColumn<Multa, Integer> colCodMulta;
-    @FXML
-    private TableColumn<Multa, Integer> colCodPrestamo;
-    @FXML
-    private TableColumn<Multa, Integer> colDiasAtrasados;
-    @FXML
-    private TableColumn<Multa, Integer> colValorTot;
-    @FXML
-    private TableColumn<Multa, String> colCancelado;
-    @FXML
-    private TableColumn<Multa, String> colTipo;
+public class CuentaBibliotecarioController implements  Initializable{
     
-    private int codMulta = 0;
-    private String codEstudiante, tipo = "";
+    private CuentaBibliotecarioStage stage;
+    
+    @FXML
+    private BorderPane rootBibliotecario;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger hamburger;
+    @FXML
+    private AnchorPane anchorDrawer;
+    @FXML
+    private ImageView imgIconPrestamo;
+    @FXML
+    private ImageView imgIconReserva;
+    @FXML
+    private ImageView imgIconDevolucion;
+    @FXML
+    private ImageView imgIconMulta;
+    @FXML
+    private ImageView imgIconOPAC;
+    
+    private String idBibliotecario;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
-    public void initialize() {
-        seleccionarFila();
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        IniciarMenuDesplegable imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
+        imgIconPrestamo.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconReserva.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconDevolucion.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconMulta.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconOPAC.setImage(new Image("/recursos/iconPrestamo.png"));
+        loadOPAC();
     }
-   
+    
+    @FXML
+    private void btnPrestamoPressed(ActionEvent event) {
+        loadPrestamo();
+    }
+    
+    @FXML
+    private void btnReservaPressed(ActionEvent event) {
+        loadReserva();
+    }
+    
+    @FXML
+    private void btnDevolucionPressed(ActionEvent event) {
+        loadDevolucion();
+    }
+    
+    @FXML
+    private void btnMultaPressed(ActionEvent event) {
+        loadMulta();
+    }
+    
+    @FXML
+    private void btnOPACPressed(ActionEvent event) {
+        loadOPAC();
+    }
 
     @FXML
-    private void btnconsultarHisMulPressed(ActionEvent event) {
+    private void itemSalirPressed(ActionEvent event) {
+        retornarLoginUnisantillana();
+    }
 
-        if (!codEstudianteHisMulTxt.getText().isEmpty()) {
-            try {
-                cargarDatosTableMultas(codEstudianteHisMulTxt.getText());
-            } catch (Exception ex) {
-                System.err.println("Error al cargar los datos del historial de multas");
-            }
-        } else {
-            IAlertBox alert = new AlertBox();
-            alert.showAlert("Anuncio", "Historial de multas de un estudiante", "Ingrese el código del estudiante");
+    @FXML
+    private void itemAcercaDe(ActionEvent event) {
+        
+    }
+    
+    /**
+     * Metodo que carga el modulo prestamo del bibliotecario
+     */
+    private void loadPrestamo(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoBibliotecario.fxml"));
+            rootBibliotecario.setCenter(loader.load());
+            PrestamoBibliotecarioController control = loader.getController();
+            control.cargarIdBibliotecario(idBibliotecario);
+        } catch (IOException ex) {
+            
         }
     }
-
+    
     /**
-     * Método que se encarga de cargar las multas que se han realizado a un
-     * estudiante por medio de código.
-     *
-     * @param codEstudiante
-     * @throws Exception
+     * Metodo que carga el modulo reserva del bibliotecario
      */
-    public void cargarDatosTableMultas(String codEstudiante) throws Exception {
-        ConsultaMulta consulta = new ConsultaMulta();
-
-        colCodMulta.setCellValueFactory(new PropertyValueFactory<>("codMulta"));
-        colCodPrestamo.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
-        colDiasAtrasados.setCellValueFactory(new PropertyValueFactory<>("diasAtrasados"));
-        colValorTot.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
-        colCancelado.setCellValueFactory(new PropertyValueFactory<>("cancelado"));
-        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        tableMulta.setItems(consulta.getMultas(codEstudiante));
-
-        this.codEstudiante = codEstudiante;
+    private void loadReserva(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/ReservaBibliotecario.fxml"));
+            rootBibliotecario.setCenter(loader.load());
+            ReservaBibliotecarioController control = loader.getController();
+            control.cargarIdBibliotecario(idBibliotecario);
+        } catch (IOException ex) {
+            
+        }
     }
-
-
+    
+    /**
+     * Metodo que carga el modulo devolución del bibliotecario
+     */
+    private void loadDevolucion(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/DevolucionBibliotecario.fxml"));
+            rootBibliotecario.setCenter(loader.load());
+            DevolucionBibliotecarioController control = loader.getController();
+            control.cargarIdBibliotecario(idBibliotecario);
+        } catch (IOException ex) {
+            
+        }
+    }
+    
+    /**
+     * Metodo que carga el modulo multa del bibliotecario
+     */
+    private void loadMulta(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaBibliotecario.fxml"));
+            rootBibliotecario.setCenter(loader.load());
+            MultaBibliotecarioController control = loader.getController();
+        } catch (IOException ex) {
+            
+        }
+    }
+    
+    /**
+     * Metodo que carga el modulo OPAC del estudiante
+     */
+    private void loadOPAC(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/OPAC.fxml"));
+            rootBibliotecario.setCenter(loader.load());
+            OPACController control = loader.getController();
+            control.setStage(stage);
+        } catch (IOException ex) {
+            
+        }
+    }
+    
     /**
      * Método que asigna la identificación del bibliotecario.
      *
      * @param idBibliotecario
      */
-    public void cargarIdBibliotecario(String idBibliotecario) {
-        bibliotecarioPresTxt.setText(idBibliotecario);
-        bibliotecarioResTxt.setText(idBibliotecario);
-        bibliotecarioDevTxt.setText(idBibliotecario);
+    public void setIdBibliotecario(String idBibliotecario) {
+        this.idBibliotecario = idBibliotecario;
     }
 
     /**
@@ -119,38 +184,10 @@ public class CuentaBibliotecarioController {
         LoginUnisantillanaStage.getInstance().show();
     }
 
-    private void seleccionarFila()  {
-
-            tableMulta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Multa> arg0, Multa oldValue, Multa newValue) -> {                
-                tipo = newValue.getTipo();
-                codMulta = newValue.getCodMulta();
-            });
-   
-    }
-
-    @FXML
-    private void itemSalirPressed(ActionEvent event) {
-        retornarLoginUnisantillana();
-    }
-
-    @FXML
-    private void itemAcercaDe(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnCancelarMultaPressed(ActionEvent event) throws Exception {
-        IAlertBox alert = new AlertBox();
-
-        ConsultaMulta consultaMulta = new ConsultaMulta();
-        if (!(consultaMulta.eliminarMulta(codMulta, tipo))) {
-            alert.showAlert("Anuncio", "Multa", "La multa ha sido eliminada");
-            cargarDatosTableMultas(codEstudiante);
-
-        } else {
-            alert.showAlert("Anuncio", "Login Estudiante", "La multa no ha sido eliminada");
-        }
-    }
-
+    /**
+     * Metodo que asigna stage de bibliotecario
+     * @param stage 
+     */
     public void setStage(CuentaBibliotecarioStage stage) {
         this.stage = stage;
     }

@@ -38,7 +38,7 @@ public class CargarFichaTecnica {
     private Parent rootFTRevista;
     private Parent rootFTDiccionario;
 
-    private String nombreFicha;
+    private String nombreFicha = "";
 
     /**
      * Contructor de la clase
