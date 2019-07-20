@@ -25,10 +25,9 @@ public class CuentaBibliotecarioStage extends Stage {
         try {
             loader = new FXMLLoader(getClass().getResource("/vista/CuentaBibliotecario.fxml"));
             Parent root = loader.load();
-            CuentaBibliotecarioController controlador = loader.getController();
-            controlador.setStage(this);
             System.out.println(root.getClass().getName());
             cbcc = loader.getController();
+            cbcc.setStage(this);
             Scene scene = new Scene(root);
             setScene(scene);
             setTitle("Cuenta Bibliotecario");

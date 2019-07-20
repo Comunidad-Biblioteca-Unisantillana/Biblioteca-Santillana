@@ -21,9 +21,8 @@ public class CuentaEstudianteStage extends Stage {
         try {
             loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudiante.fxml"));
             Parent root = loader.load();
-            CuentaEstudianteController controlador = loader.getController();
-            controlador.setStageEst(this);
             cec = loader.getController();
+            cec.setStageEst(this);
             Scene scene = new Scene(root);
             setScene(scene);
             setTitle("Cuenta Estudiante"); 
