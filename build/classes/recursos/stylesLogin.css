@@ -12,7 +12,7 @@ and open the template in the editor.
 }
 
 .jfx-text-field, .jfx-password-field {
-    -fx-prompt-text-fill: #4fc3ad;
+    -fx-prompt-text-fill: white;
     -fx-text-fill: white;
 }
 
@@ -21,7 +21,7 @@ and open the template in the editor.
 JFXComboBox{
     -fx-text-fill: WHITE;
     -fx-fill: WHITE;
-    -fx-background-color: #0ea18b;
+    -fx-background-color: #477acc;
     -fx-font-size: 11pt;
     -fx-cursor: hand;
 }
@@ -36,7 +36,7 @@ JFXComboBox{
 }
 
 AnchorPane{
-    -fx-background-image: url(fondo_pequeno.png);
+    -fx-background-image: url(fondo_pequeno1.png);
 }
 
 BorderPane{
@@ -50,10 +50,10 @@ BorderPane{
 
 .button {
     -fx-cursor: hand;
-    -fx-background-color: #0ea18b;
+    -fx-background-color: #477acc;
     -fx-background-radius: 20;
 }
 
 .button:hover {
-    -fx-background-color: #0C8A78;
+    -fx-background-color: #739fe0;
 }

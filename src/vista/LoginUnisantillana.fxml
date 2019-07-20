@@ -30,12 +30,12 @@
             </ImageView>
             <ImageView fx:id="imgFondoBlancoTxt1" fitHeight="85.0" fitWidth="375.0" layoutX="87.0" layoutY="371.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgFondoBlancoTxt" fitHeight="85.0" fitWidth="375.0" layoutX="87.0" layoutY="253.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" />
-            <JFXTextField fx:id="UsuarioTxt" focusColor="#7ae0cc" labelFloat="true" layoutX="144.0" layoutY="271.0" prefHeight="40.0" prefWidth="310.0" promptText="Identificación" unFocusColor="#4fc3ad">
+            <JFXTextField fx:id="UsuarioTxt" focusColor="#477acc" labelFloat="true" layoutX="144.0" layoutY="271.0" prefHeight="40.0" prefWidth="310.0" promptText="Identificación" unFocusColor="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="PasswordTxt" focusColor="#7ae0cc" labelFloat="true" layoutX="144.0" layoutY="389.0" prefHeight="40.0" prefWidth="310.0" promptText="Contraseña" unFocusColor="#4fc3ad">
+            <JFXPasswordField fx:id="PasswordTxt" focusColor="#477acc" labelFloat="true" layoutX="144.0" layoutY="389.0" prefHeight="40.0" prefWidth="310.0" promptText="Contraseña" unFocusColor="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
@@ -57,7 +57,7 @@
             </JFXButton>
             <ImageView fx:id="imgIconUsuarioTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgIconPasswordTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXComboBox fx:id="comboLogin" focusColor="#7ae0cc" layoutX="207.0" layoutY="55.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" unFocusColor="#7ae0cc">
+            <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="55.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" unFocusColor="WHITE">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
