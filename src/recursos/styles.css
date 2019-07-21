@@ -39,7 +39,7 @@ BorderPane{
     -fx-text-fill: white;
 }
 
-.menu-bar, menu-item{
+.menu-bar, menu-item .label{
     -fx-background-color: #00A2E8;
     -fx-background-radius: 20;
     -fx-border-color: black;
