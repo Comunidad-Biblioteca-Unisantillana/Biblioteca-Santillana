@@ -109,6 +109,10 @@ public class LoginUnisantillanaController implements Initializable {
         UsuarioTxt.validate();
         limpiarCamposTextosLogin();
         UsuarioTxt.validate();
+        //***************
+        UsuarioTxt.setText("1102515566");
+        PasswordTxt.setText("1960316ls");
+        //**************
     }
 
     @FXML
@@ -130,7 +134,7 @@ public class LoginUnisantillanaController implements Initializable {
     private void iniciarComponentesBib() {
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
         UsuarioTxt.setPromptText("Identificación");
-
+        
         ComponentesBib(true);
         imgLogin.setImage(new Image("/recursos/iconBibliotecario.png"));
 
@@ -145,7 +149,9 @@ public class LoginUnisantillanaController implements Initializable {
     private void iniciarComponentesEstudiante() {
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese codigo");
         UsuarioTxt.setPromptText("Codigo");
-
+        //***************************
+        UsuarioTxt.setText("1760156");
+        //***************************
         ComponentesBib(false);
         imgLogin.setImage(new Image("/recursos/iconStudent.png"));
 

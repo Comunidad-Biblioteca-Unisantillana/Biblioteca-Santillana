@@ -56,8 +56,8 @@ public class CuentaBibliotecarioController implements  Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         IniciarMenuDesplegable imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
         imgIconPrestamo.setImage(new Image("/recursos/iconPrestamo.png"));
-        imgIconReserva.setImage(new Image("/recursos/iconPrestamo.png"));
-        imgIconDevolucion.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconReserva.setImage(new Image("/recursos/iconReserva.png"));
+        imgIconDevolucion.setImage(new Image("/recursos/iconDevolucion.png"));
         imgIconMulta.setImage(new Image("/recursos/iconMulta.png"));
         imgIconOPAC.setImage(new Image("/recursos/iconOPAC.png"));
         loadOPAC();
