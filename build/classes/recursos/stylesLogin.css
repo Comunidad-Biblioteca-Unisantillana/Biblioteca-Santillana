@@ -19,9 +19,10 @@ and open the template in the editor.
 .jfx-combo-box > .list-cell > .text,
 .jfx-combo-box > .list-cell > .label,
 JFXComboBox{
+    -fx-cursor: hand;
     -fx-text-fill: WHITE;
     -fx-fill: WHITE;
-    -fx-background-color: #477acc;
+    -fx-background-color: #006895;
     -fx-font-size: 11pt;
     -fx-cursor: hand;
 }
@@ -36,8 +37,9 @@ JFXComboBox{
 }
 
 AnchorPane{
-    -fx-background-image: url(fondo_pequeno1.png);
+    -fx-background-image: url(fondo_pequeno.png);
 }
+
 
 BorderPane{
     -fx-background-image: url(fondo_grande.png);
@@ -50,10 +52,10 @@ BorderPane{
 
 .button {
     -fx-cursor: hand;
-    -fx-background-color: #477acc;
+    -fx-background-color: #006895;
     -fx-background-radius: 20;
 }
 
 .button:hover {
-    -fx-background-color: #739fe0;
+    -fx-background-color: #00A2E8;
 }

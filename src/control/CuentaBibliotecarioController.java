@@ -58,8 +58,8 @@ public class CuentaBibliotecarioController implements  Initializable{
         imgIconPrestamo.setImage(new Image("/recursos/iconPrestamo.png"));
         imgIconReserva.setImage(new Image("/recursos/iconPrestamo.png"));
         imgIconDevolucion.setImage(new Image("/recursos/iconPrestamo.png"));
-        imgIconMulta.setImage(new Image("/recursos/iconPrestamo.png"));
-        imgIconOPAC.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconMulta.setImage(new Image("/recursos/iconMulta.png"));
+        imgIconOPAC.setImage(new Image("/recursos/iconOPAC.png"));
         loadOPAC();
     }
     

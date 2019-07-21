@@ -53,8 +53,8 @@ public class CuentaEstudianteController implements Initializable {
         IniciarMenuDesplegable imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
         loadOPAC();
         imgIconPrestamo.setImage(new Image("/recursos/iconPrestamo.png"));
-        imgIconMulta.setImage(new Image("/recursos/iconPrestamo.png"));
-        imgIconOPAC.setImage(new Image("/recursos/iconPrestamo.png"));
+        imgIconMulta.setImage(new Image("/recursos/iconMulta.png"));
+        imgIconOPAC.setImage(new Image("/recursos/iconOPAC.png"));
     }
 
     @FXML

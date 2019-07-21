@@ -36,11 +36,11 @@
             <JFXHamburger fx:id="hamburger" alignment="CENTER" layoutX="8.0" prefHeight="50.0" prefWidth="54.0" />
             <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="152.0" prefWidth="200.0">
                <children>
-                  <AnchorPane fx:id="anchorDrawer" prefHeight="148.0" prefWidth="200.0">
+                  <AnchorPane fx:id="anchorDrawer" prefHeight="148.0" prefWidth="200.0" style="-fx-background-radius: 0; -fx-border-color: #00A2E8;">
                      <children>
                         <VBox prefHeight="151.0" prefWidth="200.0">
                            <children>
-                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="54.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo ">
+                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="52.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo ">
                                  <graphic>
                                     <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
@@ -48,7 +48,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="90.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
+                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="88.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
                                  <graphic>
                                     <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
@@ -56,7 +56,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="89.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
+                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="87.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

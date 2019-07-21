@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="579.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PrestamoEstudianteController">
+<GridPane maxHeight="579.0" maxWidth="983.0" prefHeight="579.0" prefWidth="983.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PrestamoEstudianteController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.0" minWidth="10.0" prefWidth="683.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="682.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.0" minWidth="10.0" prefWidth="580.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="403.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="384.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
@@ -31,7 +31,7 @@
             <Insets bottom="50.0" top="150.0" />
          </GridPane.margin>
       </TableView>
-      <Label text="PRÉSTAMOS" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Label text="PRÉSTAMOS" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="35.0" />
          </GridPane.margin>
@@ -39,10 +39,13 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#btnConsultarPrestamosPressed" text="Consultar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <JFXButton onAction="#btnConsultarPrestamosPressed" prefHeight="32.0" prefWidth="150.0" text="Consultar" GridPane.columnSpan="2">
          <GridPane.margin>
-            <Insets top="100.0" />
+            <Insets bottom="80.0" left="415.0" />
          </GridPane.margin>
-      </Button>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
    </children>
 </GridPane>

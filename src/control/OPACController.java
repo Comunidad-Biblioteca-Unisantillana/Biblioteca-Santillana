@@ -5,9 +5,9 @@
  */
 package control;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.ConsultaOPAC;
@@ -26,9 +26,9 @@ public class OPACController {
     @FXML
     private GridPane panelOpac;
     @FXML
-    private TextField codBarrasOpacTxt;
+    private JFXTextField codBarrasOpacTxt;
     @FXML
-    private TextField tituloOpacTxt;
+    private JFXTextField tituloOpacTxt;
     
     private CargarFichaTecnica cft;
     
