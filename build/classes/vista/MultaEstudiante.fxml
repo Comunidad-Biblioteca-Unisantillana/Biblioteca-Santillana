@@ -35,7 +35,7 @@
             <Insets bottom="50.0" top="150.0" />
          </GridPane.margin>
       </TableView>
-      <Label text="HISTORIAL DE MULTAS" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Label style="-fx-font-size: 30;" text="HISTORIAL DE MULTAS" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <font>
             <Font size="28.0" />
          </font>

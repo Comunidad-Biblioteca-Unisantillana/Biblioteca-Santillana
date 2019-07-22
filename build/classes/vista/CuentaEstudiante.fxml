@@ -44,29 +44,29 @@
                      <children>
                         <VBox prefHeight="151.0" prefWidth="200.0">
                            <children>
-                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="52.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo ">
-                                 <graphic>
-                                    <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
                                  <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="88.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
-                                 <graphic>
-                                    <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="87.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
-                                 <font>
-                                    <Font size="18.0" />
+                                    <Font />
                                  </font>
                                  <graphic>
                                     <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="36.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo ">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <font>
+                                    <Font />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <font>
+                                    <Font />
+                                 </font>
                               </JFXButton>
                            </children>
                         </VBox>

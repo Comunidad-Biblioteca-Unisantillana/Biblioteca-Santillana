@@ -14,6 +14,7 @@ and open the template in the editor.
     -fx-border-color: black;
     -fx-border-radius: 20;
     -fx-text-fill: white;
+    -fx-font-size: 17;
 }
 
 .button:hover {
@@ -36,14 +37,37 @@ BorderPane{
 }
 
 .jfx-text-field {
+    -fx-max-width: 185px;
+    -fx-pref-width: 185px;
+    -fx-font-size: 11.6pt;
     -fx-text-fill: white;
 }
 
-.menu-bar, menu-item .label{
+.jfx-combo-box > .list-cell > .text,
+.jfx-combo-box > .list-cell > .label,
+JFXComboBox{
+    -fx-cursor: hand;
+    -fx-text-fill: WHITE;
+    -fx-fill: WHITE;
+    -fx-background-color: #006895;
+    -fx-font-size: 11pt;
+    -fx-cursor: hand;
+}
+
+.menu-bar {
     -fx-background-color: #00A2E8;
     -fx-background-radius: 20;
     -fx-border-color: black;
     -fx-border-radius: 20;
+}
+
+.menu-item {
+    -fx-background-color: #00A2E8;
+    -fx-border-color: black;
+}
+
+.menu-bar .label:hover {
+    -fx-text-fill: black;
 }
 
 .menu-bar .label{
@@ -51,11 +75,12 @@ BorderPane{
     -fx-font-size: 13pt;
 }
 
-.menu-bar:hover {
-    -fx-background-color: #00A2E8;
-    -fx-background-radius: 20;
-    -fx-border-color: black;
-    -fx-border-radius: 20;
+.context-menu {
+    -fx-padding: 0;
+}
+
+.label {
+    -fx-font-size: 11.6pt;
 }
 
 

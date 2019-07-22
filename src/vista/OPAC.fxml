@@ -22,25 +22,25 @@
       <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="368.0" minHeight="21.0" prefHeight="61.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="503.0" minHeight="58.0" prefHeight="58.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="368.0" minHeight="21.0" prefHeight="57.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="503.0" minHeight="58.0" prefHeight="68.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="500.0" minHeight="20.0" prefHeight="62.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="84.0" prefHeight="525.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="0.0" prefWidth="544.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="71.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
          <children>
-            <Label layoutX="14.0" layoutY="22.0" text="Código de barras" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="26.0" text="Código de barras" textFill="WHITE">
                <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="18.0" onAction="#handledBtnBuscarCodBarras" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" textAlignment="CENTER">
                <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -48,7 +48,7 @@
             </JFXButton>
             <JFXTextField fx:id="codBarrasOpacTxt" focusColor="WHITE" layoutX="177.0" layoutY="16.0" prefHeight="22.0" prefWidth="188.0" unFocusColor="#315175">
                <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
             </JFXTextField>
          </children>
@@ -60,17 +60,17 @@
          <children>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="14.0" layoutY="2.0" prefHeight="61.0" prefWidth="164.0" text="Titúlo del recurso bibliografico" textFill="WHITE" wrapText="true">
                <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="16.0" onAction="#handledBtnBuscarTitulo" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso">
                <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
             </JFXButton>
             <JFXTextField fx:id="tituloOpacTxt" focusColor="WHITE" layoutX="178.0" layoutY="16.0" prefHeight="22.0" prefWidth="188.0" unFocusColor="#315175">
                <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
             </JFXTextField>
          </children>
@@ -85,13 +85,13 @@
       </GridPane>
       <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnOpacLimpiarPressed" prefHeight="30.0" prefWidth="150.0" text="Limpiar" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
-            <Font size="16.0" />
+            <Font size="15.0" />
          </font>
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>
       </JFXButton>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="141.0" stylesheets="@../recursos/styles.css" text="OPAC" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="141.0" style="-fx-font-size: 30;" stylesheets="@../recursos/styles.css" text="OPAC" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
          <font>
             <Font size="30.0" />
          </font>

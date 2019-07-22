@@ -22,16 +22,16 @@
    <children>
       <TableView fx:id="tablePrestamo" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="532.0" prefWidth="952.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2">
          <columns>
-            <TableColumn fx:id="codPrestamosTable" editable="false" prefWidth="205.0" text="Código de prestamos" />
-            <TableColumn fx:id="tituloTable" editable="false" prefWidth="245.00003051757812" text="Titúlo del recurso bibliográfico" />
-            <TableColumn fx:id="fechaPrestamoTable" editable="false" prefWidth="231.0" text="Fecha de préstamo" />
+            <TableColumn fx:id="codPrestamosTable" editable="false" prefWidth="205.0" style="-fx-text-fill: black;" text="Código de prestamos" />
+            <TableColumn fx:id="tituloTable" editable="false" prefWidth="268.0" text="Titúlo del recurso bibliográfico" />
+            <TableColumn fx:id="fechaPrestamoTable" editable="false" prefWidth="209.0" text="Fecha de préstamo" />
             <TableColumn fx:id="fechaDevolucionTable" editable="false" prefWidth="269.0" text="Fecha de devolución " />
          </columns>
          <GridPane.margin>
             <Insets bottom="50.0" top="150.0" />
          </GridPane.margin>
       </TableView>
-      <Label text="PRÉSTAMOS" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Label style="-fx-font-size: 30;" text="PRÉSTAMOS" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="35.0" />
          </GridPane.margin>

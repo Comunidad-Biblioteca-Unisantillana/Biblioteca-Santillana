@@ -5,6 +5,7 @@
  */
 package control;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -23,15 +24,15 @@ public class ReservaBibliotecarioController {
     @FXML
     private GridPane panelReservas;
     @FXML
-    private TextField codBarrasResTxt;
+    private JFXTextField codBarrasResTxt;
     @FXML
-    private TextField txtCodEstReserva;
+    private JFXTextField txtCodEstReserva;
     @FXML
-    private TextField txtFechaReserva;
+    private JFXTextField txtFechaReserva;
     @FXML
-    private TextField txtFechaLimite;
+    private JFXTextField txtFechaLimite;
     @FXML
-    private TextField bibliotecarioResTxt;
+    private JFXTextField bibliotecarioResTxt;
     
     private CargarFichaTecnica cft;
     

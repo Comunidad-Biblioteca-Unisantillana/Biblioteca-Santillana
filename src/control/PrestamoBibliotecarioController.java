@@ -5,6 +5,8 @@
  */
 package control;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -13,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import vista.CargarFichaTecnica;
 import modelo.GeneradorPrestamoRecurso;
@@ -27,17 +28,17 @@ import vista.IAlertBox;
 public class PrestamoBibliotecarioController implements Initializable{
     
     @FXML
-    private TextField codBarrasPresTxt;
+    private JFXTextField codBarrasPresTxt;
     @FXML
-    private TextField codEstudiantePresTxt;
+    private JFXTextField codEstudiantePresTxt;
     @FXML
-    private TextField fechaPrestamoPresTxt;
+    private JFXTextField fechaPrestamoPresTxt;
     @FXML    
-    private TextField bibliotecarioPresTxt;
+    private JFXTextField bibliotecarioPresTxt;
     @FXML
-    private TextField fechaDevolucionPresTxt;
+    private JFXTextField fechaDevolucionPresTxt;
     @FXML
-    private ComboBox<String> cboTipoPrestamo;
+    private JFXComboBox<String> cboTipoPrestamo;
     @FXML
     private GridPane panelPrestamos;
     

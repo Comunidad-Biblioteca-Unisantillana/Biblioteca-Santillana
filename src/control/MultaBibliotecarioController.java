@@ -5,6 +5,7 @@
  */
 package control;
 
+import com.jfoenix.controls.JFXTextField;
 import entitys.Multa;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.ConsultaMulta;
 import vista.AlertBox;
@@ -27,7 +27,7 @@ import vista.IAlertBox;
 public class MultaBibliotecarioController implements Initializable {
 
     @FXML
-    private TextField codEstudianteHisMulTxt;
+    private JFXTextField codEstudianteHisMulTxt;
     @FXML
     private TableView<Multa> tableMulta;
     @FXML

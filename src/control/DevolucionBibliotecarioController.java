@@ -5,6 +5,8 @@
  */
 package control;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -29,13 +31,13 @@ public class DevolucionBibliotecarioController implements Initializable{
     @FXML
     private GridPane panelDevoluciones;
     @FXML
-    private TextField codBarrasDevTxt;
+    private JFXTextField codBarrasDevTxt;
     @FXML
-    private TextField bibliotecarioDevTxt;
+    private JFXTextField bibliotecarioDevTxt;
     @FXML
-    private ComboBox<String> cboTipoRecurso;
+    private JFXComboBox<String> cboTipoRecurso;
     @FXML
-    private ComboBox<String> cboEstadoRecurso;
+    private JFXComboBox<String> cboEstadoRecurso;
     
     private CargarFichaTecnica cft;
     

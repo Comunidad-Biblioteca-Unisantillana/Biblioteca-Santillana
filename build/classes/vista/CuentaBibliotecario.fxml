@@ -39,7 +39,15 @@
                      <children>
                         <VBox prefHeight="261.0" prefWidth="200.0">
                            <children>
-                              <JFXButton alignment="TOP_LEFT" contentDisplay="RIGHT" graphicTextGap="54.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo">
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="41.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" text="Prestamo">
                                  <graphic>
                                     <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
@@ -47,7 +55,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton alignment="TOP_LEFT" contentDisplay="RIGHT" graphicTextGap="68.0" onAction="#btnReservaPressed" prefHeight="50.0" prefWidth="200.0" text="Reserva">
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="52.0" onAction="#btnReservaPressed" prefHeight="50.0" prefWidth="200.0" text="Reserva">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -55,7 +63,7 @@
                                     <ImageView fx:id="imgIconReserva" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton alignment="TOP_LEFT" contentDisplay="RIGHT" graphicTextGap="45.0" onAction="#btnDevolucionPressed" prefHeight="50.0" prefWidth="200.0" text="Devolución">
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="30.0" onAction="#btnDevolucionPressed" prefHeight="50.0" prefWidth="200.0" text="Devolución">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -63,21 +71,13 @@
                                     <ImageView fx:id="imgIconDevolucion" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton alignment="TOP_LEFT" contentDisplay="RIGHT" graphicTextGap="88.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" text="Multa">
                                  <graphic>
                                     <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                                  <font>
                                     <Font size="18.0" />
                                  </font>
-                              </JFXButton>
-                              <JFXButton alignment="TOP_LEFT" contentDisplay="RIGHT" graphicTextGap="87.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" text="OPAC">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
                               </JFXButton>
                            </children>
                         </VBox>
