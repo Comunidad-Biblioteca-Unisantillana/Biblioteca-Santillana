@@ -14,8 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import modelo.GeneradorDevolucion;
 import vista.AlertBox;

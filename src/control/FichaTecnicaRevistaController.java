@@ -1,11 +1,11 @@
 package control;
 
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import entitys.Revista;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import modelo.QueryRecurso;
 
 /**
@@ -16,25 +16,25 @@ import modelo.QueryRecurso;
 public class FichaTecnicaRevistaController{
 
     @FXML
-    private TextField txtISSN;
+    private JFXTextField txtISSN;
     @FXML
-    private TextField txtFechaPublicacion;
+    private JFXTextField txtFechaPublicacion;
     @FXML
-    private TextField txtPublicador;
+    private JFXTextField txtPublicador;
     @FXML
-    private TextField txtPaisPublicacion;
+    private JFXTextField txtPaisPublicacion;
     @FXML
-    private TextField txtDisponibilidad;
+    private JFXTextField txtDisponibilidad;
     @FXML
-    private TextField txtEstadoFisico;
+    private JFXTextField txtEstadoFisico;
     @FXML
-    private TextField txtCategoria;
+    private JFXTextField txtCategoria;
     @FXML
-    private TextField txtIdioma;
+    private JFXTextField txtIdioma;
     @FXML
-    private TextField txtTitulo;
+    private JFXTextField txtTitulo;
     @FXML
-    private TextArea txAreaMateria;
+    private JFXTextArea txAreaMateria;
     
     /**
      * Método que carga los datos en la ficha tecnica.

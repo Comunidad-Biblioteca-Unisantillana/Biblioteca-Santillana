@@ -1,11 +1,11 @@
 package control;
 
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import entitys.Mapa;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import modelo.QueryRecurso;
 
 /**
@@ -16,23 +16,23 @@ import modelo.QueryRecurso;
 public class FichaTecnicaMapaController {
 
     @FXML
-    private TextField txtISBN;
+    private JFXTextField txtISBN;
     @FXML
-    private TextField txtEscalaRepresentativa;
+    private JFXTextField txtEscalaRepresentativa;
     @FXML
-    private TextField txtFormatoMapa;
+    private JFXTextField txtFormatoMapa;
     @FXML
-    private TextField txtPresentacion;
+    private JFXTextField txtPresentacion;
     @FXML
-    private TextField txtDisponibilidad;
+    private JFXTextField txtDisponibilidad;
     @FXML
-    private TextField txtEstadoFisico;
+    private JFXTextField txtEstadoFisico;
     @FXML
-    private TextField txtCategoria;
+    private JFXTextField txtCategoria;
     @FXML
-    private TextArea txAreaDescripcion;
+    private JFXTextArea txAreaDescripcion;
     @FXML
-    private TextField txtTitulo;
+    private JFXTextField txtTitulo;
     
     /**
      * Método que carga los datos en la ficha tecnica.

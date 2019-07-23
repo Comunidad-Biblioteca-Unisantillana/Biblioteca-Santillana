@@ -37,8 +37,12 @@ BorderPane{
 }
 
 .jfx-text-field {
-    -fx-max-width: 185px;
     -fx-pref-width: 185px;
+    -fx-font-size: 11.6pt;
+    -fx-text-fill: white;
+}
+
+.jfx-text-area {
     -fx-font-size: 11.6pt;
     -fx-text-fill: white;
 }

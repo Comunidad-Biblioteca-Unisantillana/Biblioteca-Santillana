@@ -201,26 +201,19 @@ public class LoginUnisantillanaController implements Initializable {
      * metodo que inicializa la escucha del JFXTextField y JFXPasswordField
      */
     private void addEventValidador() {
-        UsuarioTxt.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!newValue) {
-                    UsuarioTxt.validate();
-                    return;
-                }
-                if (newValue) {
-                    UsuarioTxt.validate();
-                }
+        UsuarioTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) {
+                UsuarioTxt.validate();
+                return;
+            }
+            if (newValue) {
+                UsuarioTxt.validate();
             }
         });
-        PasswordTxt.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!newValue) {
-                    PasswordTxt.validate();
-                }
+        PasswordTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) {
+                PasswordTxt.validate();
             }
-
         });
     }
 

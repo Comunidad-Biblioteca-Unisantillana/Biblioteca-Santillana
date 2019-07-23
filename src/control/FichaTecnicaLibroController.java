@@ -1,5 +1,7 @@
 package control;
 
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import entitys.Libro;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,43 +18,43 @@ import modelo.QueryRecurso;
 public class FichaTecnicaLibroController {
 
     @FXML
-    private TextField txtFechaPublicacion;
+    private JFXTextField txtFechaPublicacion;
     @FXML
-    private TextField txtISBN;
+    private JFXTextField txtISBN;
     @FXML
-    private TextField txtIdioma;
+    private JFXTextField txtIdioma;
     @FXML
-    private TextField txtPaisPublicacion;
+    private JFXTextField txtPaisPublicacion;
     @FXML
-    private TextField txtEditorial;
+    private JFXTextField txtEditorial;
     @FXML
-    private TextField txtEdicion;
+    private JFXTextField txtEdicion;
     @FXML
-    private TextField txtPaginas;
+    private JFXTextField txtPaginas;
     @FXML
-    private TextField txtCubierta;
+    private JFXTextField txtCubierta;
     @FXML
-    private TextField txtDimensiones;
+    private JFXTextField txtDimensiones;
     @FXML
-    private TextField txtSignatura;
+    private JFXTextField txtSignatura;
     @FXML
-    private TextField txtDisponibilidad;
+    private JFXTextField txtDisponibilidad;
     @FXML
-    private TextField txtEstado;
+    private JFXTextField txtEstado;
     @FXML
-    private TextField txtArea;
+    private JFXTextField txtArea;
     @FXML
-    private TextField txtCategoria;
+    private JFXTextField txtCategoria;
     @FXML
-    private TextArea txAreaNota;
+    private JFXTextArea txAreaNota;
     @FXML
-    private TextArea txAreaResumen;
+    private JFXTextArea txAreaResumen;
     @FXML
-    private TextField txtTitulo;
+    private JFXTextField txtTitulo;
     @FXML
-    private TextArea txAreaAutores;
+    private JFXTextArea txAreaAutores;
     @FXML
-    private TextArea txAreaMateria;
+    private JFXTextArea txAreaMateria;
 
     /**
      * Método que carga los datos en la ficha tecnica.
