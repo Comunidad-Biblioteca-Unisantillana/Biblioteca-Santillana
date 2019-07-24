@@ -23,9 +23,9 @@ import vista.LoginUnisantillanaStage;
  * @author stive
  */
 public class CuentaEstudianteController implements Initializable {
-
+    
     @FXML
-    private BorderPane rootEstudiante;
+    private BorderPane rootModulo;
     @FXML
     private JFXHamburger hamburger;
     @FXML
@@ -89,7 +89,7 @@ public class CuentaEstudianteController implements Initializable {
     private void loadPrestamo(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoEstudiante.fxml"));
-            rootEstudiante.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             PrestamoEstudianteController control = loader.getController();
             control.setCodEstudiante(codEstudiante);
         } catch (IOException ex) {
@@ -103,7 +103,7 @@ public class CuentaEstudianteController implements Initializable {
     private void loadMulta(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaEstudiante.fxml"));
-            rootEstudiante.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             MultaEstudianteController control = loader.getController();
             control.setCodEstudiante(codEstudiante);
         } catch (IOException ex) {
@@ -117,7 +117,7 @@ public class CuentaEstudianteController implements Initializable {
     private void loadOPAC(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/OPAC.fxml"));
-            rootEstudiante.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             OPACController control = loader.getController();
             control.setStage(stageEst);
         } catch (IOException ex) {

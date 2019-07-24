@@ -27,7 +27,7 @@ public class CuentaBibliotecarioController implements  Initializable{
     private CuentaBibliotecarioStage stage;
     
     @FXML
-    private BorderPane rootBibliotecario;
+    private BorderPane rootModulo;
     @FXML
     private JFXDrawer drawer;
     @FXML
@@ -104,7 +104,7 @@ public class CuentaBibliotecarioController implements  Initializable{
     private void loadPrestamo(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoBibliotecario.fxml"));
-            rootBibliotecario.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             PrestamoBibliotecarioController control = loader.getController();
             control.cargarIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
@@ -118,7 +118,7 @@ public class CuentaBibliotecarioController implements  Initializable{
     private void loadReserva(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/ReservaBibliotecario.fxml"));
-            rootBibliotecario.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             ReservaBibliotecarioController control = loader.getController();
             control.cargarIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
@@ -132,7 +132,7 @@ public class CuentaBibliotecarioController implements  Initializable{
     private void loadDevolucion(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/DevolucionBibliotecario.fxml"));
-            rootBibliotecario.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             DevolucionBibliotecarioController control = loader.getController();
             control.cargarIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
@@ -146,7 +146,7 @@ public class CuentaBibliotecarioController implements  Initializable{
     private void loadMulta(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaBibliotecario.fxml"));
-            rootBibliotecario.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             MultaBibliotecarioController control = loader.getController();
         } catch (IOException ex) {
             
@@ -159,7 +159,7 @@ public class CuentaBibliotecarioController implements  Initializable{
     private void loadOPAC(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/OPAC.fxml"));
-            rootBibliotecario.setCenter(loader.load());
+            rootModulo.setCenter(loader.load());
             OPACController control = loader.getController();
             control.setStage(stage);
         } catch (IOException ex) {

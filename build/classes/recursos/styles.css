@@ -9,38 +9,45 @@ and open the template in the editor.
 */
 .button {
     -fx-cursor: hand;
-    -fx-background-color: #006895;
-    -fx-background-radius: 20;
-    -fx-border-color: black;
-    -fx-border-radius: 20;
-    -fx-text-fill: white;
-    -fx-font-size: 17;
-}
-
-.button:hover {
-    -fx-background-color: #315175;
-}
-
-GridPane{
-    -fx-background-color: #315175;
-}
-
-AnchorPane{
     -fx-background-color: #00A2E8;
     -fx-background-radius: 20;
     -fx-border-color: black;
     -fx-border-radius: 20;
+    -fx-text-fill: black;
+    -fx-font-size: 17;
 }
 
-BorderPane{
-    -fx-background-color: #315175;
+.button:hover {
+    -fx-background-color: #68D1FF;
 }
 
-.jfx-text-field {
-    -fx-max-width: 185px;
+.buttonDrawer {
+    -fx-cursor: hand;
+    -fx-background-color: #00A2E8;
+    -fx-background-radius: 0;
+    -fx-border-color: black;
+    -fx-border-radius: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 17;
+}
+
+.buttonDrawer:hover {
+    -fx-background-color: #68D1FF;
+}
+
+.jfx-text-field ,.jfx-text-area {
     -fx-pref-width: 185px;
     -fx-font-size: 11.6pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -jfx-unfocus-color : black;
+    -jfx-focus-color : white;
+    -fx-background-color: #E6E6E6;
+}
+
+
+
+.anchorCenter {
+    -fx-background-image: url(fondo_grande.png);
 }
 
 .jfx-combo-box > .list-cell > .text,
@@ -54,33 +61,12 @@ JFXComboBox{
     -fx-cursor: hand;
 }
 
-.menu-bar {
-    -fx-background-color: #00A2E8;
-    -fx-background-radius: 20;
-    -fx-border-color: black;
-    -fx-border-radius: 20;
-}
-
-.menu-item {
-    -fx-background-color: #00A2E8;
-    -fx-border-color: black;
-}
-
-.menu-bar .label:hover {
-    -fx-text-fill: black;
-}
-
-.menu-bar .label{
-    -fx-text-fill: white;
-    -fx-font-size: 13pt;
-}
-
-.context-menu {
-    -fx-padding: 0;
-}
-
 .label {
+    -fx-pref-height: 34px;
+    -fx-background-color: #E6E6E6;
+    -fx-background-radius: 20;
     -fx-font-size: 11.6pt;
+    -fx-text-fill: black;
 }
 
 

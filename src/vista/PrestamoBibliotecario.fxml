@@ -12,54 +12,71 @@
 
 <GridPane alignment="CENTER" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PrestamoBibliotecarioController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="176.0" prefWidth="198.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="142.0" prefWidth="193.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="169.0" prefWidth="205.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="68.0" prefWidth="69.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="142.0" prefWidth="275.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="169.0" prefWidth="252.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="108.0" prefWidth="189.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="111.0" prefWidth="182.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="36.0" prefWidth="202.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="21.0" prefWidth="186.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="111.0" prefWidth="272.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="36.0" prefWidth="274.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="21.0" prefWidth="24.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="11.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label prefHeight="34.0" prefWidth="189.0" text="Código de barras" textFill="WHITE" GridPane.rowIndex="1">
+      <Label prefHeight="34.0" prefWidth="185.0" text="Código de barras" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
          <font>
             <Font size="15.0" />
          </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <Label prefHeight="20.0" prefWidth="190.0" text="Código Estudiante" textFill="WHITE" GridPane.rowIndex="2">
+      <Label prefHeight="34.0" prefWidth="185.0" text="Código Estudiante" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
          <font>
             <Font size="15.0" />
          </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <Label prefHeight="20.0" prefWidth="213.0" text="Fecha del préstamo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Label prefHeight="20.0" prefWidth="185.0" text="Fecha del préstamo" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <Label prefHeight="20.0" prefWidth="208.0" text="Fecha de devolución" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Label prefHeight="20.0" prefWidth="185.0" text="Fecha de devolución" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <Label prefHeight="20.0" prefWidth="185.0" text="Bibliotecario" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Label contentDisplay="RIGHT" prefHeight="20.0" prefWidth="185.0" text="Bibliotecario" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <GridPane fx:id="panelPrestamos" GridPane.columnSpan="8" GridPane.rowIndex="3">
+      <GridPane fx:id="panelPrestamos" GridPane.columnSpan="8" GridPane.rowIndex="5">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -67,28 +84,27 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Label prefHeight="20.0" prefWidth="185.0" text="Tipo de préstamo" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+      <Label prefHeight="20.0" prefWidth="185.0" text="Tipo de préstamo" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <JFXButton onAction="#btnPrestarPressed" prefWidth="150.0" text="Prestar" GridPane.columnIndex="6" GridPane.rowIndex="2">
+      <JFXButton onAction="#btnPrestarPressed" prefHeight="35.0" prefWidth="187.0" text="Prestar" GridPane.columnIndex="3" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="10.0" right="10.0" />
          </GridPane.margin></JFXButton>
-      <JFXButton onAction="#btnPrestamosLimpiarPressed" prefWidth="150.0" text="Limpiar" GridPane.columnIndex="6" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin></JFXButton>
-      <JFXTextField fx:id="codBarrasPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <JFXTextField fx:id="codEstudiantePresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="fechaPrestamoPresTxt" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <JFXTextField fx:id="fechaDevolucionPresTxt" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="bibliotecarioPresTxt" prefHeight="33.0" prefWidth="204.0" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-      <JFXComboBox fx:id="cboTipoPrestamo" prefHeight="29.0" prefWidth="182.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="codBarrasPresTxt" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="codEstudiantePresTxt" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="fechaPrestamoPresTxt" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="fechaDevolucionPresTxt" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="bibliotecarioPresTxt" prefHeight="33.0" prefWidth="204.0" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <JFXComboBox fx:id="cboTipoPrestamo" prefHeight="29.0" prefWidth="182.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="200.0" style="-fx-font-size: 30;" text="Prestamo" textFill="WHITE" GridPane.columnIndex="3" />
    </children>
 </GridPane>

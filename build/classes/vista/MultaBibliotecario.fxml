@@ -40,7 +40,7 @@
             <Insets right="180.0" top="85.0" />
          </GridPane.margin>
       </Label>
-      <JFXTextField fx:id="codEstudianteHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2">
+      <JFXTextField fx:id="codEstudianteHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="280.0" left="180.0" top="90.0" />
          </GridPane.margin>

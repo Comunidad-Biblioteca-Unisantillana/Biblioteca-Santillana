@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="608.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FichaTecnicaEnciclopediaController">
+<GridPane prefHeight="608.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FichaTecnicaEnciclopediaController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
@@ -33,135 +33,135 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.8" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label text="ISBN" GridPane.rowIndex="1">
+      <Label prefHeight="21.0" prefWidth="154.0" text="ISBN" textFill="WHITE" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="153.0" text="Idioma" textFill="WHITE" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="154.0" text="Pais de publicación" textFill="WHITE" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="157.0" text="Fecha de publicación" textFill="WHITE" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="155.0" text="Editorial" textFill="WHITE" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="154.0" text="Edición" textFill="WHITE" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="154.0" text="Páginas" textFill="WHITE" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="153.0" text="Cubierta" textFill="WHITE" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="132.0" text="Estado" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Idioma" GridPane.rowIndex="2">
+      <Label prefHeight="21.0" prefWidth="154.0" text="Dimensiones" textFill="WHITE" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="135.0" text="Signatura" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Pais de publicación" GridPane.rowIndex="3">
+      <Label prefHeight="21.0" prefWidth="135.0" text="Disponibilidad" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Fecha de publicación" GridPane.rowIndex="4">
+      <Label prefHeight="21.0" prefWidth="123.0" text="Area" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Editorial" GridPane.rowIndex="5">
+      <Label prefHeight="21.0" prefWidth="131.0" text="Categoria" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Edición" GridPane.rowIndex="6">
+      <Label prefHeight="21.0" prefWidth="132.0" text="Autores" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Páginas" GridPane.rowIndex="7">
+      <Label prefHeight="21.0" prefWidth="133.0" text="Materia" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Cubierta" GridPane.rowIndex="8">
-         <GridPane.margin>
-            <Insets left="30.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Estado" GridPane.columnIndex="2" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Dimensiones" GridPane.rowIndex="9">
-         <GridPane.margin>
-            <Insets left="30.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Signatura" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Disponibilidad" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Area" GridPane.columnIndex="2" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Categoria" GridPane.columnIndex="2" GridPane.rowIndex="5">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Autores" GridPane.columnIndex="2" GridPane.rowIndex="6">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Materia" GridPane.columnIndex="2" GridPane.rowIndex="8">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </Label>
-      <TextField fx:id="txtFechaPublicacion" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="txtISBN" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="txtIdioma" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="txtPaisPublicacion" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="txtEditorial" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="txtEdicion" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <TextField fx:id="txtPaginas" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <TextField fx:id="txtCubierta" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <TextField fx:id="txtDimensiones" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <TextField fx:id="txtSignatura" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <TextField fx:id="txtDisponibilidad" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <TextField fx:id="txtEstado" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <TextField fx:id="txtArea" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-      <TextField fx:id="txtCategoria" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Label text="Nota" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Label alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="122.0" text="Nota" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Resumen" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+      <Label alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="121.0" text="Resumen" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets right="25.0" />
          </GridPane.margin>
       </Label>
-      <TextArea fx:id="txAreaNota" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="4">
+      <Label prefHeight="21.0" prefWidth="149.0" text="Titulo" textFill="WHITE">
          <GridPane.margin>
-            <Insets right="50.0" />
+            <Insets left="10.0" />
          </GridPane.margin>
-      </TextArea>
-      <TextArea fx:id="txAreaResumen" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="6" GridPane.rowSpan="4">
-         <GridPane.margin>
-            <Insets right="50.0" />
-         </GridPane.margin>
-      </TextArea>
-      <TextField fx:id="txtTitulo" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="2" />
-      <Label text="Titulo">
-         <padding>
-            <Insets left="25.0" />
-         </padding>
       </Label>
-      <TextArea fx:id="txAreaAutores" maxHeight="-Infinity" prefHeight="120.0" prefWidth="170.8" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2">
+      <JFXTextField fx:id="txtTitulo" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+      <JFXTextField fx:id="txtISBN" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="txtIdioma" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="txtPaisPublicacion" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <JFXTextField fx:id="txtFechaPublicacion" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <JFXTextField fx:id="txtEditorial" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <JFXTextField fx:id="txtEdicion" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <JFXTextField fx:id="txtPaginas" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <JFXTextField fx:id="txtCubierta" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <JFXTextField fx:id="txtDimensiones" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <JFXTextField fx:id="txtSignatura" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="txtDisponibilidad" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="txtEstado" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <JFXTextField fx:id="txtArea" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <JFXTextField fx:id="txtCategoria" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <JFXTextArea fx:id="txAreaAutores" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </GridPane.margin>
-      </TextArea>
-      <TextArea fx:id="txAreaMateria" maxHeight="-Infinity" prefHeight="120.0" prefWidth="170.8" GridPane.columnIndex="3" GridPane.rowIndex="8" GridPane.rowSpan="2">
+      </JFXTextArea>
+      <JFXTextArea fx:id="txAreaMateria" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="8" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </GridPane.margin>
-      </TextArea>
+      </JFXTextArea>
+      <JFXTextArea fx:id="txAreaNota" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="4">
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </JFXTextArea>
+      <JFXTextArea fx:id="txAreaResumen" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="6" GridPane.rowSpan="4">
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </JFXTextArea>
    </children>
 </GridPane>
