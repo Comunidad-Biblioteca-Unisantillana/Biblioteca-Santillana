@@ -6,11 +6,14 @@
 package control;
 
 import entitys.Prestamo;
+import java.net.URL;
 import java.sql.Date;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,10 +21,11 @@ import modelo.ConsultaPrestamo;
 
 /**
  * Clase que controla el panel prestamo del estudiante
+ *
  * @author Julian
  */
-public class PrestamoEstudianteController{
-    
+public class PrestamoEstudianteController {
+
     @FXML
     private TableView<Prestamo> tablePrestamo;
     @FXML
@@ -32,33 +36,23 @@ public class PrestamoEstudianteController{
     private TableColumn<Prestamo, Date> fechaDevolucionTable;
     @FXML
     private TableColumn<Prestamo, String> tituloTable;
-    
-    private String codEstudiante;
-    
-    @FXML
-    private void btnConsultarPrestamosPressed(ActionEvent event) {
-         try {
-            cargarDatosTablePrestamos(codEstudiante);
+
+    /**
+     * Metodo que carga la tabla con los datos de los <br>
+     * prestamos del estudiante
+     * @param codEstudiante
+     */
+    public void cargarDatosTablePrestamos(String codEstudiante) {
+        try {
+            ConsultaPrestamo consulta = new ConsultaPrestamo();
+
+            codPrestamosTable.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
+            tituloTable.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+            fechaPrestamoTable.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
+            fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
+            tablePrestamo.setItems(consulta.getPrestamos(codEstudiante));
         } catch (Exception ex) {
             Logger.getLogger(CuentaEstudianteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public void cargarDatosTablePrestamos(String codEstudiante) throws Exception {
-        ConsultaPrestamo consulta = new ConsultaPrestamo();
-
-        codPrestamosTable.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
-        tituloTable.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        fechaPrestamoTable.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
-        fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
-        tablePrestamo.setItems(consulta.getPrestamos(codEstudiante));
-    }
-
-    /**
-     * Metodo que obtiene el codigo del estudiante
-     * @param codEstudiante 
-     */
-    public void setCodEstudiante(String codEstudiante) {
-        this.codEstudiante = codEstudiante;
     }
 }

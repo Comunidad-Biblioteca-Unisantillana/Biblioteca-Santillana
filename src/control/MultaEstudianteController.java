@@ -17,10 +17,11 @@ import modelo.ConsultaMulta;
 
 /**
  * clase que controla el panel multa del estudiante
+ *
  * @author Julian
  */
 public class MultaEstudianteController {
-    
+
     @FXML
     private TableView<Multa> tableMulta;
     @FXML
@@ -35,40 +36,25 @@ public class MultaEstudianteController {
     private TableColumn<Multa, String> colCancelado;
     @FXML
     private TableColumn<Multa, String> colTipo;
-    
-    private String codEstudiante;
-    
-    @FXML
-    private void btnConsultarHisMulPressed(ActionEvent event) {
+
+    /**
+     * Metodo que carga los datos de las multas de un estudiante
+     *
+     * @param codEstudiante
+     */
+    public void cargarDatosTableMultas(String codEstudiante)  {
         try {
-            cargarDatosTableMultas(codEstudiante);
+            ConsultaMulta consulta = new ConsultaMulta();
+
+            colCodMulta.setCellValueFactory(new PropertyValueFactory<>("codMulta"));
+            colCodPrestamo.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
+            colDiasAtrasados.setCellValueFactory(new PropertyValueFactory<>("diasAtrasados"));
+            colValorTot.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
+            colCancelado.setCellValueFactory(new PropertyValueFactory<>("cancelado"));
+            colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+            tableMulta.setItems(consulta.getMultas(codEstudiante));
         } catch (Exception ex) {
             Logger.getLogger(CuentaEstudianteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    /**
-     * Metodo que carga los datos de las multas de un estudiante
-     * @param codEstudiante
-     * @throws Exception 
-     */
-    public void cargarDatosTableMultas(String codEstudiante) throws Exception {
-        ConsultaMulta consulta = new ConsultaMulta();
-
-        colCodMulta.setCellValueFactory(new PropertyValueFactory<>("codMulta"));
-        colCodPrestamo.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
-        colDiasAtrasados.setCellValueFactory(new PropertyValueFactory<>("diasAtrasados"));
-        colValorTot.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
-        colCancelado.setCellValueFactory(new PropertyValueFactory<>("cancelado"));
-        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        tableMulta.setItems(consulta.getMultas(codEstudiante));
-    }
-
-    /**
-     * Metodo que obtiene el codigo del estudiante
-     * @param codEstudiante 
-     */
-    public void setCodEstudiante(String codEstudiante) {
-        this.codEstudiante = codEstudiante;
     }
 }

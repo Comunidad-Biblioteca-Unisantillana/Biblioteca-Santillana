@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import vista.CuentaEstudianteStage;
 import vista.IniciarMenuDesplegable;
 import vista.LoginUnisantillanaStage;
@@ -89,9 +90,10 @@ public class CuentaEstudianteController implements Initializable {
     private void loadPrestamo(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoEstudiante.fxml"));
-            rootModulo.setCenter(loader.load());
+            GridPane parent = loader.load();
+            rootModulo.setCenter(parent);
             PrestamoEstudianteController control = loader.getController();
-            control.setCodEstudiante(codEstudiante);
+            control.cargarDatosTablePrestamos(codEstudiante);
         } catch (IOException ex) {
             
         }
@@ -103,9 +105,10 @@ public class CuentaEstudianteController implements Initializable {
     private void loadMulta(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaEstudiante.fxml"));
-            rootModulo.setCenter(loader.load());
+            GridPane parent = loader.load();
+            rootModulo.setCenter(parent);
             MultaEstudianteController control = loader.getController();
-            control.setCodEstudiante(codEstudiante);
+            control.cargarDatosTableMultas(codEstudiante);
         } catch (IOException ex) {
             
         }
@@ -117,7 +120,8 @@ public class CuentaEstudianteController implements Initializable {
     private void loadOPAC(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/OPAC.fxml"));
-            rootModulo.setCenter(loader.load());
+            GridPane parent = loader.load();
+            rootModulo.setCenter(parent);
             OPACController control = loader.getController();
             control.setStage(stageEst);
         } catch (IOException ex) {

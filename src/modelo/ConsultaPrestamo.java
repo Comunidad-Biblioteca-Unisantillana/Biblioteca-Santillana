@@ -5,12 +5,10 @@
  */
 package modelo;
 
-import entitys.Multa;
 import entitys.Prestamo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
