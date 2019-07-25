@@ -32,7 +32,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../recursos/styles.css" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="rootModulo" prefHeight="735.0" prefWidth="1366.0" />
+            <BorderPane fx:id="rootModulo" prefHeight="735.0" prefWidth="1366.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="44.0" prefHeight="261.0" prefWidth="200.0">
                <children>
                   <AnchorPane fx:id="anchorDrawer" prefHeight="261.0" prefWidth="200.0">

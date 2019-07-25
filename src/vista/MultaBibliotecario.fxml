@@ -29,16 +29,19 @@
             <TableColumn fx:id="colDiasAtrasados" editable="false" prefWidth="200.0" text="Días atrasados" />
             <TableColumn fx:id="colValorTot" editable="false" prefWidth="200.0" text="Valor multa" />
             <TableColumn fx:id="colCancelado" prefWidth="200.0" text="Cancelado" />
-            <TableColumn fx:id="colTipo" editable="false" prefWidth="138.0" text="Tipo" />
+            <TableColumn fx:id="colTipo" editable="false" prefWidth="241.0" text="Tipo" />
          </columns>
          <GridPane.margin>
             <Insets bottom="100.0" left="20.0" right="20.0" top="130.0" />
          </GridPane.margin>
       </TableView>
-      <Label prefHeight="21.0" prefWidth="183.0" text="Código Estudiante" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Label prefHeight="21.0" prefWidth="185.0" text="Código Estudiante" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets right="180.0" top="85.0" />
+            <Insets right="260.0" top="75.0" />
          </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
       <JFXTextField fx:id="codEstudianteHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1">
          <GridPane.margin>
@@ -47,7 +50,7 @@
       </JFXTextField>
       <JFXButton onAction="#btnconsultarHisMulPressed" prefHeight="35.0" prefWidth="168.0" text="Consultar" GridPane.columnIndex="2">
          <GridPane.margin>
-            <Insets bottom="280.0" left="40.0" top="100.0" />
+            <Insets bottom="280.0" left="40.0" top="95.0" />
          </GridPane.margin>
       </JFXButton>
       <JFXButton onAction="#btnCancelarMultaPressed" prefHeight="35.0" prefWidth="192.0" text="Cancelar Multa" GridPane.columnIndex="3">
