@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -124,6 +125,21 @@ public class CuentaEstudianteController implements Initializable {
             rootModulo.setCenter(parent);
             OPACController control = loader.getController();
             control.setStage(stageEst);
+        } catch (IOException ex) {
+            
+        }
+    }
+    
+    /**
+     * Metodo que muestra el nombre y el codigo del estudiante en la ventana
+     */
+    public void loadDatosBasicosEstudiante(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/DatosBasicosUsuario.fxml"));
+            Parent parent = loader.load();
+            rootModulo.setTop(parent);
+            DatosBasicosUsuarioController control = loader.getController();
+            control.cargarComponentes("estudiante", codEstudiante);
         } catch (IOException ex) {
             
         }

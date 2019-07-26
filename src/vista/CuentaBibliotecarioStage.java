@@ -39,8 +39,9 @@ public class CuentaBibliotecarioStage extends Stage {
         }
     }
 
-    public void cargarIdBibliotecario(String idBibliotecario) {
+    public void cargarDatosBibliotecario(String idBibliotecario) {
         cbcc.setIdBibliotecario(idBibliotecario);
+        cbcc.loadDatosBasicosBibliotecario();
     }
 
     public static CuentaBibliotecarioStage getInstance() {

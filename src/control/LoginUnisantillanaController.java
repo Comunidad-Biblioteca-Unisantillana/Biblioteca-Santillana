@@ -232,7 +232,7 @@ public class LoginUnisantillanaController implements Initializable {
         UsuarioTxt.getValidators().add(validatorBib);
         if (UsuarioTxt.validate()) {
             CuentaBibliotecarioStage.getInstance();
-            CuentaBibliotecarioStage.getInstance().cargarIdBibliotecario(idBibliotecario);
+            CuentaBibliotecarioStage.getInstance().cargarDatosBibliotecario(idBibliotecario);
             LoginUnisantillanaStage.getInstance().close();
         }
         UsuarioTxt.getValidators().remove(1);
@@ -248,7 +248,7 @@ public class LoginUnisantillanaController implements Initializable {
         UsuarioTxt.getValidators().add(validatorEst);
         if (UsuarioTxt.validate()) {
             CuentaEstudianteStage.getInstance();
-            CuentaEstudianteStage.getInstance().cargarCodEstudiante(codEstudiante);
+            CuentaEstudianteStage.getInstance().cargarDatosEstudiante(codEstudiante);
             LoginUnisantillanaStage.getInstance().close();
         }
         UsuarioTxt.getValidators().remove(1);

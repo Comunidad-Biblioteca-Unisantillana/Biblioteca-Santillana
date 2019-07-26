@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -162,6 +163,21 @@ public class CuentaBibliotecarioController implements  Initializable{
             rootModulo.setCenter(loader.load());
             OPACController control = loader.getController();
             control.setStage(stage);
+        } catch (IOException ex) {
+            
+        }
+    }
+    
+    /**
+     * Metodo que muestra el nombre y la identificación del bibliotecario en la ventana
+     */
+    public void loadDatosBasicosBibliotecario(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/DatosBasicosUsuario.fxml"));
+            Parent parent = loader.load();
+            rootModulo.setTop(parent);
+            DatosBasicosUsuarioController control = loader.getController();
+            control.cargarComponentes("bibliotecario",idBibliotecario);
         } catch (IOException ex) {
             
         }

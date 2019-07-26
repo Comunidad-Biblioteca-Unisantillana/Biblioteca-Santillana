@@ -34,11 +34,12 @@ public class CuentaEstudianteStage extends Stage {
         }
     }
     /**
-     * Método que asigna el código del estudiante a su cuenta.
+     * Método que carga el nombre y codigo del estudiante.
      * @param codEstudiante 
      */
-    public void cargarCodEstudiante(String codEstudiante) {
+    public void cargarDatosEstudiante(String codEstudiante) {
         cec.setCodEstudiante(codEstudiante);
+        cec.loadDatosBasicosEstudiante();
     }
     
     public static CuentaEstudianteStage getInstance() {
