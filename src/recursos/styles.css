@@ -41,6 +41,10 @@ and open the template in the editor.
     -fx-cursor: hand;
 }
 
+.hamburger:hover{
+    -fx-background-color: #68D1FF;
+}
+
 .jfx-text-field ,.jfx-text-area {
     -fx-pref-width: 185px;
     -fx-font-size: 11.6pt;
