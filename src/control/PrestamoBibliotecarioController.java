@@ -14,9 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.GridPane;
-import vista.CargarFichaTecnica;
 import modelo.GeneradorPrestamoRecurso;
 import vista.AlertBox;
 import vista.IAlertBox;
@@ -33,16 +30,12 @@ public class PrestamoBibliotecarioController implements Initializable{
     private JFXTextField codEstudiantePresTxt;
     @FXML
     private JFXTextField fechaPrestamoPresTxt;
-    @FXML    
-    private JFXTextField bibliotecarioPresTxt;
     @FXML
     private JFXTextField fechaDevolucionPresTxt;
     @FXML
     private JFXComboBox<String> cboTipoPrestamo;
-    @FXML
-    private GridPane panelPrestamos;
     
-    private CargarFichaTecnica cft;
+    private String idBibliotecario;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,12 +52,8 @@ public class PrestamoBibliotecarioController implements Initializable{
             try {
                 GeneradorPrestamoRecurso generador = new GeneradorPrestamoRecurso();
 
-                if (generador.createPrestamo(codBarrasPresTxt.getText(), codEstudiantePresTxt.getText(), bibliotecarioPresTxt.getText(),
+                if (generador.createPrestamo(codBarrasPresTxt.getText(), codEstudiantePresTxt.getText(), idBibliotecario,
                         cboTipoPrestamo.getValue(), fechaPrestamoPresTxt, fechaDevolucionPresTxt)) {
-
-                    cft = new CargarFichaTecnica(cboTipoPrestamo.getValue());
-                    cft.crearFichaTecnica(panelPrestamos, codBarrasPresTxt.getText());
-
                     alert.showAlert("Anuncio", "Préstamo", "El préstamo ha sido realizado con éxito!");
                 }
             } catch (Exception ex) {
@@ -75,18 +64,11 @@ public class PrestamoBibliotecarioController implements Initializable{
         }
     }
     
-    @FXML
-    private void btnPrestamosLimpiarPressed(ActionEvent event) {
-        if(cft != null){
-            cft.limpiarCamposTextos();
-        }
-    }
-    
     /**
      * Metodo que carga la identificación del bibliotecario
      * @param idBibliotecario 
      */
-    public void cargarIdBibliotecario(String idBibliotecario){
-        bibliotecarioPresTxt.setText(idBibliotecario);
+    public void setIdBibliotecario(String idBibliotecario){
+        this.idBibliotecario = idBibliotecario;
     }
 }

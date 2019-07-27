@@ -28,6 +28,7 @@ public class CuentaEstudianteStage extends Stage {
             setTitle("Cuenta Estudiante"); 
             getIcons().add(new Image("/recursos/iconUniversity.png"));
             setMaximized(true);
+            setResizable(false);
             show();  
         } catch (IOException e) {
             e.printStackTrace();

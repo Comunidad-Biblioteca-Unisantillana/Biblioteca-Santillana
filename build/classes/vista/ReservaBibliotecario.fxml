@@ -8,76 +8,68 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="716.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ReservaBibliotecarioController">
+<GridPane prefHeight="700.0" prefWidth="1300.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ReservaBibliotecarioController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="70.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="220.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="250.0" prefWidth="250.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="178.0" prefWidth="250.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="172.0" prefWidth="220.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="250.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="0.0" prefWidth="260.0" />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="160.0" minHeight="0.0" prefHeight="90.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="228.0" minHeight="0.0" prefHeight="77.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="308.0" minHeight="20.0" prefHeight="73.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="308.0" minHeight="20.0" prefHeight="67.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="308.0" minHeight="20.0" prefHeight="68.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="159.0" prefHeight="342.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label prefWidth="185.0" text="Código de barras" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label prefWidth="185.0" text="Código de barras" textFill="WHITE" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="15.0" />
+            <Insets />
          </GridPane.margin>
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="21.0" prefWidth="185.0" text="Bibliotecario" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Label prefHeight="21.0" prefWidth="173.0" text="Fecha reserva:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="172.0" text="Fecha limite reserva:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefWidth="185.0" text="Código estudiante" textFill="WHITE" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets />
          </GridPane.margin>
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
-      <GridPane fx:id="panelReservas" GridPane.columnSpan="8" GridPane.rowIndex="5">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
-      <Label prefHeight="21.0" prefWidth="173.0" text="Fecha reserva:" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="15.0" />
-         </GridPane.margin>
-      </Label>
-      <Label prefHeight="21.0" prefWidth="172.0" text="Fecha limite reserva:" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="15.0" />
-         </GridPane.margin>
-      </Label>
-      <Label prefWidth="185.0" text="Código estudiante" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="15.0" />
-         </GridPane.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </Label>
-      <JFXButton alignment="CENTER" onAction="#btnReservarPressed" prefHeight="35.0" prefWidth="156.0" text="Reservar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <JFXButton alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#btnReservarPressed" prefHeight="35.0" text="Reservar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></JFXButton>
-      <JFXTextField fx:id="codBarrasResTxt" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-      <JFXTextField fx:id="txtFechaLimite" unFocusColor="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="bibliotecarioResTxt" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Label alignment="CENTER" prefHeight="38.0" prefWidth="173.0" style="-fx-font-size: 30;" text="Reservas" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+      <JFXTextField fx:id="codBarrasResTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtFechaLimite" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </GridPane.margin></JFXTextField>
+      <Label alignment="CENTER" prefHeight="38.0" prefWidth="173.0" style="-fx-font-size: 30;" text="Reservas" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
    </children>
 </GridPane>

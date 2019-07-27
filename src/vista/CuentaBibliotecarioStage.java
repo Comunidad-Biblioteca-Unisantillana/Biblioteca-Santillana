@@ -33,6 +33,7 @@ public class CuentaBibliotecarioStage extends Stage {
             setTitle("Cuenta Bibliotecario");
             getIcons().add(new Image("/recursos/iconUniversity.png"));
             setMaximized(true);
+            setResizable(false);
             show();
         } catch (IOException e) {
             e.printStackTrace();

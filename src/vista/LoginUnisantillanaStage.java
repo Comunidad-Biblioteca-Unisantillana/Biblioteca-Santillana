@@ -27,6 +27,7 @@ public class LoginUnisantillanaStage extends Stage {
             setMinWidth(560);
             setMinHeight(678);
             setMaximized(true);
+            setResizable(false);
             show();
         } catch (IOException e) {
             e.printStackTrace();

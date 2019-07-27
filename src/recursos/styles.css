@@ -35,6 +35,12 @@ and open the template in the editor.
     -fx-background-color: #68D1FF;
 }
 
+.hamburger{
+    -fx-background-color:  #00A2E8;
+    -fx-border-color:  black;
+    -fx-cursor: hand;
+}
+
 .jfx-text-field ,.jfx-text-area {
     -fx-pref-width: 185px;
     -fx-font-size: 11.6pt;
@@ -43,8 +49,6 @@ and open the template in the editor.
     -jfx-focus-color : white;
     -fx-background-color: #E6E6E6;
 }
-
-
 
 .anchorCenter {
     -fx-background-image: url(fondo_grande.png);
@@ -58,7 +62,6 @@ JFXComboBox{
     -fx-fill: WHITE;
     -fx-background-color: #006895;
     -fx-font-size: 11pt;
-    -fx-cursor: hand;
 }
 
 .label {
@@ -67,6 +70,7 @@ JFXComboBox{
     -fx-background-radius: 20;
     -fx-font-size: 11.6pt;
     -fx-text-fill: black;
+    -fx-padding: 0 0 0 10;
 }
 
 

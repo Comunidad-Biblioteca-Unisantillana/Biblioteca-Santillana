@@ -107,7 +107,7 @@ public class CuentaBibliotecarioController implements  Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoBibliotecario.fxml"));
             rootModulo.setCenter(loader.load());
             PrestamoBibliotecarioController control = loader.getController();
-            control.cargarIdBibliotecario(idBibliotecario);
+            control.setIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
             
         }
@@ -121,7 +121,7 @@ public class CuentaBibliotecarioController implements  Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/ReservaBibliotecario.fxml"));
             rootModulo.setCenter(loader.load());
             ReservaBibliotecarioController control = loader.getController();
-            control.cargarIdBibliotecario(idBibliotecario);
+            control.setIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
             
         }
@@ -135,7 +135,7 @@ public class CuentaBibliotecarioController implements  Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/DevolucionBibliotecario.fxml"));
             rootModulo.setCenter(loader.load());
             DevolucionBibliotecarioController control = loader.getController();
-            control.cargarIdBibliotecario(idBibliotecario);
+            control.setIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
             
         }

@@ -14,10 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.GridPane;
 import modelo.GeneradorDevolucion;
 import vista.AlertBox;
-import vista.CargarFichaTecnica;
 import vista.IAlertBox;
 
 /**
@@ -25,19 +23,15 @@ import vista.IAlertBox;
  * @author Julian
  */
 public class DevolucionBibliotecarioController implements Initializable{
-    
-    @FXML
-    private GridPane panelDevoluciones;
+
     @FXML
     private JFXTextField codBarrasDevTxt;
-    @FXML
-    private JFXTextField bibliotecarioDevTxt;
     @FXML
     private JFXComboBox<String> cboTipoRecurso;
     @FXML
     private JFXComboBox<String> cboEstadoRecurso;
     
-    private CargarFichaTecnica cft;
+    private String idBibliotecario;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,15 +47,12 @@ public class DevolucionBibliotecarioController implements Initializable{
     @FXML
     private void btnDevolverPressed(ActionEvent event) {
          IAlertBox alert = new AlertBox();
-        if(!codBarrasDevTxt.getText().isEmpty() && ! bibliotecarioDevTxt.getText().isEmpty()){
+        if(!codBarrasDevTxt.getText().isEmpty() && ! idBibliotecario.isEmpty()){
             try {
                 GeneradorDevolucion generador = new GeneradorDevolucion();
 
-                if(generador.createDevolucion(codBarrasDevTxt.getText(), bibliotecarioDevTxt.getText(), cboTipoRecurso.getValue(),
+                if(generador.createDevolucion(codBarrasDevTxt.getText(), idBibliotecario, cboTipoRecurso.getValue(),
                         cboEstadoRecurso.getValue())){
-                    
-                    cft = new CargarFichaTecnica(cboTipoRecurso.getValue());
-                    cft.crearFichaTecnica(panelDevoluciones, codBarrasDevTxt.getText());
                     alert.showAlert("Anuncio", "Devolución", "La devolución ha sido realizado con éxito!");
                 }        
             } catch (Exception ex) {
@@ -73,18 +64,11 @@ public class DevolucionBibliotecarioController implements Initializable{
         }
     }
     
-    @FXML
-    private void btnDevolucionesLimpiarPressed(ActionEvent event) {
-        if(cft != null){
-            cft.limpiarCamposTextos();
-        }
-    }
-    
     /**
      * Metodo que carga la identificación del bibliotecario
      * @param idBibliotecario 
      */
-    public void cargarIdBibliotecario(String idBibliotecario){
-        bibliotecarioDevTxt.setText(idBibliotecario);
+    public void setIdBibliotecario(String idBibliotecario){
+        this.idBibliotecario = idBibliotecario;
     }
 }

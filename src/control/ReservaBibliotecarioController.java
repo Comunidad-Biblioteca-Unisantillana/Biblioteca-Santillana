@@ -8,11 +8,8 @@ package control;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import modelo.GeneradorReserva;
 import vista.AlertBox;
-import vista.CargarFichaTecnica;
 import vista.IAlertBox;
 
 /**
@@ -20,9 +17,7 @@ import vista.IAlertBox;
  * @author Julian
  */
 public class ReservaBibliotecarioController {
-    
-    @FXML
-    private GridPane panelReservas;
+
     @FXML
     private JFXTextField codBarrasResTxt;
     @FXML
@@ -31,10 +26,8 @@ public class ReservaBibliotecarioController {
     private JFXTextField txtFechaReserva;
     @FXML
     private JFXTextField txtFechaLimite;
-    @FXML
-    private JFXTextField bibliotecarioResTxt;
     
-    private CargarFichaTecnica cft;
+    private String idBibliotecario;
     
     @FXML
     private void btnReservarPressed(ActionEvent event) {
@@ -43,11 +36,8 @@ public class ReservaBibliotecarioController {
             try{
                 GeneradorReserva generador = new GeneradorReserva();
 
-                if(generador.createReserva(codBarrasResTxt.getText(), txtCodEstReserva.getText(), bibliotecarioResTxt.getText(), 
+                if(generador.createReserva(codBarrasResTxt.getText(), txtCodEstReserva.getText(), idBibliotecario, 
                         txtFechaReserva, txtFechaLimite)){
-                    
-                    cft = new CargarFichaTecnica("libro");
-                    cft.crearFichaTecnica(panelReservas, codBarrasResTxt.getText());
                     alert.showAlert("Anuncio", "Reserva", "La reserva ha sido realizado con éxito!");
                 }
             }
@@ -60,18 +50,11 @@ public class ReservaBibliotecarioController {
         }
     }
     
-    @FXML
-    private void btnReservasLimpiarPressed(ActionEvent event) {
-        if(cft != null){
-            cft.limpiarCamposTextos();
-        }
-    }
-    
     /**
      * Metodo que carga la identificación del bibliotecario
      * @param idBibliotecario 
      */
-    public void cargarIdBibliotecario(String idBibliotecario){
-        bibliotecarioResTxt.setText(idBibliotecario);
+    public void setIdBibliotecario(String idBibliotecario){
+        this.idBibliotecario = idBibliotecario;
     }
 }
