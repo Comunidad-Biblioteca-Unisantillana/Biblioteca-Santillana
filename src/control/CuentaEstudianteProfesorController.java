@@ -15,7 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import vista.CuentaEstudianteStage;
+import vista.CuentaProfesorStage;
 import vista.IniciarMenuDesplegable;
 import vista.LoginUnisantillanaStage;
 
@@ -24,7 +26,7 @@ import vista.LoginUnisantillanaStage;
  *
  * @author stive
  */
-public class CuentaEstudianteController implements Initializable {
+public class CuentaEstudianteProfesorController implements Initializable {
     
     @FXML
     private BorderPane rootModulo;
@@ -41,9 +43,11 @@ public class CuentaEstudianteController implements Initializable {
     @FXML
     private ImageView imgIconOPAC;
 
-    private CuentaEstudianteStage stageEst;
+    private Stage stage;
 
-    private String codEstudiante;
+    private String codigo;
+    
+    private String tipoUsuario;
 
     /**
      * Initializes the controller class.
@@ -62,7 +66,11 @@ public class CuentaEstudianteController implements Initializable {
     @FXML
     private void itemSalirPressed(ActionEvent event) {
         LoginUnisantillanaStage.getInstance().show();
-        CuentaEstudianteStage.getInstance().close();
+        if(tipoUsuario.equalsIgnoreCase("estudiante")){
+            CuentaEstudianteStage.deleteInstance();
+        }else if(tipoUsuario.equalsIgnoreCase("profesor")){
+            CuentaProfesorStage.deleteInstance();
+        }
     }
 
     @FXML
@@ -86,7 +94,7 @@ public class CuentaEstudianteController implements Initializable {
     }
     
     /**
-     * Metodo que carga el modulo prestamo del estudiante
+     * Metodo que carga el modulo prestamo.
      */
     private void loadPrestamo(){
         try {
@@ -94,14 +102,14 @@ public class CuentaEstudianteController implements Initializable {
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             PrestamoEstudianteController control = loader.getController();
-            control.cargarDatosTablePrestamos(codEstudiante);
+            control.cargarDatosTablePrestamos(codigo);
         } catch (IOException ex) {
             
         }
     }
     
     /**
-     * Metodo que carga el modulo multa del estudiante
+     * Metodo que carga el modulo multa.
      */
     private void loadMulta(){
         try {
@@ -109,14 +117,14 @@ public class CuentaEstudianteController implements Initializable {
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             MultaEstudianteController control = loader.getController();
-            control.cargarDatosTableMultas(codEstudiante);
+            control.cargarDatosTableMultas(codigo);
         } catch (IOException ex) {
             
         }
     }
     
     /**
-     * Metodo que carga el modulo OPAC del estudiante
+     * Metodo que carga el modulo OPAC.
      */
     private void loadOPAC(){
         try {
@@ -124,42 +132,48 @@ public class CuentaEstudianteController implements Initializable {
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             OPACController control = loader.getController();
-            control.setStage(stageEst);
+            control.setStage(stage);
         } catch (IOException ex) {
             
         }
     }
     
     /**
-     * Metodo que muestra el nombre y el codigo del estudiante en la ventana
+     * Metodo que muestra el nombre y el codigo del usuario en la ventana
      */
-    public void loadDatosBasicosEstudiante(){
+    public void loadDatosBasicos(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/DatosBasicosUsuario.fxml"));
             Parent parent = loader.load();
             rootModulo.setTop(parent);
             DatosBasicosUsuarioController control = loader.getController();
-            control.cargarComponentes("estudiante", codEstudiante);
+            control.cargarComponentes(tipoUsuario, codigo);
         } catch (IOException ex) {
             
         }
     }
 
     /**
-     * Metodo que asigna un stage de Estudiante
-     *
-     * @param stageEst
+     * Metodo que asigna un stage.
+     * @param stage
      */
-    public void setStageEst(CuentaEstudianteStage stageEst) {
-        this.stageEst = stageEst;
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     /**
-     * Método que asigna el código del estudiante.
-     *
-     * @param codEstudiante
+     * Método que asigna el código del usuario.
+     * @param codigo
      */
-    public void setCodEstudiante(String codEstudiante) {
-        this.codEstudiante = codEstudiante;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    /**
+     * Metodo que asigna  el tipo de usuario(Estudiante o Profesor)
+     * @param tipoUsuario 
+     */
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

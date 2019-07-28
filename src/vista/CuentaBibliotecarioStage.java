@@ -46,11 +46,15 @@ public class CuentaBibliotecarioStage extends Stage {
     }
 
     public static CuentaBibliotecarioStage getInstance() {
-        return CuentaBibliotecarioStageHolder.INSTANCE;
+        return CuentaBibliotecarioStageHolder.INSTANCE = new CuentaBibliotecarioStage();
+    }
+    
+    public static void deleteInstance(){
+        CuentaBibliotecarioStageHolder.INSTANCE.close();
+        CuentaBibliotecarioStageHolder.INSTANCE = null;
     }
 
     private static class CuentaBibliotecarioStageHolder {
-
-        private static final CuentaBibliotecarioStage INSTANCE = new CuentaBibliotecarioStage();
+        private static CuentaBibliotecarioStage INSTANCE;
     }
 }

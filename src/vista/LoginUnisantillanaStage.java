@@ -40,7 +40,6 @@ public class LoginUnisantillanaStage extends Stage {
     }
 
     private static class LoginUnisantillanaStageHolder {
-
         private static final LoginUnisantillanaStage INSTANCE = new LoginUnisantillanaStage();
     }
 }

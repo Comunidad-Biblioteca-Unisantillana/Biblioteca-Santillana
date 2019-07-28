@@ -26,7 +26,10 @@ public class ValidatorLoginProfesor extends ValidatorBase {
         if (srcControl.get() instanceof TextInputControl)evalTextField();
     }
 
+    /**
+     * Metodo que valida la informacion que hay dentro del JFXTextField
+     */
     private void evalTextField() {
-        //utilizar metodo hasErrors
+        hasErrors.set(!true);
     }
 }

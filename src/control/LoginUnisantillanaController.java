@@ -18,6 +18,7 @@ import modelo.ValidatorLoginProfesor;
 import modelo.ValidatorLoginBibliotecario;
 import vista.CuentaBibliotecarioStage;
 import vista.CuentaEstudianteStage;
+import vista.CuentaProfesorStage;
 import vista.LoginUnisantillanaStage;
 
 /**
@@ -60,22 +61,25 @@ public class LoginUnisantillanaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //iniciar evento tecla
+        
         KeyEventJFXTextFieldController control = new KeyEventJFXTextFieldController();
         control.soloNumeros(UsuarioTxt);
+        
         //iniciar validadores
+        
         RequiredFieldValidator v1 = new RequiredFieldValidator();
         iniciarValidador(v1, "","informacion");
         UsuarioTxt.getValidators().add(v1);
-        
         RequiredFieldValidator v2 = new RequiredFieldValidator();
         iniciarValidador(v2, "Ingrese contraseña","informacion");
         PasswordTxt.getValidators().add(v2);
         
         validatorEst = new ValidatorLoginEstudiante(UsuarioTxt);
         iniciarValidador(validatorEst, "Codigo incorrecto", "error");
-        
         validatorBib = new  ValidatorLoginBibliotecario(UsuarioTxt, PasswordTxt);
         iniciarValidador(validatorBib, "Identificación o contraseña incorrecta", "error");
+        validatorProf = new ValidatorLoginProfesor(UsuarioTxt);
+        iniciarValidador(validatorProf, "Identificación incorrecta", "error");
         
         addEventValidador();
         //Iniciar componentes vista
@@ -123,8 +127,40 @@ public class LoginUnisantillanaController implements Initializable {
             loguearBibliotecario(UsuarioTxt.getText().trim());
         }
         if (comboLogin.getSelectionModel().getSelectedItem().equals("Docente")) {
-
+            loguearProfesor(UsuarioTxt.getText().trim());
         }
+    }
+
+    /**
+     * metodo que inicializa la escucha del JFXTextField y JFXPasswordField
+     */
+    private void addEventValidador() {
+        UsuarioTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) {
+                UsuarioTxt.validate();
+                return;
+            }
+            if (newValue) {
+                UsuarioTxt.validate();
+            }
+        });
+        PasswordTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) {
+                PasswordTxt.validate();
+            }
+        });
+    }
+    
+    /**
+     * Metodo que carga los componentes de un validador
+     *
+     * @param validador
+     * @param mensaje
+     * @param txt
+     */
+    private void iniciarValidador(ValidatorBase validador, String mensaje,String nombreImagen) {
+        validador.setMessage(mensaje);
+        validador.setIcon(new ImageView("/recursos/" + nombreImagen + ".png"));
     }
 
     /**
@@ -185,38 +221,6 @@ public class LoginUnisantillanaController implements Initializable {
     }
 
     /**
-     * Metodo que carga los componentes de un validador
-     *
-     * @param validador
-     * @param mensaje
-     * @param txt
-     */
-    private void iniciarValidador(ValidatorBase validador, String mensaje,String nombreImagen) {
-        validador.setMessage(mensaje);
-        validador.setIcon(new ImageView("/recursos/" + nombreImagen + ".png"));
-    }
-
-    /**
-     * metodo que inicializa la escucha del JFXTextField y JFXPasswordField
-     */
-    private void addEventValidador() {
-        UsuarioTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (!newValue) {
-                UsuarioTxt.validate();
-                return;
-            }
-            if (newValue) {
-                UsuarioTxt.validate();
-            }
-        });
-        PasswordTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (!newValue) {
-                PasswordTxt.validate();
-            }
-        });
-    }
-
-    /**
      * Método que loguea a un bibliotecario, por medio de una identificación y
      * contraseña.
      *
@@ -231,7 +235,6 @@ public class LoginUnisantillanaController implements Initializable {
         }
         UsuarioTxt.getValidators().add(validatorBib);
         if (UsuarioTxt.validate()) {
-            CuentaBibliotecarioStage.getInstance();
             CuentaBibliotecarioStage.getInstance().cargarDatosBibliotecario(idBibliotecario);
             LoginUnisantillanaStage.getInstance().close();
         }
@@ -240,21 +243,33 @@ public class LoginUnisantillanaController implements Initializable {
     }
 
     /**
-     * Métodoq que loguea a un estudiante, por medio de un código.
+     * Método que loguea a un estudiante, por medio de un código.
      *
      * @param codEstudiante
      */
     private void loguearEstudiante(String codEstudiante) {
         UsuarioTxt.getValidators().add(validatorEst);
         if (UsuarioTxt.validate()) {
-            CuentaEstudianteStage.getInstance();
             CuentaEstudianteStage.getInstance().cargarDatosEstudiante(codEstudiante);
             LoginUnisantillanaStage.getInstance().close();
         }
         UsuarioTxt.getValidators().remove(1);
         limpiarCamposTextosLogin();
     }
-
+    
+    /**
+     * Método que loguea a un profesor, por medio de una identificación
+     */
+    private void loguearProfesor(String idProfesor){
+        UsuarioTxt.getValidators().add(validatorProf);
+        if(UsuarioTxt.validate()){
+            CuentaProfesorStage.getInstance().cargarDatosProfesor(idProfesor);
+            LoginUnisantillanaStage.getInstance().close();
+        }
+        UsuarioTxt.getValidators().remove(1);
+        limpiarCamposTextosLogin();
+    }
+  
     /**
      * Método que limpia los campos de texto de identificiación y contrasena.
      */

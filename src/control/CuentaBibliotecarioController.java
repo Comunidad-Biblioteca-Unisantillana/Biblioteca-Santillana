@@ -196,7 +196,7 @@ public class CuentaBibliotecarioController implements  Initializable{
      * Método que retorna al login de la universidad.
      */
     private void retornarLoginUnisantillana() {
-        CuentaBibliotecarioStage.getInstance().close();
+        CuentaBibliotecarioStage.deleteInstance();
         LoginUnisantillanaStage.getInstance().show();
     }
 

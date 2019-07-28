@@ -54,7 +54,7 @@ public class MultaEstudianteController {
             colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
             tableMulta.setItems(consulta.getMultas(codEstudiante));
         } catch (Exception ex) {
-            Logger.getLogger(CuentaEstudianteController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CuentaEstudianteProfesorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

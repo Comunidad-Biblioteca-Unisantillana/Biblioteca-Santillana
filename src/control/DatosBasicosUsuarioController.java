@@ -25,18 +25,13 @@ public class DatosBasicosUsuarioController {
     
     public void cargarComponentes(String nombreEntidad,String codigo){
         if(nombreEntidad.equalsIgnoreCase("estudiante")){
-            
             EstudianteDAO estDAO = new EstudianteDAO();
             Estudiante est = estDAO.readDAO(codigo);
             cargarTextoLabels(est.getNombre() + " " + est.getApellido() ,"Codigo: " + codigo);
-            
         }else if (nombreEntidad.equalsIgnoreCase("bibliotecario")){
-            
             BibliotecarioDAO bibDAO = new BibliotecarioDAO();
             Bibliotecario bib = bibDAO.readDAO(codigo);
-            System.out.println(bib.getNombre());
             cargarTextoLabels(bib.getNombre() + " " + bib.getApellido() ,"Identificación: " + codigo);
-            
         }else if (nombreEntidad.equalsIgnoreCase("profesor")){
             
         }

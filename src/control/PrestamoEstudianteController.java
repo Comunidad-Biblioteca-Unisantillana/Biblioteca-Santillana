@@ -6,14 +6,10 @@
 package control;
 
 import entitys.Prestamo;
-import java.net.URL;
 import java.sql.Date;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,7 +48,7 @@ public class PrestamoEstudianteController {
             fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
             tablePrestamo.setItems(consulta.getPrestamos(codEstudiante));
         } catch (Exception ex) {
-            Logger.getLogger(CuentaEstudianteController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CuentaEstudianteProfesorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
