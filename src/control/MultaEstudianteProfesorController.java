@@ -20,7 +20,7 @@ import modelo.ConsultaMulta;
  *
  * @author Julian
  */
-public class MultaEstudianteController {
+public class MultaEstudianteProfesorController {
 
     @FXML
     private TableView<Multa> tableMulta;

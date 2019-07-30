@@ -98,10 +98,10 @@ public class CuentaEstudianteProfesorController implements Initializable {
      */
     private void loadPrestamo(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoEstudiante.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoEstudianteProfesor.fxml"));
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
-            PrestamoEstudianteController control = loader.getController();
+            PrestamoEstudianteProfesorController control = loader.getController();
             control.cargarDatosTablePrestamos(codigo);
         } catch (IOException ex) {
             
@@ -113,10 +113,10 @@ public class CuentaEstudianteProfesorController implements Initializable {
      */
     private void loadMulta(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaEstudiante.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MultaEstudianteProfesor.fxml"));
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
-            MultaEstudianteController control = loader.getController();
+            MultaEstudianteProfesorController control = loader.getController();
             control.cargarDatosTableMultas(codigo);
         } catch (IOException ex) {
             
