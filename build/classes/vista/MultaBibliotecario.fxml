@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="700.0" prefWidth="1300.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.MultaBibliotecarioController">
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.MultaBibliotecarioController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />

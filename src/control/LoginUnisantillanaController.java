@@ -130,6 +130,11 @@ public class LoginUnisantillanaController implements Initializable {
             loguearProfesor(UsuarioTxt.getText().trim());
         }
     }
+    
+    @FXML
+    private void btnSalirPressed(ActionEvent event){
+        System.exit(0);
+    }
 
     /**
      * metodo que inicializa la escucha del JFXTextField y JFXPasswordField
