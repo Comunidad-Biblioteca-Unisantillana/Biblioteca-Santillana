@@ -102,7 +102,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             PrestamoEstudianteProfesorController control = loader.getController();
-            control.cargarDatosTablePrestamos(codigo);
+            control.cargarDatosTablePrestamos(codigo,tipoUsuario);
         } catch (IOException ex) {
             
         }
@@ -117,7 +117,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             MultaEstudianteProfesorController control = loader.getController();
-            control.cargarDatosTableMultas(codigo);
+            control.cargarDatosTableMultas(codigo,tipoUsuario);
         } catch (IOException ex) {
             
         }

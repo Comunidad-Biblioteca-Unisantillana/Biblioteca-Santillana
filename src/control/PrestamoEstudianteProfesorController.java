@@ -35,10 +35,12 @@ public class PrestamoEstudianteProfesorController {
 
     /**
      * Metodo que carga la tabla con los datos de los <br>
-     * prestamos del estudiante
+     * prestamos del estudiante o profesor
      * @param codEstudiante
+     * @param tipoUsuario
      */
-    public void cargarDatosTablePrestamos(String codEstudiante) {
+    public void cargarDatosTablePrestamos(String codEstudiante,String tipoUsuario) {
+        if(tipoUsuario.equals("profesor"))return;
         try {
             ConsultaPrestamo consulta = new ConsultaPrestamo();
 

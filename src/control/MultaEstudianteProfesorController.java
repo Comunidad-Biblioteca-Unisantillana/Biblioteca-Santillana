@@ -8,7 +8,6 @@ package control;
 import entitys.Multa;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,11 +37,13 @@ public class MultaEstudianteProfesorController {
     private TableColumn<Multa, String> colTipo;
 
     /**
-     * Metodo que carga los datos de las multas de un estudiante
+     * Metodo que carga los datos de las multas de un estudiante o profesor
      *
      * @param codEstudiante
+     * @param tipoUsuario
      */
-    public void cargarDatosTableMultas(String codEstudiante)  {
+    public void cargarDatosTableMultas(String codEstudiante,String tipoUsuario)  {
+        if(tipoUsuario.equals("profesor"))return;
         try {
             ConsultaMulta consulta = new ConsultaMulta();
 
