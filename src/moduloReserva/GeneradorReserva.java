@@ -1,5 +1,5 @@
 
-package modeloReserva;
+package moduloReserva;
 
 import controllers.LibroJpaController;
 import entitysUsuarios.Estudiante;
@@ -14,7 +14,7 @@ import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import modeloDAO.EstudianteDAO;
 import moduloPrestamoDAO.PrestamoLibroDAO;
-import modeloReservaDAO.ReservaLibroDAO;
+import moduloReservaDAO.ReservaLibroDAO;
 import vista.AlertBox;
 import vista.IAlertBox;
 

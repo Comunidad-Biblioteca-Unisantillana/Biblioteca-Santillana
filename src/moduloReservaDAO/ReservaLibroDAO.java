@@ -1,5 +1,5 @@
 
-package modeloReservaDAO;
+package moduloReservaDAO;
 
 import entitysRecursos.ReservaLibro;
 import java.sql.PreparedStatement;
