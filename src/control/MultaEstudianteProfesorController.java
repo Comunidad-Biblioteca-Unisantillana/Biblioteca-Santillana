@@ -5,14 +5,14 @@
  */
 package control;
 
-import entitys.Multa;
+import entitysRecursos.Multa;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.ConsultaMulta;
+import moduloMulta.ConsultaMulta;
 
 /**
  * clase que controla el panel multa del estudiante

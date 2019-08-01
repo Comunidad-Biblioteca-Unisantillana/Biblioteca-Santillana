@@ -5,7 +5,7 @@
  */
 package control;
 
-import entitys.Prestamo;
+import entitysRecursos.Prestamo;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.ConsultaPrestamo;
+import moduloPrestamo.ConsultaPrestamo;
 
 /**
  * Clase que controla el panel prestamo del estudiante

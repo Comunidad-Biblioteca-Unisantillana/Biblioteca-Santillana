@@ -8,7 +8,7 @@ package control;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import modelo.GeneradorReserva;
+import modeloReserva.GeneradorReserva;
 import vista.AlertBox;
 import vista.IAlertBox;
 

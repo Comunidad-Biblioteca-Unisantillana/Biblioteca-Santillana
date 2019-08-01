@@ -2,7 +2,7 @@ package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import entitys.Diccionario;
+import entitysRecursos.Diccionario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javafx.fxml.FXML;

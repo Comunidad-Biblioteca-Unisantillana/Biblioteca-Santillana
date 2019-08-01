@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import modelo.GeneradorDevolucion;
+import moduloDevolucion.GeneradorDevolucion;
 import vista.AlertBox;
 import vista.IAlertBox;
 

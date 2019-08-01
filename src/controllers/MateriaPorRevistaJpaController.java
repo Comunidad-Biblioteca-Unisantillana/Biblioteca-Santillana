@@ -7,14 +7,14 @@ package controllers;
 
 import controller.exceptions.NonexistentEntityException;
 import controller.exceptions.PreexistingEntityException;
-import entitys.MateriaPorDiccionario;
-import entitys.MateriaPorRevista;
+import entitysRecursos.MateriaPorDiccionario;
+import entitysRecursos.MateriaPorRevista;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entitys.Revista;
+import entitysRecursos.Revista;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

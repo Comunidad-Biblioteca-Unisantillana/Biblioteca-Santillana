@@ -6,7 +6,7 @@
 package control;
 
 import com.jfoenix.controls.JFXTextField;
-import entitys.Multa;
+import entitysRecursos.Multa;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.ConsultaMulta;
+import moduloMulta.ConsultaMulta;
 import vista.AlertBox;
 import vista.IAlertBox;
 
