@@ -1,10 +1,10 @@
 package control;
 
-import entitys.Periodico;
+import com.jfoenix.controls.JFXTextField;
+import entitysRecursos.Periodico;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import modelo.QueryRecurso;
 
 /**
@@ -15,23 +15,23 @@ import modelo.QueryRecurso;
 public class FichaTecnicaPeriodicoController {
 
     @FXML
-    private TextField txtISSN;
+    private JFXTextField txtISSN;
     @FXML
-    private TextField txtFechaPublicacion;
+    private JFXTextField txtFechaPublicacion;
     @FXML
-    private TextField txtCiudad;
+    private JFXTextField txtCiudad;
     @FXML
-    private TextField txtPaginas;
+    private JFXTextField txtPaginas;
     @FXML
-    private TextField txtEditorial;
+    private JFXTextField txtEditorial;
     @FXML
-    private TextField txtDisponibilidad;
+    private JFXTextField txtDisponibilidad;
     @FXML
-    private TextField txtEstadoFisico;
+    private JFXTextField txtEstadoFisico;
     @FXML
-    private TextField txtNombrePeriodico;
+    private JFXTextField txtNombrePeriodico;
     @FXML
-    private TextField txtCategoria;
+    private JFXTextField txtCategoria;
     
     /**
      * Método que carga los datos en la ficha tecnica.
