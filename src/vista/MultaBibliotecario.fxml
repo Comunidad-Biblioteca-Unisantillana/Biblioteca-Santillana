@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.MultaBibliotecarioController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" prefWidth="300.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" prefWidth="180.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" prefWidth="300.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <TableView fx:id="tableMulta" maxWidth="-Infinity" prefHeight="400.0" prefWidth="1243.0" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <columns>
+            <TableColumn fx:id="colCodMulta" editable="false" prefWidth="200.0" text="Código multa" />
+            <TableColumn fx:id="colCodPrestamo" editable="false" prefWidth="200.0" text="Código préstamo" />
+            <TableColumn fx:id="colDiasAtrasados" editable="false" prefWidth="200.0" text="Días atrasados" />
+            <TableColumn fx:id="colValorTot" editable="false" prefWidth="200.0" text="Valor multa" />
+            <TableColumn fx:id="colCancelado" prefWidth="200.0" text="Cancelado" />
+            <TableColumn fx:id="colTipo" editable="false" prefWidth="241.0" text="Tipo" />
+         </columns>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </TableView>
+      <Label prefHeight="21.0" prefWidth="185.0" text="Código Estudiante" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <JFXTextField fx:id="codEstudianteHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnconsultarHisMulPressed" prefHeight="35.0" prefWidth="168.0" text="Consultar" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </JFXButton>
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnCancelarMultaPressed" prefHeight="35.0" prefWidth="192.0" text="Cancelar Multa" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </JFXButton>
+      <Label alignment="CENTER" prefHeight="38.0" prefWidth="165.0" style="-fx-font-size: 30;" text="Multa" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+   </children>
+</GridPane>

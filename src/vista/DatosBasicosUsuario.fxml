@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane alignment="CENTER_RIGHT" opacity="0.8" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.DatosBasicosUsuarioController">
+   <children>
+      <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" hgap="20.0" maxHeight="47.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="800.0" rowValignment="BOTTOM" stylesheets="@../recursos/styles.css">
+         <children>
+            <Label fx:id="lblCodId" style="-fx-padding: 0 10 0 10; -fx-border-color: black; -fx-border-radius: 20;">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblNombre" style="-fx-padding: 0 10 0 10; -fx-border-color: black; -fx-border-radius: 20;">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </FlowPane>
+   </children>
+   <padding>
+      <Insets right="10.0" />
+   </padding>
+</StackPane>

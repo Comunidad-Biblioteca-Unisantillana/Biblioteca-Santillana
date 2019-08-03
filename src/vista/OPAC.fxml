@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="716.0" maxWidth="1366.0" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.OPACController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="433.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="433.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="433.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="368.0" minHeight="21.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="503.0" minHeight="7.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="500.0" minHeight="20.0" prefHeight="75.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="84.0" prefHeight="498.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label prefHeight="37.0" prefWidth="277.0" text="Código de barras" textFill="WHITE" GridPane.rowIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="34.0" prefWidth="277.0" text="Titúlo del recurso bibliografico" textFill="WHITE" wrapText="true" GridPane.rowIndex="2">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <GridPane fx:id="panelOpac" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="8" GridPane.rowIndex="3">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="142.0" style="-fx-font-size: 30;" stylesheets="@../recursos/styles.css" text="OPAC" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#handledBtnBuscarCodBarras" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </JFXButton>
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#handledBtnBuscarTitulo" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </JFXButton>
+      <JFXTextField fx:id="codBarrasOpacTxt" focusColor="WHITE" prefHeight="22.0" prefWidth="188.0" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="tituloOpacTxt" focusColor="WHITE" prefHeight="22.0" prefWidth="188.0" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+   </children>
+</GridPane>

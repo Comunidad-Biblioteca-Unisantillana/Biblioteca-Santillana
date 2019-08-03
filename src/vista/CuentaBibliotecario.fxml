@@ -1,417 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CuentaBibliotecarioController">
-   <center>
-      <TabPane prefHeight="768.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-            <Tab onSelectionChanged="#prestamosChanged" text="Préstamos">
-               <content>
-                  <GridPane fx:id="gridPanePrestamos">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="codBarrasPresTxt" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="codEstudiantePresTxt" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="fechaPrestamoPresTxt" editable="false" GridPane.columnIndex="3">
-                           <GridPane.margin>
-                              <Insets left="5.0" right="50.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="fechaDevolucionPresTxt" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" right="50.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="bibliotecarioPresTxt" editable="false" GridPane.columnIndex="5" />
-                        <Label text="Código de barras" textFill="WHITE">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Código Estudiante" textFill="WHITE" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Fecha del préstamo" textFill="WHITE" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Fecha de devolución" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Bibliotecario" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
-                           <GridPane.margin>
-                              <Insets right="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#btnPrestarPressed" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Prestar" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                           <effect>
-                              <Reflection fraction="0.5" />
-                           </effect>
-                        </Button>
-                        <GridPane fx:id="panelPrestamos" GridPane.columnSpan="8" GridPane.rowIndex="2">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <ComboBox fx:id="cboTipoPrestamo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                        <Label text="Tipo de préstamo" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets right="25.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#btnPrestamosLimpiarPressed" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Limipiar" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
-                           <effect>
-                              <Reflection fraction="0.5" />
-                           </effect>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab onSelectionChanged="#reservasChanged" text="Reservas">
-               <content>
-                  <GridPane fx:id="gridPaneReservas">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="codBarrasResTxt" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="bibliotecarioResTxt" editable="false" GridPane.columnIndex="5">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label text="Código de barras">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Bibliotecario" GridPane.columnIndex="4">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#btnReservarPressed" prefWidth="100.0" text="Reservar" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <GridPane fx:id="panelReservas" GridPane.columnSpan="8" GridPane.rowIndex="2">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <TextField fx:id="txtFechaReserva" editable="false" GridPane.columnIndex="3" />
-                        <TextField fx:id="txtFechaLimite" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label text="Fecha reserva:" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Fecha limite reserva:" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Código estudiante" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextField fx:id="txtCodEstReserva" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#btnReservasLimpiarPressed" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Limpiar" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
-                           <effect>
-                              <Reflection fraction="0.5" />
-                           </effect>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab onSelectionChanged="#devolucionesChanged" text="Devoluciones">
-               <content>
-                  <GridPane fx:id="gridPaneDevoluciones">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="codBarrasDevTxt" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="bibliotecarioDevTxt" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label text="Código de barras">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Bibliotecario" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#btnDevolverPressed" prefWidth="100.0" text="Devolver" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <GridPane fx:id="panelDevoluciones" GridPane.columnSpan="8" GridPane.rowIndex="2">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <Button mnemonicParsing="false" onAction="#btnDevolucionesLimpiarPressed" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Limpiar" GridPane.columnIndex="4">
-                           <effect>
-                              <Reflection fraction="0.5" />
-                           </effect>
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Label text="Tipo recurso: " GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Estado recurso: " GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="cboTipoRecurso" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="3" />
-                        <ComboBox fx:id="cboEstadoRecurso" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#btnDevolucionesLimpiarPressed" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Cerrar" GridPane.columnIndex="7">
-                           <effect>
-                              <Reflection fraction="0.5" />
-                           </effect>
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab onSelectionChanged="#multasChanged" text="Multas">
-               <content>
-                  <GridPane fx:id="gridPaneMultas">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="682.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="384.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="364.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TableView fx:id="tableMulta" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="2">
-                           <columns>
-                              <TableColumn fx:id="colCodMulta" editable="false" prefWidth="200.0" text="Código multa" />
-                              <TableColumn fx:id="colCodPrestamo" editable="false" prefWidth="200.0" text="Código préstamo" />
-                              <TableColumn fx:id="colDiasAtrasados" editable="false" prefWidth="200.0" text="Días atrasados" />
-                              <TableColumn fx:id="colValorTot" editable="false" prefWidth="200.0" text="Valor multa" />
-                              <TableColumn fx:id="colCancelado" prefWidth="200.0" text="Cancelado" />
-                              <TableColumn fx:id="colTipo" editable="false" prefWidth="200.0" text="Tipo" />
-                           </columns>
-                           <GridPane.margin>
-                              <Insets bottom="50.0" top="125.0" />
-                           </GridPane.margin>
-                        </TableView>
-                        <TextField fx:id="codEstudianteHisMulTxt" maxWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets top="30.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label text="Código Estudiante" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets right="100.0" top="30.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnconsultarHisMulPressed" prefWidth="100.0" text="Consultar" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets left="100.0" top="30.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Button maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnCancelarMultaPressed" prefWidth="150.0" text="Cancelar multa" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets left="90.0" top="30.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab onSelectionChanged="#opacChanged" text="OPAC">
-               <content>
-                  <GridPane fx:id="gridPaneOpac">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="codBarrasOpacTxt" GridPane.columnIndex="3">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="tituloOpacTxt" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label text="Código de barras" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Titúlo del recurso" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#handledBtnBuscarTitulo" prefHeight="32.0" prefWidth="150.0" text="Buscar recursos" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="15.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Label text="Bibliográfico" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="25.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <GridPane fx:id="panelOpac" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="8" GridPane.rowIndex="2">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <Button mnemonicParsing="false" onAction="#btnOpacLimpiarPressed" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Limpiar" GridPane.columnIndex="5">
-                           <effect>
-                              <Reflection fraction="0.5" />
-                           </effect>
-                           <GridPane.margin>
-                              <Insets left="25.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#handledBtnBuscarCodBarras" prefHeight="32.0" prefWidth="150.0" text="Buscar recurso" GridPane.columnIndex="4">
-                           <GridPane.margin>
-                              <Insets left="15.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </center>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CuentaBibliotecarioController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar stylesheets="@../recursos/stylesMenu.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
@@ -426,4 +29,64 @@
         </menus>
       </MenuBar>
    </top>
+   <center>
+      <AnchorPane styleClass="anchorCenter" stylesheets="@../recursos/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.9" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="261.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane fx:id="anchorDrawer" prefHeight="261.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="261.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="OPAC">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="41.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Prestamo">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="52.0" onAction="#btnReservaPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Reserva">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="imgIconReserva" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="30.0" onAction="#btnDevolucionPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Devolución">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="imgIconDevolucion" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Multa">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </JFXDrawer>
+            <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="50.0" prefWidth="60.0" styleClass="hamburger" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
