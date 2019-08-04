@@ -21,7 +21,7 @@
     <class>entitysRecursos.AutorPorDiccionario</class>
     <class>entitysRecursos.AutorPorLibro</class>
     <class>entitysRecursos.MateriaPorDiccionario</class>
-    <class>entitysUsuarios.Bibliotecario</class>
+    <class>entitysRecursos.Bibliotecario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

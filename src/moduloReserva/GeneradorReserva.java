@@ -2,7 +2,7 @@
 package moduloReserva;
 
 import controllers.LibroJpaController;
-import entitysUsuarios.Estudiante;
+import entitysRecursos.Estudiante;
 import entitysRecursos.Libro;
 import entitysRecursos.PrestamoLibro;
 import entitysRecursos.ReservaLibro;

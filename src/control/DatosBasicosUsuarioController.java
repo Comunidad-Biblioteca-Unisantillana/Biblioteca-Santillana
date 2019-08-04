@@ -5,8 +5,8 @@
  */
 package control;
 
-import entitysUsuarios.Bibliotecario;
-import entitysUsuarios.Estudiante;
+import entitysRecursos.Bibliotecario;
+import entitysRecursos.Estudiante;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import modeloDAO.BibliotecarioDAO;

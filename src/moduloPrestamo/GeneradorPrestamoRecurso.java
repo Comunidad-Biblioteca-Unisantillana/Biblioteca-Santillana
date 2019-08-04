@@ -8,7 +8,7 @@ import controllers.PeriodicoJpaController;
 import controllers.RevistaJpaController;
 import entitysRecursos.Diccionario;
 import entitysRecursos.Enciclopedia;
-import entitysUsuarios.Estudiante;
+import entitysRecursos.Estudiante;
 import entitysRecursos.Libro;
 import entitysRecursos.Mapa;
 import entitysRecursos.Periodico;

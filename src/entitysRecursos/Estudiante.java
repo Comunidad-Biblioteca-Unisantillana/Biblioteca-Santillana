@@ -1,45 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package entitysUsuarios;
+package entitysRecursos;
 
 import java.sql.Date;
 
 /**
  *
- * @author Storkolm
+ * @author stive
  */
-public class Bibliotecario {
+public class Estudiante {
 
-    private String idBibliotecario, tipoId, nombre, apellido, genero, telefono, correoElectronico, ciudadResidencia, direccionResidencia, nacionalidad;
+    private String codEstudiante, identificacion, tipoId, nombre, apellido, genero, telefono, correoElectronico, plan, ciudadResidencia,
+            direccionResidencia, nacionalidad;
     private Date fechaNacimiento;
     private int edad;
-    private double salario;
 
-    public Bibliotecario(String idBibliotecario, String tipoId, String nombre, String apellido, Date fechaNacimiento, int edad, String genero, String telefono, String correoElectronico, String ciudadResidencia, String direccionResidencia, String nacionalidad, double salario) {
-        this.idBibliotecario = idBibliotecario;
+    public Estudiante() {
+    }
+
+    public Estudiante(String codEstudiante, String identificacion, String tipoId, String nombre, String apellido, Date fechaNacimiento, int edad, String genero, String telefono, String correoElectronico, String plan, String ciudadResidencia, String direccionResidencia, String nacionalidad) {
+        this.codEstudiante = codEstudiante;
+        this.identificacion = identificacion;
         this.tipoId = tipoId;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
+        this.plan = plan;
         this.ciudadResidencia = ciudadResidencia;
         this.direccionResidencia = direccionResidencia;
         this.nacionalidad = nacionalidad;
         this.fechaNacimiento = fechaNacimiento;
         this.edad = edad;
-        this.salario = salario;
     }
 
-    public String getIdBibliotecario() {
-        return idBibliotecario;
+    public String getCodEstudiante() {
+        return codEstudiante;
     }
 
-    public void setIdBibliotecario(String idBibliotecario) {
-        this.idBibliotecario = idBibliotecario;
+    public void setCodEstudiante(String codEstudiante) {
+        this.codEstudiante = codEstudiante;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getTipoId() {
@@ -90,6 +97,14 @@ public class Bibliotecario {
         this.correoElectronico = correoElectronico;
     }
 
+    public String getPlan() {
+        return plan;
+    }
+
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
     public String getCiudadResidencia() {
         return ciudadResidencia;
     }
@@ -130,11 +145,4 @@ public class Bibliotecario {
         this.edad = edad;
     }
 
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
 }
