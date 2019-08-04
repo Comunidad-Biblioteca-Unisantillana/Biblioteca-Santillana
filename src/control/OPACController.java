@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import com.jfoenix.controls.JFXTextField;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.ConsultaOPAC;
@@ -16,11 +14,13 @@ import vista.CargarFichaTecnica;
 import vista.IAlertBox;
 import vista.StageTableOPAC;
 
-/**
- *
+/** 
+ * Clase que controla la vista OPAC.fxml
  * @author Julian
+ * Fecha de Creación: 18/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
-public class OPACController {
+public class OPACController implements Initializable{
     
     private Stage stage;
     @FXML
@@ -32,6 +32,23 @@ public class OPACController {
     
     private CargarFichaTecnica cft;
     
+    /**
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
+     * @param url
+     * @param rb 
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
+        eventoTecla.soloNumeros(codBarrasOpacTxt);
+    }
+    
+    /**
+     * Método que busca por medio de un código la<br>
+     * información del recurso
+     * @param event 
+     */
     @FXML
     private void handledBtnBuscarCodBarras(ActionEvent event) {
         IAlertBox alert = new AlertBox();
@@ -51,6 +68,12 @@ public class OPACController {
         }
     }
     
+    /**
+     * Método que por medio de un titulo de recurso crea<br>
+     * un stage donde se muestra la información básica<br>
+     * de dicho recurso 
+     * @param event 
+     */
     @FXML
     private void handledBtnBuscarTitulo(ActionEvent event){
         if(!tituloOpacTxt.getText().isEmpty()){
@@ -62,13 +85,10 @@ public class OPACController {
         }
     }
     
-    @FXML
-    private void btnOpacLimpiarPressed(ActionEvent event) {
-        if(cft != null){
-            cft.limpiarCamposTextos();
-        }
-    }
-    
+    /**
+     * Metodo que asignaa un stage
+     * @param stage 
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
