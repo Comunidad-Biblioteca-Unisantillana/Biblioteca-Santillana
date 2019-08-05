@@ -19,9 +19,10 @@ import vista.IniciarMenuDesplegable;
 import vista.LoginUnisantillanaStage;
 
 /**
- * FXML Controller class
- *
+ * Clase que controla la vista CuentaBibliotecario.fxml
  * @author stiven valencia
+ * Fecha de Creación: 05/09/2018
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaBibliotecarioController implements  Initializable{
     
@@ -49,9 +50,10 @@ public class CuentaBibliotecarioController implements  Initializable{
     private String idBibliotecario;
 
     /**
-     * Initializes the controller class.
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
      * @param url
-     * @param rb
+     * @param rb 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,36 +66,65 @@ public class CuentaBibliotecarioController implements  Initializable{
         loadOPAC();
     }
     
+    /**
+     * Método que cambia un módulo por el de préstamo
+     * @param event 
+     */
     @FXML
     private void btnPrestamoPressed(ActionEvent event) {
         loadPrestamo();
     }
     
+    /**
+     * Método que cambia un módulo por el de reserva
+     * @param event 
+     */
     @FXML
     private void btnReservaPressed(ActionEvent event) {
         loadReserva();
     }
     
+    /**
+     * Método que cambia un módulo por el de devolución
+     * @param event 
+     */
     @FXML
     private void btnDevolucionPressed(ActionEvent event) {
         loadDevolucion();
     }
     
+    /**
+     * Método que cambia un módulo por el de multa
+     * @param event 
+     */
     @FXML
     private void btnMultaPressed(ActionEvent event) {
         loadMulta();
     }
     
+    /**
+     * Método que cambia un módulo por el del OPAC
+     * @param event 
+     */
     @FXML
     private void btnOPACPressed(ActionEvent event) {
         loadOPAC();
     }
 
+    /**
+     * Método que retorna a la ventana login
+     * @param event 
+     */
     @FXML
     private void itemSalirPressed(ActionEvent event) {
-        retornarLoginUnisantillana();
+        CuentaBibliotecarioStage.deleteInstance();
+        LoginUnisantillanaStage.getInstance().show();
     }
 
+    /**
+     * Método que muestra la información del programa
+     * @param event 
+     */
     @FXML
     private void itemAcercaDe(ActionEvent event) {
         
@@ -185,19 +216,10 @@ public class CuentaBibliotecarioController implements  Initializable{
     
     /**
      * Método que asigna la identificación del bibliotecario.
-     *
      * @param idBibliotecario
      */
     public void setIdBibliotecario(String idBibliotecario) {
         this.idBibliotecario = idBibliotecario;
-    }
-
-    /**
-     * Método que retorna al login de la universidad.
-     */
-    private void retornarLoginUnisantillana() {
-        CuentaBibliotecarioStage.deleteInstance();
-        LoginUnisantillanaStage.getInstance().show();
     }
 
     /**
