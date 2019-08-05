@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import com.jfoenix.controls.JFXDrawer;
@@ -14,9 +9,17 @@ import javafx.scene.layout.AnchorPane;
 /**
  * Clase que se encarga de iniciar un menu desplegable
  * @author Julian
+ * Fecha de Creación: 18/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class IniciarMenuDesplegable {
 
+    /**
+     * Método que se encarga de cargar los componentes de un menu desplegable
+     * @param drawer
+     * @param anchorDrawer
+     * @param hamburger 
+     */
     public IniciarMenuDesplegable(JFXDrawer drawer,AnchorPane anchorDrawer,JFXHamburger hamburger) {
         drawer.setSidePane(anchorDrawer);
         HamburgerBackArrowBasicTransition burgerTask2 = new HamburgerBackArrowBasicTransition(hamburger);
