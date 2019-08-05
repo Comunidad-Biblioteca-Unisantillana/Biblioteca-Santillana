@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -19,8 +14,10 @@ import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- *
+ * Clase que controla la vista DevolucionBibliotecario.fxml
  * @author Julian
+ * Fecha de Creación: 18/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class DevolucionBibliotecarioController implements Initializable{
 
@@ -33,8 +30,17 @@ public class DevolucionBibliotecarioController implements Initializable{
     
     private String idBibliotecario;
     
+    /**
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        KeyEventJFXTextFieldController eventgoTecla = new KeyEventJFXTextFieldController();
+        eventgoTecla.soloNumeros(codBarrasDevTxt);
+        
         ObservableList<String> listaTipoRecurso = FXCollections.observableArrayList( "Libro", "Enciclopedia", "Diccionario",
                 "Revista", "Periodico", "Mapa");
         ObservableList<String> listaEstadosFisicos = FXCollections.observableArrayList( "Bueno", "Regular", "Malo");
@@ -44,6 +50,11 @@ public class DevolucionBibliotecarioController implements Initializable{
         cboEstadoRecurso.setValue("Bueno");
     }
     
+    /**
+     * Método que se encarga de devolver un recurso<br>
+     * que se encuentra prestado
+     * @param event 
+     */
     @FXML
     private void btnDevolverPressed(ActionEvent event) {
          IAlertBox alert = new AlertBox();
