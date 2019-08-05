@@ -18,8 +18,10 @@ import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- *
+ * clase que controla la vista TablaOPAC.fxml
  * @author Camilo
+ * Fecha de Creación: 05/09/2018
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class TablaOPACController {
 
@@ -41,9 +43,10 @@ public class TablaOPACController {
     @FXML
     private TableView<Recurso> tableOPAC;
     
-    public void initialize(){
-    }
-    
+    /**
+     * Método que carga los datos del recurso en la tabla
+     * @param cadena 
+     */
     public void cargarDatosTabla(String cadena){
         try {
             ConsultaOPAC consulta = new ConsultaOPAC();
