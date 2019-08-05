@@ -24,7 +24,7 @@ import vista.IAlertBox;
 public class MultaBibliotecarioController implements Initializable {
 
     @FXML
-    private JFXTextField codEstudianteHisMulTxt;
+    private JFXTextField codUserHisMulTxt;
     @FXML
     private TableView<Multa> tableMulta;
     @FXML
@@ -54,7 +54,7 @@ public class MultaBibliotecarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
-        eventoTecla.soloNumeros(codEstudianteHisMulTxt);
+        eventoTecla.soloNumeros(codUserHisMulTxt);
         tableMulta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Multa> arg0, Multa oldValue, Multa newValue) -> {
             tipo = newValue.getTipo();
             codMulta = newValue.getCodMulta();
@@ -68,9 +68,9 @@ public class MultaBibliotecarioController implements Initializable {
      */
     @FXML
     private void btnconsultarHisMulPressed(ActionEvent event) {
-        if (!codEstudianteHisMulTxt.getText().isEmpty()) {
+        if (!codUserHisMulTxt.getText().isEmpty()) {
             try {
-                cargarDatosTableMultas(codEstudianteHisMulTxt.getText());
+                cargarDatosTableMultas(codUserHisMulTxt.getText());
                 consultoMultas = true;
             } catch (Exception ex) {
                 System.err.println("Error al cargar los datos del historial de multas");

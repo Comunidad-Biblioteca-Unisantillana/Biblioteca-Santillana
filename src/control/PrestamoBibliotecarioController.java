@@ -24,7 +24,7 @@ public class PrestamoBibliotecarioController implements Initializable{
     @FXML
     private JFXTextField codBarrasPresTxt;
     @FXML
-    private JFXTextField codEstudiantePresTxt;
+    private JFXTextField codUserPresTxt;
     @FXML
     private JFXTextField fechaPrestamoPresTxt;
     @FXML
@@ -44,7 +44,7 @@ public class PrestamoBibliotecarioController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
         eventoTecla.soloNumeros(codBarrasPresTxt);
-        eventoTecla.soloNumeros(codEstudiantePresTxt);
+        eventoTecla.soloNumeros(codUserPresTxt);
         ObservableList<String> listaTipoRecurso = FXCollections.observableArrayList( "Libro", "Enciclopedia", "Diccionario",
                 "Revista", "Periodico", "Mapa");
         cboTipoPrestamo.setItems(listaTipoRecurso);
@@ -60,11 +60,11 @@ public class PrestamoBibliotecarioController implements Initializable{
     @FXML
     private void btnPrestarPressed(ActionEvent event) {
         IAlertBox alert = new AlertBox();
-        if (!codBarrasPresTxt.getText().isEmpty() && !codEstudiantePresTxt.getText().isEmpty()) {
+        if (!codBarrasPresTxt.getText().isEmpty() && !codUserPresTxt.getText().isEmpty()) {
             try {
                 GeneradorPrestamoRecurso generador = new GeneradorPrestamoRecurso();
 
-                if (generador.createPrestamo(codBarrasPresTxt.getText(), codEstudiantePresTxt.getText(), idBibliotecario,
+                if (generador.createPrestamo(codBarrasPresTxt.getText(), codUserPresTxt.getText(), idBibliotecario,
                         cboTipoPrestamo.getValue(), fechaPrestamoPresTxt, fechaDevolucionPresTxt)) {
                     alert.showAlert("Anuncio", "Préstamo", "El préstamo ha sido realizado con éxito!");
                 }

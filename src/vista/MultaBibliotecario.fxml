@@ -46,7 +46,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <JFXTextField fx:id="codEstudianteHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <JFXTextField fx:id="codUserHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>

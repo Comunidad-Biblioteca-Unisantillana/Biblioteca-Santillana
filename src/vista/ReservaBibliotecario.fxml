@@ -58,7 +58,7 @@
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextField fx:id="txtCodUserReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>

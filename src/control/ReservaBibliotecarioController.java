@@ -21,7 +21,7 @@ public class ReservaBibliotecarioController implements Initializable{
     @FXML
     private JFXTextField codBarrasResTxt;
     @FXML
-    private JFXTextField txtCodEstReserva;
+    private JFXTextField txtCodUserReserva;
     @FXML
     private JFXTextField txtFechaReserva;
     @FXML
@@ -39,7 +39,7 @@ public class ReservaBibliotecarioController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
         eventoTecla.soloNumeros(codBarrasResTxt);
-        eventoTecla.soloNumeros(txtCodEstReserva);
+        eventoTecla.soloNumeros(txtCodUserReserva);
     }
     
     /**
@@ -51,11 +51,11 @@ public class ReservaBibliotecarioController implements Initializable{
     @FXML
     private void btnReservarPressed(ActionEvent event) {
         IAlertBox alert = new AlertBox();
-        if(!codBarrasResTxt.getText().isEmpty() && !txtCodEstReserva.getText().isEmpty()){
+        if(!codBarrasResTxt.getText().isEmpty() && !txtCodUserReserva.getText().isEmpty()){
             try{
                 GeneradorReserva generador = new GeneradorReserva();
 
-                if(generador.createReserva(codBarrasResTxt.getText(), txtCodEstReserva.getText(), idBibliotecario, 
+                if(generador.createReserva(codBarrasResTxt.getText(), txtCodUserReserva.getText(), idBibliotecario, 
                         txtFechaReserva, txtFechaLimite)){
                     alert.showAlert("Anuncio", "Reserva", "La reserva ha sido realizado con éxito!");
                 }
