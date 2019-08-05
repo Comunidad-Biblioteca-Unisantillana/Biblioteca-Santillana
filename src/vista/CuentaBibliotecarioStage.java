@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 /**
  * Stage donde se muestra el modulo del bibliotecario
  * @author stive
- * Fecha de Creación: 05/09/2018
+ * Fecha de Creación: 18/07/2019
  * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaBibliotecarioStage extends Stage {
