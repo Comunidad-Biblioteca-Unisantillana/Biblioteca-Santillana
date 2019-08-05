@@ -9,8 +9,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- *
+ * Stage donde se muestra el modulo del bibliotecario
  * @author stive
+ * Fecha de Creación: 05/09/2018
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaBibliotecarioStage extends Stage {
 
@@ -40,20 +42,37 @@ public class CuentaBibliotecarioStage extends Stage {
         }
     }
 
+    /**
+     * Método que carga los datos del bibliotecario
+     * @param idBibliotecario 
+     */
     public void cargarDatosBibliotecario(String idBibliotecario) {
         cbcc.setIdBibliotecario(idBibliotecario);
         cbcc.loadDatosBasicosBibliotecario();
     }
-
-    public static CuentaBibliotecarioStage getInstance() {
-        return CuentaBibliotecarioStageHolder.INSTANCE = new CuentaBibliotecarioStage();
-    }
     
+    /**
+     * Método que cierra el Stage del bibliotecario<br>
+     * y borra su instancia
+     */
     public static void deleteInstance(){
         CuentaBibliotecarioStageHolder.INSTANCE.close();
         CuentaBibliotecarioStageHolder.INSTANCE = null;
     }
 
+    /**
+     * Método que por medio de una clase estatica retorna<br>
+     * una instancia de la clase CuentaBibliotecarioStage
+     * @return 
+     */
+    public static CuentaBibliotecarioStage getInstance() {
+        return CuentaBibliotecarioStageHolder.INSTANCE = new CuentaBibliotecarioStage();
+    }
+
+    /**
+     * Clase estatica que contiene una instancia de la<br>
+     * clase CuentaBibliotecarioStage
+     */
     private static class CuentaBibliotecarioStageHolder {
         private static CuentaBibliotecarioStage INSTANCE;
     }
