@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -19,8 +14,10 @@ import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- *
- * @author Storkolm
+ * Clase que controla la vista PrestamoBibliotecario.fxml
+ * @author Julian
+ * Fecha de Creación: 18/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class PrestamoBibliotecarioController implements Initializable{
     
@@ -37,14 +34,29 @@ public class PrestamoBibliotecarioController implements Initializable{
     
     private String idBibliotecario;
     
+    /**
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
+        eventoTecla.soloNumeros(codBarrasPresTxt);
+        eventoTecla.soloNumeros(codEstudiantePresTxt);
         ObservableList<String> listaTipoRecurso = FXCollections.observableArrayList( "Libro", "Enciclopedia", "Diccionario",
                 "Revista", "Periodico", "Mapa");
         cboTipoPrestamo.setItems(listaTipoRecurso);
         cboTipoPrestamo.setValue("Libro");
     }
     
+    /**
+     * Método que se encarga de prestar un recurso<br>
+     * por medio de su código de barras y el código<br>
+     * del usuario
+     * @param event 
+     */
     @FXML
     private void btnPrestarPressed(ActionEvent event) {
         IAlertBox alert = new AlertBox();
