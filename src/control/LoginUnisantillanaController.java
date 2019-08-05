@@ -22,9 +22,10 @@ import vista.CuentaProfesorStage;
 import vista.LoginUnisantillanaStage;
 
 /**
- * FXML Controller class
- *
+ * Clase que controla la vista LoginUnisantillana.fxml
  * @author stive
+ * Fecha de Creación: 05/09/2018
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class LoginUnisantillanaController implements Initializable {
 
@@ -54,9 +55,10 @@ public class LoginUnisantillanaController implements Initializable {
     private ValidatorLoginBibliotecario validatorBib;
 
     /**
-     * Initializes the controller class.
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
      * @param url
-     * @param rb
+     * @param rb 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,6 +98,10 @@ public class LoginUnisantillanaController implements Initializable {
         imgFondoBlancoTxt1.setImage(new Image("/recursos/background-field.png"));
     }
 
+    /**
+     * Método que cambia los componentes del login
+     * @param event 
+     */
     @FXML
     private void btnComboLoginPressed(ActionEvent event) {
         if (comboLogin.getSelectionModel().getSelectedItem().equals("Estudiante")) {
@@ -118,6 +124,10 @@ public class LoginUnisantillanaController implements Initializable {
         //**************
     }
 
+    /**
+     * Método que loguea a un usuario
+     * @param event 
+     */
     @FXML
     private void btnAccederPressed(ActionEvent event) {
         if (comboLogin.getSelectionModel().getSelectedItem().equals("Estudiante")) {
@@ -131,6 +141,10 @@ public class LoginUnisantillanaController implements Initializable {
         }
     }
     
+    /**
+     * Método que finaliza la ejecución del programa 
+     * @param event 
+     */
     @FXML
     private void btnSalirPressed(ActionEvent event){
         System.exit(0);
@@ -158,7 +172,6 @@ public class LoginUnisantillanaController implements Initializable {
     
     /**
      * Metodo que carga los componentes de un validador
-     *
      * @param validador
      * @param mensaje
      * @param txt
