@@ -9,12 +9,17 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- *
+ * Stage donde se muestra el modulo Estudiante
  * @author stive
+ * Fecha de Creación: 05/09/2018
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaEstudianteStage extends Stage {
     private CuentaEstudianteProfesorController cec;
 
+    /**
+     * Constructor de EstudianteStage
+     */
     private CuentaEstudianteStage() {
         
         try {
@@ -43,15 +48,28 @@ public class CuentaEstudianteStage extends Stage {
         cec.loadDatosBasicos();
     }
     
-    public static CuentaEstudianteStage getInstance() {
-        return CuentaEstudianteStageHolder.INSTANCE = new CuentaEstudianteStage();
-    }
-    
+    /**
+     * Método que cierra el Stage del Estudiante<br>
+     * y borra su instancia
+     */
     public static void deleteInstance(){
         CuentaEstudianteStageHolder.INSTANCE.close();
         CuentaEstudianteStageHolder.INSTANCE = null;
     }
     
+    /**
+     * Método que por medio de una clase estatica retorna<br>
+     * una instancia de la clase CuentaEstudianteStage
+     * @return 
+     */
+    public static CuentaEstudianteStage getInstance() {
+        return CuentaEstudianteStageHolder.INSTANCE = new CuentaEstudianteStage();
+    }
+    
+    /**
+     * Clase estatica que contiene una instancia de la<br>
+     * clase CuentaEstudianteStage
+     */
     private static class CuentaEstudianteStageHolder {
         private static CuentaEstudianteStage INSTANCE;
     }
