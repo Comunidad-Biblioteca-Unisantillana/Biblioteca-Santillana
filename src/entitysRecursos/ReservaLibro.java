@@ -1,5 +1,5 @@
 
-package entitys;
+package entitysRecursos;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package entitys;
+package entitysRecursos;
 
 /**
  * Entidad Multa_Libro.

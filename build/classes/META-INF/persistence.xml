@@ -10,6 +10,7 @@
     <class>entitysRecursos.AutorPorEnciclopedia</class>
     <class>entitysRecursos.AutorLibro</class>
     <class>entitysRecursos.Periodico</class>
+    <class>entitysRecursos.Bibliotecario</class>
     <class>entitysRecursos.CategoriaColeccion</class>
     <class>entitysRecursos.Diccionario</class>
     <class>entitysRecursos.Revista</class>
@@ -21,7 +22,6 @@
     <class>entitysRecursos.AutorPorDiccionario</class>
     <class>entitysRecursos.AutorPorLibro</class>
     <class>entitysRecursos.MateriaPorDiccionario</class>
-    <class>entitysUsuarios.Bibliotecario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
