@@ -1,22 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import com.jfoenix.controls.JFXTextField;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import moduloReserva.GeneradorReserva;
 import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- *
+ * Clase que controla la vista ReservaBibliotecario.fxml
  * @author Julian
+ * Fecha de Creación: 18/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
-public class ReservaBibliotecarioController {
+public class ReservaBibliotecarioController implements Initializable{
 
     @FXML
     private JFXTextField codBarrasResTxt;
@@ -29,6 +29,25 @@ public class ReservaBibliotecarioController {
     
     private String idBibliotecario;
     
+    /**
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
+     * @param url
+     * @param rb 
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
+        eventoTecla.soloNumeros(codBarrasResTxt);
+        eventoTecla.soloNumeros(txtCodEstReserva);
+    }
+    
+    /**
+     * Método que se encarga de reservar un recurso<br>
+     * por medio de su código de barras y el código<br>
+     * del usuario
+     * @param event 
+     */
     @FXML
     private void btnReservarPressed(ActionEvent event) {
         IAlertBox alert = new AlertBox();
