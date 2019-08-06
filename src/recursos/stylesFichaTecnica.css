@@ -8,7 +8,6 @@
     -fx-min-width: 170px;
 }
 
-
 GridPane{
     -fx-hgap: 10;
     -fx-vgap: 10;
