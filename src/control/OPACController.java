@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import modelo.ConsultaOPAC;
 import vista.AlertBox;
 import vista.CargarFichaTecnica;
+import vista.FichaTecnicaPanel;
 import vista.IAlertBox;
 import vista.StageTableOPAC;
 
@@ -18,7 +19,7 @@ import vista.StageTableOPAC;
  * Clase que controla la vista OPAC.fxml
  * @author Julian
  * Fecha de Creación: 18/07/2019
- * Fecha de ultima Modificación: 04/08/2019
+ * Fecha de ultima Modificación: 06/08/2019
  */
 public class OPACController implements Initializable{
     
@@ -57,8 +58,8 @@ public class OPACController implements Initializable{
             String nombreEntidad = consulta.consultarTabla(codBarrasOpacTxt.getText().trim());
             
             if(!nombreEntidad.isEmpty()){
-                cft = new CargarFichaTecnica(nombreEntidad);
-                cft.crearFichaTecnica(panelOpac, codBarrasOpacTxt.getText());
+                FichaTecnicaPanel crs = new FichaTecnicaPanel("libro");
+                panelOpac.add(crs.cargarFichaTecnica(), 0, 0);
             }
             else
                 alert.showAlert("Anuncio", "Busqueda", "No se encontro ningún recurso con ese código");

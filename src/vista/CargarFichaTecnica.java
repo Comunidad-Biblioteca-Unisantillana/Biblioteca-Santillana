@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import control.FichaTecnicaDiccionarioController;
@@ -31,12 +26,7 @@ public class CargarFichaTecnica {
     private FichaTecnicaRevistaController ftrc;
     private FichaTecnicaDiccionarioController ftdc;
 
-    private Parent rootFTLibro;
-    private Parent rootFTEnciclopedia;
-    private Parent rootFTMapa;
-    private Parent rootFTPeriodico;
-    private Parent rootFTRevista;
-    private Parent rootFTDiccionario;
+    private Parent root;
 
     private String nombreFicha = "";
 
@@ -50,32 +40,32 @@ public class CargarFichaTecnica {
             switch (nombreFicha) {
                 case "libro":
                     FXMLLoader loaderLibro = new FXMLLoader(getClass().getResource("/vista/FichaTecnicaLibro.fxml"));
-                    rootFTLibro = loaderLibro.load();
+                    root = loaderLibro.load();
                     ftlc = loaderLibro.getController();
                     break;
                 case "enciclopedia":
                     FXMLLoader loaderEnciclopedia = new FXMLLoader(getClass().getResource("/vista/FichaTecnicaEnciclopedia.fxml"));
-                    rootFTEnciclopedia = loaderEnciclopedia.load();
+                    root = loaderEnciclopedia.load();
                     ftec = loaderEnciclopedia.getController();
                     break;
                 case "periodico":
                     FXMLLoader loaderPeriodico = new FXMLLoader(getClass().getResource("/vista/FichaTecnicaPeriodico.fxml"));
-                    rootFTPeriodico = loaderPeriodico.load();
+                    root = loaderPeriodico.load();
                     ftpc = loaderPeriodico.getController();
                     break;
                 case "mapa":
                     FXMLLoader loaderMapa = new FXMLLoader(getClass().getResource("/vista/FichaTecnicaMapa.fxml"));
-                    rootFTMapa = loaderMapa.load();
+                    root = loaderMapa.load();
                     ftmc = loaderMapa.getController();
                     break;
                 case "revista":
                     FXMLLoader loaderRevista = new FXMLLoader(getClass().getResource("/vista/FichaTecnicaRevista.fxml"));
-                    rootFTRevista = loaderRevista.load();
+                    root = loaderRevista.load();
                     ftrc = loaderRevista.getController();
                     break;
                 case "diccionario":
                     FXMLLoader loaderDiccionario = new FXMLLoader(getClass().getResource("/vista/FichaTecnicaDiccionario.fxml"));
-                    rootFTDiccionario = loaderDiccionario.load();
+                    root = loaderDiccionario.load();
                     ftdc = loaderDiccionario.getController();
                 default:
                     System.out.println("Error al cargar ficha");
@@ -97,32 +87,32 @@ public class CargarFichaTecnica {
             if (nombreFicha.equalsIgnoreCase("libro")) {
                 QueryControl.getInstance().consultarAutorRecurso(codBarras, nombreFicha);
                 QueryControl.getInstance().consultarMaterias(codBarras, nombreFicha);
-                anadirPanel(rootFTLibro, panel);
+                anadirPanel(root, panel);
                 ftlc.cargarDatos(codBarras);
             } else if (nombreFicha.equalsIgnoreCase("enciclopedia")) {
 
                 QueryControl.getInstance().consultarAutorRecurso(codBarras, nombreFicha);
                 QueryControl.getInstance().consultarMaterias(codBarras, nombreFicha);
-                anadirPanel(rootFTEnciclopedia, panel);
+                anadirPanel(root, panel);
                 ftec.cargarDatos(codBarras);
             } else if (nombreFicha.equalsIgnoreCase("periodico")) {
 
-                anadirPanel(rootFTPeriodico, panel);
+                anadirPanel(root, panel);
                 ftpc.cargarDatos(codBarras);
             } else if (nombreFicha.equalsIgnoreCase("mapa")) {
 
-                anadirPanel(rootFTMapa, panel);
+                anadirPanel(root, panel);
                 ftmc.cargarDatos(codBarras);
             } else if (nombreFicha.equalsIgnoreCase("revista")) {
 
                 QueryControl.getInstance().consultarMaterias(codBarras, nombreFicha);
-                anadirPanel(rootFTRevista, panel);
+                anadirPanel(root, panel);
                 ftrc.cargarDatos(codBarras);
             } else if (nombreFicha.equalsIgnoreCase("diccionario")) {
 
                 QueryControl.getInstance().consultarAutorRecurso(codBarras, nombreFicha);
                 QueryControl.getInstance().consultarMaterias(codBarras, nombreFicha);
-                anadirPanel(rootFTDiccionario, panel);
+                anadirPanel(root, panel);
                 ftdc.cargarDatos(codBarras);
             }
         } catch (Exception e) {
