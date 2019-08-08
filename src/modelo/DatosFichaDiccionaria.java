@@ -3,7 +3,7 @@ package modelo;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import control.QueryControl;
-import entitysRecursos.Diccionario;
+import entitys.Diccionario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 

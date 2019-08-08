@@ -1,7 +1,7 @@
 
 package moduloReservaDAO;
 
-import entitysRecursos.ReservaLibro;
+import entitys.ReservaLibro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

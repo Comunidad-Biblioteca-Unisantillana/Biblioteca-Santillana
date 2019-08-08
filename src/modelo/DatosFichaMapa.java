@@ -3,7 +3,7 @@ package modelo;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import entitysRecursos.Mapa;
+import entitys.Mapa;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 

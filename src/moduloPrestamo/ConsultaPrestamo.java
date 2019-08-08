@@ -5,7 +5,7 @@
  */
 package moduloPrestamo;
 
-import entitysRecursos.Prestamo;
+import entitys.Prestamo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -2,7 +2,7 @@ package modelo;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import entitysRecursos.Periodico;
+import entitys.Periodico;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 

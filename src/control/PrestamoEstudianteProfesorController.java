@@ -5,7 +5,7 @@
  */
 package control;
 
-import entitysRecursos.Prestamo;
+import entitys.Prestamo;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;

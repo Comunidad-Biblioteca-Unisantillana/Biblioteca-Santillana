@@ -1,7 +1,7 @@
 package control;
 
-import entitysRecursos.Bibliotecario;
-import entitysRecursos.Estudiante;
+import entitys.Bibliotecario;
+import entitys.Estudiante;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import modeloDAO.BibliotecarioDAO;

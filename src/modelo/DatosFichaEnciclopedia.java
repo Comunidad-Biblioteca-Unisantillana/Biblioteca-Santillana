@@ -8,7 +8,7 @@ package modelo;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import control.QueryControl;
-import entitysRecursos.Enciclopedia;
+import entitys.Enciclopedia;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
