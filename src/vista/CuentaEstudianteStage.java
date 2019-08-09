@@ -15,6 +15,8 @@ import javafx.stage.Stage;
  * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaEstudianteStage extends Stage {
+    
+    private FXMLLoader loader;
     private CuentaEstudianteProfesorController cec;
 
     /**
@@ -23,7 +25,7 @@ public class CuentaEstudianteStage extends Stage {
     private CuentaEstudianteStage() {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudianteProfesor.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudianteProfesor.fxml"));
             Parent root = loader.load();
             cec = loader.getController();
             cec.setStage(this);

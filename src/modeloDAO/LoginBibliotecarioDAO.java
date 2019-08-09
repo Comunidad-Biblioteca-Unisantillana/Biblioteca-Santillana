@@ -23,6 +23,7 @@ public class LoginBibliotecarioDAO {
      *
      * @param idBibliotecario
      * @param codPassword
+     * @return 
      */
     public boolean readDAO(String idBibliotecario, String codPassword) {
         Statement stmt;

@@ -2,20 +2,17 @@ package vista;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import control.QueryControl;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import modelo.DatosFichaDiccionaria;
-import modelo.DatosFichaEnciclopedia;
-import modelo.DatosFichaLibro;
-import modelo.DatosFichaMapa;
-import modelo.DatosFichaPeriodico;
-import modelo.DatosFichaRevista;
-import modelo.IDatosFichaTecnica;
+import control.DatosFichaDiccionariaController;
+import control.DatosFichaEnciclopediaController;
+import control.DatosFichaLibroController;
+import control.DatosFichaMapaController;
+import control.DatosFichaPeriodicoController;
+import control.DatosFichaRevistaController;
+import control.IDatosFichaTecnicaController;
 
 /**
  * Clase que se encarga de crear la vista una Ficha tecnica
@@ -27,7 +24,7 @@ import modelo.IDatosFichaTecnica;
 public class FichaTecnicaPanel {
 
     private GridPane rootFicha;
-    private IDatosFichaTecnica datosFicha;
+    private IDatosFichaTecnicaController datosFicha;
     private final Label[] arregloLabel;
     private final JFXTextField[] arregloTextField;
     private final JFXTextArea[] arregloTextArea;
@@ -56,27 +53,27 @@ public class FichaTecnicaPanel {
             rootFicha.getStylesheets().add("/recursos/stylesFichaTecnica.css");
             switch (nombreFicha.toLowerCase()) {
                 case "libro":
-                    datosFicha = new DatosFichaLibro(codBarras);
+                    datosFicha = new DatosFichaLibroController(codBarras);
                     vistaFichaTecnicaLibro();
                     break;
                 case "enciclopedia":
-                    datosFicha = new DatosFichaEnciclopedia(codBarras);
+                    datosFicha = new DatosFichaEnciclopediaController(codBarras);
                     vistaFichaTecnicaEnciclopedia();
                     break;
                 case "diccionario":
-                    datosFicha = new DatosFichaDiccionaria(codBarras);
+                    datosFicha = new DatosFichaDiccionariaController(codBarras);
                     vistaFichaTecnicaDiccionario();
                     break;
                 case "revista":
-                    datosFicha = new DatosFichaRevista(codBarras);
+                    datosFicha = new DatosFichaRevistaController(codBarras);
                     vistaFichaTecnicaRevista();
                     break;
                 case "mapa":
-                    datosFicha = new DatosFichaMapa(codBarras);
+                    datosFicha = new DatosFichaMapaController(codBarras);
                     vistaFichaTecnicaMapa();
                     break;
                 case "periodico":
-                    datosFicha = new DatosFichaPeriodico(codBarras);
+                    datosFicha = new DatosFichaPeriodicoController(codBarras);
                     vistaFichaTecnicaPeriodico();
                     break;
             }

@@ -23,6 +23,7 @@ public class LoginEstudianteDAO {
     /**
      * Método que realiza el read de la BD por medio un código.
      * @param codEstudiante
+     * @return 
      */
     public boolean readDAO(String codEstudiante){
         Statement stmt;

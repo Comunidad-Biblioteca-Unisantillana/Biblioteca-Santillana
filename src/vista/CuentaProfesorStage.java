@@ -23,14 +23,15 @@ import javafx.stage.Stage;
  */
 public class CuentaProfesorStage extends Stage {
 
+    private FXMLLoader loader;
     private CuentaEstudianteProfesorController cpc;
 
     /**
      * Constructor de la clase
      */
-    public CuentaProfesorStage() {
+    private CuentaProfesorStage() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudianteProfesor.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudianteProfesor.fxml"));
             Parent root = loader.load();
             cpc = loader.getController();
             Scene scene = new Scene(root);
