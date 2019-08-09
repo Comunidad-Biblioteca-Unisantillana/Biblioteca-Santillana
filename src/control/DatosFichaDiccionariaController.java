@@ -1,4 +1,4 @@
-package modelo;
+package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -6,16 +6,17 @@ import control.QueryControl;
 import entitys.Diccionario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import modelo.QueryRecurso;
 
 /**
  *
  * @author Julian
  */
-public class DatosFichaDiccionaria implements IDatosFichaTecnica {
+public class DatosFichaDiccionariaController implements IDatosFichaTecnicaController {
 
     private Diccionario diccionario;
 
-    public DatosFichaDiccionaria(String codBarra) {
+    public DatosFichaDiccionariaController(String codBarra) {
         try {
             diccionario = QueryRecurso.consultarDiccionario(codBarra);
         } catch (Exception ex) {

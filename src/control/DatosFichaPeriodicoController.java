@@ -1,20 +1,22 @@
-package modelo;
+package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import entitys.Periodico;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import modelo.QueryRecurso;
+import modelo.QueryRecurso;
 
 /**
  *
  * @author Julian
  */
-public class DatosFichaPeriodico implements IDatosFichaTecnica {
+public class DatosFichaPeriodicoController implements IDatosFichaTecnicaController {
 
     private Periodico periodico;
 
-    public DatosFichaPeriodico(String codBarra) {
+    public DatosFichaPeriodicoController(String codBarra) {
         try {
             periodico = QueryRecurso.consultarPeriodico(codBarra);
         } catch (Exception ex) {

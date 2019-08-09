@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -11,16 +11,17 @@ import control.QueryControl;
 import entitys.Enciclopedia;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import modelo.QueryRecurso;
 
 /**
  *
  * @author Julian
  */
-public class DatosFichaEnciclopedia implements IDatosFichaTecnica {
+public class DatosFichaEnciclopediaController implements IDatosFichaTecnicaController {
     
     private Enciclopedia enciclopedia;
 
-    public DatosFichaEnciclopedia(String codBarra) {
+    public DatosFichaEnciclopediaController(String codBarra) {
         try {
             enciclopedia = QueryRecurso.consultarEnciclopedia(codBarra);
         } catch (Exception ex) {

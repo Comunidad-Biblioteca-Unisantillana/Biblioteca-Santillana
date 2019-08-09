@@ -1,21 +1,22 @@
 
-package modelo;
+package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import entitys.Mapa;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import modelo.QueryRecurso;
 
 /**
  *
  * @author Julian
  */
-public class DatosFichaMapa implements IDatosFichaTecnica{
+public class DatosFichaMapaController implements IDatosFichaTecnicaController{
     
     private Mapa mapa;
 
-    public DatosFichaMapa(String codBarra) {
+    public DatosFichaMapaController(String codBarra) {
         try {
             mapa = QueryRecurso.consultarMapa(codBarra);
         } catch (Exception ex) {

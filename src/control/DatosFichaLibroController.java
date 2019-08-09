@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -11,17 +11,18 @@ import control.QueryControl;
 import entitys.Libro;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import modelo.QueryRecurso;
 
 /**
  * Clase que obtiene los datos de la consulta de la ficha del libro
  *
  * @author Jualian
  */
-public class DatosFichaLibro implements IDatosFichaTecnica {
+public class DatosFichaLibroController implements IDatosFichaTecnicaController {
 
     private Libro libro;
 
-    public DatosFichaLibro(String codBarra) {
+    public DatosFichaLibroController(String codBarra) {
         try {
             libro = QueryRecurso.consultarLibro(codBarra);
         } catch (Exception ex) {

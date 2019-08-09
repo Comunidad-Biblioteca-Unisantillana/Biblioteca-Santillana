@@ -1,4 +1,4 @@
-package modelo;
+package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 /**
  * @author Julian
  */
-public interface IDatosFichaTecnica {
+public interface IDatosFichaTecnicaController {
     
     public void insertarDatos(JFXTextField[] TF,JFXTextArea[] TA);
     public String getDatosLabels();
