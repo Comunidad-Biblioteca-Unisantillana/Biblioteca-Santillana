@@ -6,6 +6,7 @@
 package entitys;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -32,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "MultaDiccionarioEstudiante.findByDiasatrasados", query = "SELECT m FROM MultaDiccionarioEstudiante m WHERE m.diasatrasados = :diasatrasados")
     , @NamedQuery(name = "MultaDiccionarioEstudiante.findByValortotalmulta", query = "SELECT m FROM MultaDiccionarioEstudiante m WHERE m.valortotalmulta = :valortotalmulta")
     , @NamedQuery(name = "MultaDiccionarioEstudiante.findByEstadocancelacion", query = "SELECT m FROM MultaDiccionarioEstudiante m WHERE m.estadocancelacion = :estadocancelacion")
-    , @NamedQuery(name = "MultaDiccionarioEstudiante.findByDescripcioncancelacion", query = "SELECT m FROM MultaDiccionarioEstudiante m WHERE m.descripcioncancelacion = :descripcioncancelacion")})
+    , @NamedQuery(name = "MultaDiccionarioEstudiante.findByDescripcioncancelacion", query = "SELECT m FROM MultaDiccionarioEstudiante m WHERE m.descripcioncancelacion = :descripcioncancelacion")
+    , @NamedQuery(name = "MultaDiccionarioEstudiante.findByFechamulta", query = "SELECT m FROM MultaDiccionarioEstudiante m WHERE m.fechamulta = :fechamulta")})
 public class MultaDiccionarioEstudiante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,8 +54,13 @@ public class MultaDiccionarioEstudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "estadocancelacion")
     private String estadocancelacion;
+    @Basic(optional = false)
     @Column(name = "descripcioncancelacion")
     private String descripcioncancelacion;
+    @Basic(optional = false)
+    @Column(name = "fechamulta")
+    @Temporal(TemporalType.DATE)
+    private Date fechamulta;
     @JoinColumn(name = "codpreciomulta", referencedColumnName = "codpreciomulta")
     @ManyToOne(optional = false)
     private ControlPrecioMulta codpreciomulta;
@@ -66,11 +75,13 @@ public class MultaDiccionarioEstudiante implements Serializable {
         this.codmultadicest = codmultadicest;
     }
 
-    public MultaDiccionarioEstudiante(Integer codmultadicest, int diasatrasados, int valortotalmulta, String estadocancelacion) {
+    public MultaDiccionarioEstudiante(Integer codmultadicest, int diasatrasados, int valortotalmulta, String estadocancelacion, String descripcioncancelacion, Date fechamulta) {
         this.codmultadicest = codmultadicest;
         this.diasatrasados = diasatrasados;
         this.valortotalmulta = valortotalmulta;
         this.estadocancelacion = estadocancelacion;
+        this.descripcioncancelacion = descripcioncancelacion;
+        this.fechamulta = fechamulta;
     }
 
     public Integer getCodmultadicest() {
@@ -113,6 +124,14 @@ public class MultaDiccionarioEstudiante implements Serializable {
         this.descripcioncancelacion = descripcioncancelacion;
     }
 
+    public Date getFechamulta() {
+        return fechamulta;
+    }
+
+    public void setFechamulta(Date fechamulta) {
+        this.fechamulta = fechamulta;
+    }
+
     public ControlPrecioMulta getCodpreciomulta() {
         return codpreciomulta;
     }
@@ -151,7 +170,7 @@ public class MultaDiccionarioEstudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.MultaDiccionarioEstudiante[ codmultadicest=" + codmultadicest + " ]";
+        return "entitys.MultaDiccionarioEstudiante[ codmultadicest=" + codmultadicest + " ]";
     }
     
 }

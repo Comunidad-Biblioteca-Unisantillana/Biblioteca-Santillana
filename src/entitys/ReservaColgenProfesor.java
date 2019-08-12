@@ -5,6 +5,8 @@
  */
 package entitys;
 
+import entitysUsuario.Profesor;
+import entitysUsuario.Bibliotecario;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -55,7 +57,7 @@ public class ReservaColgenProfesor implements Serializable {
     private Date fechalimitereserva;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codbarralibro", referencedColumnName = "codbarralibro")
     @ManyToOne(optional = false)
     private Libro codbarralibro;
@@ -107,11 +109,11 @@ public class ReservaColgenProfesor implements Serializable {
         this.fechalimitereserva = fechalimitereserva;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 

@@ -302,7 +302,7 @@ public class Profesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.Profesor[ idprofesor=" + idprofesor + " ]";
+        return "entitys.Profesor[ idprofesor=" + idprofesor + " ]";
     }
     
 }

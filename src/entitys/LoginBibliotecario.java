@@ -5,6 +5,7 @@
  */
 package entitys;
 
+import entitysUsuario.Bibliotecario;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -40,7 +41,7 @@ public class LoginBibliotecario implements Serializable {
     private String codpassword;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
 
     public LoginBibliotecario() {
     }
@@ -70,11 +71,11 @@ public class LoginBibliotecario implements Serializable {
         this.codpassword = codpassword;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 

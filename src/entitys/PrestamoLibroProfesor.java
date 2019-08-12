@@ -64,7 +64,7 @@ public class PrestamoLibroProfesor implements Serializable {
     private String devuelto;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codbarralibro", referencedColumnName = "codbarralibro")
     @ManyToOne(optional = false)
     private Libro codbarralibro;
@@ -131,11 +131,11 @@ public class PrestamoLibroProfesor implements Serializable {
         this.devuelto = devuelto;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
@@ -195,7 +195,7 @@ public class PrestamoLibroProfesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoLibroProfesor[ codprestlibroprof=" + codprestlibroprof + " ]";
+        return "entitys.PrestamoLibroProfesor[ codprestlibroprof=" + codprestlibroprof + " ]";
     }
     
 }

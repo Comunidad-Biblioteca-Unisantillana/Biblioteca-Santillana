@@ -68,10 +68,10 @@ public class PrestamoLibroEstudiante implements Serializable {
     private Collection<MultaLibroEstudiante> multaLibroEstudianteCollection;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codestudiante", referencedColumnName = "codestudiante")
     @ManyToOne(optional = false)
-    private Estudiante_1 codestudiante;
+    private Estudiante codestudiante;
     @JoinColumn(name = "codbarralibro", referencedColumnName = "codbarralibro")
     @ManyToOne(optional = false)
     private Libro codbarralibro;
@@ -149,19 +149,19 @@ public class PrestamoLibroEstudiante implements Serializable {
         this.multaLibroEstudianteCollection = multaLibroEstudianteCollection;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
-    public Estudiante_1 getCodestudiante() {
+    public Estudiante getCodestudiante() {
         return codestudiante;
     }
 
-    public void setCodestudiante(Estudiante_1 codestudiante) {
+    public void setCodestudiante(Estudiante codestudiante) {
         this.codestudiante = codestudiante;
     }
 
@@ -195,7 +195,7 @@ public class PrestamoLibroEstudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoLibroEstudiante[ codprestlibroest=" + codprestlibroest + " ]";
+        return "entitys.PrestamoLibroEstudiante[ codprestlibroest=" + codprestlibroest + " ]";
     }
     
 }

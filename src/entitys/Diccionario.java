@@ -51,13 +51,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Diccionario.findByArea", query = "SELECT d FROM Diccionario d WHERE d.area = :area")})
 public class Diccionario implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "dimensiones")
-    private String dimensiones;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
     private Collection<PrestamoDiccionarioEstudiante> prestamoDiccionarioEstudianteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
     private Collection<PrestamoDiccionarioProfesor> prestamoDiccionarioProfesorCollection;
+
+    @Basic(optional = false)
+    @Column(name = "dimensiones")
+    private String dimensiones;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -336,5 +337,4 @@ public class Diccionario implements Serializable {
     public void setPrestamoDiccionarioProfesorCollection(Collection<PrestamoDiccionarioProfesor> prestamoDiccionarioProfesorCollection) {
         this.prestamoDiccionarioProfesorCollection = prestamoDiccionarioProfesorCollection;
     }
-    
 }

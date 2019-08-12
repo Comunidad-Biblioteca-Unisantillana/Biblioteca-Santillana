@@ -15,7 +15,7 @@ import entitys.DevolucionPeriodico;
 import entitys.DevolucionRevista;
 import entitys.Diccionario;
 import entitys.Enciclopedia;
-import entitys.Estudiante;
+import entitysUsuario.Estudiante;
 import entitys.Libro;
 import entitys.Mapa;
 import entitys.Periodico;

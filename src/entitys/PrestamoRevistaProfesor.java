@@ -64,7 +64,7 @@ public class PrestamoRevistaProfesor implements Serializable {
     private Collection<MultaRevistaProfesor> multaRevistaProfesorCollection;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "idprofesor", referencedColumnName = "idprofesor")
     @ManyToOne(optional = false)
     private Profesor idprofesor;
@@ -136,11 +136,11 @@ public class PrestamoRevistaProfesor implements Serializable {
         this.multaRevistaProfesorCollection = multaRevistaProfesorCollection;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
@@ -182,7 +182,7 @@ public class PrestamoRevistaProfesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoRevistaProfesor[ codprestrevistaprof=" + codprestrevistaprof + " ]";
+        return "entitys.PrestamoRevistaProfesor[ codprestrevistaprof=" + codprestrevistaprof + " ]";
     }
     
 }

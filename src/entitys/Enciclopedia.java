@@ -53,16 +53,16 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Enciclopedia.findByArea", query = "SELECT e FROM Enciclopedia e WHERE e.area = :area")})
 public class Enciclopedia implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
+    private Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
+    private Collection<PrestamoEnciclopediaProfesor> prestamoEnciclopediaProfesorCollection;
+
     @Basic(optional = false)
     @Column(name = "numvolumen")
     private int numvolumen;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
-    private Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
     private Collection<MateriaPorEnciclopedia> materiaPorEnciclopediaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
-    private Collection<PrestamoEnciclopediaProfesor> prestamoEnciclopediaProfesorCollection;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
     private List<AutorPorEnciclopedia> autorPorEnciclopediaList;
 
@@ -338,21 +338,21 @@ public class Enciclopedia implements Serializable {
     }
 
     @XmlTransient
-    public Collection<PrestamoEnciclopediaEstudiante> getPrestamoEnciclopediaEstudianteCollection() {
-        return prestamoEnciclopediaEstudianteCollection;
-    }
-
-    public void setPrestamoEnciclopediaEstudianteCollection(Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection) {
-        this.prestamoEnciclopediaEstudianteCollection = prestamoEnciclopediaEstudianteCollection;
-    }
-
-    @XmlTransient
     public Collection<MateriaPorEnciclopedia> getMateriaPorEnciclopediaCollection() {
         return materiaPorEnciclopediaCollection;
     }
 
     public void setMateriaPorEnciclopediaCollection(Collection<MateriaPorEnciclopedia> materiaPorEnciclopediaCollection) {
         this.materiaPorEnciclopediaCollection = materiaPorEnciclopediaCollection;
+    }
+
+    @XmlTransient
+    public Collection<PrestamoEnciclopediaEstudiante> getPrestamoEnciclopediaEstudianteCollection() {
+        return prestamoEnciclopediaEstudianteCollection;
+    }
+
+    public void setPrestamoEnciclopediaEstudianteCollection(Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection) {
+        this.prestamoEnciclopediaEstudianteCollection = prestamoEnciclopediaEstudianteCollection;
     }
 
     @XmlTransient

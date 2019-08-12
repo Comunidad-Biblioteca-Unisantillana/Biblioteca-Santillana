@@ -5,6 +5,7 @@
  */
 package entitys;
 
+import entitysUsuario.Bibliotecario;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -51,7 +52,7 @@ public class DevolucionDiccionarioProfesor implements Serializable {
     private String estadodevolucion;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codprestdicprof", referencedColumnName = "codprestdicprof")
     @ManyToOne(optional = false)
     private PrestamoDiccionarioProfesor codprestdicprof;
@@ -93,11 +94,11 @@ public class DevolucionDiccionarioProfesor implements Serializable {
         this.estadodevolucion = estadodevolucion;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 

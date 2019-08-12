@@ -62,7 +62,7 @@ public class PrestamoEnciclopediaProfesor implements Serializable {
     private Collection<DevolucionEnciclopediaProfesor> devolucionEnciclopediaProfesorCollection;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codbarraenciclopedia", referencedColumnName = "codbarraenciclopedia")
     @ManyToOne(optional = false)
     private Enciclopedia codbarraenciclopedia;
@@ -127,11 +127,11 @@ public class PrestamoEnciclopediaProfesor implements Serializable {
         this.devolucionEnciclopediaProfesorCollection = devolucionEnciclopediaProfesorCollection;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
@@ -182,7 +182,7 @@ public class PrestamoEnciclopediaProfesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoEnciclopediaProfesor[ codprestencprof=" + codprestencprof + " ]";
+        return "entitys.PrestamoEnciclopediaProfesor[ codprestencprof=" + codprestencprof + " ]";
     }
     
 }

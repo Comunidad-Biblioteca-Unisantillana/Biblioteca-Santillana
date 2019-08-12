@@ -60,13 +60,13 @@ public class PrestamoDiccionarioEstudiante implements Serializable {
     private String devuelto;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codbarradiccionario", referencedColumnName = "codbarradiccionario")
     @ManyToOne(optional = false)
     private Diccionario codbarradiccionario;
     @JoinColumn(name = "codestudiante", referencedColumnName = "codestudiante")
     @ManyToOne(optional = false)
-    private Estudiante_1 codestudiante;
+    private Estudiante codestudiante;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codprestdicest")
     private Collection<DevolucionDiccionarioEstudiante> devolucionDiccionarioEstudianteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codprestdicest")
@@ -118,11 +118,11 @@ public class PrestamoDiccionarioEstudiante implements Serializable {
         this.devuelto = devuelto;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
@@ -134,11 +134,11 @@ public class PrestamoDiccionarioEstudiante implements Serializable {
         this.codbarradiccionario = codbarradiccionario;
     }
 
-    public Estudiante_1 getCodestudiante() {
+    public Estudiante getCodestudiante() {
         return codestudiante;
     }
 
-    public void setCodestudiante(Estudiante_1 codestudiante) {
+    public void setCodestudiante(Estudiante codestudiante) {
         this.codestudiante = codestudiante;
     }
 
@@ -182,7 +182,7 @@ public class PrestamoDiccionarioEstudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoDiccionarioEstudiante[ codprestdicest=" + codprestdicest + " ]";
+        return "entitys.PrestamoDiccionarioEstudiante[ codprestdicest=" + codprestdicest + " ]";
     }
     
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entitys;
 
 import java.io.Serializable;
@@ -49,6 +45,8 @@ public class Revista implements Serializable {
     private Collection<PrestamoRevistaEstudiante> prestamoRevistaEstudianteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarrarevista")
     private Collection<PrestamoRevistaProfesor> prestamoRevistaProfesorCollection;
+
+    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -236,5 +234,4 @@ public class Revista implements Serializable {
     public void setPrestamoRevistaProfesorCollection(Collection<PrestamoRevistaProfesor> prestamoRevistaProfesorCollection) {
         this.prestamoRevistaProfesorCollection = prestamoRevistaProfesorCollection;
     }
-    
 }

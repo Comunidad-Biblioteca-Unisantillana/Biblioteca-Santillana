@@ -60,10 +60,10 @@ public class PrestamoMapaEstudiante implements Serializable {
     private String devuelto;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codestudiante", referencedColumnName = "codestudiante")
     @ManyToOne(optional = false)
-    private Estudiante_1 codestudiante;
+    private Estudiante codestudiante;
     @JoinColumn(name = "codbarramapa", referencedColumnName = "codbarramapa")
     @ManyToOne(optional = false)
     private Mapa codbarramapa;
@@ -118,19 +118,19 @@ public class PrestamoMapaEstudiante implements Serializable {
         this.devuelto = devuelto;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
-    public Estudiante_1 getCodestudiante() {
+    public Estudiante getCodestudiante() {
         return codestudiante;
     }
 
-    public void setCodestudiante(Estudiante_1 codestudiante) {
+    public void setCodestudiante(Estudiante codestudiante) {
         this.codestudiante = codestudiante;
     }
 
@@ -182,7 +182,7 @@ public class PrestamoMapaEstudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoMapaEstudiante[ codprestmapaest=" + codprestmapaest + " ]";
+        return "entitys.PrestamoMapaEstudiante[ codprestmapaest=" + codprestmapaest + " ]";
     }
     
 }

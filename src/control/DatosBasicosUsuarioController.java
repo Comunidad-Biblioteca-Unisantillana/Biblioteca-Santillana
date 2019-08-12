@@ -1,11 +1,13 @@
 package control;
 
-import entitys.Bibliotecario;
-import entitys.Estudiante;
+import entitysUsuario.Bibliotecario;
+import entitysUsuario.Estudiante;
+import entitysUsuario.Profesor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import modeloDAO.BibliotecarioDAO;
 import modeloDAO.EstudianteDAO;
+import modeloDAO.ProfesorDAO;
 
 /**
  * Clase que controla la vista DatosBasicosUsuario.fxml
@@ -35,7 +37,9 @@ public class DatosBasicosUsuarioController {
             Bibliotecario bib = bibDAO.readDAO(codigo);
             cargarTextoLabels(bib.getNombre() + " " + bib.getApellido() ,"Identificación: " + codigo);
         }else if (nombreEntidad.equalsIgnoreCase("profesor")){
-            
+            ProfesorDAO profDAO = new ProfesorDAO();
+            Profesor prof = profDAO.readDAO(codigo);
+            cargarTextoLabels(prof.getNombres() + " " + prof.getApellidos(), "Identificación" + codigo);
         }
     }
     

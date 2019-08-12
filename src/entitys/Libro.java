@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entitys;
 
 import java.io.Serializable;
@@ -54,11 +50,12 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Libro implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
-    private Collection<ReservaColgenEstudiante> reservaColgenEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
     private Collection<PrestamoLibroProfesor> prestamoLibroProfesorCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
     private Collection<PrestamoLibroEstudiante> prestamoLibroEstudianteCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
+    private Collection<ReservaColgenEstudiante> reservaColgenEstudianteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
     private Collection<ReservaColgenProfesor> reservaColgenProfesorCollection;
 
@@ -348,6 +345,15 @@ public class Libro implements Serializable {
     }
 
     @XmlTransient
+    public Collection<ReservaColgenProfesor> getReservaColgenProfesorCollection() {
+        return reservaColgenProfesorCollection;
+    }
+
+    public void setReservaColgenProfesorCollection(Collection<ReservaColgenProfesor> reservaColgenProfesorCollection) {
+        this.reservaColgenProfesorCollection = reservaColgenProfesorCollection;
+    }
+
+    @XmlTransient
     public Collection<PrestamoLibroProfesor> getPrestamoLibroProfesorCollection() {
         return prestamoLibroProfesorCollection;
     }
@@ -363,15 +369,6 @@ public class Libro implements Serializable {
 
     public void setPrestamoLibroEstudianteCollection(Collection<PrestamoLibroEstudiante> prestamoLibroEstudianteCollection) {
         this.prestamoLibroEstudianteCollection = prestamoLibroEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<ReservaColgenProfesor> getReservaColgenProfesorCollection() {
-        return reservaColgenProfesorCollection;
-    }
-
-    public void setReservaColgenProfesorCollection(Collection<ReservaColgenProfesor> reservaColgenProfesorCollection) {
-        this.reservaColgenProfesorCollection = reservaColgenProfesorCollection;
     }
     
 }

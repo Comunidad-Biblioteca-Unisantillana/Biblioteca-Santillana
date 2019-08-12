@@ -7,6 +7,7 @@ package entitys;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "MultaLibroProfesor.findByDiasatrasados", query = "SELECT m FROM MultaLibroProfesor m WHERE m.diasatrasados = :diasatrasados")
     , @NamedQuery(name = "MultaLibroProfesor.findByValortotalmulta", query = "SELECT m FROM MultaLibroProfesor m WHERE m.valortotalmulta = :valortotalmulta")
     , @NamedQuery(name = "MultaLibroProfesor.findByEstadocancelacion", query = "SELECT m FROM MultaLibroProfesor m WHERE m.estadocancelacion = :estadocancelacion")
-    , @NamedQuery(name = "MultaLibroProfesor.findByDescripcioncancelacion", query = "SELECT m FROM MultaLibroProfesor m WHERE m.descripcioncancelacion = :descripcioncancelacion")})
+    , @NamedQuery(name = "MultaLibroProfesor.findByDescripcioncancelacion", query = "SELECT m FROM MultaLibroProfesor m WHERE m.descripcioncancelacion = :descripcioncancelacion")
+    , @NamedQuery(name = "MultaLibroProfesor.findByFechamulta", query = "SELECT m FROM MultaLibroProfesor m WHERE m.fechamulta = :fechamulta")})
 public class MultaLibroProfesor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +56,13 @@ public class MultaLibroProfesor implements Serializable {
     @Basic(optional = false)
     @Column(name = "estadocancelacion")
     private String estadocancelacion;
+    @Basic(optional = false)
     @Column(name = "descripcioncancelacion")
     private String descripcioncancelacion;
+    @Basic(optional = false)
+    @Column(name = "fechamulta")
+    @Temporal(TemporalType.DATE)
+    private Date fechamulta;
     @JoinColumn(name = "codpreciomulta", referencedColumnName = "codpreciomulta")
     @ManyToOne(optional = false)
     private ControlPrecioMulta codpreciomulta;
@@ -68,11 +77,13 @@ public class MultaLibroProfesor implements Serializable {
         this.codmultalibroprof = codmultalibroprof;
     }
 
-    public MultaLibroProfesor(Integer codmultalibroprof, int diasatrasados, BigDecimal valortotalmulta, String estadocancelacion) {
+    public MultaLibroProfesor(Integer codmultalibroprof, int diasatrasados, BigDecimal valortotalmulta, String estadocancelacion, String descripcioncancelacion, Date fechamulta) {
         this.codmultalibroprof = codmultalibroprof;
         this.diasatrasados = diasatrasados;
         this.valortotalmulta = valortotalmulta;
         this.estadocancelacion = estadocancelacion;
+        this.descripcioncancelacion = descripcioncancelacion;
+        this.fechamulta = fechamulta;
     }
 
     public Integer getCodmultalibroprof() {
@@ -115,6 +126,14 @@ public class MultaLibroProfesor implements Serializable {
         this.descripcioncancelacion = descripcioncancelacion;
     }
 
+    public Date getFechamulta() {
+        return fechamulta;
+    }
+
+    public void setFechamulta(Date fechamulta) {
+        this.fechamulta = fechamulta;
+    }
+
     public ControlPrecioMulta getCodpreciomulta() {
         return codpreciomulta;
     }
@@ -153,7 +172,7 @@ public class MultaLibroProfesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.MultaLibroProfesor[ codmultalibroprof=" + codmultalibroprof + " ]";
+        return "entitys.MultaLibroProfesor[ codmultalibroprof=" + codmultalibroprof + " ]";
     }
     
 }

@@ -1,4 +1,4 @@
-package entitys;
+package entitysUsuario;
 
 import java.sql.Date;
 

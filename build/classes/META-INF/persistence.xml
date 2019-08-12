@@ -3,7 +3,6 @@
   <persistence-unit name="BibliotecaSantiPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entitys.Reservalibrocolecciongeneral</class>
-    <class>entitys.Estudiante_1</class>
     <class>entitys.PrestamoMapaEstudiante</class>
     <class>entitys.PrestamoDiccionarioProfesor</class>
     <class>entitys.PrestamoMapaProfesor</class>
@@ -36,7 +35,6 @@
     <class>entitys.AutorLibro</class>
     <class>entitys.MultaLibroEstudiante</class>
     <class>entitys.PrestamoLibroProfesor</class>
-    <class>entitys.Bibliotecario_1</class>
     <class>entitys.ReservaColgenProfesor</class>
     <class>entitys.PrestamoRevistaEstudiante</class>
     <class>entitys.DevolucionMapaProfesor</class>
@@ -45,7 +43,6 @@
     <class>entitys.LoginBibliotecario</class>
     <class>entitys.Revista</class>
     <class>entitys.Materia</class>
-    <class>entitys.Bibliotecario</class>
     <class>entitys.DevolucionEnciclopediaEstudiante</class>
     <class>entitys.AutorPorEnciclopedia</class>
     <class>entitys.DevolucionRevistaProfesor</class>
@@ -65,6 +62,8 @@
     <class>entitys.Libro</class>
     <class>entitys.PrestamoPeriodicoProfesor</class>
     <class>entitys.PrestamoDiccionarioEstudiante</class>
+    <class>entitys.Bibliotecario</class>
+    <class>entitys.Estudiante</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

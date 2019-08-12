@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package entitys;
+
+package entitysUsuario;
 
 import java.sql.Date;
 
 /**
- *
- * @author Storkolm
+ * entidad Bibliotecario
+ * @author Julian
+ * Fecha creación:11/08/2019 
+ * Fecha ultima modificación:11/08/2019
  */
 public class Bibliotecario {
 

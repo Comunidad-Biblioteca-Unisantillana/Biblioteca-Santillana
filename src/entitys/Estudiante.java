@@ -1,44 +1,142 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entitys;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author stive
+ * @author Storkolm
  */
-public class Estudiante {
+@Entity
+@Table(name = "estudiante")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Estudiante.findAll", query = "SELECT e FROM Estudiante e")
+    , @NamedQuery(name = "Estudiante.findByCodestudiante", query = "SELECT e FROM Estudiante e WHERE e.codestudiante = :codestudiante")
+    , @NamedQuery(name = "Estudiante.findByIdentificacion", query = "SELECT e FROM Estudiante e WHERE e.identificacion = :identificacion")
+    , @NamedQuery(name = "Estudiante.findByTipoid", query = "SELECT e FROM Estudiante e WHERE e.tipoid = :tipoid")
+    , @NamedQuery(name = "Estudiante.findByNombre", query = "SELECT e FROM Estudiante e WHERE e.nombre = :nombre")
+    , @NamedQuery(name = "Estudiante.findByApellido", query = "SELECT e FROM Estudiante e WHERE e.apellido = :apellido")
+    , @NamedQuery(name = "Estudiante.findByFechanacimiento", query = "SELECT e FROM Estudiante e WHERE e.fechanacimiento = :fechanacimiento")
+    , @NamedQuery(name = "Estudiante.findByEdad", query = "SELECT e FROM Estudiante e WHERE e.edad = :edad")
+    , @NamedQuery(name = "Estudiante.findByGenero", query = "SELECT e FROM Estudiante e WHERE e.genero = :genero")
+    , @NamedQuery(name = "Estudiante.findByTelefono", query = "SELECT e FROM Estudiante e WHERE e.telefono = :telefono")
+    , @NamedQuery(name = "Estudiante.findByCorreoelectronico", query = "SELECT e FROM Estudiante e WHERE e.correoelectronico = :correoelectronico")
+    , @NamedQuery(name = "Estudiante.findByPlan", query = "SELECT e FROM Estudiante e WHERE e.plan = :plan")
+    , @NamedQuery(name = "Estudiante.findByCiudadresidencia", query = "SELECT e FROM Estudiante e WHERE e.ciudadresidencia = :ciudadresidencia")
+    , @NamedQuery(name = "Estudiante.findByDireccionresidencia", query = "SELECT e FROM Estudiante e WHERE e.direccionresidencia = :direccionresidencia")
+    , @NamedQuery(name = "Estudiante.findByNacionalidad", query = "SELECT e FROM Estudiante e WHERE e.nacionalidad = :nacionalidad")})
+public class Estudiante implements Serializable {
 
-    private String codEstudiante, identificacion, tipoId, nombre, apellido, genero, telefono, correoElectronico, plan, ciudadResidencia,
-            direccionResidencia, nacionalidad;
-    private Date fechaNacimiento;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "codestudiante")
+    private String codestudiante;
+    @Basic(optional = false)
+    @Column(name = "identificacion")
+    private String identificacion;
+    @Basic(optional = false)
+    @Column(name = "tipoid")
+    private String tipoid;
+    @Basic(optional = false)
+    @Column(name = "nombre")
+    private String nombre;
+    @Basic(optional = false)
+    @Column(name = "apellido")
+    private String apellido;
+    @Basic(optional = false)
+    @Column(name = "fechanacimiento")
+    @Temporal(TemporalType.DATE)
+    private Date fechanacimiento;
+    @Basic(optional = false)
+    @Column(name = "edad")
     private int edad;
+    @Basic(optional = false)
+    @Column(name = "genero")
+    private String genero;
+    @Basic(optional = false)
+    @Column(name = "telefono")
+    private String telefono;
+    @Basic(optional = false)
+    @Column(name = "correoelectronico")
+    private String correoelectronico;
+    @Basic(optional = false)
+    @Column(name = "plan")
+    private String plan;
+    @Basic(optional = false)
+    @Column(name = "ciudadresidencia")
+    private String ciudadresidencia;
+    @Basic(optional = false)
+    @Column(name = "direccionresidencia")
+    private String direccionresidencia;
+    @Basic(optional = false)
+    @Column(name = "nacionalidad")
+    private String nacionalidad;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<PrestamoDiccionarioEstudiante> prestamoDiccionarioEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<PrestamoRevistaEstudiante> prestamoRevistaEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<PrestamoMapaEstudiante> prestamoMapaEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<ReservaColgenEstudiante> reservaColgenEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<PrestamoLibroEstudiante> prestamoLibroEstudianteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codestudiante")
+    private Collection<PrestamoPeriodicoEstudiante> prestamoPeriodicoEstudianteCollection;
 
     public Estudiante() {
     }
 
-    public Estudiante(String codEstudiante, String identificacion, String tipoId, String nombre, String apellido, Date fechaNacimiento, int edad, String genero, String telefono, String correoElectronico, String plan, String ciudadResidencia, String direccionResidencia, String nacionalidad) {
-        this.codEstudiante = codEstudiante;
+    public Estudiante(String codestudiante) {
+        this.codestudiante = codestudiante;
+    }
+
+    public Estudiante(String codestudiante, String identificacion, String tipoid, String nombre, String apellido, Date fechanacimiento, int edad, String genero, String telefono, String correoelectronico, String plan, String ciudadresidencia, String direccionresidencia, String nacionalidad) {
+        this.codestudiante = codestudiante;
         this.identificacion = identificacion;
-        this.tipoId = tipoId;
+        this.tipoid = tipoid;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.fechanacimiento = fechanacimiento;
+        this.edad = edad;
         this.genero = genero;
         this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
+        this.correoelectronico = correoelectronico;
         this.plan = plan;
-        this.ciudadResidencia = ciudadResidencia;
-        this.direccionResidencia = direccionResidencia;
+        this.ciudadresidencia = ciudadresidencia;
+        this.direccionresidencia = direccionresidencia;
         this.nacionalidad = nacionalidad;
-        this.fechaNacimiento = fechaNacimiento;
-        this.edad = edad;
     }
 
-    public String getCodEstudiante() {
-        return codEstudiante;
+    public String getCodestudiante() {
+        return codestudiante;
     }
 
-    public void setCodEstudiante(String codEstudiante) {
-        this.codEstudiante = codEstudiante;
+    public void setCodestudiante(String codestudiante) {
+        this.codestudiante = codestudiante;
     }
 
     public String getIdentificacion() {
@@ -49,12 +147,12 @@ public class Estudiante {
         this.identificacion = identificacion;
     }
 
-    public String getTipoId() {
-        return tipoId;
+    public String getTipoid() {
+        return tipoid;
     }
 
-    public void setTipoId(String tipoId) {
-        this.tipoId = tipoId;
+    public void setTipoid(String tipoid) {
+        this.tipoid = tipoid;
     }
 
     public String getNombre() {
@@ -73,6 +171,22 @@ public class Estudiante {
         this.apellido = apellido;
     }
 
+    public Date getFechanacimiento() {
+        return fechanacimiento;
+    }
+
+    public void setFechanacimiento(Date fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
     public String getGenero() {
         return genero;
     }
@@ -89,12 +203,12 @@ public class Estudiante {
         this.telefono = telefono;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getCorreoelectronico() {
+        return correoelectronico;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setCorreoelectronico(String correoelectronico) {
+        this.correoelectronico = correoelectronico;
     }
 
     public String getPlan() {
@@ -105,20 +219,20 @@ public class Estudiante {
         this.plan = plan;
     }
 
-    public String getCiudadResidencia() {
-        return ciudadResidencia;
+    public String getCiudadresidencia() {
+        return ciudadresidencia;
     }
 
-    public void setCiudadResidencia(String ciudadResidencia) {
-        this.ciudadResidencia = ciudadResidencia;
+    public void setCiudadresidencia(String ciudadresidencia) {
+        this.ciudadresidencia = ciudadresidencia;
     }
 
-    public String getDireccionResidencia() {
-        return direccionResidencia;
+    public String getDireccionresidencia() {
+        return direccionresidencia;
     }
 
-    public void setDireccionResidencia(String direccionResidencia) {
-        this.direccionResidencia = direccionResidencia;
+    public void setDireccionresidencia(String direccionresidencia) {
+        this.direccionresidencia = direccionresidencia;
     }
 
     public String getNacionalidad() {
@@ -129,20 +243,92 @@ public class Estudiante {
         this.nacionalidad = nacionalidad;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    @XmlTransient
+    public Collection<PrestamoDiccionarioEstudiante> getPrestamoDiccionarioEstudianteCollection() {
+        return prestamoDiccionarioEstudianteCollection;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setPrestamoDiccionarioEstudianteCollection(Collection<PrestamoDiccionarioEstudiante> prestamoDiccionarioEstudianteCollection) {
+        this.prestamoDiccionarioEstudianteCollection = prestamoDiccionarioEstudianteCollection;
     }
 
-    public int getEdad() {
-        return edad;
+    @XmlTransient
+    public Collection<PrestamoEnciclopediaEstudiante> getPrestamoEnciclopediaEstudianteCollection() {
+        return prestamoEnciclopediaEstudianteCollection;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setPrestamoEnciclopediaEstudianteCollection(Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection) {
+        this.prestamoEnciclopediaEstudianteCollection = prestamoEnciclopediaEstudianteCollection;
     }
 
+    @XmlTransient
+    public Collection<PrestamoRevistaEstudiante> getPrestamoRevistaEstudianteCollection() {
+        return prestamoRevistaEstudianteCollection;
+    }
+
+    public void setPrestamoRevistaEstudianteCollection(Collection<PrestamoRevistaEstudiante> prestamoRevistaEstudianteCollection) {
+        this.prestamoRevistaEstudianteCollection = prestamoRevistaEstudianteCollection;
+    }
+
+    @XmlTransient
+    public Collection<PrestamoMapaEstudiante> getPrestamoMapaEstudianteCollection() {
+        return prestamoMapaEstudianteCollection;
+    }
+
+    public void setPrestamoMapaEstudianteCollection(Collection<PrestamoMapaEstudiante> prestamoMapaEstudianteCollection) {
+        this.prestamoMapaEstudianteCollection = prestamoMapaEstudianteCollection;
+    }
+
+    @XmlTransient
+    public Collection<ReservaColgenEstudiante> getReservaColgenEstudianteCollection() {
+        return reservaColgenEstudianteCollection;
+    }
+
+    public void setReservaColgenEstudianteCollection(Collection<ReservaColgenEstudiante> reservaColgenEstudianteCollection) {
+        this.reservaColgenEstudianteCollection = reservaColgenEstudianteCollection;
+    }
+
+    @XmlTransient
+    public Collection<PrestamoLibroEstudiante> getPrestamoLibroEstudianteCollection() {
+        return prestamoLibroEstudianteCollection;
+    }
+
+    public void setPrestamoLibroEstudianteCollection(Collection<PrestamoLibroEstudiante> prestamoLibroEstudianteCollection) {
+        this.prestamoLibroEstudianteCollection = prestamoLibroEstudianteCollection;
+    }
+
+    @XmlTransient
+    public Collection<PrestamoPeriodicoEstudiante> getPrestamoPeriodicoEstudianteCollection() {
+        return prestamoPeriodicoEstudianteCollection;
+    }
+
+    public void setPrestamoPeriodicoEstudianteCollection(Collection<PrestamoPeriodicoEstudiante> prestamoPeriodicoEstudianteCollection) {
+        this.prestamoPeriodicoEstudianteCollection = prestamoPeriodicoEstudianteCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codestudiante != null ? codestudiante.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Estudiante)) {
+            return false;
+        }
+        Estudiante other = (Estudiante) object;
+        if ((this.codestudiante == null && other.codestudiante != null) || (this.codestudiante != null && !this.codestudiante.equals(other.codestudiante))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entitys.Estudiante[ codestudiante=" + codestudiante + " ]";
+    }
+    
 }

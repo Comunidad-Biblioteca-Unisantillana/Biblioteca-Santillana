@@ -60,7 +60,7 @@ public class PrestamoMapaProfesor implements Serializable {
     private String devuelto;
     @JoinColumn(name = "idbibliotecario", referencedColumnName = "idbibliotecario")
     @ManyToOne(optional = false)
-    private Bibliotecario_1 idbibliotecario;
+    private Bibliotecario idbibliotecario;
     @JoinColumn(name = "codbarramapa", referencedColumnName = "codbarramapa")
     @ManyToOne(optional = false)
     private Mapa codbarramapa;
@@ -118,11 +118,11 @@ public class PrestamoMapaProfesor implements Serializable {
         this.devuelto = devuelto;
     }
 
-    public Bibliotecario_1 getIdbibliotecario() {
+    public Bibliotecario getIdbibliotecario() {
         return idbibliotecario;
     }
 
-    public void setIdbibliotecario(Bibliotecario_1 idbibliotecario) {
+    public void setIdbibliotecario(Bibliotecario idbibliotecario) {
         this.idbibliotecario = idbibliotecario;
     }
 
@@ -182,7 +182,7 @@ public class PrestamoMapaProfesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.PrestamoMapaProfesor[ codprestmapaprof=" + codprestmapaprof + " ]";
+        return "entitys.PrestamoMapaProfesor[ codprestmapaprof=" + codprestmapaprof + " ]";
     }
     
 }
