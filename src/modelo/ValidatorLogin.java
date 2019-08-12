@@ -6,6 +6,7 @@ import com.jfoenix.validation.base.ValidatorBase;
 import javafx.scene.control.TextInputControl;
 import modeloDAO.LoginBibliotecarioDAO;
 import modeloDAO.LoginEstudianteDAO;
+import modeloDAO.LoginProfesorDAO;
 
 /**
  * Clase que se encarga de verificar que los datos<br>
@@ -60,7 +61,8 @@ public class ValidatorLogin extends ValidatorBase {
                 hasErrors.set(!loginEstudiante.readDAO(codigo.getText().trim()));
                 break;
             case "profesor":
-                hasErrors.set(!true);
+                LoginProfesorDAO loginProfesor = new LoginProfesorDAO();
+                hasErrors.set(!loginProfesor.readDAO(codigo.getText().trim()));
                 break;
             default:
                 System.out.println("error de tipo usuario");

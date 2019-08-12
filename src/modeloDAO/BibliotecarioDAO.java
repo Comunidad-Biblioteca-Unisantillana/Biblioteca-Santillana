@@ -5,7 +5,7 @@
  */
 package modeloDAO;
 
-import entitys.Bibliotecario;
+import entitysUsuario.Bibliotecario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
