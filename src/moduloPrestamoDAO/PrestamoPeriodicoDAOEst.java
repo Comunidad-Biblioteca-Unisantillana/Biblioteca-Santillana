@@ -159,22 +159,17 @@ public class PrestamoPeriodicoDAOEst extends PrestamoRecursoDAOAbs<PrestamoPerio
 
     @Override
     public int readCodigoDAO(String codBarra) {
-        boolean existeRecurso = false;
         Statement stmt;
         ResultSet rs;
-        PrestamoPeriodicoEst prestamo;
+        int codPrestamo = -1;
         try{
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Periodico_Estudiante WHERE codBarraPeriodico = " + codBarra +";");
+            rs = stmt.executeQuery("SELECT codPrestPeriodicoEst FROM Prestamo_Periodico_Estudiante WHERE codBarraPeriodico = " + codBarra +";");
            
             while(rs.next()){
-                prestamo = new PrestamoPeriodicoEst(rs.getString("codBarraPeriodico"), rs.getString("codEstudiante"), 
-                                rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
-                prestamo.setCodPrestamoPeriodicoEst(rs.getInt("codPrestPeriodicoEst"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                codPrestamo =  rs.getInt(1);
             }
             rs.close();
-            return 1;
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "El préstamo de periodico con ese codigo no existe");
@@ -182,7 +177,7 @@ public class PrestamoPeriodicoDAOEst extends PrestamoRecursoDAOAbs<PrestamoPerio
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
         }
-        return 0;
+        return codPrestamo;
     }
     
 }

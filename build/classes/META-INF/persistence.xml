@@ -14,7 +14,6 @@
     <class>entitys.MultaMapaProfesor</class>
     <class>entitys.MultaEnciclopediaProfesor</class>
     <class>entitys.Diccionario</class>
-    <class>entitys.Profesor</class>
     <class>entitys.MultaDiccionarioEstudiante</class>
     <class>entitys.MateriaPorRevista</class>
     <class>entitys.DevolucionRevistaEstudiante</class>
@@ -62,8 +61,15 @@
     <class>entitys.Libro</class>
     <class>entitys.PrestamoPeriodicoProfesor</class>
     <class>entitys.PrestamoDiccionarioEstudiante</class>
-    <class>entitys.Bibliotecario</class>
+    <class>entitys.Bibliotecario_1</class>
+    <class>entitys.Profesor_1</class>
+    <class>entitys.Estudiante_1</class>
     <class>entitys.Estudiante</class>
+    <class>entitys.Bibliotecario</class>
+    <class>entitys.Profesor</class>
+    <class>entitysUsuario.Bibliotecario</class>
+    <class>entitysUsuario.Estudiante</class>
+    <class>entitysUsuario.Profesor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

@@ -161,23 +161,17 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
 
     @Override
     public int readCodigoDAO(String codBarra) {
-        boolean existeRecurso = false;
         Statement stmt;
         ResultSet rs;
-        PrestamoMapaProf prestamo;
-        
+        int codPrestamo = -1;
         try{
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Mapa_Profesor WHERE codBarraMapa = " + codBarra +";");
+            rs = stmt.executeQuery("SELECT codPrestMapaProf FROM Prestamo_Mapa_Profesor WHERE codBarraMapa = " + codBarra +";");
            
             while(rs.next()){
-                prestamo = new PrestamoMapaProf(rs.getString("codBarraMapa"), rs.getString("idProfesor"), 
-                                rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
-                prestamo.setCodPrestamoMapaProf(rs.getInt("codPrestMapaProf"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                codPrestamo =  rs.getInt(1);
             }
             rs.close();
-            return 1;
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "El préstamo de mapa con ese codigo no existe");
@@ -185,7 +179,7 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
         }
-        return 0;
+        return codPrestamo;
     }
     
 }

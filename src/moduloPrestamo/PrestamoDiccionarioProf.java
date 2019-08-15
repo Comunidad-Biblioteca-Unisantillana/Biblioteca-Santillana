@@ -10,7 +10,7 @@ import java.sql.Date;
  * Fecha creación:10/08/2019 
  * Fecha ultima modificación:10/08/2019
  */
-public class PrestamoDiccionarioProf1 {
+public class PrestamoDiccionarioProf {
     
     private int codPrestamoDiccionarioProf;
     private String codBarraDiccionario, idProfesor, idBibliotecario;
@@ -25,7 +25,7 @@ public class PrestamoDiccionarioProf1 {
      * @param fechaPrestamo
      * @param fechaDevolucion
      */
-    public PrestamoDiccionarioProf1(String codBarraDiccionario, String idProfesor, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    public PrestamoDiccionarioProf(String codBarraDiccionario, String idProfesor, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
         this.codBarraDiccionario = codBarraDiccionario;
         this.idProfesor = idProfesor;
         this.idBibliotecario = idBibliotecario;

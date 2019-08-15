@@ -31,7 +31,7 @@ public class LoginBibliotecarioDAO {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT idBibliotecario FROM Login_Bibliotecario WHERE codLoginBibliotecario = '" + codBibliotecario + "' AND codPassword = '" + codPassword + "';");
+            rs = stmt.executeQuery("SELECT idBibliotecario FROM Login_Bibliotecario WHERE idBibliotecario = '" + codBibliotecario + "' AND codPassword = '" + codPassword + "';");
             while (rs.next()) {
                 System.out.println("consulto");
                 return true;

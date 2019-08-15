@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.ConnectionBD;
-import moduloPrestamo.PrestamoDiccionarioProf1;
+import moduloPrestamo.PrestamoDiccionarioProf;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -19,14 +19,14 @@ import vista.IAlertBox;
  * Fecha creación:10/08/2019 
  * Fecha ultima modificación:10/08/2019
  */
-public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDiccionarioProf1> {
+public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDiccionarioProf> {
 
     public PrestamoDiccionarioDAOProf() {
         connection = ConnectionBD.getInstance();
     }
 
     @Override
-    public boolean createDAO(PrestamoDiccionarioProf1 prestamo) {
+    public boolean createDAO(PrestamoDiccionarioProf prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Diccionario_Profesor (codBarraDiccionario, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
                 + " VALUES (?,?,?,?,?,?)";
         PreparedStatement pps;
@@ -52,17 +52,17 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
     }
 
     @Override
-    public PrestamoDiccionarioProf1 readDAO(int codigo) {
+    public PrestamoDiccionarioProf readDAO(int codigo) {
         Statement stmt;
         ResultSet rs;
-        PrestamoDiccionarioProf1 prestamo = null;
+        PrestamoDiccionarioProf prestamo = null;
 
         try {
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT * FROM Prestamo_Diccionario_Profesor WHERE codPrestDicProf = " + codigo + ";");
 
             while (rs.next()) {
-                prestamo = new PrestamoDiccionarioProf1(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
+                prestamo = new PrestamoDiccionarioProf(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
                         rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
                 prestamo.setCodPrestamoDiccionarioProf(rs.getInt("codPrestDicProf"));
                 prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
@@ -78,7 +78,7 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
     }
 
     @Override
-    public boolean updateDAO(PrestamoDiccionarioProf1 prestamo) {
+    public boolean updateDAO(PrestamoDiccionarioProf prestamo) {
         String sqlSentence = "UPDATE Prestamo_Diccionario_Profesor SET codBarraDiccionario = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
                 + "fechaDevolucion = ?,devuelto = ? WHERE codPrestDicProf = ?";
         PreparedStatement pps;
@@ -126,18 +126,18 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
     }
 
     @Override
-    public List<PrestamoDiccionarioProf1> readAllDAO() {
+    public List<PrestamoDiccionarioProf> readAllDAO() {
 
         PreparedStatement pps;
         ResultSet rs;
-        ArrayList<PrestamoDiccionarioProf1> prestamos = new ArrayList();
+        ArrayList<PrestamoDiccionarioProf> prestamos = new ArrayList();
 
         try {
             pps = connection.getConnection().prepareStatement("SELECT * FROM Prestamo_Diccionario_Profesor");
             rs = pps.executeQuery();
 
             while (rs.next()) {
-                PrestamoDiccionarioProf1 prestamoTmp = new PrestamoDiccionarioProf1(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
+                PrestamoDiccionarioProf prestamoTmp = new PrestamoDiccionarioProf(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
                         rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
                 prestamoTmp.setCodPrestamoDiccionarioProf(rs.getInt("codPrestDicProf"));
                 prestamoTmp.setDevuelto(rs.getString("devuelto").charAt(0));
@@ -154,29 +154,22 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
 
     @Override
     public int readCodigoDAO(String codBarra) {
-        boolean existeRecurso = false;
         Statement stmt;
         ResultSet rs;
-        PrestamoDiccionarioProf1 prestamo;
-
+        int codPrestamo = -1;
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Diccionario_Profesor WHERE codBarraDiccionario = " + codBarra + ";");
-
+            rs = stmt.executeQuery("SELECT codPrestDicProf FROM Prestamo_Diccionario_Profesor WHERE codBarraDiccionario = " + codBarra + ";");
             while (rs.next()) {
-                prestamo = new PrestamoDiccionarioProf1(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
-                prestamo.setCodPrestamoDiccionarioProf(rs.getInt("codPrestDicProf"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                codPrestamo = rs.getInt(1);
             }
             rs.close();
-            return 1;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "El préstamo de diccionario con ese codigo no existe");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
         }
-        return 0;
+        return codPrestamo;
     }
 
 }

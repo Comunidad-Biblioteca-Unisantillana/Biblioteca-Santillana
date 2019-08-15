@@ -76,7 +76,6 @@ public class GeneradorPrestamoRecurso {
                         if(libro.getDisponibilidad().equalsIgnoreCase("disponible")){    
                             int diasDev = libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen") ? 15 : 2;
                             fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, diasDev);
-
                             PrestamoLibro presLib = new PrestamoLibro(codBarras, codEstudiante, idBibliotecario, 
                                 new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
 

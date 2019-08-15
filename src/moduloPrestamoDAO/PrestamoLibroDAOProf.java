@@ -1,4 +1,3 @@
-
 package moduloPrestamoDAO;
 
 import java.sql.PreparedStatement;
@@ -14,20 +13,31 @@ import moduloPrestamo.PrestamoLibroProf;
 /**
  * Clase que realiza el CRUD sobre la entidad prestamo_libro_profesor.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian Fecha creación:11/08/2019 Fecha ultima modificación:11/08/2019
  */
-public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroProf>{
+public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroProf> {
+
+    private int diasPrestamo;
 
     public PrestamoLibroDAOProf() {
         connection = ConnectionBD.getInstance();
     }
-    
+
+    public PrestamoLibroDAOProf(int diasPrestamo) {
+        connection = ConnectionBD.getInstance();
+        this.diasPrestamo = diasPrestamo;
+    }
+
     @Override
     public boolean createDAO(PrestamoLibroProf prestamo) {
-        String sqlSentence = "INSERT INTO Prestamo_Libro_Profesor (codBarraLibro, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, numRenovaciones, devuelto)"
-                + " VALUES (?,?,?,?,?,?,?)";
+        String sqlSentence;
+        if (diasPrestamo == 2) {
+            sqlSentence = "INSERT INTO Prestamo_Libro_Profesor (codBarraLibro, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, numRenovaciones, devuelto)"
+                    + " VALUES (?,?,?,?,CURRENT_DATE + 2,?,?)";
+        } else {
+            sqlSentence = "INSERT INTO Prestamo_Libro_Profesor (codBarraLibro, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, numRenovaciones, devuelto)"
+                    + " VALUES (?,?,?,?,CURRENT_DATE + 15,?,?)";
+        }
 
         PreparedStatement pps;
 
@@ -37,7 +47,7 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
             pps.setString(2, prestamo.getIdProfesor());
             pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setDate(5, prestamo.getFechaDevolucion());
+
             pps.setInt(6, prestamo.getNumRenovaciones());
             pps.setObject(7, prestamo.getDevuelto());
 
@@ -81,31 +91,36 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
 
     @Override
     public boolean updateDAO(PrestamoLibroProf prestamo) {
-        String sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                             + "fechaDevolucion = ?, numRenovaciones = ?,devuelto = ? WHERE codPrestLibroProf = ?";
+        String sqlSentence;
+        if (diasPrestamo == 2) {
+            sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
+                    + "fechaDevolucion = CURRENT_DATE + 2, numRenovaciones = ?,devuelto = ? WHERE codPrestLibroProf = ?";
+        } else {
+            sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
+                    + "fechaDevolucion = CURRENT_DATE + 15, numRenovaciones = ?,devuelto = ? WHERE codPrestLibroProf = ?";
+        }
         PreparedStatement pps;
-        
-        try{       
+
+        try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-           
+
             pps.setString(1, prestamo.getCodBarraLibro());
             pps.setString(2, prestamo.getIdProfesor());
-            pps.setString(3, prestamo.getIdBibliotecario()); 
+            pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
             pps.setInt(6, prestamo.getNumRenovaciones());
             pps.setObject(7, prestamo.getDevuelto());
-            
-            if(pps.executeUpdate() > 0){
-               System.out.println("Realizo el update");
-               return true;
-            }
-            else
+
+            if (pps.executeUpdate() > 0) {
+                System.out.println("Realizo el update");
+                return true;
+            } else {
                 System.out.println("No existe un prestamo con ese codigo");
-        }
-        catch(SQLException e){
+            }
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se pudo realizar el update del prestamo libro");
-        } 
+        }
 
         return false;
     }
@@ -115,34 +130,33 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
         String sqlSentence = "DELETE FROM Prestamo_Libro_Profesor WHERE codPrestLibroProf = ?";
         System.out.println(sqlSentence);
         PreparedStatement pps;
-       
-        try{
-           pps = connection.getConnection().prepareStatement(sqlSentence);
-           
-           pps.setInt(1, pk);
-           
-           if(pps.executeUpdate() > 0){
-               System.out.println("Hizo el delete");
-               return true;
-           }
+
+        try {
+            pps = connection.getConnection().prepareStatement(sqlSentence);
+
+            pps.setInt(1, pk);
+
+            if (pps.executeUpdate() > 0) {
+                System.out.println("Hizo el delete");
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("No se pudo realizar el delete de prestamo libro");
         }
-        catch(SQLException e){
-           System.err.println("No se pudo realizar el delete de prestamo libro");
-        }
-       return false;
+        return false;
     }
 
     @Override
-    public List<PrestamoLibroProf> readAllDAO(){
+    public List<PrestamoLibroProf> readAllDAO() {
         PreparedStatement pps;
         ResultSet rs;
         ArrayList<PrestamoLibroProf> prestamos = new ArrayList();
-        
-        try{
+
+        try {
             pps = connection.getConnection().prepareStatement("SELECT * FROM Prestamo_Libro_Profesor");
             rs = pps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 PrestamoLibroProf prestamoTmp = new PrestamoLibroProf(rs.getString("codBarraLibro"), rs.getString("idProfesor"),
                         rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
                 prestamoTmp.setCodPrestamoLibroProf(rs.getInt("codPrestLibroProf"));
@@ -151,11 +165,9 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
                 prestamos.add(prestamoTmp);
             }
             rs.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("No se realizo el readAll correctamente en prestamo libro");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Problema en el readAll de prestamo libro");
         }
         return prestamos;
@@ -163,30 +175,23 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
 
     @Override
     public int readCodigoDAO(String codBarra) {
-        boolean existeRecurso = false;
         Statement stmt;
         ResultSet rs;
-        PrestamoLibroProf prestamo = null;
-
+        int codPrestamo = -1;
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Profesor WHERE codBarraLibro = " + codBarra + ";");
+            rs = stmt.executeQuery("SELECT codPrestLibroProf FROM Prestamo_Libro_Profesor WHERE codBarraLibro = " + codBarra + ";");
 
             while (rs.next()) {
-                prestamo = new PrestamoLibroProf(rs.getString("codBarraLibro"), rs.getString("idProfesor"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
-                prestamo.setCodPrestamoLibroProf(rs.getInt("codPrestLibroProf"));
-                prestamo.setNumRenovaciones(rs.getInt("numRenovaciones"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                codPrestamo = rs.getInt(1);
             }
             rs.close();
-            return 1;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "El préstamo de libro con ese codigo no existe");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
         }
-        return 0;
+        return codPrestamo;
     }
-    
+
 }

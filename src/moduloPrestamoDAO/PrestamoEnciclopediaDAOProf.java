@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.ConnectionBD;
-import moduloPrestamo.PrestamoEnciclopediaProf1;
+import moduloPrestamo.PrestamoEnciclopediaProf;
 
 /**
  * Clase que realiza el CRUD sobre las entidad prestamo_enciclopedia_profesor.
@@ -16,14 +16,14 @@ import moduloPrestamo.PrestamoEnciclopediaProf1;
  * Fecha creación:11/08/2019 
  * Fecha ultima modificación:11/08/2019
  */
-public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoEnciclopediaProf1>{
+public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoEnciclopediaProf>{
 
     public PrestamoEnciclopediaDAOProf(){
         connection = ConnectionBD.getInstance();
     }
     
     @Override
-    public boolean createDAO(PrestamoEnciclopediaProf1 prestamo) {
+    public boolean createDAO(PrestamoEnciclopediaProf prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Enciclopedia_Profesor (codBarraEnciclopedia, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
                              + " VALUES (?,?,?,?,?,?)";
        
@@ -50,17 +50,17 @@ public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoE
     }
 
     @Override
-    public PrestamoEnciclopediaProf1 readDAO(int codigo) {
+    public PrestamoEnciclopediaProf readDAO(int codigo) {
         Statement stmt;
         ResultSet rs;
-        PrestamoEnciclopediaProf1 prestamo = null;
+        PrestamoEnciclopediaProf prestamo = null;
         
         try{
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT * FROM Prestamo_Enciclopedia_Profesor WHERE codPrestEncProf = " + codigo +";");
            
             while(rs.next()){
-                prestamo = new PrestamoEnciclopediaProf1(rs.getString("codBarraEnciclopedia"), rs.getString("idProfesor"), 
+                prestamo = new PrestamoEnciclopediaProf(rs.getString("codBarraEnciclopedia"), rs.getString("idProfesor"), 
                                 rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
                 prestamo.setCodPrestamoEnciclopedioProf(rs.getInt("codPrestEncProf"));
                 prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
@@ -78,7 +78,7 @@ public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoE
     }
 
     @Override
-    public boolean updateDAO(PrestamoEnciclopediaProf1 prestamo) {
+    public boolean updateDAO(PrestamoEnciclopediaProf prestamo) {
         String sqlSentence = "UPDATE Prestamo_Enciclopedia_Profesor SET codBarraEnciclopedia = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
                              + "fechaDevolucion = ?,devuelto = ? WHERE codPrestEncProf = ?";
         PreparedStatement pps;
@@ -130,17 +130,17 @@ public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoE
     }
 
     @Override
-    public List<PrestamoEnciclopediaProf1> readAllDAO(){
+    public List<PrestamoEnciclopediaProf> readAllDAO(){
         PreparedStatement pps;
         ResultSet rs;
-        ArrayList<PrestamoEnciclopediaProf1> prestamos = new ArrayList();
+        ArrayList<PrestamoEnciclopediaProf> prestamos = new ArrayList();
         
         try{
             pps = connection.getConnection().prepareStatement("SELECT * FROM Prestamo_Enciclopedia_Profesor");
             rs = pps.executeQuery();
             
             while(rs.next()){
-                PrestamoEnciclopediaProf1 prestamoTmp = new PrestamoEnciclopediaProf1(rs.getString("codBarraEnciclopedia"), rs.getString("idProfesor"), 
+                PrestamoEnciclopediaProf prestamoTmp = new PrestamoEnciclopediaProf(rs.getString("codBarraEnciclopedia"), rs.getString("idProfesor"), 
                                 rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
                 prestamoTmp.setCodPrestamoEnciclopedioProf(rs.getInt("codPrestEncProf"));
                 prestamoTmp.setDevuelto(rs.getString("devuelto").charAt(0));
@@ -159,23 +159,17 @@ public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoE
 
     @Override
     public int readCodigoDAO(String codBarra) {
-        boolean existeRecurso = false;
         Statement stmt;
         ResultSet rs;
-        PrestamoEnciclopediaProf1 prestamo;
-        
+        int codPrestamo = -1;
         try{
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Enciclopedia_Profesor WHERE codBarraEnciclopedia = " + codBarra +";");
+            rs = stmt.executeQuery("SELECT codPrestEncProf FROM Prestamo_Enciclopedia_Profesor WHERE codBarraEnciclopedia = " + codBarra +";");
            
             while(rs.next()){
-                prestamo = new PrestamoEnciclopediaProf1(rs.getString("codBarraEnciclopedia"), rs.getString("idProfesor"), 
-                                rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
-                prestamo.setCodPrestamoEnciclopedioProf(rs.getInt("codPrestEncProf"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                codPrestamo = rs.getInt(1);
             }
             rs.close();
-            return 1;
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "El préstamo de enciclopedia con ese codigo no existe");
@@ -183,7 +177,7 @@ public class PrestamoEnciclopediaDAOProf extends PrestamoRecursoDAOAbs<PrestamoE
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
         }
-        return 0;
+        return codPrestamo;
     }
     
 }
