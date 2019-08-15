@@ -24,15 +24,14 @@ public class PrestamoLibroProfFab implements IPrestamo {
             if (libro != null) {
                 if (libro.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
-                    int diasDev = libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen") ? 15 : 2;
-
                     java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, diasDev);
+                    java.util.Date fechaDevolucion = new java.util.Date();
+                    int diasPrestamo = libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen") ? 15 : 2;
 
                     PrestamoLibroProf prestLibProf = new PrestamoLibroProf(codBarras, codUsuario, idBibliotecario,
                             new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
 
-                    PrestamoLibroDAOProf prestLibDAOProf = new PrestamoLibroDAOProf(diasDev);
+                    PrestamoLibroDAOProf prestLibDAOProf = new PrestamoLibroDAOProf(diasPrestamo);
                     prestLibDAOProf.createDAO(prestLibProf);
                     
                     System.out.println("Cambiando disponibilidad del libro...");
@@ -50,5 +49,9 @@ public class PrestamoLibroProfFab implements IPrestamo {
             System.out.println("error al generar el prestamo de libro de un profesor");
         }
         return false;
+    }
+    
+    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, java.util.Date fechaPrestamo, java.util.Date fechaDevolucion) {
+
     }
 }
