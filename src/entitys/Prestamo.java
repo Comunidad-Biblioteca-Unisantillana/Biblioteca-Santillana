@@ -7,50 +7,58 @@ import java.sql.Date;
  * @author Camilo
  */
 public class Prestamo{
-    private int codPrestamo;
-    private String titulo;
+    
+    private String codBarrasRecurso;
+    private char devuelto;
     private Date fechaPrestamo;
     private Date fechaDevolucion;
+    private String tituloRecurso;
 
-    public Prestamo(int codPrestamo, String titulo, Date fechaPrestamo, Date fechaDevolucion) {
-        this.codPrestamo = codPrestamo;
-        this.titulo = titulo;
+    public Prestamo(String codBarrasRecurso, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+        this.codBarrasRecurso = codBarrasRecurso;
+        this.tituloRecurso = tituloRecurso;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public int getCodPrestamo() {
-        return codPrestamo;
+    public String getCodBarrasRecurso() {
+        return codBarrasRecurso;
     }
 
-    public void setCodPrestamo(int codPrestamo) {
-        this.codPrestamo = codPrestamo;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public char getDevuelto() {
+        return devuelto;
     }
 
     public Date getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(Date fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
-    }
-
     public Date getFechaDevolucion() {
         return fechaDevolucion;
+    }
+
+    public String getTituloRecurso() {
+        return tituloRecurso;
+    }
+
+    public void setCodBarrasRecurso(String codBarrasRecurso) {
+        this.codBarrasRecurso = codBarrasRecurso;
+    }
+
+    public void setDevuelto(char devuelto) {
+        this.devuelto = devuelto;
+    }
+
+    public void setFechaPrestamo(Date fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 
     public void setFechaDevolucion(Date fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-   
-    
+    public void setTituloRecurso(String tituloRecurso) {
+        this.tituloRecurso = tituloRecurso;
+    }
+
 }
