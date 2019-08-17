@@ -39,14 +39,14 @@ public class DatosFichaEnciclopediaController implements IDatosFichaTecnicaContr
         TF[3].setText(enciclopedia.getPaispublicacion());
         TF[4].setText(formatoFecha.format(enciclopedia.getFechapublicacion()));
         TF[5].setText(enciclopedia.getEditorial());
-        TF[6].setText(String.valueOf(enciclopedia.getNumedicion()));
+        TF[6].setText(String.valueOf("enciclopedia.getNumedicion()"));
         TF[7].setText(String.valueOf(enciclopedia.getNumpaginas()));
         TF[8].setText(enciclopedia.getCubierta());
         TF[9].setText(enciclopedia.getDimensiones());
         TF[10].setText(enciclopedia.getSignatura());
         TF[11].setText(enciclopedia.getDisponibilidad());
         TF[12].setText(enciclopedia.getEstadofisico());
-        TF[13].setText(enciclopedia.getArea());
+        TF[13].setText("enciclopedia.getArea()");
         TF[14].setText(enciclopedia.getCodcategoriacoleccion().getNombrecol());
 
         QueryControl.getInstance().consultarAutorRecurso(enciclopedia.getCodbarraenciclopedia(), "enciclopedia");

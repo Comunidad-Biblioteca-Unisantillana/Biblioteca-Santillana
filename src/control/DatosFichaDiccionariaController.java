@@ -2,7 +2,6 @@ package control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import control.QueryControl;
 import entitys.Diccionario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,7 +37,7 @@ public class DatosFichaDiccionariaController implements IDatosFichaTecnicaContro
         TF[8].setText(diccionario.getSignatura());
         TF[9].setText(diccionario.getDisponibilidad());
         TF[10].setText(diccionario.getEstadofisico());
-        TF[11].setText(diccionario.getArea());
+        
         TF[12].setText(diccionario.getCodcategoriacoleccion().getNombrecol());  
         
         QueryControl.getInstance().consultarAutorRecurso(diccionario.getCodbarradiccionario(), "diccionario");

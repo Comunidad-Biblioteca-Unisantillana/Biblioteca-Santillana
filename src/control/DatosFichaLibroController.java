@@ -46,7 +46,7 @@ public class DatosFichaLibroController implements IDatosFichaTecnicaController {
         TF[10].setText(libro.getSignatura());
         TF[11].setText(libro.getDisponibilidad());
         TF[12].setText(libro.getEstadofisico());
-        TF[13].setText(libro.getArea());
+        TF[13].setText("libro.getArea()");
         TF[14].setText(libro.getCodcategoriacoleccion().getNombrecol());
 
         QueryControl.getInstance().consultarAutorRecurso(libro.getCodbarralibro(), "libro");

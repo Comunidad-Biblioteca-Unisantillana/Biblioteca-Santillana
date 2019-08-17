@@ -27,7 +27,7 @@ public class PrestamoMapaDAOEst extends PrestamoRecursoDAOAbs<PrestamoMapaEst>{
     @Override
     public boolean createDAO(PrestamoMapaEst prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Mapa_Estudiante (codBarraMapa, codEstudiante, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
-                + " VALUES (?,?,?,?,?,?)";
+                + " VALUES (?,?,?,?,?,'No')";
 
         PreparedStatement pps;
 
@@ -38,7 +38,6 @@ public class PrestamoMapaDAOEst extends PrestamoRecursoDAOAbs<PrestamoMapaEst>{
             pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
-            pps.setObject(6, prestamo.getDevuelto());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Registro creado");
@@ -65,7 +64,7 @@ public class PrestamoMapaDAOEst extends PrestamoRecursoDAOAbs<PrestamoMapaEst>{
                 prestamo = new PrestamoMapaEst(rs.getString("codBarraMapa"), rs.getString("codEstudiante"), 
                                 rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
                 prestamo.setCodPrestamoMapaEst(rs.getInt("codPrestMapaEst"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                prestamo.setDevuelto((char) rs.getCharacterStream("devuelto").read());
             }
             rs.close();
             return prestamo;

@@ -1,9 +1,13 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "periodico")
@@ -39,11 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Periodico.findByDisponibilidad", query = "SELECT p FROM Periodico p WHERE p.disponibilidad = :disponibilidad")
     , @NamedQuery(name = "Periodico.findByEstadofisico", query = "SELECT p FROM Periodico p WHERE p.estadofisico = :estadofisico")})
 public class Periodico implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraperiodico")
-    private Collection<PrestamoPeriodicoEstudiante> prestamoPeriodicoEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraperiodico")
-    private Collection<PrestamoPeriodicoProfesor> prestamoPeriodicoProfesorCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -201,24 +200,6 @@ public class Periodico implements Serializable {
     @Override
     public String toString() {
         return "entitys.Periodico[ codbarraperiodico=" + codbarraperiodico + " ]";
-    }
-
-    @XmlTransient
-    public Collection<PrestamoPeriodicoEstudiante> getPrestamoPeriodicoEstudianteCollection() {
-        return prestamoPeriodicoEstudianteCollection;
-    }
-
-    public void setPrestamoPeriodicoEstudianteCollection(Collection<PrestamoPeriodicoEstudiante> prestamoPeriodicoEstudianteCollection) {
-        this.prestamoPeriodicoEstudianteCollection = prestamoPeriodicoEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoPeriodicoProfesor> getPrestamoPeriodicoProfesorCollection() {
-        return prestamoPeriodicoProfesorCollection;
-    }
-
-    public void setPrestamoPeriodicoProfesorCollection(Collection<PrestamoPeriodicoProfesor> prestamoPeriodicoProfesorCollection) {
-        this.prestamoPeriodicoProfesorCollection = prestamoPeriodicoProfesorCollection;
     }
     
 }

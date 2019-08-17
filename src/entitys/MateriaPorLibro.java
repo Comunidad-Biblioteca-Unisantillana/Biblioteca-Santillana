@@ -19,43 +19,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "materia_por_libro")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MateriaPorLibro.findAll", query = "SELECT m FROM MateriaPorLibro m")
-    , @NamedQuery(name = "MateriaPorLibro.findByCodmaterialibro", query = "SELECT m FROM MateriaPorLibro m WHERE m.codmaterialibro = :codmaterialibro")
-    , @NamedQuery(name = "MateriaPorLibro.findByNombremateria", query = "SELECT m FROM MateriaPorLibro m WHERE m.nombremateria = :nombremateria")})
+    , @NamedQuery(name = "MateriaPorLibro.findByCodmaterialibro", query = "SELECT m FROM MateriaPorLibro m WHERE m.codmaterialibro = :codmaterialibro")})
 public class MateriaPorLibro implements Serializable {
-
-    @JoinColumn(name = "codmateria", referencedColumnName = "codmateria")
-    @ManyToOne(optional = false)
-    private Materia codmateria;
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "codmaterialibro")
     private String codmaterialibro;
-    @Basic(optional = false)
-    @Column(name = "nombremateria")
-    private String nombremateria;
     @JoinColumn(name = "codbarralibro", referencedColumnName = "codbarralibro")
     @ManyToOne(optional = false)
     private Libro codbarralibro;
+    @JoinColumn(name = "codmateria", referencedColumnName = "codmateria")
+    @ManyToOne(optional = false)
+    private Materia codmateria;
 
     public MateriaPorLibro() {
     }
 
     public MateriaPorLibro(String codmaterialibro) {
         this.codmaterialibro = codmaterialibro;
-    }
-
-    public MateriaPorLibro(String codmaterialibro, String nombremateria) {
-        this.codmaterialibro = codmaterialibro;
-        this.nombremateria = nombremateria;
     }
 
     public String getCodmaterialibro() {
@@ -66,20 +56,20 @@ public class MateriaPorLibro implements Serializable {
         this.codmaterialibro = codmaterialibro;
     }
 
-    public String getNombremateria() {
-        return nombremateria;
-    }
-
-    public void setNombremateria(String nombremateria) {
-        this.nombremateria = nombremateria;
-    }
-
     public Libro getCodbarralibro() {
         return codbarralibro;
     }
 
     public void setCodbarralibro(Libro codbarralibro) {
         this.codbarralibro = codbarralibro;
+    }
+
+    public Materia getCodmateria() {
+        return codmateria;
+    }
+
+    public void setCodmateria(Materia codmateria) {
+        this.codmateria = codmateria;
     }
 
     @Override
@@ -105,14 +95,6 @@ public class MateriaPorLibro implements Serializable {
     @Override
     public String toString() {
         return "entitys.MateriaPorLibro[ codmaterialibro=" + codmaterialibro + " ]";
-    }
-
-    public Materia getCodmateria() {
-        return codmateria;
-    }
-
-    public void setCodmateria(Materia codmateria) {
-        this.codmateria = codmateria;
     }
     
 }

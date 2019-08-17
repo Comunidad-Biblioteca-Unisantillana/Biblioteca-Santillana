@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "categoria_coleccion")
@@ -32,18 +32,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CategoriaColeccion.findByNombrecol", query = "SELECT c FROM CategoriaColeccion c WHERE c.nombrecol = :nombrecol")
     , @NamedQuery(name = "CategoriaColeccion.findByDiasprestamo", query = "SELECT c FROM CategoriaColeccion c WHERE c.diasprestamo = :diasprestamo")
     , @NamedQuery(name = "CategoriaColeccion.findByPrestamoexterno", query = "SELECT c FROM CategoriaColeccion c WHERE c.prestamoexterno = :prestamoexterno")
-    , @NamedQuery(name = "CategoriaColeccion.findByPermitereservas", query = "SELECT c FROM CategoriaColeccion c WHERE c.permitereservas = :permitereservas")})
+    , @NamedQuery(name = "CategoriaColeccion.findByPermitereservas", query = "SELECT c FROM CategoriaColeccion c WHERE c.permitereservas = :permitereservas")
+    , @NamedQuery(name = "CategoriaColeccion.findByCantmaxrenovacionesest", query = "SELECT c FROM CategoriaColeccion c WHERE c.cantmaxrenovacionesest = :cantmaxrenovacionesest")
+    , @NamedQuery(name = "CategoriaColeccion.findByCantmaxrenovacionesprof", query = "SELECT c FROM CategoriaColeccion c WHERE c.cantmaxrenovacionesprof = :cantmaxrenovacionesprof")
+    , @NamedQuery(name = "CategoriaColeccion.findByPermiterenovaciones", query = "SELECT c FROM CategoriaColeccion c WHERE c.permiterenovaciones = :permiterenovaciones")})
 public class CategoriaColeccion implements Serializable {
-
-    @Basic(optional = false)
-    @Column(name = "cantmaxrenovacionesest")
-    private int cantmaxrenovacionesest;
-    @Basic(optional = false)
-    @Column(name = "cantmaxrenovacionesprof")
-    private int cantmaxrenovacionesprof;
-    @Basic(optional = false)
-    @Column(name = "permiterenovaciones")
-    private boolean permiterenovaciones;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,18 +55,27 @@ public class CategoriaColeccion implements Serializable {
     @Basic(optional = false)
     @Column(name = "permitereservas")
     private boolean permitereservas;
+    @Basic(optional = false)
+    @Column(name = "cantmaxrenovacionesest")
+    private int cantmaxrenovacionesest;
+    @Basic(optional = false)
+    @Column(name = "cantmaxrenovacionesprof")
+    private int cantmaxrenovacionesprof;
+    @Basic(optional = false)
+    @Column(name = "permiterenovaciones")
+    private boolean permiterenovaciones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
+    private List<Enciclopedia> enciclopediaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
     private List<Libro> libroList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
     private List<Revista> revistaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
+    private List<Mapa> mapaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
     private List<Diccionario> diccionarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
     private List<Periodico> periodicoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
-    private List<Mapa> mapaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codcategoriacoleccion")
-    private List<Enciclopedia> enciclopediaList;
 
     public CategoriaColeccion() {
     }
@@ -82,12 +84,15 @@ public class CategoriaColeccion implements Serializable {
         this.codcategoriacoleccion = codcategoriacoleccion;
     }
 
-    public CategoriaColeccion(String codcategoriacoleccion, String nombrecol, int diasprestamo, boolean prestamoexterno, boolean permitereservas) {
+    public CategoriaColeccion(String codcategoriacoleccion, String nombrecol, int diasprestamo, boolean prestamoexterno, boolean permitereservas, int cantmaxrenovacionesest, int cantmaxrenovacionesprof, boolean permiterenovaciones) {
         this.codcategoriacoleccion = codcategoriacoleccion;
         this.nombrecol = nombrecol;
         this.diasprestamo = diasprestamo;
         this.prestamoexterno = prestamoexterno;
         this.permitereservas = permitereservas;
+        this.cantmaxrenovacionesest = cantmaxrenovacionesest;
+        this.cantmaxrenovacionesprof = cantmaxrenovacionesprof;
+        this.permiterenovaciones = permiterenovaciones;
     }
 
     public String getCodcategoriacoleccion() {
@@ -130,6 +135,39 @@ public class CategoriaColeccion implements Serializable {
         this.permitereservas = permitereservas;
     }
 
+    public int getCantmaxrenovacionesest() {
+        return cantmaxrenovacionesest;
+    }
+
+    public void setCantmaxrenovacionesest(int cantmaxrenovacionesest) {
+        this.cantmaxrenovacionesest = cantmaxrenovacionesest;
+    }
+
+    public int getCantmaxrenovacionesprof() {
+        return cantmaxrenovacionesprof;
+    }
+
+    public void setCantmaxrenovacionesprof(int cantmaxrenovacionesprof) {
+        this.cantmaxrenovacionesprof = cantmaxrenovacionesprof;
+    }
+
+    public boolean getPermiterenovaciones() {
+        return permiterenovaciones;
+    }
+
+    public void setPermiterenovaciones(boolean permiterenovaciones) {
+        this.permiterenovaciones = permiterenovaciones;
+    }
+
+    @XmlTransient
+    public List<Enciclopedia> getEnciclopediaList() {
+        return enciclopediaList;
+    }
+
+    public void setEnciclopediaList(List<Enciclopedia> enciclopediaList) {
+        this.enciclopediaList = enciclopediaList;
+    }
+
     @XmlTransient
     public List<Libro> getLibroList() {
         return libroList;
@@ -149,6 +187,15 @@ public class CategoriaColeccion implements Serializable {
     }
 
     @XmlTransient
+    public List<Mapa> getMapaList() {
+        return mapaList;
+    }
+
+    public void setMapaList(List<Mapa> mapaList) {
+        this.mapaList = mapaList;
+    }
+
+    @XmlTransient
     public List<Diccionario> getDiccionarioList() {
         return diccionarioList;
     }
@@ -164,24 +211,6 @@ public class CategoriaColeccion implements Serializable {
 
     public void setPeriodicoList(List<Periodico> periodicoList) {
         this.periodicoList = periodicoList;
-    }
-
-    @XmlTransient
-    public List<Mapa> getMapaList() {
-        return mapaList;
-    }
-
-    public void setMapaList(List<Mapa> mapaList) {
-        this.mapaList = mapaList;
-    }
-
-    @XmlTransient
-    public List<Enciclopedia> getEnciclopediaList() {
-        return enciclopediaList;
-    }
-
-    public void setEnciclopediaList(List<Enciclopedia> enciclopediaList) {
-        this.enciclopediaList = enciclopediaList;
     }
 
     @Override
@@ -207,30 +236,6 @@ public class CategoriaColeccion implements Serializable {
     @Override
     public String toString() {
         return "entitys.CategoriaColeccion[ codcategoriacoleccion=" + codcategoriacoleccion + " ]";
-    }
-
-    public int getCantmaxrenovacionesest() {
-        return cantmaxrenovacionesest;
-    }
-
-    public void setCantmaxrenovacionesest(int cantmaxrenovacionesest) {
-        this.cantmaxrenovacionesest = cantmaxrenovacionesest;
-    }
-
-    public int getCantmaxrenovacionesprof() {
-        return cantmaxrenovacionesprof;
-    }
-
-    public void setCantmaxrenovacionesprof(int cantmaxrenovacionesprof) {
-        this.cantmaxrenovacionesprof = cantmaxrenovacionesprof;
-    }
-
-    public boolean getPermiterenovaciones() {
-        return permiterenovaciones;
-    }
-
-    public void setPermiterenovaciones(boolean permiterenovaciones) {
-        this.permiterenovaciones = permiterenovaciones;
     }
     
 }

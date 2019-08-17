@@ -6,8 +6,8 @@
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,30 +51,6 @@ public class ControlPrecioMulta implements Serializable {
     @Column(name = "fechaactualizacion")
     @Temporal(TemporalType.DATE)
     private Date fechaactualizacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaRevistaProfesor> multaRevistaProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaLibroEstudiante> multaLibroEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaMapaEstudiante> multaMapaEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaDiccionarioProfesor> multaDiccionarioProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaEnciclopediaEstudiante> multaEnciclopediaEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaRevistaEstudiante> multaRevistaEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaMapaProfesor> multaMapaProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaEnciclopediaProfesor> multaEnciclopediaProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaPeriodicoProfesor> multaPeriodicoProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaPeriodicoEstudiante> multaPeriodicoEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaLibroProfesor> multaLibroProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codpreciomulta")
-    private Collection<MultaDiccionarioEstudiante> multaDiccionarioEstudianteCollection;
 
     public ControlPrecioMulta() {
     }
@@ -113,114 +89,6 @@ public class ControlPrecioMulta implements Serializable {
         this.fechaactualizacion = fechaactualizacion;
     }
 
-    @XmlTransient
-    public Collection<MultaRevistaProfesor> getMultaRevistaProfesorCollection() {
-        return multaRevistaProfesorCollection;
-    }
-
-    public void setMultaRevistaProfesorCollection(Collection<MultaRevistaProfesor> multaRevistaProfesorCollection) {
-        this.multaRevistaProfesorCollection = multaRevistaProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaLibroEstudiante> getMultaLibroEstudianteCollection() {
-        return multaLibroEstudianteCollection;
-    }
-
-    public void setMultaLibroEstudianteCollection(Collection<MultaLibroEstudiante> multaLibroEstudianteCollection) {
-        this.multaLibroEstudianteCollection = multaLibroEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaMapaEstudiante> getMultaMapaEstudianteCollection() {
-        return multaMapaEstudianteCollection;
-    }
-
-    public void setMultaMapaEstudianteCollection(Collection<MultaMapaEstudiante> multaMapaEstudianteCollection) {
-        this.multaMapaEstudianteCollection = multaMapaEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaDiccionarioProfesor> getMultaDiccionarioProfesorCollection() {
-        return multaDiccionarioProfesorCollection;
-    }
-
-    public void setMultaDiccionarioProfesorCollection(Collection<MultaDiccionarioProfesor> multaDiccionarioProfesorCollection) {
-        this.multaDiccionarioProfesorCollection = multaDiccionarioProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaEnciclopediaEstudiante> getMultaEnciclopediaEstudianteCollection() {
-        return multaEnciclopediaEstudianteCollection;
-    }
-
-    public void setMultaEnciclopediaEstudianteCollection(Collection<MultaEnciclopediaEstudiante> multaEnciclopediaEstudianteCollection) {
-        this.multaEnciclopediaEstudianteCollection = multaEnciclopediaEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaRevistaEstudiante> getMultaRevistaEstudianteCollection() {
-        return multaRevistaEstudianteCollection;
-    }
-
-    public void setMultaRevistaEstudianteCollection(Collection<MultaRevistaEstudiante> multaRevistaEstudianteCollection) {
-        this.multaRevistaEstudianteCollection = multaRevistaEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaMapaProfesor> getMultaMapaProfesorCollection() {
-        return multaMapaProfesorCollection;
-    }
-
-    public void setMultaMapaProfesorCollection(Collection<MultaMapaProfesor> multaMapaProfesorCollection) {
-        this.multaMapaProfesorCollection = multaMapaProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaEnciclopediaProfesor> getMultaEnciclopediaProfesorCollection() {
-        return multaEnciclopediaProfesorCollection;
-    }
-
-    public void setMultaEnciclopediaProfesorCollection(Collection<MultaEnciclopediaProfesor> multaEnciclopediaProfesorCollection) {
-        this.multaEnciclopediaProfesorCollection = multaEnciclopediaProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaPeriodicoProfesor> getMultaPeriodicoProfesorCollection() {
-        return multaPeriodicoProfesorCollection;
-    }
-
-    public void setMultaPeriodicoProfesorCollection(Collection<MultaPeriodicoProfesor> multaPeriodicoProfesorCollection) {
-        this.multaPeriodicoProfesorCollection = multaPeriodicoProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaPeriodicoEstudiante> getMultaPeriodicoEstudianteCollection() {
-        return multaPeriodicoEstudianteCollection;
-    }
-
-    public void setMultaPeriodicoEstudianteCollection(Collection<MultaPeriodicoEstudiante> multaPeriodicoEstudianteCollection) {
-        this.multaPeriodicoEstudianteCollection = multaPeriodicoEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaLibroProfesor> getMultaLibroProfesorCollection() {
-        return multaLibroProfesorCollection;
-    }
-
-    public void setMultaLibroProfesorCollection(Collection<MultaLibroProfesor> multaLibroProfesorCollection) {
-        this.multaLibroProfesorCollection = multaLibroProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<MultaDiccionarioEstudiante> getMultaDiccionarioEstudianteCollection() {
-        return multaDiccionarioEstudianteCollection;
-    }
-
-    public void setMultaDiccionarioEstudianteCollection(Collection<MultaDiccionarioEstudiante> multaDiccionarioEstudianteCollection) {
-        this.multaDiccionarioEstudianteCollection = multaDiccionarioEstudianteCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -243,7 +111,7 @@ public class ControlPrecioMulta implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.ControlPrecioMulta[ codpreciomulta=" + codpreciomulta + " ]";
+        return "entitys.ControlPrecioMulta[ codpreciomulta=" + codpreciomulta + " ]";
     }
     
 }

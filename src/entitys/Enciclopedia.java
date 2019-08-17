@@ -6,7 +6,6 @@
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "enciclopedia")
@@ -41,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Enciclopedia.findByPaispublicacion", query = "SELECT e FROM Enciclopedia e WHERE e.paispublicacion = :paispublicacion")
     , @NamedQuery(name = "Enciclopedia.findByFechapublicacion", query = "SELECT e FROM Enciclopedia e WHERE e.fechapublicacion = :fechapublicacion")
     , @NamedQuery(name = "Enciclopedia.findByEditorial", query = "SELECT e FROM Enciclopedia e WHERE e.editorial = :editorial")
-    , @NamedQuery(name = "Enciclopedia.findByNumedicion", query = "SELECT e FROM Enciclopedia e WHERE e.numedicion = :numedicion")
+    , @NamedQuery(name = "Enciclopedia.findByNumvolumen", query = "SELECT e FROM Enciclopedia e WHERE e.numvolumen = :numvolumen")
     , @NamedQuery(name = "Enciclopedia.findByNumpaginas", query = "SELECT e FROM Enciclopedia e WHERE e.numpaginas = :numpaginas")
     , @NamedQuery(name = "Enciclopedia.findByCubierta", query = "SELECT e FROM Enciclopedia e WHERE e.cubierta = :cubierta")
     , @NamedQuery(name = "Enciclopedia.findByDimensiones", query = "SELECT e FROM Enciclopedia e WHERE e.dimensiones = :dimensiones")
@@ -49,22 +48,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Enciclopedia.findByResumen", query = "SELECT e FROM Enciclopedia e WHERE e.resumen = :resumen")
     , @NamedQuery(name = "Enciclopedia.findBySignatura", query = "SELECT e FROM Enciclopedia e WHERE e.signatura = :signatura")
     , @NamedQuery(name = "Enciclopedia.findByDisponibilidad", query = "SELECT e FROM Enciclopedia e WHERE e.disponibilidad = :disponibilidad")
-    , @NamedQuery(name = "Enciclopedia.findByEstadofisico", query = "SELECT e FROM Enciclopedia e WHERE e.estadofisico = :estadofisico")
-    , @NamedQuery(name = "Enciclopedia.findByArea", query = "SELECT e FROM Enciclopedia e WHERE e.area = :area")})
+    , @NamedQuery(name = "Enciclopedia.findByEstadofisico", query = "SELECT e FROM Enciclopedia e WHERE e.estadofisico = :estadofisico")})
 public class Enciclopedia implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
-    private Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
-    private Collection<PrestamoEnciclopediaProfesor> prestamoEnciclopediaProfesorCollection;
-
-    @Basic(optional = false)
-    @Column(name = "numvolumen")
-    private int numvolumen;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
-    private Collection<MateriaPorEnciclopedia> materiaPorEnciclopediaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
-    private List<AutorPorEnciclopedia> autorPorEnciclopediaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -91,8 +76,8 @@ public class Enciclopedia implements Serializable {
     @Column(name = "editorial")
     private String editorial;
     @Basic(optional = false)
-    @Column(name = "numedicion")
-    private int numedicion;
+    @Column(name = "numvolumen")
+    private int numvolumen;
     @Basic(optional = false)
     @Column(name = "numpaginas")
     private int numpaginas;
@@ -117,12 +102,13 @@ public class Enciclopedia implements Serializable {
     @Basic(optional = false)
     @Column(name = "estadofisico")
     private String estadofisico;
-    @Basic(optional = false)
-    @Column(name = "area")
-    private String area;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
+    private List<MateriaPorEnciclopedia> materiaPorEnciclopediaList;
     @JoinColumn(name = "codcategoriacoleccion", referencedColumnName = "codcategoriacoleccion")
     @ManyToOne(optional = false)
     private CategoriaColeccion codcategoriacoleccion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarraenciclopedia")
+    private List<AutorPorEnciclopedia> autorPorEnciclopediaList;
 
     public Enciclopedia() {
     }
@@ -131,7 +117,7 @@ public class Enciclopedia implements Serializable {
         this.codbarraenciclopedia = codbarraenciclopedia;
     }
 
-    public Enciclopedia(String codbarraenciclopedia, String isbn, String titulo, String idioma, String paispublicacion, Date fechapublicacion, String editorial, int numedicion, int numpaginas, String cubierta, String dimensiones, String nota, String resumen, String signatura, String disponibilidad, String estadofisico, String area) {
+    public Enciclopedia(String codbarraenciclopedia, String isbn, String titulo, String idioma, String paispublicacion, Date fechapublicacion, String editorial, int numvolumen, int numpaginas, String cubierta, String dimensiones, String nota, String resumen, String signatura, String disponibilidad, String estadofisico) {
         this.codbarraenciclopedia = codbarraenciclopedia;
         this.isbn = isbn;
         this.titulo = titulo;
@@ -139,7 +125,7 @@ public class Enciclopedia implements Serializable {
         this.paispublicacion = paispublicacion;
         this.fechapublicacion = fechapublicacion;
         this.editorial = editorial;
-        this.numedicion = numedicion;
+        this.numvolumen = numvolumen;
         this.numpaginas = numpaginas;
         this.cubierta = cubierta;
         this.dimensiones = dimensiones;
@@ -148,7 +134,6 @@ public class Enciclopedia implements Serializable {
         this.signatura = signatura;
         this.disponibilidad = disponibilidad;
         this.estadofisico = estadofisico;
-        this.area = area;
     }
 
     public String getCodbarraenciclopedia() {
@@ -207,12 +192,12 @@ public class Enciclopedia implements Serializable {
         this.editorial = editorial;
     }
 
-    public int getNumedicion() {
-        return numedicion;
+    public int getNumvolumen() {
+        return numvolumen;
     }
 
-    public void setNumedicion(int numedicion) {
-        this.numedicion = numedicion;
+    public void setNumvolumen(int numvolumen) {
+        this.numvolumen = numvolumen;
     }
 
     public int getNumpaginas() {
@@ -279,12 +264,13 @@ public class Enciclopedia implements Serializable {
         this.estadofisico = estadofisico;
     }
 
-    public String getArea() {
-        return area;
+    @XmlTransient
+    public List<MateriaPorEnciclopedia> getMateriaPorEnciclopediaList() {
+        return materiaPorEnciclopediaList;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setMateriaPorEnciclopediaList(List<MateriaPorEnciclopedia> materiaPorEnciclopediaList) {
+        this.materiaPorEnciclopediaList = materiaPorEnciclopediaList;
     }
 
     public CategoriaColeccion getCodcategoriacoleccion() {
@@ -293,6 +279,15 @@ public class Enciclopedia implements Serializable {
 
     public void setCodcategoriacoleccion(CategoriaColeccion codcategoriacoleccion) {
         this.codcategoriacoleccion = codcategoriacoleccion;
+    }
+
+    @XmlTransient
+    public List<AutorPorEnciclopedia> getAutorPorEnciclopediaList() {
+        return autorPorEnciclopediaList;
+    }
+
+    public void setAutorPorEnciclopediaList(List<AutorPorEnciclopedia> autorPorEnciclopediaList) {
+        this.autorPorEnciclopediaList = autorPorEnciclopediaList;
     }
 
     @Override
@@ -318,50 +313,6 @@ public class Enciclopedia implements Serializable {
     @Override
     public String toString() {
         return "entitys.Enciclopedia[ codbarraenciclopedia=" + codbarraenciclopedia + " ]";
-    }
-
-    @XmlTransient
-    public List<AutorPorEnciclopedia> getAutorPorEnciclopediaList() {
-        return autorPorEnciclopediaList;
-    }
-
-    public void setAutorPorEnciclopediaList(List<AutorPorEnciclopedia> autorPorEnciclopediaList) {
-        this.autorPorEnciclopediaList = autorPorEnciclopediaList;
-    }
-
-    public int getNumvolumen() {
-        return numvolumen;
-    }
-
-    public void setNumvolumen(int numvolumen) {
-        this.numvolumen = numvolumen;
-    }
-
-    @XmlTransient
-    public Collection<MateriaPorEnciclopedia> getMateriaPorEnciclopediaCollection() {
-        return materiaPorEnciclopediaCollection;
-    }
-
-    public void setMateriaPorEnciclopediaCollection(Collection<MateriaPorEnciclopedia> materiaPorEnciclopediaCollection) {
-        this.materiaPorEnciclopediaCollection = materiaPorEnciclopediaCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoEnciclopediaEstudiante> getPrestamoEnciclopediaEstudianteCollection() {
-        return prestamoEnciclopediaEstudianteCollection;
-    }
-
-    public void setPrestamoEnciclopediaEstudianteCollection(Collection<PrestamoEnciclopediaEstudiante> prestamoEnciclopediaEstudianteCollection) {
-        this.prestamoEnciclopediaEstudianteCollection = prestamoEnciclopediaEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoEnciclopediaProfesor> getPrestamoEnciclopediaProfesorCollection() {
-        return prestamoEnciclopediaProfesorCollection;
-    }
-
-    public void setPrestamoEnciclopediaProfesorCollection(Collection<PrestamoEnciclopediaProfesor> prestamoEnciclopediaProfesorCollection) {
-        this.prestamoEnciclopediaProfesorCollection = prestamoEnciclopediaProfesorCollection;
     }
     
 }

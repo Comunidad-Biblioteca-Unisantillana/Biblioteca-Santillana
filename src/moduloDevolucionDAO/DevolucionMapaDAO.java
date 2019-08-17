@@ -38,7 +38,7 @@ public class DevolucionMapaDAO implements InterfaceCRUD <DevolucionMapa>{
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setInt(1, devolucion.getCodPrestamoMapa());
             pps.setString(2, devolucion.getIdBibliotecario());
-            pps.setDate(3, (Date) devolucion.getFechaDevolucion()); 
+            pps.setDate(3, devolucion.getFechaDevolucion()); 
             pps.setString(4, devolucion.getEstadoDevolucion());
             
             if(pps.executeUpdate() > 0){

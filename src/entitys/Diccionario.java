@@ -6,7 +6,6 @@
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "diccionario")
@@ -48,17 +47,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Diccionario.findBySignatura", query = "SELECT d FROM Diccionario d WHERE d.signatura = :signatura")
     , @NamedQuery(name = "Diccionario.findByDisponibilidad", query = "SELECT d FROM Diccionario d WHERE d.disponibilidad = :disponibilidad")
     , @NamedQuery(name = "Diccionario.findByEstadofisico", query = "SELECT d FROM Diccionario d WHERE d.estadofisico = :estadofisico")
-    , @NamedQuery(name = "Diccionario.findByArea", query = "SELECT d FROM Diccionario d WHERE d.area = :area")})
+    , @NamedQuery(name = "Diccionario.findByDimensiones", query = "SELECT d FROM Diccionario d WHERE d.dimensiones = :dimensiones")})
 public class Diccionario implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
-    private Collection<PrestamoDiccionarioEstudiante> prestamoDiccionarioEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
-    private Collection<PrestamoDiccionarioProfesor> prestamoDiccionarioProfesorCollection;
-
-    @Basic(optional = false)
-    @Column(name = "dimensiones")
-    private String dimensiones;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -106,15 +96,15 @@ public class Diccionario implements Serializable {
     @Column(name = "estadofisico")
     private String estadofisico;
     @Basic(optional = false)
-    @Column(name = "area")
-    private String area;
+    @Column(name = "dimensiones")
+    private String dimensiones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
+    private List<MateriaPorDiccionario> materiaPorDiccionarioList;
     @JoinColumn(name = "codcategoriacoleccion", referencedColumnName = "codcategoriacoleccion")
     @ManyToOne(optional = false)
     private CategoriaColeccion codcategoriacoleccion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
     private List<AutorPorDiccionario> autorPorDiccionarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarradiccionario")
-    private List<MateriaPorDiccionario> materiaPorDiccionarioList;
 
     public Diccionario() {
     }
@@ -123,7 +113,7 @@ public class Diccionario implements Serializable {
         this.codbarradiccionario = codbarradiccionario;
     }
 
-    public Diccionario(String codbarradiccionario, String isbn, String titulo, String idioma, String paispublicacion, Date fechapublicacion, String editorial, int numpaginas, String cubierta, String nota, String resumen, String signatura, String disponibilidad, String estadofisico, String area) {
+    public Diccionario(String codbarradiccionario, String isbn, String titulo, String idioma, String paispublicacion, Date fechapublicacion, String editorial, int numpaginas, String cubierta, String nota, String resumen, String signatura, String disponibilidad, String estadofisico, String dimensiones) {
         this.codbarradiccionario = codbarradiccionario;
         this.isbn = isbn;
         this.titulo = titulo;
@@ -138,7 +128,7 @@ public class Diccionario implements Serializable {
         this.signatura = signatura;
         this.disponibilidad = disponibilidad;
         this.estadofisico = estadofisico;
-        this.area = area;
+        this.dimensiones = dimensiones;
     }
 
     public String getCodbarradiccionario() {
@@ -253,12 +243,21 @@ public class Diccionario implements Serializable {
         this.estadofisico = estadofisico;
     }
 
-    public String getArea() {
-        return area;
+    public String getDimensiones() {
+        return dimensiones;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setDimensiones(String dimensiones) {
+        this.dimensiones = dimensiones;
+    }
+
+    @XmlTransient
+    public List<MateriaPorDiccionario> getMateriaPorDiccionarioList() {
+        return materiaPorDiccionarioList;
+    }
+
+    public void setMateriaPorDiccionarioList(List<MateriaPorDiccionario> materiaPorDiccionarioList) {
+        this.materiaPorDiccionarioList = materiaPorDiccionarioList;
     }
 
     public CategoriaColeccion getCodcategoriacoleccion() {
@@ -276,15 +275,6 @@ public class Diccionario implements Serializable {
 
     public void setAutorPorDiccionarioList(List<AutorPorDiccionario> autorPorDiccionarioList) {
         this.autorPorDiccionarioList = autorPorDiccionarioList;
-    }
-
-    @XmlTransient
-    public List<MateriaPorDiccionario> getMateriaPorDiccionarioList() {
-        return materiaPorDiccionarioList;
-    }
-
-    public void setMateriaPorDiccionarioList(List<MateriaPorDiccionario> materiaPorDiccionarioList) {
-        this.materiaPorDiccionarioList = materiaPorDiccionarioList;
     }
 
     @Override
@@ -311,30 +301,5 @@ public class Diccionario implements Serializable {
     public String toString() {
         return "entitys.Diccionario[ codbarradiccionario=" + codbarradiccionario + " ]";
     }
-
-    public String getDimensiones() {
-        return dimensiones;
-    }
-
-    public void setDimensiones(String dimensiones) {
-        this.dimensiones = dimensiones;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoDiccionarioEstudiante> getPrestamoDiccionarioEstudianteCollection() {
-        return prestamoDiccionarioEstudianteCollection;
-    }
-
-    public void setPrestamoDiccionarioEstudianteCollection(Collection<PrestamoDiccionarioEstudiante> prestamoDiccionarioEstudianteCollection) {
-        this.prestamoDiccionarioEstudianteCollection = prestamoDiccionarioEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoDiccionarioProfesor> getPrestamoDiccionarioProfesorCollection() {
-        return prestamoDiccionarioProfesorCollection;
-    }
-
-    public void setPrestamoDiccionarioProfesorCollection(Collection<PrestamoDiccionarioProfesor> prestamoDiccionarioProfesorCollection) {
-        this.prestamoDiccionarioProfesorCollection = prestamoDiccionarioProfesorCollection;
-    }
+    
 }

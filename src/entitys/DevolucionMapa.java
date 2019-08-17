@@ -1,65 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entitys;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
- * Entidad Devolucion_Mapa.
- * @author Camilo
+ *
+ * @author Storkolm
  */
 public class DevolucionMapa {
-    
-    private int codDevolucionMapa;
-    private int codPrestamoMapa;
-    private String idBibliotecario;
-    private Date fechaDevolucion;
-    private String estadoDevolucion;   
 
-    public DevolucionMapa(int codPrestamoMapa, String idBibliotecario, Date fechaDevolucion, String estadoDevolucion) {
-        this.codPrestamoMapa = codPrestamoMapa;
-        this.idBibliotecario = idBibliotecario;
-        this.fechaDevolucion = fechaDevolucion;
-        this.estadoDevolucion = estadoDevolucion;
-    }
-
-    public int getCodDevolucionMapa() {
-        return codDevolucionMapa;
-    }
-
-    public void setCodDevolucionMapa(int codDevolucionMapa) {
-        this.codDevolucionMapa = codDevolucionMapa;
+    public DevolucionMapa(int codPrestamoMapa, String idBibliotecario, Date date, String toLowerCase) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getCodPrestamoMapa() {
-        return codPrestamoMapa;
-    }
-
-    public void setCodPrestamoMapa(int codPrestamoMapa) {
-        this.codPrestamoMapa = codPrestamoMapa;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getIdBibliotecario() {
-        return idBibliotecario;
-    }
-
-    public void setIdBibliotecario(String idBibliotecario) {
-        this.idBibliotecario = idBibliotecario;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Date getFechaDevolucion() {
-        return fechaDevolucion;
-    }
-
-    public void setFechaDevolucion(Date fechaDevolucion) {
-        this.fechaDevolucion = fechaDevolucion;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getEstadoDevolucion() {
-        return estadoDevolucion;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setEstadoDevolucion(String estadoDevolucion) {
-        this.estadoDevolucion = estadoDevolucion;
+    public void setCodDevolucionMapa(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    public int getCodDevolucionMapa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

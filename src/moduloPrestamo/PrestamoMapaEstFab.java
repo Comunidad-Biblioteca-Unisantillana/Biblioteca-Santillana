@@ -21,22 +21,22 @@ public class PrestamoMapaEstFab implements IPrestamo {
         try {
             Mapa mapa = QueryRecurso.consultarMapa(codBarras);
             if (mapa != null) {
+                System.out.println("hole");
                 if (mapa.getDisponibilidad().equalsIgnoreCase("disponible")) {
-                    
                     java.util.Date fechaActual = new java.util.Date();
                     java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
-                    
+
                     PrestamoMapaEst presMapEst = new PrestamoMapaEst(codBarras, codUsuario, idBibliotecario,
                             new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
 
                     PrestamoMapaDAOEst presMapDAOEst = new PrestamoMapaDAOEst();
-                    presMapDAOEst.createDAO(presMapEst);
-
-                    System.out.println("Cambiando disponibilidad del mapa...");
-                    MapaJpaController control = new MapaJpaController(); 
-                    mapa.setDisponibilidad("prestado");
-                    control.edit(mapa);
-                    return true;
+                    if (presMapDAOEst.createDAO(presMapEst)) {
+                        System.out.println("Cambiando disponibilidad del mapa...");
+                        MapaJpaController control = new MapaJpaController();
+                        mapa.setDisponibilidad("prestado");
+                        control.edit(mapa);
+                        return true;
+                    }
                 } else {
                     System.out.println("el mapa no se encuentra disponible");
                 }
@@ -44,7 +44,7 @@ public class PrestamoMapaEstFab implements IPrestamo {
                 System.out.println("Ningun mapa tiene este codigo de barra");
             }
         } catch (Exception e) {
-            System.out.println("error al generar el prestamo del mapa de un estudiante");
+            System.out.println("error al generar el prestamo del mapa de un estudiante: " + e.getMessage());
         }
         return false;
     }

@@ -1,8 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "mapa")
@@ -36,13 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Mapa.findByDisponibilidad", query = "SELECT m FROM Mapa m WHERE m.disponibilidad = :disponibilidad")
     , @NamedQuery(name = "Mapa.findByEstadofisico", query = "SELECT m FROM Mapa m WHERE m.estadofisico = :estadofisico")})
 public class Mapa implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarramapa")
-    private Collection<PrestamoMapaProfesor> prestamoMapaProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarramapa")
-    private Collection<PrestamoMapaEstudiante> prestamoMapaEstudianteCollection;
-
-    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -200,22 +197,5 @@ public class Mapa implements Serializable {
     public String toString() {
         return "entitys.Mapa[ codbarramapa=" + codbarramapa + " ]";
     }
-
-    @XmlTransient
-    public Collection<PrestamoMapaProfesor> getPrestamoMapaProfesorCollection() {
-        return prestamoMapaProfesorCollection;
-    }
-
-    public void setPrestamoMapaProfesorCollection(Collection<PrestamoMapaProfesor> prestamoMapaProfesorCollection) {
-        this.prestamoMapaProfesorCollection = prestamoMapaProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoMapaEstudiante> getPrestamoMapaEstudianteCollection() {
-        return prestamoMapaEstudianteCollection;
-    }
-
-    public void setPrestamoMapaEstudianteCollection(Collection<PrestamoMapaEstudiante> prestamoMapaEstudianteCollection) {
-        this.prestamoMapaEstudianteCollection = prestamoMapaEstudianteCollection;
-    }
+    
 }

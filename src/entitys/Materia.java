@@ -6,7 +6,7 @@
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,13 +41,13 @@ public class Materia implements Serializable {
     @Column(name = "nombremateria")
     private String nombremateria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codmateria")
-    private Collection<MateriaPorEnciclopedia> materiaPorEnciclopediaCollection;
+    private List<MateriaPorEnciclopedia> materiaPorEnciclopediaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codmateria")
-    private Collection<MateriaPorDiccionario> materiaPorDiccionarioCollection;
+    private List<MateriaPorDiccionario> materiaPorDiccionarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codmateria")
-    private Collection<MateriaPorLibro> materiaPorLibroCollection;
+    private List<MateriaPorLibro> materiaPorLibroList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codmateria")
-    private Collection<MateriaPorRevista> materiaPorRevistaCollection;
+    private List<MateriaPorRevista> materiaPorRevistaList;
 
     public Materia() {
     }
@@ -78,39 +78,39 @@ public class Materia implements Serializable {
     }
 
     @XmlTransient
-    public Collection<MateriaPorEnciclopedia> getMateriaPorEnciclopediaCollection() {
-        return materiaPorEnciclopediaCollection;
+    public List<MateriaPorEnciclopedia> getMateriaPorEnciclopediaList() {
+        return materiaPorEnciclopediaList;
     }
 
-    public void setMateriaPorEnciclopediaCollection(Collection<MateriaPorEnciclopedia> materiaPorEnciclopediaCollection) {
-        this.materiaPorEnciclopediaCollection = materiaPorEnciclopediaCollection;
-    }
-
-    @XmlTransient
-    public Collection<MateriaPorDiccionario> getMateriaPorDiccionarioCollection() {
-        return materiaPorDiccionarioCollection;
-    }
-
-    public void setMateriaPorDiccionarioCollection(Collection<MateriaPorDiccionario> materiaPorDiccionarioCollection) {
-        this.materiaPorDiccionarioCollection = materiaPorDiccionarioCollection;
+    public void setMateriaPorEnciclopediaList(List<MateriaPorEnciclopedia> materiaPorEnciclopediaList) {
+        this.materiaPorEnciclopediaList = materiaPorEnciclopediaList;
     }
 
     @XmlTransient
-    public Collection<MateriaPorLibro> getMateriaPorLibroCollection() {
-        return materiaPorLibroCollection;
+    public List<MateriaPorDiccionario> getMateriaPorDiccionarioList() {
+        return materiaPorDiccionarioList;
     }
 
-    public void setMateriaPorLibroCollection(Collection<MateriaPorLibro> materiaPorLibroCollection) {
-        this.materiaPorLibroCollection = materiaPorLibroCollection;
+    public void setMateriaPorDiccionarioList(List<MateriaPorDiccionario> materiaPorDiccionarioList) {
+        this.materiaPorDiccionarioList = materiaPorDiccionarioList;
     }
 
     @XmlTransient
-    public Collection<MateriaPorRevista> getMateriaPorRevistaCollection() {
-        return materiaPorRevistaCollection;
+    public List<MateriaPorLibro> getMateriaPorLibroList() {
+        return materiaPorLibroList;
     }
 
-    public void setMateriaPorRevistaCollection(Collection<MateriaPorRevista> materiaPorRevistaCollection) {
-        this.materiaPorRevistaCollection = materiaPorRevistaCollection;
+    public void setMateriaPorLibroList(List<MateriaPorLibro> materiaPorLibroList) {
+        this.materiaPorLibroList = materiaPorLibroList;
+    }
+
+    @XmlTransient
+    public List<MateriaPorRevista> getMateriaPorRevistaList() {
+        return materiaPorRevistaList;
+    }
+
+    public void setMateriaPorRevistaList(List<MateriaPorRevista> materiaPorRevistaList) {
+        this.materiaPorRevistaList = materiaPorRevistaList;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class Materia implements Serializable {
 
     @Override
     public String toString() {
-        return "entitysRecursos.Materia[ codmateria=" + codmateria + " ]";
+        return "entitys.Materia[ codmateria=" + codmateria + " ]";
     }
     
 }

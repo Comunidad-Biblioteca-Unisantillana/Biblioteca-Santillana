@@ -19,29 +19,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "materia_por_revista")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MateriaPorRevista.findAll", query = "SELECT m FROM MateriaPorRevista m")
-    , @NamedQuery(name = "MateriaPorRevista.findByCodmateriarevista", query = "SELECT m FROM MateriaPorRevista m WHERE m.codmateriarevista = :codmateriarevista")
-    , @NamedQuery(name = "MateriaPorRevista.findByNombremateria", query = "SELECT m FROM MateriaPorRevista m WHERE m.nombremateria = :nombremateria")})
+    , @NamedQuery(name = "MateriaPorRevista.findByCodmateriarevista", query = "SELECT m FROM MateriaPorRevista m WHERE m.codmateriarevista = :codmateriarevista")})
 public class MateriaPorRevista implements Serializable {
-
-    @JoinColumn(name = "codmateria", referencedColumnName = "codmateria")
-    @ManyToOne(optional = false)
-    private Materia codmateria;
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "codmateriarevista")
     private String codmateriarevista;
-    @Basic(optional = false)
-    @Column(name = "nombremateria")
-    private String nombremateria;
+    @JoinColumn(name = "codmateria", referencedColumnName = "codmateria")
+    @ManyToOne(optional = false)
+    private Materia codmateria;
     @JoinColumn(name = "codbarrarevista", referencedColumnName = "codbarrarevista")
     @ManyToOne(optional = false)
     private Revista codbarrarevista;
@@ -53,11 +48,6 @@ public class MateriaPorRevista implements Serializable {
         this.codmateriarevista = codmateriarevista;
     }
 
-    public MateriaPorRevista(String codmateriarevista, String nombremateria) {
-        this.codmateriarevista = codmateriarevista;
-        this.nombremateria = nombremateria;
-    }
-
     public String getCodmateriarevista() {
         return codmateriarevista;
     }
@@ -66,12 +56,12 @@ public class MateriaPorRevista implements Serializable {
         this.codmateriarevista = codmateriarevista;
     }
 
-    public String getNombremateria() {
-        return nombremateria;
+    public Materia getCodmateria() {
+        return codmateria;
     }
 
-    public void setNombremateria(String nombremateria) {
-        this.nombremateria = nombremateria;
+    public void setCodmateria(Materia codmateria) {
+        this.codmateria = codmateria;
     }
 
     public Revista getCodbarrarevista() {
@@ -105,14 +95,6 @@ public class MateriaPorRevista implements Serializable {
     @Override
     public String toString() {
         return "entitys.MateriaPorRevista[ codmateriarevista=" + codmateriarevista + " ]";
-    }
-
-    public Materia getCodmateria() {
-        return codmateria;
-    }
-
-    public void setCodmateria(Materia codmateria) {
-        this.codmateria = codmateria;
     }
     
 }

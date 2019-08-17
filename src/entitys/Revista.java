@@ -1,8 +1,11 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -23,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "revista")
@@ -40,13 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Revista.findByDisponibilidad", query = "SELECT r FROM Revista r WHERE r.disponibilidad = :disponibilidad")
     , @NamedQuery(name = "Revista.findByEstadofisico", query = "SELECT r FROM Revista r WHERE r.estadofisico = :estadofisico")})
 public class Revista implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarrarevista")
-    private Collection<PrestamoRevistaEstudiante> prestamoRevistaEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarrarevista")
-    private Collection<PrestamoRevistaProfesor> prestamoRevistaProfesorCollection;
-
-    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -78,11 +74,11 @@ public class Revista implements Serializable {
     @Basic(optional = false)
     @Column(name = "estadofisico")
     private String estadofisico;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarrarevista")
-    private List<MateriaPorRevista> materiaPorRevistaList;
     @JoinColumn(name = "codcategoriacoleccion", referencedColumnName = "codcategoriacoleccion")
     @ManyToOne(optional = false)
     private CategoriaColeccion codcategoriacoleccion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarrarevista")
+    private List<MateriaPorRevista> materiaPorRevistaList;
 
     public Revista() {
     }
@@ -175,6 +171,14 @@ public class Revista implements Serializable {
         this.estadofisico = estadofisico;
     }
 
+    public CategoriaColeccion getCodcategoriacoleccion() {
+        return codcategoriacoleccion;
+    }
+
+    public void setCodcategoriacoleccion(CategoriaColeccion codcategoriacoleccion) {
+        this.codcategoriacoleccion = codcategoriacoleccion;
+    }
+
     @XmlTransient
     public List<MateriaPorRevista> getMateriaPorRevistaList() {
         return materiaPorRevistaList;
@@ -182,14 +186,6 @@ public class Revista implements Serializable {
 
     public void setMateriaPorRevistaList(List<MateriaPorRevista> materiaPorRevistaList) {
         this.materiaPorRevistaList = materiaPorRevistaList;
-    }
-
-    public CategoriaColeccion getCodcategoriacoleccion() {
-        return codcategoriacoleccion;
-    }
-
-    public void setCodcategoriacoleccion(CategoriaColeccion codcategoriacoleccion) {
-        this.codcategoriacoleccion = codcategoriacoleccion;
     }
 
     @Override
@@ -216,22 +212,5 @@ public class Revista implements Serializable {
     public String toString() {
         return "entitys.Revista[ codbarrarevista=" + codbarrarevista + " ]";
     }
-
-    @XmlTransient
-    public Collection<PrestamoRevistaEstudiante> getPrestamoRevistaEstudianteCollection() {
-        return prestamoRevistaEstudianteCollection;
-    }
-
-    public void setPrestamoRevistaEstudianteCollection(Collection<PrestamoRevistaEstudiante> prestamoRevistaEstudianteCollection) {
-        this.prestamoRevistaEstudianteCollection = prestamoRevistaEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoRevistaProfesor> getPrestamoRevistaProfesorCollection() {
-        return prestamoRevistaProfesorCollection;
-    }
-
-    public void setPrestamoRevistaProfesorCollection(Collection<PrestamoRevistaProfesor> prestamoRevistaProfesorCollection) {
-        this.prestamoRevistaProfesorCollection = prestamoRevistaProfesorCollection;
-    }
+    
 }

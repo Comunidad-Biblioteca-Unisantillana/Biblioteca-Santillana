@@ -1,8 +1,11 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entitys;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -23,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "libro")
@@ -45,19 +48,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Libro.findByResumen", query = "SELECT l FROM Libro l WHERE l.resumen = :resumen")
     , @NamedQuery(name = "Libro.findBySignatura", query = "SELECT l FROM Libro l WHERE l.signatura = :signatura")
     , @NamedQuery(name = "Libro.findByDisponibilidad", query = "SELECT l FROM Libro l WHERE l.disponibilidad = :disponibilidad")
-    , @NamedQuery(name = "Libro.findByEstadofisico", query = "SELECT l FROM Libro l WHERE l.estadofisico = :estadofisico")
-    , @NamedQuery(name = "Libro.findByArea", query = "SELECT l FROM Libro l WHERE l.area = :area")})
+    , @NamedQuery(name = "Libro.findByEstadofisico", query = "SELECT l FROM Libro l WHERE l.estadofisico = :estadofisico")})
 public class Libro implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
-    private Collection<PrestamoLibroProfesor> prestamoLibroProfesorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
-    private Collection<PrestamoLibroEstudiante> prestamoLibroEstudianteCollection;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
-    private Collection<ReservaColgenEstudiante> reservaColgenEstudianteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
-    private Collection<ReservaColgenProfesor> reservaColgenProfesorCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,16 +102,13 @@ public class Libro implements Serializable {
     @Basic(optional = false)
     @Column(name = "estadofisico")
     private String estadofisico;
-    @Basic(optional = false)
-    @Column(name = "area")
-    private String area;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
-    private List<MateriaPorLibro> materiaPorLibroList;
     @JoinColumn(name = "codcategoriacoleccion", referencedColumnName = "codcategoriacoleccion")
     @ManyToOne(optional = false)
     private CategoriaColeccion codcategoriacoleccion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
     private List<AutorPorLibro> autorPorLibroList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codbarralibro")
+    private List<MateriaPorLibro> materiaPorLibroList;
 
     public Libro() {
     }
@@ -128,7 +117,7 @@ public class Libro implements Serializable {
         this.codbarralibro = codbarralibro;
     }
 
-    public Libro(String codbarralibro, String isbn, String titulo, String idioma, String paispublicacion, Date fechapublicacion, String editorial, int numedicion, int numpaginas, String cubierta, String dimensiones, String nota, String resumen, String signatura, String disponibilidad, String estadofisico, String area) {
+    public Libro(String codbarralibro, String isbn, String titulo, String idioma, String paispublicacion, Date fechapublicacion, String editorial, int numedicion, int numpaginas, String cubierta, String dimensiones, String nota, String resumen, String signatura, String disponibilidad, String estadofisico) {
         this.codbarralibro = codbarralibro;
         this.isbn = isbn;
         this.titulo = titulo;
@@ -145,7 +134,6 @@ public class Libro implements Serializable {
         this.signatura = signatura;
         this.disponibilidad = disponibilidad;
         this.estadofisico = estadofisico;
-        this.area = area;
     }
 
     public String getCodbarralibro() {
@@ -276,23 +264,6 @@ public class Libro implements Serializable {
         this.estadofisico = estadofisico;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    @XmlTransient
-    public List<MateriaPorLibro> getMateriaPorLibroList() {
-        return materiaPorLibroList;
-    }
-
-    public void setMateriaPorLibroList(List<MateriaPorLibro> materiaPorLibroList) {
-        this.materiaPorLibroList = materiaPorLibroList;
-    }
-
     public CategoriaColeccion getCodcategoriacoleccion() {
         return codcategoriacoleccion;
     }
@@ -308,6 +279,15 @@ public class Libro implements Serializable {
 
     public void setAutorPorLibroList(List<AutorPorLibro> autorPorLibroList) {
         this.autorPorLibroList = autorPorLibroList;
+    }
+
+    @XmlTransient
+    public List<MateriaPorLibro> getMateriaPorLibroList() {
+        return materiaPorLibroList;
+    }
+
+    public void setMateriaPorLibroList(List<MateriaPorLibro> materiaPorLibroList) {
+        this.materiaPorLibroList = materiaPorLibroList;
     }
 
     @Override
@@ -333,42 +313,6 @@ public class Libro implements Serializable {
     @Override
     public String toString() {
         return "entitys.Libro[ codbarralibro=" + codbarralibro + " ]";
-    }
-
-    @XmlTransient
-    public Collection<ReservaColgenEstudiante> getReservaColgenEstudianteCollection() {
-        return reservaColgenEstudianteCollection;
-    }
-
-    public void setReservaColgenEstudianteCollection(Collection<ReservaColgenEstudiante> reservaColgenEstudianteCollection) {
-        this.reservaColgenEstudianteCollection = reservaColgenEstudianteCollection;
-    }
-
-    @XmlTransient
-    public Collection<ReservaColgenProfesor> getReservaColgenProfesorCollection() {
-        return reservaColgenProfesorCollection;
-    }
-
-    public void setReservaColgenProfesorCollection(Collection<ReservaColgenProfesor> reservaColgenProfesorCollection) {
-        this.reservaColgenProfesorCollection = reservaColgenProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoLibroProfesor> getPrestamoLibroProfesorCollection() {
-        return prestamoLibroProfesorCollection;
-    }
-
-    public void setPrestamoLibroProfesorCollection(Collection<PrestamoLibroProfesor> prestamoLibroProfesorCollection) {
-        this.prestamoLibroProfesorCollection = prestamoLibroProfesorCollection;
-    }
-
-    @XmlTransient
-    public Collection<PrestamoLibroEstudiante> getPrestamoLibroEstudianteCollection() {
-        return prestamoLibroEstudianteCollection;
-    }
-
-    public void setPrestamoLibroEstudianteCollection(Collection<PrestamoLibroEstudiante> prestamoLibroEstudianteCollection) {
-        this.prestamoLibroEstudianteCollection = prestamoLibroEstudianteCollection;
     }
     
 }

@@ -19,43 +19,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Camilo
+ * @author Storkolm
  */
 @Entity
 @Table(name = "materia_por_diccionario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MateriaPorDiccionario.findAll", query = "SELECT m FROM MateriaPorDiccionario m")
-    , @NamedQuery(name = "MateriaPorDiccionario.findByCodmateriadiccionario", query = "SELECT m FROM MateriaPorDiccionario m WHERE m.codmateriadiccionario = :codmateriadiccionario")
-    , @NamedQuery(name = "MateriaPorDiccionario.findByNombremateria", query = "SELECT m FROM MateriaPorDiccionario m WHERE m.nombremateria = :nombremateria")})
+    , @NamedQuery(name = "MateriaPorDiccionario.findByCodmateriadiccionario", query = "SELECT m FROM MateriaPorDiccionario m WHERE m.codmateriadiccionario = :codmateriadiccionario")})
 public class MateriaPorDiccionario implements Serializable {
-
-    @JoinColumn(name = "codmateria", referencedColumnName = "codmateria")
-    @ManyToOne(optional = false)
-    private Materia codmateria;
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "codmateriadiccionario")
     private String codmateriadiccionario;
-    @Basic(optional = false)
-    @Column(name = "nombremateria")
-    private String nombremateria;
     @JoinColumn(name = "codbarradiccionario", referencedColumnName = "codbarradiccionario")
     @ManyToOne(optional = false)
     private Diccionario codbarradiccionario;
+    @JoinColumn(name = "codmateria", referencedColumnName = "codmateria")
+    @ManyToOne(optional = false)
+    private Materia codmateria;
 
     public MateriaPorDiccionario() {
     }
 
     public MateriaPorDiccionario(String codmateriadiccionario) {
         this.codmateriadiccionario = codmateriadiccionario;
-    }
-
-    public MateriaPorDiccionario(String codmateriadiccionario, String nombremateria) {
-        this.codmateriadiccionario = codmateriadiccionario;
-        this.nombremateria = nombremateria;
     }
 
     public String getCodmateriadiccionario() {
@@ -66,20 +56,20 @@ public class MateriaPorDiccionario implements Serializable {
         this.codmateriadiccionario = codmateriadiccionario;
     }
 
-    public String getNombremateria() {
-        return nombremateria;
-    }
-
-    public void setNombremateria(String nombremateria) {
-        this.nombremateria = nombremateria;
-    }
-
     public Diccionario getCodbarradiccionario() {
         return codbarradiccionario;
     }
 
     public void setCodbarradiccionario(Diccionario codbarradiccionario) {
         this.codbarradiccionario = codbarradiccionario;
+    }
+
+    public Materia getCodmateria() {
+        return codmateria;
+    }
+
+    public void setCodmateria(Materia codmateria) {
+        this.codmateria = codmateria;
     }
 
     @Override
@@ -105,14 +95,6 @@ public class MateriaPorDiccionario implements Serializable {
     @Override
     public String toString() {
         return "entitys.MateriaPorDiccionario[ codmateriadiccionario=" + codmateriadiccionario + " ]";
-    }
-
-    public Materia getCodmateria() {
-        return codmateria;
-    }
-
-    public void setCodmateria(Materia codmateria) {
-        this.codmateria = codmateria;
     }
     
 }
