@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import moduloPrestamo.GeneradorPrestamo;
-import moduloPrestamo.GeneradorPrestamoRecurso;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -67,13 +66,7 @@ public class PrestamoBibliotecarioController implements Initializable {
             try {
                 GeneradorPrestamo generador = new GeneradorPrestamo();
                 generador.createPrestamo(codBarrasPresTxt.getText(), codUserPresTxt.getText(), 
-                        idBibliotecario, cboTipoPrestamo.getValue(), "estudiante");
-//                GeneradorPrestamoRecurso generador = new GeneradorPrestamoRecurso();
-//
-//                if (generador.createPrestamo(codBarrasPresTxt.getText(), codUserPresTxt.getText(), idBibliotecario,
-//                        cboTipoPrestamo.getValue(), fechaPrestamoPresTxt, fechaDevolucionPresTxt)) {
-//                    alert.showAlert("Anuncio", "Préstamo", "El préstamo ha sido realizado con éxito!");
-//                }
+                        idBibliotecario, cboTipoPrestamo.getValue(), "estudiante");//agregar campo en la ventana 
             } catch (Exception ex) {
                 System.out.println("Error al generar el préstamo");
             }

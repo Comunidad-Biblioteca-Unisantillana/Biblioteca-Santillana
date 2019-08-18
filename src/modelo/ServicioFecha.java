@@ -31,6 +31,7 @@ public class ServicioFecha {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fecha); 
         calendar.add(Calendar.DAY_OF_YEAR, dias);  
+        calendar.add(Calendar.HOUR_OF_DAY, 0);
         return calendar.getTime(); 
     }
 }

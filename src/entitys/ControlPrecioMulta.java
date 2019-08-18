@@ -38,6 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ControlPrecioMulta.findByFechaactualizacion", query = "SELECT c FROM ControlPrecioMulta c WHERE c.fechaactualizacion = :fechaactualizacion")})
 public class ControlPrecioMulta implements Serializable {
 
+    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

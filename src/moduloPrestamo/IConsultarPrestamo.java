@@ -3,7 +3,6 @@ package moduloPrestamo;
 
 import javafx.collections.ObservableList;
 import modelo.ConnectionBD;
-import entitys.Prestamo;
 
 /**
  *
