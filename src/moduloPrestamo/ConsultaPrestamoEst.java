@@ -1,7 +1,6 @@
-
 package moduloPrestamo;
 
-import entitys.Prestamo;
+import moduloPrestamo.Prestamo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,7 +75,7 @@ public class ConsultaPrestamoEst extends IConsultarPrestamo{
     }
 
     @Override
-    public ObservableList<entitys.Prestamo> getPrestamosActuales(String codEstudiante) {
+    public ObservableList<Prestamo> getPrestamosActuales(String codEstudiante) {
         ObservableList<Prestamo> prestamos = FXCollections.observableArrayList();
 
         connection = ConnectionBD.getInstance();

@@ -1,5 +1,18 @@
 package moduloPrestamo;
 
+import moduloPrestamo.fabrica.PrestamoEnciclopediaProfFab;
+import moduloPrestamo.fabrica.PrestamoLibroProfFab;
+import moduloPrestamo.fabrica.PrestamoRevistaEstFab;
+import moduloPrestamo.fabrica.PrestamoMapaProfFab;
+import moduloPrestamo.fabrica.PrestamoDiccionarioEstFab;
+import moduloPrestamo.fabrica.PrestamoLibroEstFab;
+import moduloPrestamo.fabrica.PrestamoMapaEstFab;
+import moduloPrestamo.fabrica.PrestamoEnciclopediaEstFab;
+import moduloPrestamo.fabrica.PrestamoRevistaProfFab;
+import moduloPrestamo.fabrica.PrestamoDiccionarioProfFab;
+import moduloPrestamo.fabrica.PrestamoPeriodicoProfFab;
+import moduloPrestamo.fabrica.PrestamoPeriodicoEstFab;
+
 
 /**
  * Clase que se encarga de fabricar un prestamo de cualquier entidad

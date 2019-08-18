@@ -70,6 +70,48 @@
     <class>entitysUsuario.Bibliotecario</class>
     <class>entitysUsuario.Estudiante</class>
     <class>entitysUsuario.Profesor</class>
+    <class>moduloPrestamo.MultaMapaProfesor</class>
+    <class>moduloPrestamo.PrestamoDiccionarioProfesor</class>
+    <class>moduloPrestamo.DevolucionDiccionarioEstudiante</class>
+    <class>moduloPrestamo.MultaLibroEstudiante</class>
+    <class>moduloPrestamo.PrestamoPeriodicoEstudiante</class>
+    <class>moduloPrestamo.ReservaColgenProfesor</class>
+    <class>moduloPrestamo.PrestamoMapaProfesor</class>
+    <class>moduloPrestamo.DevolucionMapaEstudiante</class>
+    <class>moduloPrestamo.PrestamoLibroEstudiante</class>
+    <class>moduloPrestamo.LoginBibliotecario</class>
+    <class>moduloPrestamo.MultaRevistaProfesor</class>
+    <class>moduloPrestamo.DevolucionDiccionarioProfesor</class>
+    <class>moduloPrestamo.DevolucionEnciclopediaEstudiante</class>
+    <class>moduloPrestamo.MultaPeriodicoEstudiante</class>
+    <class>moduloPrestamo.MultaLibroProfesor</class>
+    <class>moduloPrestamo.DevolucionMapaProfesor</class>
+    <class>moduloPrestamo.DevolucionRevistaProfesor</class>
+    <class>moduloPrestamo.PrestamoMapaEstudiante</class>
+    <class>moduloPrestamo.DevolucionRevistaEstudiante</class>
+    <class>moduloPrestamo.MultaPeriodicoProfesor</class>
+    <class>moduloPrestamo.MultaDiccionarioEstudiante</class>
+    <class>moduloPrestamo.Bibliotecario</class>
+    <class>moduloPrestamo.ReservaColgenEstudiante</class>
+    <class>moduloPrestamo.MultaMapaEstudiante</class>
+    <class>moduloPrestamo.DevolucionEnciclopediaProfesor</class>
+    <class>moduloPrestamo.PrestamoEnciclopediaProfesor</class>
+    <class>moduloPrestamo.MultaRevistaEstudiante</class>
+    <class>moduloPrestamo.PrestamoEnciclopediaEstudiante</class>
+    <class>moduloPrestamo.Profesor</class>
+    <class>moduloPrestamo.DevolucionLibroProfesor</class>
+    <class>moduloPrestamo.PrestamoDiccionarioEstudiante</class>
+    <class>moduloPrestamo.DevolucionPeriodicoProfesor</class>
+    <class>moduloPrestamo.DevolucionLibroEstudiante</class>
+    <class>moduloPrestamo.DevolucionPeriodicoEstudiante</class>
+    <class>moduloPrestamo.MultaEnciclopediaProfesor</class>
+    <class>moduloPrestamo.Estudiante</class>
+    <class>moduloPrestamo.PrestamoPeriodicoProfesor</class>
+    <class>moduloPrestamo.PrestamoRevistaEstudiante</class>
+    <class>moduloPrestamo.MultaDiccionarioProfesor</class>
+    <class>moduloPrestamo.PrestamoLibroProfesor</class>
+    <class>moduloPrestamo.MultaEnciclopediaEstudiante</class>
+    <class>moduloPrestamo.PrestamoRevistaProfesor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

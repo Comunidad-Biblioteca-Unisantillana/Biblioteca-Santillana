@@ -201,5 +201,7 @@ public class Periodico implements Serializable {
     public String toString() {
         return "entitys.Periodico[ codbarraperiodico=" + codbarraperiodico + " ]";
     }
+
+    
     
 }

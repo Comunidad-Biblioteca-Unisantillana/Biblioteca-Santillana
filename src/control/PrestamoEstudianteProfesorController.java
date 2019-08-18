@@ -5,10 +5,8 @@
  */
 package control;
 
-import entitys.Prestamo;
+import moduloPrestamo.Prestamo;
 import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
