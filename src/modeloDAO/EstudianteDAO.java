@@ -1,6 +1,6 @@
 package modeloDAO;
 
-import entitysRecursos.Estudiante;
+import entitysUsuario.Estudiante;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

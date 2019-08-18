@@ -75,7 +75,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <JFXButton maxWidth="1.7976931348623157E308" onAction="#btnPrestarPressed" prefHeight="35.0" text="Prestar" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#btnPrestarPressed" prefHeight="35.0" text="Prestar" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></JFXButton>

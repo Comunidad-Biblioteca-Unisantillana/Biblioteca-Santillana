@@ -1,7 +1,7 @@
 package moduloMultaDAO;
 
 import modelo.ConnectionBD;
-import entitysRecursos.MultaEnciclopedia;
+import entitys.MultaEnciclopedia;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

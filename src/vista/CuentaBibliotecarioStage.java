@@ -22,7 +22,7 @@ public class CuentaBibliotecarioStage extends Stage {
     /**
      * Constructor de BibliotecaStage
      */
-    public CuentaBibliotecarioStage() {
+    private CuentaBibliotecarioStage() {
 
         try {
             loader = new FXMLLoader(getClass().getResource("/vista/CuentaBibliotecario.fxml"));

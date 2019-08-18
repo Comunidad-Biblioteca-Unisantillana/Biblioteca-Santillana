@@ -5,7 +5,7 @@
  */
 package control;
 
-import entitysRecursos.Recurso;
+import entitys.Recurso;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;

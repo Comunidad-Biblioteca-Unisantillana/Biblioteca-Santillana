@@ -7,14 +7,14 @@ import controllers.LibroJpaController;
 import controllers.MapaJpaController;
 import controllers.PeriodicoJpaController;
 import controllers.RevistaJpaController;
-import entitysRecursos.Diccionario;
-import entitysRecursos.Enciclopedia;
-import entitysRecursos.Libro;
-import entitysRecursos.Mapa;
-import entitysRecursos.Multa;
-import entitysRecursos.Periodico;
-import entitysRecursos.Recurso;
-import entitysRecursos.Revista;
+import entitys.Diccionario;
+import entitys.Enciclopedia;
+import entitys.Libro;
+import entitys.Mapa;
+import entitys.Multa;
+import entitys.Periodico;
+import entitys.Recurso;
+import entitys.Revista;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,17 +45,17 @@ public class ConsultaOPAC {
         List<Mapa> listaMapas = consultarMapas(cadena);
         
         for(Libro libs : listaLibros) {
-            Recurso recursoTmp = new Recurso(libs.getCodbarralibro(), libs.getIsbn(), libs.getTitulo(), libs.getIdioma(), libs.getArea(),libs.getDisponibilidad());
+            Recurso recursoTmp = new Recurso(libs.getCodbarralibro(), libs.getIsbn(), libs.getTitulo(), libs.getIdioma(), "N/A",libs.getDisponibilidad());
             listaRecursos.add(recursoTmp);
         }
         
         for(Enciclopedia encs : listaEnciclopedias) {
-            Recurso recursoTmp = new Recurso(encs.getCodbarraenciclopedia(), encs.getIsbn(), encs.getTitulo(), encs.getIdioma(), encs.getArea(),encs.getDisponibilidad());
+            Recurso recursoTmp = new Recurso(encs.getCodbarraenciclopedia(), encs.getIsbn(), encs.getTitulo(), encs.getIdioma(), "N/A",encs.getDisponibilidad());
             listaRecursos.add(recursoTmp);
         }
         
         for(Diccionario dics : listaDiccionarios) {
-            Recurso recursoTmp = new Recurso(dics.getCodbarradiccionario(), dics.getIsbn(), dics.getTitulo(), dics.getIdioma(), dics.getArea(),dics.getDisponibilidad());
+            Recurso recursoTmp = new Recurso(dics.getCodbarradiccionario(), dics.getIsbn(), dics.getTitulo(), dics.getIdioma(), "N/A",dics.getDisponibilidad());
             listaRecursos.add(recursoTmp);
         }
         

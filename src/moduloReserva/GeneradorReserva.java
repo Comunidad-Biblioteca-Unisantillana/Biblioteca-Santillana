@@ -2,10 +2,10 @@
 package moduloReserva;
 
 import controllers.LibroJpaController;
-import entitysRecursos.Estudiante;
-import entitysRecursos.Libro;
-import entitysRecursos.PrestamoLibro;
-import entitysRecursos.ReservaLibro;
+import entitysUsuario.Estudiante;
+import entitys.Libro;
+import entitys.PrestamoLibro;
+import entitys.ReservaLibro;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

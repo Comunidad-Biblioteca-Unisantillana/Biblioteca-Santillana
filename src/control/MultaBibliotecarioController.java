@@ -1,7 +1,7 @@
 package control;
 
 import com.jfoenix.controls.JFXTextField;
-import entitysRecursos.Multa;
+import entitys.Multa;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;

@@ -40,7 +40,7 @@
                   <Font size="17.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton layoutX="87.0" layoutY="482.0" onAction="#btnAccederPressed" prefHeight="70.0" prefWidth="375.0" ripplerFill="WHITE" text="Acceder" textFill="WHITE">
+            <JFXButton layoutX="87.0" layoutY="487.0" onAction="#btnAccederPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" text="Acceder" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </JFXComboBox>
-            <JFXButton layoutX="87.0" layoutY="564.0" onAction="#btnSalirPressed" prefHeight="40.0" prefWidth="375.0" ripplerFill="WHITE" text="Salir" textFill="WHITE">
+            <JFXButton layoutX="87.0" layoutY="559.0" onAction="#btnSalirPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" text="Salir" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
