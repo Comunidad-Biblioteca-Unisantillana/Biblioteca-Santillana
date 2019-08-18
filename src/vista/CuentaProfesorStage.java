@@ -16,22 +16,16 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * Stage donde se muestra el modulo profesor
+ *
  * @author Julian
- * Fecha de Creación: 28/07/2019
- * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaProfesorStage extends Stage {
 
-    private FXMLLoader loader;
     private CuentaEstudianteProfesorController cpc;
 
-    /**
-     * Constructor de la clase
-     */
-    private CuentaProfesorStage() {
+    public CuentaProfesorStage() {
         try {
-            loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudianteProfesor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/CuentaEstudianteProfesor.fxml"));
             Parent root = loader.load();
             cpc = loader.getController();
             Scene scene = new Scene(root);
@@ -46,38 +40,21 @@ public class CuentaProfesorStage extends Stage {
         }
     }
 
-    /**
-     * Método que carga los datos del profesor
-     * @param idProfesor 
-     */
     public void cargarDatosProfesor(String idProfesor) {
         cpc.setCodigo(idProfesor);
         cpc.setTipoUsuario("profesor");
         cpc.loadDatosBasicos();
     }
+
+    public static CuentaProfesorStage getInstance() {
+        return CuentaProfesorStageHolder.INSTANCE = new CuentaProfesorStage();
+    }
     
-    /**
-     * Método que cierra el Stage del profesor<br>
-     * y borra su instancia
-     */
     public static void deleteInstance(){
         CuentaProfesorStageHolder.INSTANCE.close();
         CuentaProfesorStageHolder.INSTANCE = null;
     }
 
-    /**
-     * Método que por medio de una clase estatica retorna<br>
-     * una instancia de la clase CuentaProfesorStage
-     * @return 
-     */
-    public static CuentaProfesorStage getInstance() {
-        return CuentaProfesorStageHolder.INSTANCE = new CuentaProfesorStage();
-    }
-
-    /**
-     * Clase estatica que contiene una instancia de la<br>
-     * clase CuentaProfesorStage
-     */
     public static class CuentaProfesorStageHolder {
         private static CuentaProfesorStage INSTANCE;
     }

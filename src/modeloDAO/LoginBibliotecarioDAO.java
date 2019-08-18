@@ -21,17 +21,16 @@ public class LoginBibliotecarioDAO {
      * Método que realiza las consultas en la BD por medio de una identificación
      * y contraseña.
      *
-     * @param codBibliotecario
+     * @param idBibliotecario
      * @param codPassword
-     * @return 
      */
-    public boolean readDAO(String codBibliotecario, String codPassword) {
+    public boolean readDAO(String idBibliotecario, String codPassword) {
         Statement stmt;
         ResultSet rs;
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT idBibliotecario FROM Login_Bibliotecario WHERE idBibliotecario = '" + codBibliotecario + "' AND codPassword = '" + codPassword + "';");
+            rs = stmt.executeQuery("SELECT idBibliotecario FROM Login_Bibliotecario WHERE idBibliotecario = '" + idBibliotecario + "' AND codPassword = '" + codPassword + "';");
             while (rs.next()) {
                 System.out.println("consulto");
                 return true;

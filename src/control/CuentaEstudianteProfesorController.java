@@ -22,10 +22,9 @@ import vista.IniciarMenuDesplegable;
 import vista.LoginUnisantillanaStage;
 
 /**
- * Clase que controla la vista CuentaEstudianteProfesor.fxml
+ * FXML Controller class
+ *
  * @author stive
- * Fecha de Creación: 05/09/2018
- * Fecha de ultima Modificación: 04/08/2019
  */
 public class CuentaEstudianteProfesorController implements Initializable {
     
@@ -51,10 +50,9 @@ public class CuentaEstudianteProfesorController implements Initializable {
     private String tipoUsuario;
 
     /**
-     * Método que se ejecuta automáticamente al enlazar<br>
-     * este controlador con su respectiva vista
+     * Initializes the controller class.
      * @param url
-     * @param rb 
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,10 +63,6 @@ public class CuentaEstudianteProfesorController implements Initializable {
         imgIconOPAC.setImage(new Image("/recursos/iconOPAC.png"));
     }
 
-    /**
-     * Método que retona a la ventana del login
-     * @param event 
-     */
     @FXML
     private void itemSalirPressed(ActionEvent event) {
         LoginUnisantillanaStage.getInstance().show();
@@ -79,42 +73,28 @@ public class CuentaEstudianteProfesorController implements Initializable {
         }
     }
 
-    
     @FXML
     private void itemAcercaDePressed(ActionEvent event) {
 
     }
 
-    /**
-     * Método que cambia un módulo por el de préstamo
-     * @param event 
-     */
     @FXML
     private void btnPrestamoPressed(ActionEvent event) {
         loadPrestamo();
     }
 
-    /**
-     * Método que cambia un módulo por el de multa
-     * @param event 
-     */
     @FXML
     private void btnMultaPressed(ActionEvent event) {
         loadMulta();
     }
 
-    /**
-     * Método que cambia un módulo por el del OPAC
-     * @param event 
-     */
     @FXML
     private void btnOPACPressed(ActionEvent event) {
         loadOPAC();
     }
     
     /**
-     * Método que carga el modulo préstamo del<br>
-     * usuario(Estudiante,Profesor).
+     * Metodo que carga el modulo prestamo.
      */
     private void loadPrestamo(){
         try {
@@ -129,8 +109,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
     
     /**
-     * Método que carga el modulo multa del<br>
-     * usuario(Estudiante,Profesor).
+     * Metodo que carga el modulo multa.
      */
     private void loadMulta(){
         try {
@@ -145,8 +124,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
     
     /**
-     * Método que carga el modulo OPAC del<br>
-     * usuario(Estudiante,Profesor).
+     * Metodo que carga el modulo OPAC.
      */
     private void loadOPAC(){
         try {

@@ -1,23 +1,27 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controllers;
 
 import controller.exceptions.IllegalOrphanException;
 import controller.exceptions.NonexistentEntityException;
 import controller.exceptions.PreexistingEntityException;
-import entitys.CategoriaColeccion;
+import entitysRecursos.CategoriaColeccion;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entitys.Libro;
+import entitysRecursos.Libro;
 import java.util.ArrayList;
 import java.util.List;
-import entitys.Revista;
-import entitys.Diccionario;
-import entitys.Periodico;
-import entitys.Mapa;
-import entitys.Enciclopedia;
+import entitysRecursos.Revista;
+import entitysRecursos.Diccionario;
+import entitysRecursos.Periodico;
+import entitysRecursos.Mapa;
+import entitysRecursos.Enciclopedia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 

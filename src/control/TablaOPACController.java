@@ -5,7 +5,7 @@
  */
 package control;
 
-import entitys.Recurso;
+import entitysRecursos.Recurso;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -18,10 +18,8 @@ import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- * clase que controla la vista TablaOPAC.fxml
+ *
  * @author Camilo
- * Fecha de Creación: 05/09/2018
- * Fecha de ultima Modificación: 04/08/2019
  */
 public class TablaOPACController {
 
@@ -43,10 +41,9 @@ public class TablaOPACController {
     @FXML
     private TableView<Recurso> tableOPAC;
     
-    /**
-     * Método que carga los datos del recurso en la tabla
-     * @param cadena 
-     */
+    public void initialize(){
+    }
+    
     public void cargarDatosTabla(String cadena){
         try {
             ConsultaOPAC consulta = new ConsultaOPAC();

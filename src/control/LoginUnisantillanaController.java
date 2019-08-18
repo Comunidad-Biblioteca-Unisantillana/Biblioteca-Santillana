@@ -13,17 +13,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import modelo.ValidatorLogin;
+import modelo.ValidatorLoginEstudiante;
+import modelo.ValidatorLoginProfesor;
+import modelo.ValidatorLoginBibliotecario;
 import vista.CuentaBibliotecarioStage;
 import vista.CuentaEstudianteStage;
 import vista.CuentaProfesorStage;
 import vista.LoginUnisantillanaStage;
 
 /**
- * Clase que controla la vista LoginUnisantillana.fxml
+ * FXML Controller class
+ *
  * @author stive
- * Fecha de Creación: 05/09/2018
- * Fecha de ultima Modificación: 04/08/2019
  */
 public class LoginUnisantillanaController implements Initializable {
 
@@ -46,45 +47,55 @@ public class LoginUnisantillanaController implements Initializable {
     @FXML
     private ImageView imgFondoBlancoTxt1;
     
-    private ValidatorLogin validatorLogin;
+    private ValidatorLoginEstudiante validatorEst;
+    
+    private ValidatorLoginProfesor validatorProf;
+    
+    private ValidatorLoginBibliotecario validatorBib;
 
     /**
-     * Método que se ejecuta automáticamente al enlazar<br>
-     * este controlador con su respectiva vista
+     * Initializes the controller class.
      * @param url
-     * @param rb 
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //iniciar evento tecla
+        
         KeyEventJFXTextFieldController control = new KeyEventJFXTextFieldController();
         control.soloNumeros(UsuarioTxt);
+        
         //iniciar validadores
+        
         RequiredFieldValidator v1 = new RequiredFieldValidator();
         iniciarValidador(v1, "","informacion");
+        UsuarioTxt.getValidators().add(v1);
         RequiredFieldValidator v2 = new RequiredFieldValidator();
         iniciarValidador(v2, "Ingrese contraseña","informacion");
-        UsuarioTxt.getValidators().add(v1);
         PasswordTxt.getValidators().add(v2);
-        validatorLogin = new ValidatorLogin(UsuarioTxt,PasswordTxt);
+        
+        validatorEst = new ValidatorLoginEstudiante(UsuarioTxt);
+        iniciarValidador(validatorEst, "Codigo incorrecto", "error");
+        validatorBib = new  ValidatorLoginBibliotecario(UsuarioTxt, PasswordTxt);
+        iniciarValidador(validatorBib, "Identificación o contraseña incorrecta", "error");
+        validatorProf = new ValidatorLoginProfesor(UsuarioTxt);
+        iniciarValidador(validatorProf, "Identificación incorrecta", "error");
+        
         addEventValidador();
         //Iniciar componentes vista
         comboLogin.getItems().add("Estudiante");
         comboLogin.getItems().add("Bibliotecario");
         comboLogin.getItems().add("Docente");
         comboLogin.getSelectionModel().select(0);
+
+        iniciarComponentesEstudiante();
         imgFondoBlanco.setImage(new Image("/recursos/fondo-blanco.png"));
         imgIconUsuarioTxt.setImage(new Image("/recursos/login-textfield.png"));
         imgFondoBlancoTxt.setImage(new Image("/recursos/background-field.png"));
         imgIconPasswordTxt.setImage(new Image("/recursos/pasword-textfield.png"));
         imgFondoBlancoTxt1.setImage(new Image("/recursos/background-field.png"));
-        iniciarComponentesEstudiante();
     }
 
-    /**
-     * Método que cambia los componentes del login
-     * @param event 
-     */
     @FXML
     private void btnComboLoginPressed(ActionEvent event) {
         if (comboLogin.getSelectionModel().getSelectedItem().equals("Estudiante")) {
@@ -107,10 +118,6 @@ public class LoginUnisantillanaController implements Initializable {
         //**************
     }
 
-    /**
-     * Método que loguea a un usuario
-     * @param event 
-     */
     @FXML
     private void btnAccederPressed(ActionEvent event) {
         if (comboLogin.getSelectionModel().getSelectedItem().equals("Estudiante")) {
@@ -124,10 +131,6 @@ public class LoginUnisantillanaController implements Initializable {
         }
     }
     
-    /**
-     * Método que finaliza la ejecución del programa 
-     * @param event 
-     */
     @FXML
     private void btnSalirPressed(ActionEvent event){
         System.exit(0);
@@ -155,6 +158,7 @@ public class LoginUnisantillanaController implements Initializable {
     
     /**
      * Metodo que carga los componentes de un validador
+     *
      * @param validador
      * @param mensaje
      * @param txt
@@ -168,12 +172,12 @@ public class LoginUnisantillanaController implements Initializable {
      * Metodo que inicia los componentes del bibliotecario
      */
     private void iniciarComponentesBib() {
-        validatorLogin.setTipoUsuario("bibliotecario");
-        iniciarValidador(validatorLogin, "Identificación o contraseña incorrecta", "error");
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
         UsuarioTxt.setPromptText("Identificación");
+        
         ComponentesBib(true);
         imgLogin.setImage(new Image("/recursos/iconBibliotecario.png"));
+
         UsuarioTxt.setLayoutY(271);
         imgIconUsuarioTxt.setLayoutY(272);
         imgFondoBlancoTxt.setLayoutY(253);
@@ -183,12 +187,14 @@ public class LoginUnisantillanaController implements Initializable {
      * Metodo que inicia los componentes del login estudiante
      */
     private void iniciarComponentesEstudiante() {
-        validatorLogin.setTipoUsuario("estudiante");
-        iniciarValidador(validatorLogin, "Codigo incorrecto", "error");
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese codigo");
         UsuarioTxt.setPromptText("Codigo");
+        //***************************
+        UsuarioTxt.setText("1760156");
+        //***************************
         ComponentesBib(false);
         imgLogin.setImage(new Image("/recursos/iconStudent.png"));
+
         UsuarioTxt.setLayoutY(320);
         imgIconUsuarioTxt.setLayoutY(325);
         imgFondoBlancoTxt.setLayoutY(302);
@@ -198,12 +204,12 @@ public class LoginUnisantillanaController implements Initializable {
      * Metodo que inicia los componentes del profesor
      */
     private void iniciarComponentesProf() {
-        validatorLogin.setTipoUsuario("profesor");
-        iniciarValidador(validatorLogin, "Identificación incorrecta", "error");
         UsuarioTxt.getValidators().get(0).setMessage("Ingrese identificación");
         UsuarioTxt.setPromptText("Identificación");
+        
         ComponentesBib(false);
         imgLogin.setImage(new Image("/recursos/iconTeacher.png"));
+
         UsuarioTxt.setLayoutY(320);
         imgIconUsuarioTxt.setLayoutY(325);
         imgFondoBlancoTxt.setLayoutY(302);
@@ -232,7 +238,7 @@ public class LoginUnisantillanaController implements Initializable {
             PasswordTxt.validate();
             return;
         }
-        UsuarioTxt.getValidators().add(validatorLogin);
+        UsuarioTxt.getValidators().add(validatorBib);
         if (UsuarioTxt.validate()) {
             CuentaBibliotecarioStage.getInstance().cargarDatosBibliotecario(idBibliotecario);
             LoginUnisantillanaStage.getInstance().close();
@@ -247,7 +253,7 @@ public class LoginUnisantillanaController implements Initializable {
      * @param codEstudiante
      */
     private void loguearEstudiante(String codEstudiante) {
-        UsuarioTxt.getValidators().add(validatorLogin);
+        UsuarioTxt.getValidators().add(validatorEst);
         if (UsuarioTxt.validate()) {
             CuentaEstudianteStage.getInstance().cargarDatosEstudiante(codEstudiante);
             LoginUnisantillanaStage.getInstance().close();
@@ -260,7 +266,7 @@ public class LoginUnisantillanaController implements Initializable {
      * Método que loguea a un profesor, por medio de una identificación
      */
     private void loguearProfesor(String idProfesor){
-        UsuarioTxt.getValidators().add(validatorLogin);
+        UsuarioTxt.getValidators().add(validatorProf);
         if(UsuarioTxt.validate()){
             CuentaProfesorStage.getInstance().cargarDatosProfesor(idProfesor);
             LoginUnisantillanaStage.getInstance().close();

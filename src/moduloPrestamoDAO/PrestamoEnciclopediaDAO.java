@@ -1,7 +1,8 @@
 package moduloPrestamoDAO;
 
 import modelo.ConnectionBD;
-import entitys.PrestamoEnciclopedia;
+import entitysRecursos.PrestamoEnciclopedia;
+import entitysRecursos.PrestamoLibro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

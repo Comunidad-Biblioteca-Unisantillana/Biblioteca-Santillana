@@ -1,7 +1,7 @@
 package moduloDevolucionDAO;
 
 import modelo.ConnectionBD;
-import entitys.DevolucionMapa;
+import entitysRecursos.DevolucionMapa;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +38,7 @@ public class DevolucionMapaDAO implements InterfaceCRUD <DevolucionMapa>{
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setInt(1, devolucion.getCodPrestamoMapa());
             pps.setString(2, devolucion.getIdBibliotecario());
-            pps.setDate(3, devolucion.getFechaDevolucion()); 
+            pps.setDate(3, (Date) devolucion.getFechaDevolucion()); 
             pps.setString(4, devolucion.getEstadoDevolucion());
             
             if(pps.executeUpdate() > 0){

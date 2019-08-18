@@ -1,7 +1,7 @@
 package moduloDevolucionDAO;
 
 import modelo.ConnectionBD;
-import entitys.DevolucionPeriodico;
+import entitysRecursos.DevolucionPeriodico;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

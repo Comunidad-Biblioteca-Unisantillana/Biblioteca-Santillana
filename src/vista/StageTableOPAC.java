@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package vista;
 
 import control.TablaOPACController;
@@ -8,12 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modelo.ConsultaOPAC;
 
 /**
- * Stage donde se muestra la información basica de un recurso
+ *
  * @author Camilo
- * Fecha de Creación: 05/09/2018
- * Fecha de ultima Modificación: 04/08/2019
  */
 public class StageTableOPAC extends Stage{
     

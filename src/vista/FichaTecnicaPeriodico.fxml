@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="608.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FichaTecnicaPeriodicoController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.8" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label prefHeight="21.0" prefWidth="156.0" text="ISSN" textFill="WHITE" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="170.0" text="Fecha de publicación" textFill="WHITE" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="148.0" text="Ciudad" textFill="WHITE" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="155.0" text="Paginas" textFill="WHITE" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="148.0" text="Editorial" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="152.0" text="Disponibilidad" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="154.0" text="Estado fisico" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="156.0" text="Nombre " textFill="WHITE">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="152.0" text="Categoria" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <JFXTextField fx:id="txtNombrePeriodico" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+      <JFXTextField fx:id="txtISSN" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="txtFechaPublicacion" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="txtCiudad" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <JFXTextField fx:id="txtPaginas" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <JFXTextField fx:id="txtEditorial" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="txtDisponibilidad" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="txtEstadoFisico" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <JFXTextField fx:id="txtCategoria" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+   </children>
+</GridPane>

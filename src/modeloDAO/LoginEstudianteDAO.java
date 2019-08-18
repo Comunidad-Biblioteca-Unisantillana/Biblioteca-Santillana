@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package modeloDAO;
 
 import java.sql.ResultSet;
@@ -19,7 +23,6 @@ public class LoginEstudianteDAO {
     /**
      * Método que realiza el read de la BD por medio un código.
      * @param codEstudiante
-     * @return 
      */
     public boolean readDAO(String codEstudiante){
         Statement stmt;
