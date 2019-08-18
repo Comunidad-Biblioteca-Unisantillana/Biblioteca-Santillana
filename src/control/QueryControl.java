@@ -15,14 +15,13 @@ import controllers.MateriaPorDiccionarioJpaController;
 import controllers.MateriaPorEnciclopediaJpaController;
 import controllers.MateriaPorLibroJpaController;
 import controllers.MateriaPorRevistaJpaController;
-import entitys.AutorDiccionario;
-import entitys.AutorEnciclopedia;
-import entitys.AutorLibro;
-import entitys.Materia;
-import entitys.MateriaPorDiccionario;
-import entitys.MateriaPorEnciclopedia;
-import entitys.MateriaPorLibro;
-import entitys.MateriaPorRevista;
+import entitysRecursos.AutorDiccionario;
+import entitysRecursos.AutorEnciclopedia;
+import entitysRecursos.AutorLibro;
+import entitysRecursos.MateriaPorDiccionario;
+import entitysRecursos.MateriaPorEnciclopedia;
+import entitysRecursos.MateriaPorLibro;
+import entitysRecursos.MateriaPorRevista;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class QueryControl {
                 
                 List<AutorLibro> listAutLib =  controladorAutLib.findAutorPorLibroCodBarras(codBarras); 
                 if(listAutLib != null){
-                    for(AutorLibro aut: listAutLib) cadenaAutores += "- " + aut.getNombres()+ " " + aut.getApellidos()+"\n";              
+                    for(AutorLibro aut: listAutLib) cadenaAutores += "- " + aut.getNombre() + " " + aut.getApellido() +"\n";              
                 }
                 break;
             case "enciclopedia":
@@ -69,7 +68,7 @@ public class QueryControl {
                 
                 List<AutorEnciclopedia> listAutEnc =  controladorAutEnc.findAutorPorEnciclopediaCodBarras(codBarras); 
                 if(listAutEnc != null){
-                    for(AutorEnciclopedia aut: listAutEnc) cadenaAutores += "- " + aut.getNombres()+ " " + aut.getApellidos()+"\n";              
+                    for(AutorEnciclopedia aut: listAutEnc) cadenaAutores += "- " + aut.getNombre() + " " + aut.getApellido() +"\n";              
                 }
 
                 break;
@@ -80,7 +79,7 @@ public class QueryControl {
                 
                 List<AutorDiccionario> listAutDic =  controladorAutDic.findAutorPorDiccionarioCodBarras(codBarras); 
                 if(listAutDic != null){
-                    for(AutorDiccionario aut: listAutDic) cadenaAutores += "- " + aut.getNombres()+ " " + aut.getApellidos()+"\n";              
+                    for(AutorDiccionario aut: listAutDic) cadenaAutores += "- " + aut.getNombre() + " " + aut.getApellido() +"\n";              
                 }
                 break;
             default: break;
@@ -94,40 +93,28 @@ public class QueryControl {
                 MateriaPorLibroJpaController ctrlLib = new MateriaPorLibroJpaController();       
                 List<MateriaPorLibro> listMatLib =  ctrlLib.findMateriaPorLibroCodBarras(codBarras); 
                 if(listMatLib != null){
-                    for(MateriaPorLibro mat: listMatLib){
-                        Materia materia = new Materia(mat.getCodmaterialibro());
-                        cadenaMaterias += "- " + materia.getNombremateria() +"\n";  
-                    }            
+                    for(MateriaPorLibro mat: listMatLib) cadenaMaterias += "- " + mat.getNombremateria() +"\n";              
                 }
                 break;
             case "enciclopedia":
                 MateriaPorEnciclopediaJpaController ctrlEnc = new MateriaPorEnciclopediaJpaController();       
                 List<MateriaPorEnciclopedia> listMatEnc =  ctrlEnc.findMateriaPorEnciclopediaCodBarras(codBarras); 
                 if(listMatEnc != null){
-                    for(MateriaPorEnciclopedia mat: listMatEnc) {
-                        Materia materia = new Materia(mat.getCodmateriaenciclopedia());
-                        cadenaMaterias += "- " + materia.getNombremateria()+"\n";
-                    }
+                    for(MateriaPorEnciclopedia mat: listMatEnc) cadenaMaterias += "- " + mat.getNombremateria() +"\n";              
                 }
                 break;
             case "diccionario":
                 MateriaPorDiccionarioJpaController ctrlDic = new MateriaPorDiccionarioJpaController();       
                 List<MateriaPorDiccionario> listMatDic =  ctrlDic.findMateriaPorDiccionarioCodBarras(codBarras); 
                 if(listMatDic != null){
-                    for(MateriaPorDiccionario mat: listMatDic){
-                        Materia materia = new Materia(mat.getCodmateriadiccionario());
-                        cadenaMaterias += "- " + materia.getNombremateria() +"\n";
-                }
+                    for(MateriaPorDiccionario mat: listMatDic) cadenaMaterias += "- " + mat.getNombremateria() +"\n";              
                 }
                 break;
             case "revista":
                 MateriaPorRevistaJpaController ctrlRev = new MateriaPorRevistaJpaController();       
                 List<MateriaPorRevista> listMatRev =  ctrlRev.findMateriaPorRevistaCodBarras(codBarras); 
                 if(listMatRev != null){
-                    for(MateriaPorRevista mat: listMatRev){ 
-                        Materia materia = new Materia(mat.getCodmateriarevista());
-                        cadenaMaterias += "- " + materia.getNombremateria() +"\n";
-                    }            
+                    for(MateriaPorRevista mat: listMatRev) cadenaMaterias += "- " + mat.getNombremateria() +"\n";              
                 }
                 break;
         }

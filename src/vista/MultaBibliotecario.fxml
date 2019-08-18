@@ -38,7 +38,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </TableView>
-      <Label prefHeight="21.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Label prefHeight="21.0" prefWidth="185.0" text="Código Estudiante" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -46,7 +46,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <JFXTextField fx:id="codUserHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <JFXTextField fx:id="codEstudianteHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>

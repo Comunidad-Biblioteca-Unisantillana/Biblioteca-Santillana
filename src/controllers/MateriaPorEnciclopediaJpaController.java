@@ -7,8 +7,8 @@ package controllers;
 
 import controllers.exceptions.NonexistentEntityException;
 import controllers.exceptions.PreexistingEntityException;
-import entitys.MateriaPorEnciclopedia;
-import entitys.MateriaPorLibro;
+import entitysRecursos.MateriaPorEnciclopedia;
+import entitysRecursos.MateriaPorLibro;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="608.0" prefWidth="1366.0" stylesheets="@../recursos/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FichaTecnicaRevistaController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="170.75" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.8" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.8" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label prefHeight="21.0" prefWidth="233.0" text="ISSN" textFill="WHITE" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="203.0" text="Fecha de publicación" textFill="WHITE" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="202.0" text="Publicador" textFill="WHITE" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="219.0" text="Pais de publicación" textFill="WHITE" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="162.0" text="Disponibilidad" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="201.0" text="Estado fisico" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="167.0" text="Titulo" textFill="WHITE">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="133.0" text="Categoria" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="251.0" text="Idioma" textFill="WHITE" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="138.0" text="Materia" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <JFXTextField fx:id="txtTitulo" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+      <JFXTextField fx:id="txtISSN" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="txtIdioma" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="txtPaisPublicacion" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <JFXTextField fx:id="txtFechaPublicacion" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <JFXTextField fx:id="txtPublicador" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <JFXTextField fx:id="txtDisponibilidad" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <JFXTextField fx:id="txtEstadoFisico" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <JFXTextArea fx:id="txAreaMateria" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets top="20.0" />
+         </GridPane.margin>
+      </JFXTextArea>
+      <JFXTextField fx:id="txtCategoria" unFocusColor="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+   </children>
+</GridPane>

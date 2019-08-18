@@ -1,7 +1,7 @@
 package moduloMultaDAO;
 
 import modelo.ConnectionBD;
-import entitys.MultaRevista;
+import entitysRecursos.MultaRevista;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

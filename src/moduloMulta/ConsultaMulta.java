@@ -1,6 +1,6 @@
 package moduloMulta;
 
-import entitys.Multa;
+import entitysRecursos.Multa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

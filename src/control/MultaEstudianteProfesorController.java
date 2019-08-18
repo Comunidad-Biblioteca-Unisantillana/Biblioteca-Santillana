@@ -5,7 +5,7 @@
  */
 package control;
 
-import entitys.Multa;
+import entitysRecursos.Multa;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;

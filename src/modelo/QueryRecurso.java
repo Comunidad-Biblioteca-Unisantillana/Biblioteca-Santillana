@@ -11,12 +11,12 @@ import controllers.LibroJpaController;
 import controllers.MapaJpaController;
 import controllers.PeriodicoJpaController;
 import controllers.RevistaJpaController;
-import entitys.Diccionario;
-import entitys.Enciclopedia;
-import entitys.Libro;
-import entitys.Mapa;
-import entitys.Periodico;
-import entitys.Revista;
+import entitysRecursos.Diccionario;
+import entitysRecursos.Enciclopedia;
+import entitysRecursos.Libro;
+import entitysRecursos.Mapa;
+import entitysRecursos.Periodico;
+import entitysRecursos.Revista;
 
 /**
  * Clase que retorna las consultas sobre un recurso.
