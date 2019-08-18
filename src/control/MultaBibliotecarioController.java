@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import com.jfoenix.controls.JFXTextField;
-import entitysRecursos.Multa;
+import entitys.Multa;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -21,13 +16,15 @@ import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- *
- * @author Storkolm
+ * Clase que controla la vista MultaBibliotecario.fxml
+ * @author Julian
+ * Fecha de Creación: 18/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class MultaBibliotecarioController implements Initializable {
 
     @FXML
-    private JFXTextField codEstudianteHisMulTxt;
+    private JFXTextField codUserHisMulTxt;
     @FXML
     private TableView<Multa> tableMulta;
     @FXML
@@ -48,20 +45,32 @@ public class MultaBibliotecarioController implements Initializable {
     private String codEstudiante = "";
     private boolean consultoMultas = false;
 
+    /**
+     * Método que se ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
+        eventoTecla.soloNumeros(codUserHisMulTxt);
         tableMulta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Multa> arg0, Multa oldValue, Multa newValue) -> {
             tipo = newValue.getTipo();
             codMulta = newValue.getCodMulta();
         });
     }
 
+    /**
+     * Método que por medio de un código busca el<br>
+     * historial de multas de un usuario
+     * @param event 
+     */
     @FXML
     private void btnconsultarHisMulPressed(ActionEvent event) {
-
-        if (!codEstudianteHisMulTxt.getText().isEmpty()) {
+        if (!codUserHisMulTxt.getText().isEmpty()) {
             try {
-                cargarDatosTableMultas(codEstudianteHisMulTxt.getText());
+                cargarDatosTableMultas(codUserHisMulTxt.getText());
                 consultoMultas = true;
             } catch (Exception ex) {
                 System.err.println("Error al cargar los datos del historial de multas");
@@ -72,6 +81,12 @@ public class MultaBibliotecarioController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que se encarga de eliminar la multa de<br>
+     * un usuario
+     * @param event
+     * @throws Exception 
+     */
     @FXML
     private void btnCancelarMultaPressed(ActionEvent event) throws Exception {
         IAlertBox alert = new AlertBox();
@@ -92,7 +107,6 @@ public class MultaBibliotecarioController implements Initializable {
     /**
      * Método que se encarga de cargar las multas que se han realizado a un
      * estudiante por medio de código.
-     *
      * @param codEstudiante
      * @throws Exception
      */

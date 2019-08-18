@@ -5,7 +5,7 @@
  */
 package control;
 
-import entitysRecursos.Prestamo;
+import entitys.Prestamo;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +13,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import moduloPrestamo.ConsultaPrestamo;
+import moduloPrestamo.ConsultaPrestamoEst;
+import moduloPrestamo.ConsultaPrestamoProf;
+import moduloPrestamo.IConsultarPrestamo;
 
 /**
  * Clase que controla el panel prestamo del estudiante
@@ -32,25 +34,31 @@ public class PrestamoEstudianteProfesorController {
     private TableColumn<Prestamo, Date> fechaDevolucionTable;
     @FXML
     private TableColumn<Prestamo, String> tituloTable;
+    @FXML
+    private TableColumn<Prestamo, Character> devueltoTable;
 
     /**
      * Metodo que carga la tabla con los datos de los <br>
      * prestamos del estudiante o profesor
-     * @param codEstudiante
+     *
+     * @param codUsuario
      * @param tipoUsuario
      */
-    public void cargarDatosTablePrestamos(String codEstudiante,String tipoUsuario) {
-        if(tipoUsuario.equals("profesor"))return;
+    public void cargarDatosTablePrestamos(String codUsuario, String tipoUsuario) {
         try {
-            ConsultaPrestamo consulta = new ConsultaPrestamo();
-
-            codPrestamosTable.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
-            tituloTable.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+            IConsultarPrestamo consulta = null;
+            if (tipoUsuario.toLowerCase().equals("profesor")) {
+                consulta = new ConsultaPrestamoProf();
+            } else if (tipoUsuario.toLowerCase().equals("estudiante")) {
+                consulta = new ConsultaPrestamoEst();
+            }
+            codPrestamosTable.setCellValueFactory(new PropertyValueFactory<>("codBarrasRecurso"));
+            tituloTable.setCellValueFactory(new PropertyValueFactory<>("tituloRecurso"));
             fechaPrestamoTable.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
             fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
-            tablePrestamo.setItems(consulta.getPrestamos(codEstudiante));
-        } catch (Exception ex) {
-            Logger.getLogger(CuentaEstudianteProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+            devueltoTable.setCellValueFactory(new PropertyValueFactory<>("devuelto"));
+            tablePrestamo.setItems(consulta.getHistorialPrestamos(codUsuario));
+        } catch (Exception e) {
         }
     }
 }

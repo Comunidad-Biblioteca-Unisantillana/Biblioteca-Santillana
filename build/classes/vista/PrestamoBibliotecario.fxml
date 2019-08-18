@@ -37,7 +37,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="34.0" prefWidth="185.0" text="Código Estudiante" textFill="WHITE" GridPane.rowIndex="2">
+      <Label prefHeight="34.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -75,7 +75,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <JFXButton maxWidth="1.7976931348623157E308" onAction="#btnPrestarPressed" prefHeight="35.0" text="Prestar" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#btnPrestarPressed" prefHeight="35.0" text="Prestar" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></JFXButton>
@@ -83,7 +83,7 @@
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="codEstudiantePresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextField fx:id="codUserPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>

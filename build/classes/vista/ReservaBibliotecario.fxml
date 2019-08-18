@@ -42,7 +42,7 @@
             <Insets left="15.0" />
          </GridPane.margin>
       </Label>
-      <Label prefWidth="185.0" text="Código estudiante" textFill="WHITE" GridPane.rowIndex="2">
+      <Label prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -58,11 +58,11 @@
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextField fx:id="txtCodUserReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+      <JFXTextField fx:id="txtFechaReserva" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import com.jfoenix.controls.JFXTextField;
@@ -10,8 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
 /**
- * 
+ * Clase que controla el ingreso de datos de un JFXTextField
  * @author Julian
+ * Fecha de Creación: 14/07/2019
+ * Fecha de ultima Modificación: 04/08/2019
  */
 public class KeyEventJFXTextFieldController {
     

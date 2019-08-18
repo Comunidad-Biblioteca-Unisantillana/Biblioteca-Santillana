@@ -6,19 +6,19 @@ import controllers.LibroJpaController;
 import controllers.MapaJpaController;
 import controllers.PeriodicoJpaController;
 import controllers.RevistaJpaController;
-import entitysRecursos.Diccionario;
-import entitysRecursos.Enciclopedia;
-import entitysUsuarios.Estudiante;
-import entitysRecursos.Libro;
-import entitysRecursos.Mapa;
-import entitysRecursos.Periodico;
-import entitysRecursos.PrestamoDiccionario;
-import entitysRecursos.PrestamoEnciclopedia;
-import entitysRecursos.PrestamoLibro;
-import entitysRecursos.PrestamoMapa;
-import entitysRecursos.PrestamoPeriodico;
-import entitysRecursos.PrestamoRevista;
-import entitysRecursos.Revista;
+import entitys.Diccionario;
+import entitys.Enciclopedia;
+import entitysUsuario.Estudiante;
+import entitys.Libro;
+import entitys.Mapa;
+import entitys.Periodico;
+import entitys.PrestamoDiccionario;
+import entitys.PrestamoEnciclopedia;
+import entitys.PrestamoLibro;
+import entitys.PrestamoMapa;
+import entitys.PrestamoPeriodico;
+import entitys.PrestamoRevista;
+import entitys.Revista;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -76,7 +76,6 @@ public class GeneradorPrestamoRecurso {
                         if(libro.getDisponibilidad().equalsIgnoreCase("disponible")){    
                             int diasDev = libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen") ? 15 : 2;
                             fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, diasDev);
-
                             PrestamoLibro presLib = new PrestamoLibro(codBarras, codEstudiante, idBibliotecario, 
                                 new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
 
