@@ -8,6 +8,8 @@ import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOEst;
 import moduloPrestamo.IPrestamo;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  * Clase que genera un prestamo de diccionario a un estudiante
@@ -22,6 +24,7 @@ public class PrestamoDiccionarioEstFab implements IPrestamo {
 
     @Override
     public boolean ejecutarPrestamo(String codBarra, String codUsuario, String idBibliotecario) {
+        IAlertBox alert = new AlertBox();
         try {
             Diccionario dicccionario = QueryRecurso.consultarDiccionario(codBarra);
             if (dicccionario != null) {
@@ -42,10 +45,10 @@ public class PrestamoDiccionarioEstFab implements IPrestamo {
                     }
 
                 } else {
-                    System.out.println("el diccionario no se encuentra disponible");
+                    alert.showAlert("Anuncio", "Prestamo diccionario", "el diccionario no se encuentra disponible");
                 }
             } else {
-                System.out.println("Ningun diccionario tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Prestamo diccionario", "Ningun diccionario tiene este codigo de barra");
             }
         } catch (Exception e) {
             System.out.println("error al generar el prestamo de diccionario de un estudiante");

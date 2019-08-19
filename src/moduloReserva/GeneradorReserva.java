@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import modeloDAO.EstudianteDAO;
-import moduloPrestamoDAO.PrestamoLibroDAO;
+import moduloPrestamoDAO_Antiguo.PrestamoLibroDAO;
 import moduloReservaDAO.ReservaLibroDAO;
 import vista.AlertBox;
 import vista.IAlertBox;

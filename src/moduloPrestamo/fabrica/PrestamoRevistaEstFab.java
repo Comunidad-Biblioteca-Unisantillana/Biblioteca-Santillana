@@ -8,6 +8,8 @@ import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoRevistaDAOEst;
 import moduloPrestamo.IPrestamo;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  *
@@ -20,13 +22,14 @@ public class PrestamoRevistaEstFab implements IPrestamo {
 
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
+        IAlertBox alert = new AlertBox();
         try {
             Revista revista = QueryRecurso.consultarRevista(codBarras);
             if (revista != null) {
                 if (revista.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
                     java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 1);
+                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
 
                     PrestamoRevistaEst presRevEst = new PrestamoRevistaEst(codBarras, codUsuario, idBibliotecario,
                             new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
@@ -40,10 +43,10 @@ public class PrestamoRevistaEstFab implements IPrestamo {
                         return true;
                     }
                 } else {
-                    System.out.println("la revista no se encuentra disponible");
+                    alert.showAlert("Anuncio", "Prestamo revista", "La revista no se encuentra disponible");
                 }
             } else {
-                System.out.println("Ninguna revista tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Prestamo revista", "Ninguna revista tiene este codigo de barra");
             }
         } catch (Exception e) {
             System.out.println("error al generar el prestamo de la revista de un estudiante");

@@ -8,6 +8,8 @@ import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOEst;
 import moduloPrestamo.IPrestamo;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  *
@@ -21,13 +23,14 @@ public class PrestamoEnciclopediaEstFab implements IPrestamo {
 
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
+        IAlertBox alert = new AlertBox();
         try {
             Enciclopedia enciclopedia = QueryRecurso.consultarEnciclopedia(codBarras);
             if (enciclopedia != null) {
                 if (enciclopedia.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
                     java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 1);
+                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
 
                     PrestamoEnciclopediaEst presEncEst = new PrestamoEnciclopediaEst(codBarras, codUsuario, idBibliotecario,
                             new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
@@ -41,10 +44,10 @@ public class PrestamoEnciclopediaEstFab implements IPrestamo {
                     }
                     return true;
                 } else {
-                    System.out.println("la enciclopedia no se encuentra disponible");
+                    alert.showAlert("Anuncio", "Prestamo enciclopedia", "la enciclopedia no se encuentra disponible");
                 }
             } else {
-                System.out.println("Ninguna enciclopedia tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Prestamo enciclopedia", "Ninguna enciclopedia tiene este codigo de barra");
             }
         } catch (Exception e) {
             System.out.println("error al generar el prestamo de enciclopedio de un estudiante");

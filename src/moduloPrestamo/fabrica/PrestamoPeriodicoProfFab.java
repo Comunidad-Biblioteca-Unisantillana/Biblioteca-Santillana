@@ -8,6 +8,8 @@ import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOProf;
 import moduloPrestamo.IPrestamo;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  *
@@ -21,13 +23,14 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
 
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
+        IAlertBox alert = new AlertBox();
         try {
             Periodico periodico = QueryRecurso.consultarPeriodico(codBarras);
             if (periodico != null) {
                 if (periodico.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
                     java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 1);
+                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
 
                     PrestamoPeriodicoProf presPerProf = new PrestamoPeriodicoProf(codBarras, codUsuario, idBibliotecario,
                             new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
@@ -41,10 +44,10 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
                         return true;
                     }
                 } else {
-                    System.out.println("el periodico no se encuentra disponible");
+                    alert.showAlert("Anuncio", "Prestamo periodico", "El periodico no se encuentra disponible");
                 }
             } else {
-                System.out.println("Ningun periodico tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Prestamo periodico", "Ningun periodico tiene este codigo de barra");
             }
         } catch (Exception e) {
             System.out.println("error al generar el prestamo del periodico de un profesor");

@@ -122,7 +122,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             PrestamoEstudianteProfesorController control = loader.getController();
-            control.cargarDatosTablePrestamos(codigo,tipoUsuario);
+            control.cargarDatosUsuario(codigo, tipoUsuario);
         } catch (IOException ex) {
             
         }

@@ -7,6 +7,8 @@ import java.sql.Date;
 import modelo.QueryRecurso;
 import moduloPrestamo.DAO.PrestamoLibroDAOEst;
 import moduloPrestamo.IPrestamo;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  *
@@ -20,17 +22,17 @@ public class PrestamoLibroEstFab implements IPrestamo {
 
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
+        IAlertBox alert = new AlertBox();
         try {
             Libro libro = QueryRecurso.consultarLibro(codBarras);
             if (libro != null) {
                 if (libro.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
                     java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = new java.util.Date();
                     int diasPrestamo = libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen") ? 15 : 2;
 
                     PrestamoLibroEst prestLibEst = new PrestamoLibroEst(codBarras, codUsuario, idBibliotecario,
-                            new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
+                            new Date(fechaActual.getTime()), null);
 
                     PrestamoLibroDAOEst prestLibDAOEst = new PrestamoLibroDAOEst(diasPrestamo);
                     if (prestLibDAOEst.createDAO(prestLibEst)) {
@@ -41,10 +43,10 @@ public class PrestamoLibroEstFab implements IPrestamo {
                         return true;
                     }
                 } else {
-                    System.out.println("el libro no se encuentra disponible");
+                    alert.showAlert("Anuncio", "Prestamo libro", "el libro no se encuentra disponible");
                 }
             } else {
-                System.out.println("Ningun libro tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Prestamo libro", "Ningun libro tiene este codigo de barra");
             }
         } catch (Exception e) {
             System.out.println("error al generar el prestamo de libro de un estudiante");

@@ -26,11 +26,9 @@ public class PrestamoBibliotecarioController implements Initializable {
     @FXML
     private JFXTextField codUserPresTxt;
     @FXML
-    private JFXTextField fechaPrestamoPresTxt;
-    @FXML
-    private JFXTextField fechaDevolucionPresTxt;
-    @FXML
     private JFXComboBox<String> cboTipoPrestamo;
+    @FXML
+    private JFXComboBox<String> cboTipoUsuario;
 
     private String idBibliotecario;
 
@@ -43,13 +41,19 @@ public class PrestamoBibliotecarioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Restriccion solo numeros
         KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
         eventoTecla.soloNumeros(codBarrasPresTxt);
         eventoTecla.soloNumeros(codUserPresTxt);
+        //iniciar comboBox tipo recursos
         ObservableList<String> listaTipoRecurso = FXCollections.observableArrayList("Libro", "Enciclopedia", "Diccionario",
                 "Revista", "Periodico", "Mapa");
         cboTipoPrestamo.setItems(listaTipoRecurso);
         cboTipoPrestamo.setValue("Libro");
+        //iniciar comboBox tipo usuario
+        ObservableList<String> listaTipoUsuario = FXCollections.observableArrayList("Estudiante","Profesor");
+        cboTipoUsuario.setItems(listaTipoUsuario);
+        cboTipoUsuario.setValue("Estudiante");
     }
 
     /**
@@ -66,7 +70,7 @@ public class PrestamoBibliotecarioController implements Initializable {
             try {
                 GeneradorPrestamo generador = new GeneradorPrestamo();
                 generador.createPrestamo(codBarrasPresTxt.getText(), codUserPresTxt.getText(), 
-                        idBibliotecario, cboTipoPrestamo.getValue(), "estudiante");//agregar campo en la ventana 
+                        idBibliotecario, cboTipoPrestamo.getValue(), cboTipoUsuario.getValue()); 
             } catch (Exception ex) {
                 System.out.println("Error al generar el préstamo");
             }

@@ -8,6 +8,8 @@ import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOProf;
 import moduloPrestamo.IPrestamo;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  *
@@ -21,6 +23,7 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
 
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
+        IAlertBox alert = new AlertBox();
         try {
             Diccionario dicccionario = QueryRecurso.consultarDiccionario(codBarras);
             if (dicccionario != null) {
@@ -42,10 +45,10 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
                     }
 
                 } else {
-                    System.out.println("el diccionario no se encuentra disponible");
+                    alert.showAlert("Anuncio", "Prestamo diccionario", "el diccionario no se encuentra disponible");
                 }
             } else {
-                System.out.println("Ningun diccionario tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Prestamo diccionario", "Ningun diccionario tiene este codigo de barra");
             }
         } catch (Exception e) {
             System.out.println("error al generar el prestamo de diccionario de un profesor");

@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import moduloDevolucion.GeneradorDevolucion;
+import moduloDevolucion.GeneradorDevolucionRecurso;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -60,7 +60,7 @@ public class DevolucionBibliotecarioController implements Initializable{
          IAlertBox alert = new AlertBox();
         if(!codBarrasDevTxt.getText().isEmpty() && ! idBibliotecario.isEmpty()){
             try {
-                GeneradorDevolucion generador = new GeneradorDevolucion();
+                GeneradorDevolucionRecurso generador = new GeneradorDevolucionRecurso();
 
                 if(generador.createDevolucion(codBarrasDevTxt.getText(), idBibliotecario, cboTipoRecurso.getValue(),
                         cboEstadoRecurso.getValue())){

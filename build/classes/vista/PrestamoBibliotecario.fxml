@@ -37,7 +37,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="34.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.rowIndex="2">
+      <Label prefHeight="34.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -48,23 +48,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="20.0" prefWidth="185.0" text="Fecha del préstamo" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </Label>
-      <Label prefHeight="20.0" prefWidth="185.0" text="Fecha de devolución" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </Label>
-      <Label prefHeight="20.0" prefWidth="185.0" text="Tipo de préstamo" textFill="WHITE" GridPane.rowIndex="3">
+      <Label prefHeight="20.0" prefWidth="185.0" text="Tipo de préstamo" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -83,22 +67,20 @@
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="codUserPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextField fx:id="codUserPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="fechaPrestamoPresTxt" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="fechaDevolucionPresTxt" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </GridPane.margin></JFXTextField>
-      <JFXComboBox fx:id="cboTipoPrestamo" maxWidth="1.7976931348623157E308" prefHeight="29.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <JFXComboBox fx:id="cboTipoPrestamo" maxWidth="1.7976931348623157E308" prefHeight="29.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXComboBox>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="200.0" style="-fx-font-size: 30;" text="Prestamo" textFill="WHITE" GridPane.columnIndex="2" />
+      <Label prefWidth="185.0" text="Tipo de Usuario" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <JFXComboBox fx:id="cboTipoUsuario" maxWidth="1.7976931348623157E308" prefHeight="29.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </GridPane.margin>
+      </JFXComboBox>
    </children>
 </GridPane>
