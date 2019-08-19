@@ -2,6 +2,8 @@ package moduloPrestamo;
 
 import modeloDAO.EstudianteDAO;
 import modeloDAO.ProfesorDAO;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  * Clase que se encarga de generar un prestamo de un recurso
@@ -31,26 +33,25 @@ public class GeneradorPrestamo {
      * @throws Exception
      */
     public void createPrestamo(String codBarra, String codUsuario, String idBibliotecario, String tipoPrestamo, String tipoUsuario) throws Exception {
+        IAlertBox alert = new AlertBox();
         if (tipoUsuario.toLowerCase().equals("estudiante")) {
             EstudianteDAO estDAO = new EstudianteDAO();
             if (estDAO.readDAO(codUsuario) != null) {
                 if (generarPrestamoEstudiante(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
-                    System.out.println("El prestamo del estudiante se realizo con exito");
+                    alert.showAlert("Anuncio", "Prestamo", "El prestamo del estudiante se realizo con exito");
                 }
             } else {
-                System.out.println("no hay ningun estudiante con ese codigo");
+                alert.showAlert("Anuncio", "Error usuario", "no hay ningun estudiante con ese codigo");
             }
         } else if (tipoUsuario.toLowerCase().equals("profesor")) {
             ProfesorDAO profDAO = new ProfesorDAO();
             if (profDAO.readDAO(codUsuario) != null) {
                 if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
-                    System.out.println("El prestamo del profesor se realizo con exito");
+                    alert.showAlert("Anuncio", "Prestamo", "El prestamo del profesor se realizo con exito");
                 }
             } else {
-                System.out.println("no hay ningun profesor con esa identificación");
+                alert.showAlert("Anuncio", "Error usuario", "no hay ningun profesor con esa identificación");
             }
-        } else {
-            System.out.println("El codigo no concuerda con ningun estudiante o profesor");
         }
     }
 
