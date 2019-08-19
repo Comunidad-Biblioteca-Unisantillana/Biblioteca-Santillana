@@ -4,7 +4,6 @@ import moduloPrestamo.entitys.PrestamoRevistaEst;
 import controllers.RevistaJpaController;
 import entitys.Revista;
 import java.sql.Date;
-import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoRevistaDAOEst;
 import moduloPrestamo.IPrestamo;
@@ -24,7 +23,8 @@ public class PrestamoRevistaEstFab implements IPrestamo {
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         try {
-            Revista revista = QueryRecurso.consultarRevista(codBarras);
+            RevistaJpaController control = new RevistaJpaController();
+            Revista revista = control.findRevista(codBarras);
             if (revista != null) {
                 if (revista.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
@@ -37,7 +37,7 @@ public class PrestamoRevistaEstFab implements IPrestamo {
                     PrestamoRevistaDAOEst presRevDAOEst = new PrestamoRevistaDAOEst();
                     if (presRevDAOEst.createDAO(presRevEst)) {
                         System.out.println("Cambiando disponibilidad de la revista...");
-                        RevistaJpaController control = new RevistaJpaController();
+                        
                         revista.setDisponibilidad("prestado");
                         control.edit(revista);
                         return true;

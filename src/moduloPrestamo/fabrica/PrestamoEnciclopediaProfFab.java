@@ -4,7 +4,6 @@ import moduloPrestamo.entitys.PrestamoEnciclopediaProf;
 import controllers.EnciclopediaJpaController;
 import entitys.Enciclopedia;
 import java.sql.Date;
-import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOProf;
 import moduloPrestamo.IPrestamo;
@@ -25,7 +24,8 @@ public class PrestamoEnciclopediaProfFab implements IPrestamo {
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         try {
-            Enciclopedia enciclopedia = QueryRecurso.consultarEnciclopedia(codBarras);
+            EnciclopediaJpaController control = new EnciclopediaJpaController();
+            Enciclopedia enciclopedia = control.findEnciclopedia(codBarras);
             if (enciclopedia != null) {
                 if (enciclopedia.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
@@ -38,7 +38,7 @@ public class PrestamoEnciclopediaProfFab implements IPrestamo {
 
                     if (presEncDAOProf.createDAO(presEncProf)) {
                         System.out.println("Cambiando disponibilidad de la enciclopedia...");
-                        EnciclopediaJpaController control = new EnciclopediaJpaController();
+                        
                         enciclopedia.setDisponibilidad("prestado");
                         control.edit(enciclopedia);
                         return true;

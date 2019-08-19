@@ -27,7 +27,7 @@ public class FabricaPrestamo {
 
     public IPrestamo getPrestamo(String tipoPrestamo, String usuario) {
         IPrestamo prestamo = null;
-        if (usuario.toLowerCase().equals("estudiante")) {
+        if (usuario.equalsIgnoreCase("estudiante")) {
             switch (tipoPrestamo.toLowerCase()) {
                 case "libro":
                     prestamo = new PrestamoLibroEstFab();
@@ -51,7 +51,7 @@ public class FabricaPrestamo {
                     System.out.println("error al crear un prestamo de recurso de estudiante");
                     break;
             }
-        } else if (usuario.toLowerCase().equals("profesor")) {
+        } else {
             switch (tipoPrestamo.toLowerCase()) {
                 case "libro":
                     prestamo = new PrestamoLibroProfFab();
@@ -80,54 +80,3 @@ public class FabricaPrestamo {
     }
 
 }
-
-/**
- * switch (tipoRecurso.toLowerCase()) {
-            case "libro":
-                if (tipoUsuario.toLowerCase().equals("estudiante")) {
-                    prestamo = new PrestamoLibroEstFab();
-                } else if (tipoUsuario.toLowerCase().equals("profesor")) {
-                    prestamo = new PrestamoLibroProfFab();
-                }
-                break;
-            case "enciclopedia":
-                if (tipoUsuario.equals("estudiante")) {
-                    prestamo = new PrestamoEnciclopediaEstFab();
-                } else if (tipoUsuario.equals("profesor")) {
-                    prestamo = new PrestamoEnciclopediaProfFab();
-                }
-                break;
-            case "diccionario":
-                if (tipoUsuario.equals("estudiante")) {
-                    prestamo = new PrestamoDiccionarioEstFab();
-                } else if (tipoUsuario.equals("profesor")) {
-                    prestamo = new PrestamoDiccionarioProfFab();
-                }
-                break;
-            case "revista":
-                if (tipoUsuario.equals("estudiante")) {
-                    prestamo = new PrestamoRevistaEstFab();
-                } else if (tipoUsuario.equals("profesor")) {
-                    prestamo = new PrestamoRevistaProfFab();
-                }
-                break;
-            case "periodico":
-                if (tipoUsuario.equals("estudiante")) {
-                    prestamo = new PrestamoPeriodicoEstFab();
-                } else if (tipoUsuario.equals("profesor")) {
-                    prestamo = new PrestamoPeriodicoProfFab();
-                }
-                break;
-            case "mapa":
-                if (tipoUsuario.equals("estudiante")) {
-                    prestamo = new PrestamoMapaEstFab();
-                } else if (tipoUsuario.equals("profesor")) {
-                    prestamo = new PrestamoMapaProfFab();
-
-                }
-                break;
-            default:
-                System.out.println("error al crear un prestamo de recurso de" + tipoUsuario);
-                break;
-        }
- */

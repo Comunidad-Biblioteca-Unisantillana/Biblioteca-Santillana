@@ -4,7 +4,6 @@ import moduloPrestamo.entitys.PrestamoLibroProf;
 import controllers.LibroJpaController;
 import entitys.Libro;
 import java.sql.Date;
-import modelo.QueryRecurso;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.IPrestamo;
 import vista.AlertBox;
@@ -24,7 +23,8 @@ public class PrestamoLibroProfFab implements IPrestamo {
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         try {
-            Libro libro = QueryRecurso.consultarLibro(codBarras);
+            LibroJpaController control = new LibroJpaController();
+            Libro libro = control.findLibro(codBarras);
             if (libro != null) {
                 if (libro.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
@@ -37,7 +37,7 @@ public class PrestamoLibroProfFab implements IPrestamo {
 
                     if (prestLibDAOProf.createDAO(prestLibProf)) {
                         System.out.println("Cambiando disponibilidad del libro...");
-                        LibroJpaController control = new LibroJpaController();
+                        
                         libro.setDisponibilidad("prestado");
                         control.edit(libro);
                         return true;

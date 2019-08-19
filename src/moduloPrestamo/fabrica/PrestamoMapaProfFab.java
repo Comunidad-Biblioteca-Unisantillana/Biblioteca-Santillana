@@ -4,7 +4,6 @@ import moduloPrestamo.entitys.PrestamoMapaProf;
 import controllers.MapaJpaController;
 import entitys.Mapa;
 import java.sql.Date;
-import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoMapaDAOProf;
 import moduloPrestamo.IPrestamo;
@@ -25,7 +24,8 @@ public class PrestamoMapaProfFab implements IPrestamo {
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         try {
-            Mapa mapa = QueryRecurso.consultarMapa(codBarras);
+            MapaJpaController control = new MapaJpaController();
+            Mapa mapa = control.findMapa(codBarras);
             if (mapa != null) {
                 if (mapa.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
@@ -38,7 +38,7 @@ public class PrestamoMapaProfFab implements IPrestamo {
                     PrestamoMapaDAOProf presMapDAOProf = new PrestamoMapaDAOProf();
                     if (presMapDAOProf.createDAO(presMapProf)) {
                         System.out.println("Cambiando disponibilidad del mapa...");
-                        MapaJpaController control = new MapaJpaController();
+                        
                         mapa.setDisponibilidad("prestado");
                         control.edit(mapa);
                         return true;

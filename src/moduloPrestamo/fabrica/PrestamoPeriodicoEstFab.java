@@ -4,7 +4,6 @@ import moduloPrestamo.entitys.PrestamoPeriodicoEst;
 import controllers.PeriodicoJpaController;
 import entitys.Periodico;
 import java.sql.Date;
-import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOEst;
 import moduloPrestamo.IPrestamo;
@@ -24,7 +23,8 @@ public class PrestamoPeriodicoEstFab implements IPrestamo {
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         try {
-            Periodico periodico = QueryRecurso.consultarPeriodico(codBarras);
+            PeriodicoJpaController control = new PeriodicoJpaController();
+            Periodico periodico = control.findPeriodico(codBarras);
             if (periodico != null) {
                 if (periodico.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
@@ -36,7 +36,7 @@ public class PrestamoPeriodicoEstFab implements IPrestamo {
                     PrestamoPeriodicoDAOEst presPerDAOEst = new PrestamoPeriodicoDAOEst();
                     if (presPerDAOEst.createDAO(presPerEst)) {
                         System.out.println("Cambiando disponibilidad del periodico...");
-                        PeriodicoJpaController control = new PeriodicoJpaController();
+                        
                         periodico.setDisponibilidad("prestado");
                         control.edit(periodico);
                         return true;

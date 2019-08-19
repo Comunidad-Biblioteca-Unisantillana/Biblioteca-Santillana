@@ -34,7 +34,7 @@ public class GeneradorPrestamo {
      */
     public void createPrestamo(String codBarra, String codUsuario, String idBibliotecario, String tipoPrestamo, String tipoUsuario) throws Exception {
         IAlertBox alert = new AlertBox();
-        if (tipoUsuario.toLowerCase().equals("estudiante")) {
+        if (tipoUsuario.equalsIgnoreCase("estudiante")) {
             EstudianteDAO estDAO = new EstudianteDAO();
             if (estDAO.readDAO(codUsuario) != null) {
                 if (generarPrestamoEstudiante(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
@@ -43,7 +43,7 @@ public class GeneradorPrestamo {
             } else {
                 alert.showAlert("Anuncio", "Error usuario", "no hay ningun estudiante con ese codigo");
             }
-        } else if (tipoUsuario.toLowerCase().equals("profesor")) {
+        } else if (tipoUsuario.equalsIgnoreCase("profesor")) {
             ProfesorDAO profDAO = new ProfesorDAO();
             if (profDAO.readDAO(codUsuario) != null) {
                 if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {

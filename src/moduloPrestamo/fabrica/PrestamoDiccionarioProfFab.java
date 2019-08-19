@@ -4,7 +4,6 @@ import moduloPrestamo.entitys.PrestamoDiccionarioProf;
 import controllers.DiccionarioJpaController;
 import entitys.Diccionario;
 import java.sql.Date;
-import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOProf;
 import moduloPrestamo.IPrestamo;
@@ -25,12 +24,13 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         try {
-            Diccionario dicccionario = QueryRecurso.consultarDiccionario(codBarras);
+            DiccionarioJpaController controlDic = new DiccionarioJpaController();
+            Diccionario dicccionario = controlDic.findDiccionario(codBarras);
             if (dicccionario != null) {
                 if (dicccionario.getDisponibilidad().equalsIgnoreCase("disponible")) {
 
                     java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 1);
+                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
 
                     PrestamoDiccionarioProf prestDicProf = new PrestamoDiccionarioProf(codBarras, codUsuario,
                             idBibliotecario, new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
@@ -38,7 +38,7 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
 
                     if (prestDicDAOProf.createDAO(prestDicProf)) {
                         System.out.println("Cambiando disponibilidad del diccionario ...");
-                        DiccionarioJpaController controlDic = new DiccionarioJpaController();
+                        
                         dicccionario.setDisponibilidad("prestado");
                         controlDic.edit(dicccionario);
                         return true;

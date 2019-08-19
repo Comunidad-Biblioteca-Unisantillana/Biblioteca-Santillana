@@ -39,17 +39,15 @@ public class ConsultaPrestamoProf extends IConsultarPrestamo{
                 + "SELECT prp.codBarraRevista, r.titulo, prp.fechaPrestamo, prp.fechaDevolucion\n"
                 + "	FROM Prestamo_Revista_Profesor prp, Revista r\n"
                 + "	WHERE prp.codBarraRevista = r.codBarraRevista AND prp.idProfesor = '" + idProfesor + "'\n"
-                + "     ORDER BY prp.fechaPrestamo DESC \n"
                 + "UNION \n"
                 + "SELECT ppp.codBarraPeriodico, p.nombrePeriodico, ppp.fechaprestamo, ppp.fechaDevolucion\n"
                 + "	FROM Prestamo_Periodico_Profesor ppp, Periodico p\n"
                 + "	WHERE ppp.codBarraPeriodico = p.codBarraPeriodico AND ppp.idProfesor = '" + idProfesor + "'\n"
-                + "     ORDER BY ppp.fechaPrestamo DESC \n"
                 + "UNION \n"
                 + "SELECT pmp.codBarraMapa, m.titulo, pmp.fechaprestamo, pmp.fechaDevolucion\n"
                 + "	FROM Prestamo_Mapa_Profesor pmp, Mapa m\n"
                 + "	WHERE pmp.codBarraMapa = m.codBarraMapa AND pmp.idProfesor = '" + idProfesor + "'\n"
-                + "     ORDER BY fechaDevolucion DESC \n";
+                + "     ORDER BY fechaprestamo DESC \n";
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             rs = pps.executeQuery();
@@ -107,7 +105,7 @@ public class ConsultaPrestamoProf extends IConsultarPrestamo{
                 + "SELECT pmp.codBarraMapa, m.titulo, pmp.fechaprestamo, pmp.fechaDevolucion\n"
                 + "	FROM Prestamo_Mapa_Profesor pmp, Mapa m\n"
                 + "	WHERE pmp.devuelto = 'no' AND pmp.codBarraMapa = m.codBarraMapa AND pmp.idProfesor = '" + idProfesor + "'\n"
-                + "     ORDER BY fechaDevolucion DESC \n";
+                + "     ORDER BY fechaprestamo DESC \n";
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             rs = pps.executeQuery();
