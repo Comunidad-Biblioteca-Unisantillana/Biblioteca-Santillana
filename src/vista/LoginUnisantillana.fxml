@@ -57,7 +57,7 @@
             </JFXButton>
             <ImageView fx:id="imgIconUsuarioTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgIconPasswordTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="194.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" unFocusColor="WHITE">
+            <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="194.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" style="-fx-border-radius: 20;" unFocusColor="WHITE">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
