@@ -39,7 +39,7 @@ public class DatosBasicosUsuarioController {
         }else if (nombreEntidad.equalsIgnoreCase("profesor")){
             ProfesorDAO profDAO = new ProfesorDAO();
             Profesor prof = profDAO.readDAO(codigo);
-            cargarTextoLabels(prof.getNombres() + " " + prof.getApellidos(), "Identificación" + codigo);
+            cargarTextoLabels(prof.getNombres() + " " + prof.getApellidos(), "Identificación: " + codigo);
         }
     }
     
