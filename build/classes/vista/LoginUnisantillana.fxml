@@ -19,7 +19,7 @@
       <AnchorPane maxHeight="650.0" maxWidth="550.0" opacity="0.92" prefHeight="650.0" prefWidth="550.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imgFondoBlanco" fitHeight="600.0" fitWidth="500.0" layoutX="25.0" layoutY="25.0" opacity="0.3" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgLogin" fitHeight="100.0" fitWidth="100.0" layoutX="225.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgLogin" fitHeight="128.0" fitWidth="128.0" layoutX="211.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Blend>
                      <topInput>
@@ -28,21 +28,21 @@
                   </Blend>
                </effect>
             </ImageView>
-            <ImageView fx:id="imgFondoBlancoTxt1" fitHeight="85.0" fitWidth="375.0" layoutX="87.0" layoutY="371.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgFondoBlancoTxt" fitHeight="85.0" fitWidth="375.0" layoutX="87.0" layoutY="253.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" />
-            <JFXTextField fx:id="UsuarioTxt" focusColor="#477acc" labelFloat="true" layoutX="144.0" layoutY="271.0" prefHeight="40.0" prefWidth="310.0" promptText="Identificación" unFocusColor="WHITE">
+            <ImageView fx:id="imgFondoBlancoTxt1" fitHeight="115.0" fitWidth="400.0" layoutX="76.0" layoutY="358.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgFondoBlancoTxt" fitHeight="115.0" fitWidth="400.0" layoutX="76.0" layoutY="245.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" />
+            <JFXTextField fx:id="UsuarioTxt" focusColor="#477acc" labelFloat="true" layoutX="140.0" layoutY="276.0" prefHeight="40.0" prefWidth="310.0" promptText="Identificación" unFocusColor="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="PasswordTxt" focusColor="#477acc" labelFloat="true" layoutX="144.0" layoutY="389.0" prefHeight="40.0" prefWidth="310.0" promptText="Contraseña" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="PasswordTxt" focusColor="#477acc" labelFloat="true" layoutX="140.0" layoutY="384.0" prefHeight="40.0" prefWidth="310.0" promptText="Contraseña" unFocusColor="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton layoutX="87.0" layoutY="487.0" onAction="#btnAccederPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" text="Acceder" textFill="WHITE">
+            <JFXButton layoutX="87.0" layoutY="482.0" onAction="#btnAccederPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" styleClass="acceder" text="Acceder" textFill="WHITE">
                <font>
-                  <Font size="22.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
                <effect>
                   <DropShadow color="RED">
@@ -55,16 +55,16 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </JFXButton>
-            <ImageView fx:id="imgIconUsuarioTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgIconUsuarioTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgIconPasswordTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="194.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" style="-fx-border-radius: 20;" unFocusColor="WHITE">
+            <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="194.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" unFocusColor="WHITE">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </JFXComboBox>
-            <JFXButton layoutX="87.0" layoutY="559.0" onAction="#btnSalirPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" text="Salir" textFill="WHITE">
+            <JFXButton layoutX="89.0" layoutY="548.0" onAction="#btnSalirPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" styleClass="salir" text="Salir" textFill="WHITE">
                <font>
-                  <Font size="22.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
                <effect>
                   <DropShadow color="RED">

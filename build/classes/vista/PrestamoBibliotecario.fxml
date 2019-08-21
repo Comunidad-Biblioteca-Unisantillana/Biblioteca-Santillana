@@ -22,8 +22,7 @@
       <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="300.0" prefHeight="300.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Label prefHeight="34.0" prefWidth="185.0" text="Código de barras" textFill="WHITE" GridPane.rowIndex="1">
@@ -37,7 +36,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="34.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.rowIndex="3">
+      <Label prefHeight="34.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -59,15 +58,15 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <JFXButton alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#btnPrestarPressed" prefHeight="35.0" text="Prestar" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#btnPrestarPressed" prefHeight="35.0" text="Prestar" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets />
+            <Insets top="50.0" />
          </GridPane.margin></JFXButton>
       <JFXTextField fx:id="codBarrasPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="codUserPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <JFXTextField fx:id="codUserPresTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
@@ -76,8 +75,8 @@
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXComboBox>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="200.0" style="-fx-font-size: 30;" text="Prestamo" textFill="WHITE" GridPane.columnIndex="2" />
-      <Label prefWidth="185.0" text="Tipo de Usuario" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <JFXComboBox fx:id="cboTipoUsuario" maxWidth="1.7976931348623157E308" prefHeight="29.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+      <Label prefWidth="185.0" text="Tipo de Usuario" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <JFXComboBox fx:id="cboTipoUsuario" maxWidth="1.7976931348623157E308" prefHeight="29.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin>

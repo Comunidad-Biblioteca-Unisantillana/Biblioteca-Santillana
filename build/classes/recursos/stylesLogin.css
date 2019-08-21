@@ -19,19 +19,19 @@ and open the template in the editor.
 .jfx-combo-box > .list-cell > .text,
 .jfx-combo-box > .list-cell > .label,
 JFXComboBox{
-    -fx-border-radius: 20;
-    -fx-background-radius:20;
     -fx-cursor: hand;
     -fx-text-fill: WHITE;
     -fx-fill: WHITE;
     -fx-background-color: #006895;
     -fx-font-size: 11pt;
     -fx-cursor: hand;
+    -fx-background-radius: 10;
+
 }
 
 .error-label {
     -fx-text-fill: white;
-    -fx-font-size: 10pt;
+    -fx-font-size: 14pt;
 }
 
 .tab-pane .tab:selected{
@@ -41,7 +41,6 @@ JFXComboBox{
 AnchorPane{
     -fx-background-image: url(fondo_pequeno.png);
 }
-
 
 BorderPane{
     -fx-background-image: url(fondo_grande.png);
@@ -53,11 +52,19 @@ BorderPane{
 }
 
 .button {
-    -fx-cursor: hand;
-    -fx-background-color: #006895;
+    -fx-cursor: hand;    
     -fx-background-radius: 20;
 }
 
-.button:hover {
-    -fx-background-color: #00A2E8;
+.acceder{
+    -fx-background-color: green;
+}
+.salir{
+    -fx-background-color: red;
+}
+.acceder:hover{
+    -fx-background-color: #61BD4F;
+}
+.salir:hover{
+     -fx-background-color: #FF4B4B;
 }

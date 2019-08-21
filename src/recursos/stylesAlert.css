@@ -1,25 +1,28 @@
 .myDialog{
-    -fx-background-color: #45A09F;
+    -fx-background-color: #2E86C1;
 }
 .myDialog > *.button-bar > *.container{
-    -fx-background-color: #45A09F;
+    -fx-background-color: #2E86C1;
+    -fx-text-fill: #E6E6E6;
 }
 
 .myDialog > *.label.content{
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #E6E6E6;
     
 }
 
 .myDialog:header *.header-panel{
-    -fx-background-color: #45A09F;
+    -fx-background-color: #2E86C1;
     -fx-border-color: #FFFFFF;
-	-fx-border-width: 0.5px 0.5px 0.5px 0.5px;
+    -fx-border-width: 0.5px 0.5px 0.5px 0.5px;
+    
 }
 .myDialog:header *.header-panel *.label{
     
     -fx-font-size: 18px;
     -fx-font-style: italic;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #E6E6E6;
+    -fx-font-weight: bold;
 }

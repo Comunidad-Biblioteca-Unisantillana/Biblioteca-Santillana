@@ -9,12 +9,12 @@ and open the template in the editor.
 */
 
 .menu-item ,.menu-bar  {
-    -fx-background-color: #00A2E8;
+    -fx-background-color: #2E86C1;
     -fx-border-color: black;
 }
 
 .menu-bar .label{
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 13pt;
 }
 

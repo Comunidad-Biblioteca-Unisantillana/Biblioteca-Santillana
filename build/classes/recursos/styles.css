@@ -9,53 +9,61 @@ and open the template in the editor.
 */
 .button {
     -fx-cursor: hand;
-    -fx-background-color: #00A2E8;
-    -fx-background-radius: 20;
+    -fx-background-color: #026AA7;
+    -fx-background-radius: 5;
     -fx-border-color: black;
-    -fx-border-radius: 20;
-    -fx-text-fill: black;
+    -fx-border-radius: 5;
+    -fx-text-fill: white;
     -fx-font-size: 17;
 }
 
 .button:hover {
-    -fx-background-color: #68D1FF;
+    -fx-background-color: #3c8dbd;
 }
 
 .buttonDrawer {
     -fx-cursor: hand;
-    -fx-background-color: #00A2E8;
+    -fx-background-color: #2E86C1;
     -fx-background-radius: 0;
-    -fx-border-color: black;
+    -fx-border-color: #21618C;
     -fx-border-radius: 0;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 17;
+    -fx-border-width: 1;
 }
 
 .buttonDrawer:hover {
-    -fx-background-color: #68D1FF;
+    -fx-background-color: #D6DCE5;
+    -fx-text-fill: #2E86C1;
+}
+.jfx-hamburger StackPane { 
+    -fx-background-color: white;
 }
 
 .hamburger{
-    -fx-background-color:  #00A2E8;
-    -fx-border-color:  black;
+    -fx-background-color: #2E86C1;
+    -fx-border-color:  #21618C;
+    -fx-border-width: 1;
     -fx-cursor: hand;
+
 }
 
 .hamburger:hover{
-    -fx-background-color: #68D1FF;
+    -fx-background-color: #D6DCE5;
+
 }
 
 .jfx-text-field ,.jfx-text-area {
     -fx-pref-width: 185px;
     -fx-font-size: 11.6pt;
     -fx-text-fill: black;
-    -jfx-unfocus-color : black;
+    -jfx-unfocus-color : #026AA7;
     -jfx-focus-color : white;
     -fx-background-color: #E6E6E6;
 }
 
 .anchorCenter {
-    -fx-background-image: url(fondo_grande.png);
+    -fx-background-image: url(fondo_grande_3.png);
 }
 
 .jfx-combo-box > .list-cell > .text,
@@ -64,18 +72,19 @@ JFXComboBox{
     -fx-cursor: hand;
     -fx-text-fill: WHITE;
     -fx-fill: WHITE;
-    -fx-background-color: #006895;
-    -fx-font-size: 11pt;
+    -fx-background-color: #2E86C1;
+    -fx-font-size: 11pt;    
 }
 
 .label {
     -fx-pref-height: 34px;
-    -fx-background-color: #E6E6E6;
-    -fx-background-radius: 20;
+    -fx-background-color: #2E86C1;
+    -fx-background-radius: 5;
     -fx-font-size: 11.6pt;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-padding: 0 0 0 10;
+    
+    
 }
-
 
 
