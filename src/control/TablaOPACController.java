@@ -61,7 +61,7 @@ public class TablaOPACController {
             tableOPAC.setItems(consulta.consultarRecursos(cadena));
         } catch (Exception ex) {
             IAlertBox alert = new AlertBox();
-            alert.showAlert("Aviso", "Error al consultar", "Error al realizar la busqueda");
+            alert.showAlert("Aviso", "Error al consultar", "Error al realizar la búsqueda");
         }
     }
 }

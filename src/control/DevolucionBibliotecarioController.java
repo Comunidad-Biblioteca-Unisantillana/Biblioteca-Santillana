@@ -62,14 +62,14 @@ public class DevolucionBibliotecarioController implements Initializable{
 
                 if(generador.createDevolucion(codBarrasDevTxt.getText(), idBibliotecario, cboTipoRecurso.getValue(),
                         textAEstadoRecurso.getText())){
-                    alert.showAlert("Anuncio", "Devolución", "La devolución ha sido realizado con éxito!");
+                    alert.showAlert("Anuncio", "Devolución", "¡La devolución ha sido realizada con éxito!");
                 }        
             } catch (Exception ex) {
                 System.out.println("Error al generar  la devolución");
             }
         }
         else{
-            alert.showAlert("Anuncio", "Devolución", "Por favor ingrese todos los campos!");
+            alert.showAlert("Anuncio", "Devolución", "¡Por favor ingrese todos los campos!");
         }
     }
     

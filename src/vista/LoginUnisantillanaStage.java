@@ -26,9 +26,8 @@ public class LoginUnisantillanaStage extends Stage {
             setScene(scene);
             setTitle("Login Unisantillana");
             getIcons().add(new Image("/recursos/iconUniversity.png"));
-            setMinWidth(560);
-            setMinHeight(678);
-            setMaximized(true);
+            setMinWidth(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
+            setMinHeight(java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-47);
             setResizable(false);
             show();
         } catch (IOException e) {

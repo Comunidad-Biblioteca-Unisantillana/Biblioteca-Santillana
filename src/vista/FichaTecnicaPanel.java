@@ -6,7 +6,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import control.DatosFichaDiccionariaController;
+import control.DatosFichaDiccionarioController;
 import control.DatosFichaEnciclopediaController;
 import control.DatosFichaLibroController;
 import control.DatosFichaMapaController;
@@ -61,7 +61,7 @@ public class FichaTecnicaPanel {
                     vistaFichaTecnicaEnciclopedia();
                     break;
                 case "diccionario":
-                    datosFicha = new DatosFichaDiccionariaController(codBarras);
+                    datosFicha = new DatosFichaDiccionarioController(codBarras);
                     vistaFichaTecnicaDiccionario();
                     break;
                 case "revista":

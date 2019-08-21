@@ -31,7 +31,7 @@ public class DatosBasicosUsuarioController {
         if(nombreEntidad.equalsIgnoreCase("estudiante")){
             EstudianteDAO estDAO = new EstudianteDAO();
             Estudiante est = estDAO.readDAO(codigo);
-            cargarTextoLabels(est.getNombre() + " " + est.getApellido() ,"Codigo: " + codigo);
+            cargarTextoLabels(est.getNombre() + " " + est.getApellido() ,"Código: " + codigo);
         }else if (nombreEntidad.equalsIgnoreCase("bibliotecario")){
             BibliotecarioDAO bibDAO = new BibliotecarioDAO();
             Bibliotecario bib = bibDAO.readDAO(codigo);

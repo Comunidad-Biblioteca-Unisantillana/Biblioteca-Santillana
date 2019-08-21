@@ -3,9 +3,59 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/AlertBox.java</file>
-            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/LoginUnisantillanaController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/LoginUnisantillanaStage.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/QueryControl.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/CuentaEstudianteStage.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/KeyEventJFXTextFieldController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamoDAO_Antiguo/PrestamoLibroDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/CuentaEstudianteProfesorController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/recursos/styles.css</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/ConsultaPrestamoProf.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/ConsultaPrestamoEst.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modelo/QueryRecurso.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modelo/ConsultaOPAC.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/OPACController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/DevolucionBibliotecarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/FabricaPrestamo.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloReserva/GeneradorReserva.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/ReservaBibliotecarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/fabrica/PrestamoDiccionarioEstFab.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modeloDAO/LoginEstudianteDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/DAO/PrestamoEnciclopediaDAOEst.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/MultaEstudianteProfesorController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modeloDAO/LoginProfesorDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modelo/ConnectionBD.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/FichaTecnicaPanel.java</file>
             <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamoDAO_Antiguo/PrestamoEnciclopediaDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/CuentaProfesorStage.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/AlertBox.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/GeneradorPrestamo.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/DatosBasicosUsuarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modeloDAO/BibliotecarioDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/Prestamo.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modelo/ValidatorLogin.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/MultaBibliotecarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/CuentaBibliotecarioStage.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/IAlertBox.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/DatosFichaDiccionarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/CuentaBibliotecarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/PrestamoBibliotecarioController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/DAO/PrestamoDiccionarioDAOProf.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/vista/StageTableOPAC.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/recursos/iconUniversity.png</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/entitys/MultaPeriodico.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloMulta/ConsultaMulta.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/recursos/iconTeacher.png</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamo/fabrica/PrestamoDiccionarioProfFab.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/controllers/AutorDiccionarioJpaController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloPrestamoDAO_Antiguo/PrestamoDiccionarioDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/recursos/stylesAlert.css</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/LoginUnisantillanaController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/modelo/ServicioFecha.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/moduloReservaDAO/ReservaLibroDAO.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/PrestamoEstudianteProfesorController.java</file>
+            <file>file:/C:/Users/Stiven/Desktop/Biblioteca-Santillana/src/control/TablaOPACController.java</file>
         </group>
     </open-files>
 </project-private>
