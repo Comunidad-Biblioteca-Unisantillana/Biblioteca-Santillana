@@ -9,12 +9,12 @@
    <children>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" hgap="20.0" maxHeight="47.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="800.0" rowValignment="BOTTOM" stylesheets="@../recursos/styles.css">
          <children>
-            <Label fx:id="lblCodId" style="-fx-padding: 0 10 0 10; -fx-border-color: black; -fx-border-radius: 20;">
+            <Label fx:id="lblCodId" style="-fx-padding: 0 10 0 10; -fx-border-radius: 20;">
                <padding>
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblNombre" style="-fx-padding: 0 10 0 10; -fx-border-color: black; -fx-border-radius: 20;">
+            <Label fx:id="lblNombre" style="-fx-padding: 0 10 0 10; -fx-border-radius: 20;">
                <padding>
                   <Insets left="10.0" />
                </padding>

@@ -3,8 +3,6 @@ package bibliotecasanti;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import modelo.ConnectionBD;
-import vista.CuentaBibliotecarioStage;
-import vista.CuentaEstudianteStage;
 import vista.LoginUnisantillanaStage;
 
 /**
