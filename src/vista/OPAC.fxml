@@ -35,7 +35,7 @@
             <Insets left="30.0" />
          </GridPane.margin>
       </Label>
-      <Label prefHeight="34.0" prefWidth="277.0" text="Titúlo del recurso bibliografico" textFill="WHITE" wrapText="true" GridPane.rowIndex="2">
+      <Label prefHeight="34.0" prefWidth="277.0" text="Título del recurso bibliográfico" textFill="WHITE" wrapText="true" GridPane.rowIndex="2">
          <font>
             <Font size="15.0" />
          </font>

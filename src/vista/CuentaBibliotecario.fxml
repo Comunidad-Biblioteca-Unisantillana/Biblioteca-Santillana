@@ -47,7 +47,7 @@
                                     <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="41.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Prestamo">
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="41.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Préstamo">
                                  <graphic>
                                     <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>

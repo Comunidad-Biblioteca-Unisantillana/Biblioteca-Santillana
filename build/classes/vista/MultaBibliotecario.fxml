@@ -61,7 +61,7 @@
             <Insets />
          </GridPane.margin>
       </JFXButton>
-      <Label alignment="CENTER" prefHeight="38.0" prefWidth="165.0" style="-fx-font-size: 30;" text="Multa" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+      <Label alignment="CENTER" prefHeight="38.0" prefWidth="165.0" style="-fx-font-size: 30;" text="MULTA" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>

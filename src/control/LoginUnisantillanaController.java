@@ -184,9 +184,9 @@ public class LoginUnisantillanaController implements Initializable {
      */
     private void iniciarComponentesEstudiante() {
         validatorLogin.setTipoUsuario("estudiante");
-        iniciarValidador(validatorLogin, "Codigo incorrecto", "error");
-        UsuarioTxt.getValidators().get(0).setMessage("Ingrese codigo");
-        UsuarioTxt.setPromptText("Codigo");
+        iniciarValidador(validatorLogin, "Código incorrecto", "error");
+        UsuarioTxt.getValidators().get(0).setMessage("Ingrese código");
+        UsuarioTxt.setPromptText("Código");
         ComponentesBib(false);
         imgLogin.setImage(new Image("/recursos/iconStudent.png"));
         UsuarioTxt.setLayoutY(320);

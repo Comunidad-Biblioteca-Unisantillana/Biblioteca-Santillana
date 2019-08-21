@@ -24,7 +24,7 @@
       <TableView fx:id="tablePrestamo" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="377.0" prefWidth="952.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2">
          <columns>
             <TableColumn fx:id="codPrestamosTable" editable="false" prefWidth="150.0" style="-fx-text-fill: black;" text="Código de barra" />
-            <TableColumn fx:id="tituloTable" editable="false" prefWidth="408.0" text="Titúlo del recurso bibliográfico" />
+            <TableColumn fx:id="tituloTable" editable="false" prefWidth="408.0" text="Título del recurso bibliográfico" />
             <TableColumn fx:id="fechaPrestamoTable" editable="false" prefWidth="191.0" text="Fecha de préstamo" />
             <TableColumn fx:id="fechaDevolucionTable" editable="false" prefWidth="200.0" text="Fecha de devolución " />
          </columns>
@@ -40,7 +40,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="radioPrestActual" onAction="#btnHistorialPrestamos" text="Prestamos actuales">
+      <JFXRadioButton fx:id="radioPrestActual" onAction="#btnHistorialPrestamos" text="Préstamos actuales">
          <GridPane.margin>
             <Insets bottom="80.0" left="220.0" />
          </GridPane.margin>
@@ -51,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="radioHistorialPrest" onAction="#btnHistorialPrestamos" text="Historial de prestamos" GridPane.columnSpan="2">
+      <JFXRadioButton fx:id="radioHistorialPrest" onAction="#btnHistorialPrestamos" text="Historial de préstamos" GridPane.columnSpan="2">
          <GridPane.margin>
             <Insets bottom="80.0" left="530.0" />
          </GridPane.margin>

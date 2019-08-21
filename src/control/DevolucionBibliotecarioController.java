@@ -1,6 +1,7 @@
 package control;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ public class DevolucionBibliotecarioController implements Initializable{
     @FXML
     private JFXComboBox<String> cboTipoRecurso;
     @FXML
-    private JFXComboBox<String> cboEstadoRecurso;
+    private JFXTextArea textAEstadoRecurso;
     
     private String idBibliotecario;
     
@@ -43,11 +44,8 @@ public class DevolucionBibliotecarioController implements Initializable{
         
         ObservableList<String> listaTipoRecurso = FXCollections.observableArrayList( "Libro", "Enciclopedia", "Diccionario",
                 "Revista", "Periodico", "Mapa");
-        ObservableList<String> listaEstadosFisicos = FXCollections.observableArrayList( "Bueno", "Regular", "Malo");
         cboTipoRecurso.setItems(listaTipoRecurso);
-        cboEstadoRecurso.setItems(listaEstadosFisicos);
         cboTipoRecurso.setValue("Libro");
-        cboEstadoRecurso.setValue("Bueno");
     }
     
     /**
@@ -58,12 +56,12 @@ public class DevolucionBibliotecarioController implements Initializable{
     @FXML
     private void btnDevolverPressed(ActionEvent event) {
          IAlertBox alert = new AlertBox();
-        if(!codBarrasDevTxt.getText().isEmpty() && ! idBibliotecario.isEmpty()){
+        if(!codBarrasDevTxt.getText().isEmpty() && !textAEstadoRecurso.getText().isEmpty()){
             try {
                 GeneradorDevolucionRecurso generador = new GeneradorDevolucionRecurso();
 
                 if(generador.createDevolucion(codBarrasDevTxt.getText(), idBibliotecario, cboTipoRecurso.getValue(),
-                        cboEstadoRecurso.getValue())){
+                        textAEstadoRecurso.getText())){
                     alert.showAlert("Anuncio", "Devolución", "La devolución ha sido realizado con éxito!");
                 }        
             } catch (Exception ex) {
