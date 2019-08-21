@@ -37,7 +37,7 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.8" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+            <BorderPane fx:id="rootModulo" layoutX="60.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.85" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
             <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="50.0" prefWidth="60.0" styleClass="hamburger">
                <cursor>
                   <Cursor fx:constant="HAND" />

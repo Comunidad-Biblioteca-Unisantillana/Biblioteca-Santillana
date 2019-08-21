@@ -32,7 +32,7 @@
    <center>
       <AnchorPane styleClass="anchorCenter" stylesheets="@../recursos/styles.css" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.9" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+            <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.85" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
             <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="261.0" prefWidth="200.0">
                <children>
                   <AnchorPane fx:id="anchorDrawer" prefHeight="261.0" prefWidth="200.0">

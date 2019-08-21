@@ -85,11 +85,6 @@ public class ConsultaMulta {
             System.out.println("No se realizo el readAll correctamente");
         } catch (Exception e) {
             System.out.println("Problema en el readAll");
-        } finally {
-            if (multas.isEmpty()) {
-                IAlertBox alert = new AlertBox();
-                alert.showAlert("Anuncio", "Historial de multas de un estudiante", "No existe un estudiante con ese código");
-            }
         }
         return multas;
     }
