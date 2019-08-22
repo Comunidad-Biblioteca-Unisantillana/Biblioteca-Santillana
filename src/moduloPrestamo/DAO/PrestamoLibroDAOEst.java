@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import moduloPrestamo.entitys.PrestamoLibroEst;
  */
 public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst> {
 
-    private int diasPrestamo;
+    private int diasPrestamo = 0;
 
     public PrestamoLibroDAOEst() {
         connection = ConnectionBD.getInstance();
@@ -85,11 +86,13 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
     public boolean updateDAO(PrestamoLibroEst prestamo) {
         String sqlSentence;
         if(prestamo.getDevuelto() == 's'){
-            sqlSentence = "UPDATE Prestamo_Libro_Estudiante SET codBarraLibro = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = CURRENT_DATE + " + diasPrestamo +", numRenovaciones = ?,devuelto = 'si' WHERE codPrestLibroEst = ?";
+            sqlSentence = "UPDATE Prestamo_Libro_Estudiante SET codBarraLibro = ?, codEstudiante = ?,"
+                    + " idBibliotecario = ?, fechaPrestamo = ?, fechaDevolucion = ?,"
+                    + " numRenovaciones = ?,devuelto = 'si' WHERE codPrestLibroEst = ?";
         }else{
-            sqlSentence = "UPDATE Prestamo_Libro_Estudiante SET codBarraLibro = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = CURRENT_DATE + " + diasPrestamo +", numRenovaciones = ?,devuelto = 'no' WHERE codPrestLibroEst = ?";
+            sqlSentence = "UPDATE Prestamo_Libro_Estudiante SET codBarraLibro = ?, codEstudiante = ?,"
+                    + " idBibliotecario = ?, fechaPrestamo = ?, fechaDevolucion = ?,"
+                    + " numRenovaciones = ?,devuelto = 'no' WHERE codPrestLibroEst = ?";
         }
         
         PreparedStatement pps;
@@ -101,7 +104,8 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
             pps.setString(2, prestamo.getCodEstudiante());
             pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setInt(5, prestamo.getNumRenovaciones());
+            pps.setDate(5, prestamo.getFechaDevolucion());
+            pps.setInt(6, prestamo.getNumRenovaciones());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");
@@ -110,7 +114,7 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
                 System.out.println("No existe un prestamo con ese codigo");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar el update del prestamo libro");
+            JOptionPane.showMessageDialog(null, "No se pudo realizar el update del prestamo libro" + e.getMessage());
         }
 
         return false;

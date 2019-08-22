@@ -23,15 +23,14 @@ public class DevolucionMapaDAOEst extends DevolucionRecursoDAOAbs<DevolucionMapa
 
     @Override
     public boolean createDAO(DevolucionMapaEst devolucion) {
-        String sqlSentence = "INSERT INTO Devolucion_Mapa_Estudiante (codPrestMapaEst, idBibliotecario, fechaDevolucion, estadoDevolucion) VALUES (?,?,?,?)";
+        String sqlSentence = "INSERT INTO Devolucion_Mapa_Estudiante (codPrestMapaEst, idBibliotecario, fechaDevolucion, estadoDevolucion) VALUES (?,?,CURRENT_DATE,?)";
         PreparedStatement pps;
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setInt(1, devolucion.getCodPrestamoMapaEst());
             pps.setString(2, devolucion.getIdBibliotecario());
-            pps.setDate(3, devolucion.getFechaDevolucion());
-            pps.setString(4, devolucion.getEstadoDevolucion());
+            pps.setString(3, devolucion.getEstadoDevolucion());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Registro creado");

@@ -17,7 +17,7 @@ import moduloPrestamo.entitys.PrestamoLibroProf;
  */
 public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroProf> {
 
-    private int diasPrestamo;
+    private int diasPrestamo = 0;
 
     public PrestamoLibroDAOProf() {
         connection = ConnectionBD.getInstance();

@@ -24,15 +24,14 @@ public class DevolucionPeriodicoDAOProf extends DevolucionRecursoDAOAbs<Devoluci
 
     @Override
     public boolean createDAO(DevolucionPeriodicoProf devolucion) {
-        String sqlSentence = "INSERT INTO Devolucion_Periodico_Profesor (codPrestPeriodicoProf, idBibliotecario, fechaDevolucion, estadoDevolucion) VALUES (?,?,?,?)";
+        String sqlSentence = "INSERT INTO Devolucion_Periodico_Profesor (codPrestPeriodicoProf, idBibliotecario, fechaDevolucion, estadoDevolucion) VALUES (?,?,CURRENT_DATE,?)";
         PreparedStatement pps;
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setInt(1, devolucion.getCodPrestamoPeriodicoProf());
             pps.setString(2, devolucion.getIdBibliotecario());
-            pps.setDate(3, (Date) devolucion.getFechaDevolucion());
-            pps.setString(4, devolucion.getEstadoDevolucion());
+            pps.setString(3, devolucion.getEstadoDevolucion());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Registro creado");

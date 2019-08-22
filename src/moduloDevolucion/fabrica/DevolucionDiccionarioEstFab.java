@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import  recursos1.controllers.DiccionarioJpaController;
+import recursos1.controllers.DiccionarioJpaController;
 import recursos1.entitys.Diccionario;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,28 +28,28 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
     public boolean ejecutarDevolucion(String codBarras, String idBibliotecario, String estadoRecurso) {
         IAlertBox alert = new AlertBox();
         try {
-            int codPrestamo = consultarPrestamoDiccionario(codBarras);
-            if (codPrestamo > 0) {
-                DiccionarioJpaController control = new DiccionarioJpaController();
-                Diccionario diccionario = control.findDiccionario(codBarras);
-                if (diccionario != null) {
-                    if (diccionario.getDisponibilidad().equalsIgnoreCase("prestado")) {
-                        PrestamoDiccionarioDAOEst prestDAOEst = new PrestamoDiccionarioDAOEst();
-                        PrestamoDiccionarioEst prestEst = prestDAOEst.readDAO(codPrestamo);
-
-                        DevolucionDiccionarioEst devDicEst = new DevolucionDiccionarioEst(prestEst.getCodPrestamoDiccionarioEst(), idBibliotecario, null, estadoRecurso);
-                        DevolucionDiccionarioDAOEst devDicDAOEst = new DevolucionDiccionarioDAOEst();
-                        devDicDAOEst.createDAO(devDicEst);
-
+            DiccionarioJpaController control = new DiccionarioJpaController();
+            Diccionario diccionario = control.findDiccionario(codBarras);
+            if (diccionario != null) {
+                int codPrestamo = consultarPrestamoDiccionario(codBarras);
+                if (codPrestamo > 0) {
+                    PrestamoDiccionarioDAOEst prestDAOEst = new PrestamoDiccionarioDAOEst();
+                    PrestamoDiccionarioEst prestEst = prestDAOEst.readDAO(codPrestamo);
+                    if (prestEst.getDevuelto() == 'n') {
+                        DevolucionDiccionarioEst devEst = new DevolucionDiccionarioEst(prestEst.getCodPrestamoDiccionarioEst(), idBibliotecario, null, estadoRecurso);
+                        DevolucionDiccionarioDAOEst devDAOEst = new DevolucionDiccionarioDAOEst();
+                        devDAOEst.createDAO(devEst);
                         diccionario.setDisponibilidad("disponible");
                         control.edit(diccionario);
 
                         prestEst.setDevuelto('s');
                         prestDAOEst.updateDAO(prestEst);
-                        alert.showAlert("Anuncio", "Devolucion", "La devolucion del usuario con codigo"
+                        alert.showAlert("Anuncio", "Devolucion diccionario", "La devolucion del usuario con codigo"
                                 + prestEst.getCodEstudiante() + "se realizo con exito");
-                        return true;
+                    } else {
+                        alert.showAlert("Anuncio", "Devolución diccionario", "El diccionario se había devuelto anteriormente");
                     }
+                    return true;
                 }
             }
         } catch (NonexistentEntityException ex) {
@@ -63,7 +63,7 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
     public int consultarPrestamoDiccionario(String codBarras) {
         PrestamoDiccionarioDAOEst prestDAOEst = new PrestamoDiccionarioDAOEst();
         List<PrestamoDiccionarioEst> prestamos = prestDAOEst.readAllDAO();
-        int codPrestamo = -1;
+        int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
             if (prestamos.get(i).getCodBarraDiccionario().equalsIgnoreCase(codBarras)) {
                 codPrestamo = prestamos.get(i).getCodPrestamoDiccionarioEst();

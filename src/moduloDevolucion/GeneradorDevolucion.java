@@ -1,5 +1,8 @@
 package moduloDevolucion;
 
+import vista.AlertBox;
+import vista.IAlertBox;
+
 /**
  * @author Camilo Jaramillo
  * @version 1.0
@@ -12,30 +15,16 @@ public class GeneradorDevolucion {
     }
 
     public String createDevolucion(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso) {
-        String mensaje = "";
-        if(generarDevolucionEstudiante(codBarras, idBibliotecario, tipoRecurso, estadoRecurso)){
-            
-        }else if(generarDevolucionProfesor(codBarras, idBibliotecario, tipoRecurso, estadoRecurso)){
-            
-        }else{
-            
+        if (!generarDevolucion(codBarras, idBibliotecario, tipoRecurso, estadoRecurso, "estudiante")) {
+            generarDevolucion(codBarras, idBibliotecario, tipoRecurso, estadoRecurso, "profesor");
         }
-        return mensaje;
+        return "";
     }
 
-    private boolean generarDevolucionEstudiante(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso){
+    private boolean generarDevolucion(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso, String tipoUsuario) {
         FabricaDevolucion fabrica = new FabricaDevolucion();
-        IDevolucion devolucion = fabrica.getDevolucion(tipoRecurso, "estudiante");
-        if(devolucion.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso)){
-            return true;
-        }
-        return false;
-    }
-    
-    private boolean generarDevolucionProfesor(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso){
-        FabricaDevolucion fabrica = new FabricaDevolucion();
-        IDevolucion devolucion = fabrica.getDevolucion(tipoRecurso, "estudiante");
-        if(devolucion.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso)){
+        IDevolucion devolucion = fabrica.getDevolucion(tipoRecurso, tipoUsuario);
+        if (devolucion.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso)) {
             return true;
         }
         return false;

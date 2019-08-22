@@ -25,7 +25,7 @@ public class PrestamoEnciclopediaProf {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public int getCodPrestamoEnciclopedioProf() {
+    public int getCodPrestamoEnciclopediaProf() {
         return codPrestamoEnciclopedioProf;
     }
 

@@ -1,6 +1,18 @@
 package moduloDevolucion.fabrica;
 
+import controller.exceptions.NonexistentEntityException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import moduloDevolucion.DAO.DevolucionRevistaDAOEst;
 import moduloDevolucion.IDevolucion;
+import moduloDevolucion.entitys.DevolucionRevistaEst;
+import moduloPrestamo.DAO.PrestamoRevistaDAOEst;
+import moduloPrestamo.entitys.PrestamoRevistaEst;
+import recursos1.controllers.RevistaJpaController;
+import recursos1.entitys.Revista;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  * @author Camilo Jaramillo
@@ -15,11 +27,54 @@ public class DevolucionRevistaEstFab implements IDevolucion {
 
     @Override
     public boolean ejecutarDevolucion(String codBarras, String idBibliotecario, String estadoRecurso) {
+        IAlertBox alert = new AlertBox();
+        try {
+            RevistaJpaController control = new RevistaJpaController();
+            Revista revista = control.findRevista(codBarras);
+            if (revista != null) {
+                int codPrestamo = consultarPrestamoRevista(codBarras);
+                if (codPrestamo > 0) {
+
+                    PrestamoRevistaDAOEst prestDAOEst = new PrestamoRevistaDAOEst();
+                    PrestamoRevistaEst prestEst = prestDAOEst.readDAO(codPrestamo);
+                    if (prestEst.getDevuelto() == 'n') {
+                        DevolucionRevistaEst devEst = new DevolucionRevistaEst(prestEst.getCodPrestamoRevistaEst(), idBibliotecario, null, estadoRecurso);
+                        DevolucionRevistaDAOEst devDAOEst = new DevolucionRevistaDAOEst();
+                        devDAOEst.createDAO(devEst);
+
+                        revista.setDisponibilidad("disponible");
+                        control.edit(revista);
+
+                        prestEst.setDevuelto('s');
+                        prestDAOEst.updateDAO(prestEst);
+                        alert.showAlert("Anuncio", "Devolución revista", "La devolución del usuario con codigo"
+                                + prestEst.getCodEstudiante()
+                                + "se realizo con exito");
+                    } else {
+                        alert.showAlert("Anuncio", "Devolución revista", "La revista se había devuelto anteriormente");
+                    }
+                    return true;
+                }
+            }
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(DevolucionDiccionarioEstFab.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(DevolucionDiccionarioEstFab.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
 
     public int consultarPrestamoRevista(String codBarras) {
-        return 0;
+        PrestamoRevistaDAOEst prestDAOEst = new PrestamoRevistaDAOEst();
+        List<PrestamoRevistaEst> prestamos = prestDAOEst.readAllDAO();
+        int codPrestamo = 0;
+        for (int i = 0; i < prestamos.size(); i++) {
+            if (prestamos.get(i).getCodBarraRevista().equalsIgnoreCase(codBarras)) {
+                codPrestamo = prestamos.get(i).getCodPrestamoRevistaEst();
+                break;
+            }
+        }
+        return codPrestamo;
     }
 
     public void notificarDevolucion(String codEstudiante, String tituloRecurso, java.util.Date fechaDevolucion) {
