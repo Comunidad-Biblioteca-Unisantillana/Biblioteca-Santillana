@@ -20,12 +20,12 @@
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="202.0" style="-fx-border-radius: 10; -fx-border-width: 8; -fx-border-color: #154360;" stylesheets="@../../recursos/styles.css">
          <children>
-            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="207.0" styleClass="buttonDrawer" text="Búsquedas por">
+            <Label alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="55.0" prefWidth="207.0" styleClass="buttonDrawer" text="Búsquedas por">
                <graphic>
                   <ImageView fx:id="imgIconMenu" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btnCodigo" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnCodigoOPACPressed" prefHeight="40.0" prefWidth="242.0" styleClass="buttonDrawer" text="Código">
+            <JFXButton fx:id="btnCodigo" alignment="BOTTOM_LEFT" buttonType="RAISED" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnCodigoOPACPressed" prefHeight="40.0" prefWidth="242.0" styleClass="buttonDrawer" text="Código">
                <font>
                   <Font size="15.0" />
                </font>
@@ -33,7 +33,7 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXButton fx:id="btnAutor" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnAutorOPACPressed" prefHeight="40.0" prefWidth="196.0" styleClass="buttonDrawer" text="Autor">
+            <JFXButton fx:id="btnAutor" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnAutorOPACPressed" prefHeight="40.0" prefWidth="196.0" styleClass="buttonDrawer" text="Autor">
                <font>
                   <Font size="15.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXButton fx:id="btnPalabraClave" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnPalabraClaveOPACPressed" prefHeight="40.0" prefWidth="242.0" styleClass="buttonDrawer" text="Palabra Clave">
+            <JFXButton fx:id="btnPalabraClave" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnPalabraClaveOPACPressed" prefHeight="40.0" prefWidth="242.0" styleClass="buttonDrawer" text="Palabra Clave">
                <font>
                   <Font size="15.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXButton fx:id="bntTituloYAutor" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnTituloYAutorOPACPressed" prefHeight="65.0" prefWidth="214.0" styleClass="buttonDrawer" text="Título y Autor">
+            <JFXButton fx:id="bntTituloYAutor" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnTituloYAutorOPACPressed" prefHeight="65.0" prefWidth="214.0" styleClass="buttonDrawer" text="Título y Autor">
                <font>
                   <Font size="15.0" />
                </font>
