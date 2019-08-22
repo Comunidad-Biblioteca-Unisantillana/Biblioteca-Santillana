@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import moduloDevolucion.GeneradorDevolucion;
-import moduloDevolucion.GeneradorDevolucionRecurso;
 import vista.AlertBox;
 import vista.IAlertBox;
 

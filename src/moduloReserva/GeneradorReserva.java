@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import modelo.QueryRecurso;
 import modelo.ServicioFecha;
 import modeloDAO.EstudianteDAO;
-import moduloPrestamoDAO_Antiguo.PrestamoLibroDAO;
 import moduloReservaDAO.ReservaLibroDAO;
 import vista.AlertBox;
 import vista.IAlertBox;
@@ -56,29 +55,29 @@ public class GeneradorReserva {
                 if(libro.getDisponibilidad().equalsIgnoreCase("prestado")){  
                     if(libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen")){
                         
-                        PrestamoLibroDAO presDAO = new PrestamoLibroDAO();
-                        PrestamoLibro prestamo = presDAO.readDAO(libro.getCodbarralibro());
-                        
-                        if(prestamo != null){
-                            int diasPlazo = 5;
-                            fechaLimite = ServicioFecha.sumarDiasAFecha(prestamo.getFechaDevolucion(), diasPlazo);
-
-                            ReservaLibro reserva = new ReservaLibro(codBarras, codEstudiante, idBibliotecario, 
-                                new Date(fechaActual.getTime()), new Date(fechaLimite.getTime()));
-
-                            ReservaLibroDAO resDAO = new ReservaLibroDAO();  
-                            resDAO.createDAO(reserva);
-                            validarReserva = true;    
-
-                            //---------------------------------------------------------------
-                            System.out.println("Cambiando disponibilidad del libro...");
-                            LibroJpaController control = new LibroJpaController(); //Se cambia el estado a "prestado"
-                            libro.setDisponibilidad("reservado");                        
-                            control.edit(libro); 
-                        }
-                        else{
-                            System.out.println("El prestamo es null");
-                        }
+//                        PrestamoLibroDAO presDAO = new PrestamoLibroDAO();
+//                        PrestamoLibro prestamo = presDAO.readDAO(libro.getCodbarralibro());
+//                        
+//                        if(prestamo != null){
+//                            int diasPlazo = 5;
+//                            fechaLimite = ServicioFecha.sumarDiasAFecha(prestamo.getFechaDevolucion(), diasPlazo);
+//
+//                            ReservaLibro reserva = new ReservaLibro(codBarras, codEstudiante, idBibliotecario, 
+//                                new Date(fechaActual.getTime()), new Date(fechaLimite.getTime()));
+//
+//                            ReservaLibroDAO resDAO = new ReservaLibroDAO();  
+//                            resDAO.createDAO(reserva);
+//                            validarReserva = true;    
+//
+//                            //---------------------------------------------------------------
+//                            System.out.println("Cambiando disponibilidad del libro...");
+//                            LibroJpaController control = new LibroJpaController(); //Se cambia el estado a "prestado"
+//                            libro.setDisponibilidad("reservado");                        
+//                            control.edit(libro); 
+//                        }
+//                        else{
+//                            System.out.println("El prestamo es null");
+//                        }
                     }
                     else{
                          alert.showAlert("Anuncio", "Reserva", "El libro no se puede reservar, no es de colección general");
