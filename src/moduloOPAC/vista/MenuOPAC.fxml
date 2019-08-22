@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloOPAC.control.MenuOPACController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="202.0" style="-fx-border-radius: 10; -fx-border-width: 8; -fx-border-color: #154360;" stylesheets="@../../recursos/styles.css">
+         <children>
+            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="207.0" styleClass="buttonDrawer" text="Búsquedas por">
+               <graphic>
+                  <ImageView fx:id="imgIconMenu" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Label>
+            <JFXButton fx:id="btnCodigo" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnCodigoOPACPressed" prefHeight="40.0" prefWidth="242.0" styleClass="buttonDrawer" text="Código">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXButton fx:id="btnAutor" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnAutorOPACPressed" prefHeight="40.0" prefWidth="196.0" styleClass="buttonDrawer" text="Autor">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXButton fx:id="btnPalabraClave" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnPalabraClaveOPACPressed" prefHeight="40.0" prefWidth="242.0" styleClass="buttonDrawer" text="Palabra Clave">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXButton fx:id="bntTituloYAutor" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnTituloYAutorOPACPressed" prefHeight="65.0" prefWidth="214.0" styleClass="buttonDrawer" text="Título y Autor">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</GridPane>

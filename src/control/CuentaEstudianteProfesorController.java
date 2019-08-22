@@ -1,5 +1,6 @@
 package control;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import moduloOPAC.control.CodigoOPACController;
 import vista.CuentaEstudianteStage;
 import vista.CuentaProfesorStage;
 import vista.IniciarMenuDesplegable;
@@ -24,8 +26,10 @@ import vista.LoginUnisantillanaStage;
 /**
  * Clase que controla la vista CuentaEstudianteProfesor.fxml
  *
- * @author stive Fecha de Creación: 05/09/2018 Fecha de ultima Modificación:
- * 04/08/2019
+ * @author stive
+ * @creado: 05/09/2018
+ * @Miguel Fernández
+ * @modificado: 21/08/2019
  */
 public class CuentaEstudianteProfesorController implements Initializable {
 
@@ -42,22 +46,15 @@ public class CuentaEstudianteProfesorController implements Initializable {
     @FXML
     private ImageView imgIconMulta;
     @FXML
-    private ImageView imgIconCodigoOPAC;
+    private ImageView imgIconOPAC;
     @FXML
-    private ImageView imgIconAutorOPAC;
+    private JFXButton btnOPAC;
     @FXML
-    private ImageView imgIconPalabraClaveOPAC;
+    private JFXButton btnPrestamo;
     @FXML
-    private ImageView imgIconTituloYAutorOPAC;
-    @FXML
-    private JFXDrawer subDrawer;
-    @FXML
-    private AnchorPane subAnchorDrawer;
-    @FXML
-    private JFXHamburger hamburger1;
+    private JFXButton btnMulta;
     private String idBibliotecario;
     private IniciarMenuDesplegable imd;
-    private IniciarMenuDesplegable imd1;
     private Stage stage;
     private String codigo;
     private String tipoUsuario;
@@ -72,14 +69,11 @@ public class CuentaEstudianteProfesorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
-        imd1 = new IniciarMenuDesplegable(subDrawer, subAnchorDrawer, hamburger1);
         imgIconPrestamo.setImage(new Image("/recursos/iconPrestamo.png"));
         imgIconMulta.setImage(new Image("/recursos/iconMulta.png"));
-        imgIconCodigoOPAC.setImage(new Image("/recursos/iconOPAC.png"));
-        imgIconAutorOPAC.setImage(new Image("/recursos/iconOPAC.png"));
-        imgIconPalabraClaveOPAC.setImage(new Image("/recursos/iconOPAC.png"));
-        imgIconTituloYAutorOPAC.setImage(new Image("/recursos/iconOPAC.png"));
-        loadOPAC("Codigo");
+        imgIconOPAC.setImage(new Image("/recursos/iconOPAC.png"));
+        loadOPAC();
+        valoresPorDefecto("OPAC");
     }
 
     /**
@@ -110,7 +104,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     @FXML
     private void btnPrestamoPressed(ActionEvent event) {
         loadPrestamo();
-        valoresPorDefecto();
+        valoresPorDefecto("prestamo");
     }
 
     /**
@@ -121,59 +115,39 @@ public class CuentaEstudianteProfesorController implements Initializable {
     @FXML
     private void btnMultaPressed(ActionEvent event) {
         loadMulta();
-        valoresPorDefecto();
+        valoresPorDefecto("multa");
     }
 
     /**
-     * el metódo cambia el tipo de busqueda a: busqueda por codigo.
+     * el metódo cambia el módulo por el de OPAC.
      *
      * @param event
      */
     @FXML
-    private void btnCodigoOPACPressed(ActionEvent event) {
-        loadOPAC("Codigo");
-        valoresPorDefecto();
-    }
-
-    /**
-     * el metódo cambia el tipo de busqueda a: busqueda por autor.
-     *
-     * @param event
-     */
-    @FXML
-    private void btnAutorOPACPressed(ActionEvent event) {
-        loadOPAC("Autor");
-        valoresPorDefecto();
-    }
-
-    /**
-     * el metódo cambia el tipo de busqueda a: busqueda por palabra clave.
-     *
-     * @param event
-     */
-    @FXML
-    private void btnPalabraClaveOPACPressed(ActionEvent event) {
-        loadOPAC("PalabraClave");
-        valoresPorDefecto();
-    }
-
-    /**
-     * el metódo cambia el tipo de busqueda a: busqueda por titulo y autor.
-     *
-     * @param event
-     */
-    @FXML
-    private void btnTituloYAutorOPACPressed(ActionEvent event) {
-        loadOPAC("TituloYAutor");
-        valoresPorDefecto();
+    private void btnOPACPressed(ActionEvent event) {
+        loadOPAC();
+        valoresPorDefecto("OPAC");
     }
 
     /**
      * el metódo repliega la barra del menu.
      */
-    private void valoresPorDefecto() {
+    private void valoresPorDefecto(String modulo) {
+        if (modulo.equals("OPAC")) {
+            btnOPAC.setDisable(true);
+            btnPrestamo.setDisable(false);
+            btnMulta.setDisable(false);
+        } else if (modulo.equals("prestamo")) {
+            btnOPAC.setDisable(false);
+            btnPrestamo.setDisable(true);
+            btnMulta.setDisable(false);
+        } else {
+            btnOPAC.setDisable(false);
+            btnPrestamo.setDisable(false);
+            btnMulta.setDisable(true);
+        }
+        
         imd.valorPorDefecto();
-        imd1.valorPorDefecto();
     }
 
     /**
@@ -209,12 +183,16 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * el metódo que carga el modulo OPAC del Estudiante o Profesor.
+     * el metódo que carga el modulo OPAC del Estudiante o Profesor, por defecto
+     * en el tipo de busqueda a: busqueda por codigo.
      */
-    private void loadOPAC(String busqueda) {
+    private void loadOPAC() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloOPAC/vista/" + busqueda + "OPAC.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloOPAC/vista/CodigoOPAC.fxml"));
             rootModulo.setCenter(loader.load());
+
+            CodigoOPACController codigoOPACController = loader.getController();
+            codigoOPACController.cargarMenuOPAC(rootModulo);
         } catch (IOException ex) {
 
         }

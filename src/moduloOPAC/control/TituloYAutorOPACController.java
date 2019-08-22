@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import moduloOPAC.modelo.BusquedaAvanzadaAbs;
 import moduloOPAC.modelo.BusquedaPalabraClave;
@@ -27,7 +28,7 @@ import vista.IAlertBox;
  * @author Miguel Fernández
  * @creado 20/08/2019
  * @author Miguel Fernández
- * @modificado 20/08/2019
+ * @modificado 21/08/2019
  */
 public class TituloYAutorOPACController implements Initializable {
 
@@ -41,6 +42,8 @@ public class TituloYAutorOPACController implements Initializable {
     private GridPane gridPaneTabla;
     private IAlertBox alert;
     private TablaOPACController tablaOPACController;
+    @FXML
+    private GridPane gridPaneMenu;
 
     /**
      * el método que se ejecuta automáticamente al enlazar este controlador con
@@ -120,5 +123,24 @@ public class TituloYAutorOPACController implements Initializable {
         txtNombreAutor.setText("");
         cboTipoBusqueda.setValue("Todos");
     }
+    
+    /**
+     * el metódo carga el menu de la diferentes consultas con las que cuenta el
+     * módulo de OPAC.
+     */
+    public void cargarMenuOPAC(BorderPane rootModulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloOPAC/vista/MenuOPAC.fxml"));
+            gridPaneMenu.add(loader.load(), 0, 0);
+            
+            MenuOPACController menuOPACController = loader.getController();
+            menuOPACController.setBorderPane(rootModulo);
+            menuOPACController.setDisableButton("tituloYAutor");
+            
+        } catch (IOException ex) {
 
+        }
+    }
+
+    
 }

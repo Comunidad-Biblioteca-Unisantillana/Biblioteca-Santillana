@@ -49,47 +49,15 @@
                      <children>
                         <VBox prefHeight="151.0" prefWidth="200.0">
                            <children>
-                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="OPAC">
+                              <JFXButton fx:id="btnOPAC" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="OPAC">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                                  <graphic>
-                                    <JFXHamburger fx:id="hamburger1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="42.0" />
+                                    <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                               </JFXButton>
-                              <JFXDrawer fx:id="subDrawer" defaultDrawerSize="110.0" prefHeight="176.0" prefWidth="200.0">
-                                 <children>
-                                    <AnchorPane fx:id="subAnchorDrawer" layoutX="500.0" prefHeight="224.0" prefWidth="267.0">
-                                       <children>
-                                          <VBox prefHeight="173.0" prefWidth="100.0">
-                                             <children>
-                                                <JFXButton onAction="#btnCodigoOPACPressed" prefHeight="56.0" prefWidth="187.0" styleClass="buttonDrawer" text="Busqueda por código">
-                                                   <graphic>
-                                                      <ImageView fx:id="imgIconCodigoOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                                   </graphic>
-                                                </JFXButton>
-                                                <JFXButton onAction="#btnAutorOPACPressed" prefHeight="56.0" prefWidth="233.0" styleClass="buttonDrawer" text="Busqueda por autor">
-                                                   <graphic>
-                                                      <ImageView fx:id="imgIconAutorOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                                   </graphic>
-                                                </JFXButton>
-                                                <JFXButton onAction="#btnPalabraClaveOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="busqueda por palabra clave">
-                                                   <graphic>
-                                                      <ImageView fx:id="imgIconPalabraClaveOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                                   </graphic>
-                                                </JFXButton>
-                                                <JFXButton onAction="#btnTituloYAutorOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="busqueda por titulo y autor">
-                                                   <graphic>
-                                                      <ImageView fx:id="imgIconTituloYAutorOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
-                                                   </graphic>
-                                                </JFXButton>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </JFXDrawer>
-                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="36.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Prestamo ">
+                              <JFXButton fx:id="btnPrestamo" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="36.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Prestamo ">
                                  <graphic>
                                     <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
@@ -97,7 +65,7 @@
                                     <Font />
                                  </font>
                               </JFXButton>
-                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Multa">
+                              <JFXButton fx:id="btnMulta" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnMultaPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Multa">
                                  <graphic>
                                     <ImageView fx:id="imgIconMulta" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>

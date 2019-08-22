@@ -3,14 +3,17 @@ package moduloOPAC.control;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import control.KeyEventJFXTextFieldController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import moduloOPAC.modelo.BusquedaAutorDiccionario;
 import moduloOPAC.modelo.BusquedaAutorEnciclopedia;
@@ -51,6 +54,8 @@ public class CodigoOPACController implements Initializable {
     @FXML
     private GridPane gridPaneFicha;
     private IAlertBox alert;
+    @FXML
+    private GridPane gridPaneMenu;
 
     /**
      * el método que se ejecuta automáticamente al enlazar este controlador con
@@ -246,6 +251,24 @@ public class CodigoOPACController implements Initializable {
         txtCodigo.setText("");
         cboTipoBusqueda.setValue("Todos");
         gridPaneFicha.getChildren().clear();
+    }
+
+    /**
+     * el metódo carga el menu de la diferentes consultas con las que cuenta el
+     * módulo de OPAC.
+     */
+    public void cargarMenuOPAC(BorderPane rootModulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloOPAC/vista/MenuOPAC.fxml"));
+            gridPaneMenu.add(loader.load(), 0, 0);
+            
+            MenuOPACController menuOPACController = loader.getController();
+            menuOPACController.setBorderPane(rootModulo);
+            menuOPACController.setDisableButton("codigo");
+            
+        } catch (IOException ex) {
+
+        }
     }
 
 }
