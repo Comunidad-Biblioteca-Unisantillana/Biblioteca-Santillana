@@ -1,8 +1,8 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoPeriodicoProf;
-import controllers.PeriodicoJpaController;
-import entitys.Periodico;
+import recursos1.controllers.PeriodicoJpaController;
+import recursos1.entitys.Periodico;
 import java.sql.Date;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOProf;

@@ -1,9 +1,9 @@
 
 package moduloReserva;
 
-import controllers.LibroJpaController;
+import recursos1.controllers.LibroJpaController;
 import entitysUsuario.Estudiante;
-import entitys.Libro;
+import recursos1.entitys.Libro;
 import entitys.PrestamoLibro;
 import entitys.ReservaLibro;
 import java.sql.Date;

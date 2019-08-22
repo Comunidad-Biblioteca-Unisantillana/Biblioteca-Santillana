@@ -1,30 +1,29 @@
-
 package moduloDevolucion;
 
-import controllers.DiccionarioJpaController;
-import controllers.EnciclopediaJpaController;
-import controllers.LibroJpaController;
-import controllers.MapaJpaController;
-import controllers.PeriodicoJpaController;
-import controllers.RevistaJpaController;
+import recursos1.controllers.DiccionarioJpaController;
+import recursos1.controllers.EnciclopediaJpaController;
+import recursos1.controllers.LibroJpaController;
+import recursos1.controllers.MapaJpaController;
+import recursos1.controllers.PeriodicoJpaController;
+import recursos1.controllers.RevistaJpaController;
 import entitys.DevolucionDiccionario;
 import entitys.DevolucionEnciclopedia;
 import entitys.DevolucionLibro;
 import entitys.DevolucionMapa;
 import entitys.DevolucionPeriodico;
 import entitys.DevolucionRevista;
-import entitys.Diccionario;
-import entitys.Enciclopedia;
-import entitys.Libro;
-import entitys.Mapa;
-import entitys.Periodico;
+import recursos1.entitys.Diccionario;
+import recursos1.entitys.Enciclopedia;
+import recursos1.entitys.Libro;
+import recursos1.entitys.Mapa;
+import recursos1.entitys.Periodico;
 import entitys.PrestamoDiccionario;
 import entitys.PrestamoEnciclopedia;
 import entitys.PrestamoLibro;
 import entitys.PrestamoMapa;
 import entitys.PrestamoPeriodico;
 import entitys.PrestamoRevista;
-import entitys.Revista;
+import recursos1.entitys.Revista;
 import java.sql.Date;
 import modelo.QueryRecurso;
 import moduloDevolucionDAO_Antiguo.DevolucionDiccionarioDAO;
@@ -47,28 +46,28 @@ import vista.IAlertBox;
  * @author Camilo
  */
 public class GeneradorDevolucionRecurso {
-    
-    public GeneradorDevolucionRecurso(){
-        
+
+    public GeneradorDevolucionRecurso() {
+
     }
-    
-    public boolean createDevolucion(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso) throws Exception{
-        
+
+    public boolean createDevolucion(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso) throws Exception {
+
         java.util.Date fechaActual = new java.util.Date();
         boolean validarDevolucion = false;
         IAlertBox alert = new AlertBox();
-        
-        switch(tipoRecurso.toLowerCase()){
+
+        switch (tipoRecurso.toLowerCase()) {
             case "libro":
                 Libro libro = QueryRecurso.consultarLibro(codBarras);
-                if(libro != null){
+                if (libro != null) {
                     PrestamoLibroDAO presLibDAO = new PrestamoLibroDAO();
                     PrestamoLibro presLib = presLibDAO.readDAO(codBarras);
-                    if(presLib != null){
-                        DevolucionLibroDAO devLibDAO = new DevolucionLibroDAO();                       
-                        DevolucionLibro devLib = new DevolucionLibro(presLib.getCodPrestamoLibro(), idBibliotecario, new Date(fechaActual.getTime()), 
-                                                                    estadoRecurso.toLowerCase());
-                 
+                    if (presLib != null) {
+                        DevolucionLibroDAO devLibDAO = new DevolucionLibroDAO();
+                        DevolucionLibro devLib = new DevolucionLibro(presLib.getCodPrestamoLibro(), idBibliotecario, new Date(fechaActual.getTime()),
+                                estadoRecurso.toLowerCase());
+
                         devLibDAO.createDAO(devLib);
                         libro.setDisponibilidad("disponible");
                         LibroJpaController ctrlLib = new LibroJpaController();
@@ -76,23 +75,23 @@ public class GeneradorDevolucionRecurso {
                         validarDevolucion = true;
                         System.out.println("------------------------- \n Borrando prestamo");
                         presLibDAO.deleteDAO(presLib.getCodPrestamoLibro());
-                    }
-                    else
+                    } else {
                         alert.showAlert("Aviso", "Devolución", "No existe un préstamo de libro con ese código");
-                }
-                else
+                    }
+                } else {
                     alert.showAlert("Aviso", "Devolución", "No existe un libro con ese código");
+                }
                 break;
             case "enciclopedia":
                 Enciclopedia enciclopedia = QueryRecurso.consultarEnciclopedia(codBarras);
-                if(enciclopedia != null){
+                if (enciclopedia != null) {
                     PrestamoEnciclopediaDAO presEncDAO = new PrestamoEnciclopediaDAO();
                     PrestamoEnciclopedia presEnc = presEncDAO.readDAO(codBarras);
-                    if(presEnc != null){
-                        DevolucionEnciclopediaDAO devEncDAO = new DevolucionEnciclopediaDAO();                       
-                        DevolucionEnciclopedia devEnc = new DevolucionEnciclopedia(presEnc.getCodPrestamoEnciclopedia(), idBibliotecario, 
-                                                              new Date(fechaActual.getTime()) , estadoRecurso.toLowerCase());
-                        
+                    if (presEnc != null) {
+                        DevolucionEnciclopediaDAO devEncDAO = new DevolucionEnciclopediaDAO();
+                        DevolucionEnciclopedia devEnc = new DevolucionEnciclopedia(presEnc.getCodPrestamoEnciclopedia(), idBibliotecario,
+                                new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
+
                         System.out.println("------------------------- \n Cambiando estado enciclopedia...");
                         devEncDAO.createDAO(devEnc);
                         enciclopedia.setDisponibilidad("disponible");
@@ -102,25 +101,25 @@ public class GeneradorDevolucionRecurso {
                         System.out.println("------------------------- \n Borrando prestamo");
                         System.out.println("El cod es " + presEnc.getCodPrestamoEnciclopedia());
                         presEncDAO.deleteDAO(presEnc.getCodPrestamoEnciclopedia());
-                    }
-                    else
+                    } else {
                         alert.showAlert("Aviso", "Devolución", "No existe un préstamo de enciclopedia con ese código");
-                }
-                else
+                    }
+                } else {
                     alert.showAlert("Aviso", "Devolución", "No existe una enciclopedia con ese código");
+                }
                 break;
             case "diccionario":
                 Diccionario diccionario = QueryRecurso.consultarDiccionario(codBarras);
-               
-                if(diccionario != null){
+
+                if (diccionario != null) {
                     System.out.println("Entro aqui");
                     PrestamoDiccionarioDAO presDicDAO = new PrestamoDiccionarioDAO();
                     PrestamoDiccionario presDic = presDicDAO.readDAO(codBarras);
-                    if(presDic != null){
-                        DevolucionDiccionarioDAO devDicDAO = new DevolucionDiccionarioDAO();                       
-                        DevolucionDiccionario devDic = new DevolucionDiccionario(presDic.getCodPrestamoDiccionario(), idBibliotecario, 
-                                                            new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
-                        
+                    if (presDic != null) {
+                        DevolucionDiccionarioDAO devDicDAO = new DevolucionDiccionarioDAO();
+                        DevolucionDiccionario devDic = new DevolucionDiccionario(presDic.getCodPrestamoDiccionario(), idBibliotecario,
+                                new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
+
                         System.out.println("------------------------- \n Cambiando estado diccionario...");
                         devDicDAO.createDAO(devDic);
                         diccionario.setDisponibilidad("disponible");
@@ -129,23 +128,23 @@ public class GeneradorDevolucionRecurso {
                         validarDevolucion = true;
                         System.out.println("------------------------- \n Borrando prestamo");
                         presDicDAO.deleteDAO(presDic.getCodPrestamoDiccionario());
-                    }
-                    else
+                    } else {
                         alert.showAlert("Aviso", "Devolución", "No existe un préstamo de diccionario con ese código");
-                }
-                else
+                    }
+                } else {
                     alert.showAlert("Aviso", "Devolución", "No existe un diccionario con ese código");
+                }
                 break;
             case "revista":
                 Revista revista = QueryRecurso.consultarRevista(codBarras);
-                if(revista != null){
+                if (revista != null) {
                     PrestamoRevistaDAO presRevDAO = new PrestamoRevistaDAO();
                     PrestamoRevista presRev = presRevDAO.readDAO(codBarras);
-                    if(presRev != null){
-                        DevolucionRevistaDAO devRevDAO = new DevolucionRevistaDAO();                       
-                        DevolucionRevista devRev = new DevolucionRevista(presRev.getCodPrestamoRevista(), idBibliotecario, new Date(fechaActual.getTime()), 
-                                                        estadoRecurso.toLowerCase());
-                        
+                    if (presRev != null) {
+                        DevolucionRevistaDAO devRevDAO = new DevolucionRevistaDAO();
+                        DevolucionRevista devRev = new DevolucionRevista(presRev.getCodPrestamoRevista(), idBibliotecario, new Date(fechaActual.getTime()),
+                                estadoRecurso.toLowerCase());
+
                         System.out.println("------------------------- \n Cambiando estado revista...");
                         devRevDAO.createDAO(devRev);
                         revista.setDisponibilidad("disponible");
@@ -154,23 +153,23 @@ public class GeneradorDevolucionRecurso {
                         validarDevolucion = true;
                         System.out.println("------------------------- \n Borrando prestamo");
                         presRevDAO.deleteDAO(presRev.getCodPrestamoRevista());
-                    }
-                    else
+                    } else {
                         alert.showAlert("Aviso", "Devolución", "No existe un préstamo de revista con ese código");
-                }
-                else
+                    }
+                } else {
                     alert.showAlert("Aviso", "Devolución", "No existe una revista con ese código");
+                }
                 break;
             case "periodico":
                 Periodico periodico = QueryRecurso.consultarPeriodico(codBarras);
-                if(periodico != null){
+                if (periodico != null) {
                     PrestamoPeriodicoDAO presPerDAO = new PrestamoPeriodicoDAO();
                     PrestamoPeriodico presPer = presPerDAO.readDAO(codBarras);
-                    if(presPer != null){
-                        DevolucionPeriodicoDAO devPerDAO = new DevolucionPeriodicoDAO();                       
+                    if (presPer != null) {
+                        DevolucionPeriodicoDAO devPerDAO = new DevolucionPeriodicoDAO();
                         DevolucionPeriodico devPer = new DevolucionPeriodico(presPer.getCodPrestamoPeriodico(), idBibliotecario,
-                                                        new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
-                        
+                                new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
+
                         System.out.println("------------------------- \n Cambiando estado periodico...");
                         devPerDAO.createDAO(devPer);
                         periodico.setDisponibilidad("disponible");
@@ -179,23 +178,23 @@ public class GeneradorDevolucionRecurso {
                         validarDevolucion = true;
                         System.out.println("------------------------- \n Borrando prestamo");
                         presPerDAO.deleteDAO(presPer.getCodPrestamoPeriodico());
-                    }
-                    else
+                    } else {
                         alert.showAlert("Aviso", "Devolución", "No existe un préstamo de periodico con ese código");
-                }
-                else
+                    }
+                } else {
                     alert.showAlert("Aviso", "Devolución", "No existe un periodico con ese código");
+                }
                 break;
             case "mapa":
                 Mapa mapa = QueryRecurso.consultarMapa(codBarras);
-                if(mapa != null){
+                if (mapa != null) {
                     PrestamoMapaDAO presMapDAO = new PrestamoMapaDAO();
                     PrestamoMapa presMap = presMapDAO.readDAO(codBarras);
-                    if(presMap != null){
-                        DevolucionMapaDAO devMapDAO = new DevolucionMapaDAO();                       
-                        DevolucionMapa devMap = new DevolucionMapa(presMap.getCodPrestamoMapa(), idBibliotecario, 
-                                                    new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
-                        
+                    if (presMap != null) {
+                        DevolucionMapaDAO devMapDAO = new DevolucionMapaDAO();
+                        DevolucionMapa devMap = new DevolucionMapa(presMap.getCodPrestamoMapa(), idBibliotecario,
+                                new Date(fechaActual.getTime()), estadoRecurso.toLowerCase());
+
                         System.out.println("------------------------- \n Cambiando estado mapa...");
                         devMapDAO.createDAO(devMap);
                         mapa.setDisponibilidad("disponible");
@@ -204,14 +203,15 @@ public class GeneradorDevolucionRecurso {
                         validarDevolucion = true;
                         System.out.println("------------------------- \n Borrando prestamo");
                         presMapDAO.deleteDAO(presMap.getCodPrestamoMapa());
-                    }
-                    else
+                    } else {
                         alert.showAlert("Aviso", "Devolución", "No existe un préstamo de mapa con ese código");
-                }
-                else
+                    }
+                } else {
                     alert.showAlert("Aviso", "Devolución", "No existe un mapa con ese código");
+                }
                 break;
-            default : break; 
+            default:
+                break;
         }
         return validarDevolucion;
     }

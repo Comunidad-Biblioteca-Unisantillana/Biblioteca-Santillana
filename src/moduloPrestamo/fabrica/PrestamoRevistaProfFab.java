@@ -1,8 +1,8 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoRevistaProf;
-import controllers.RevistaJpaController;
-import entitys.Revista;
+import recursos1.controllers.RevistaJpaController;
+import recursos1.entitys.Revista;
 import java.sql.Date;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoRevistaDAOProf;

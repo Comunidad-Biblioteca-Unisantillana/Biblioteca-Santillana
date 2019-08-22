@@ -1,8 +1,8 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import controllers.DiccionarioJpaController;
-import entitys.Diccionario;
+import recursos1.controllers.DiccionarioJpaController;
+import recursos1.entitys.Diccionario;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

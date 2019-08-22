@@ -1,8 +1,8 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoLibroProf;
-import controllers.LibroJpaController;
-import entitys.Libro;
+import recursos1.controllers.LibroJpaController;
+import recursos1.entitys.Libro;
 import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.IPrestamo;

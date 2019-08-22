@@ -5,18 +5,18 @@
  */
 package modelo;
 
-import controllers.DiccionarioJpaController;
-import controllers.EnciclopediaJpaController;
-import controllers.LibroJpaController;
-import controllers.MapaJpaController;
-import controllers.PeriodicoJpaController;
-import controllers.RevistaJpaController;
-import entitys.Diccionario;
-import entitys.Enciclopedia;
-import entitys.Libro;
-import entitys.Mapa;
-import entitys.Periodico;
-import entitys.Revista;
+import recursos1.controllers.DiccionarioJpaController;
+import recursos1.controllers.EnciclopediaJpaController;
+import recursos1.controllers.LibroJpaController;
+import recursos1.controllers.MapaJpaController;
+import recursos1.controllers.PeriodicoJpaController;
+import recursos1.controllers.RevistaJpaController;
+import recursos1.entitys.Diccionario;
+import recursos1.entitys.Enciclopedia;
+import recursos1.entitys.Libro;
+import recursos1.entitys.Mapa;
+import recursos1.entitys.Periodico;
+import recursos1.entitys.Revista;
 
 /**
  * Clase que retorna las consultas sobre un recurso.

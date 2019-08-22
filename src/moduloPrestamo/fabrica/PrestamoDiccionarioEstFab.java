@@ -1,8 +1,8 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoDiccionarioEst;
-import controllers.DiccionarioJpaController;
-import entitys.Diccionario;
+import  recursos1.controllers.DiccionarioJpaController;
+import recursos1.entitys.Diccionario;
 import java.sql.Date;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOEst;

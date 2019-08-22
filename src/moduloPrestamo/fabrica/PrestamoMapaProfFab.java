@@ -1,8 +1,8 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoMapaProf;
-import controllers.MapaJpaController;
-import entitys.Mapa;
+import recursos1.controllers.MapaJpaController;
+import recursos1.entitys.Mapa;
 import java.sql.Date;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoMapaDAOProf;

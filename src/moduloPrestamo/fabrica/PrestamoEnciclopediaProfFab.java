@@ -1,8 +1,8 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoEnciclopediaProf;
-import controllers.EnciclopediaJpaController;
-import entitys.Enciclopedia;
+import  recursos1.controllers.EnciclopediaJpaController;
+import recursos1.entitys.Enciclopedia;
 import java.sql.Date;
 import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOProf;

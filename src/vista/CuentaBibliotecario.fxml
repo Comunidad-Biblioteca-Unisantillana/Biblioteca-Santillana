@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CuentaBibliotecarioController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CuentaBibliotecarioController">
    <top>
       <MenuBar stylesheets="@../recursos/stylesMenu.css" BorderPane.alignment="CENTER">
         <menus>
@@ -32,22 +32,52 @@
    <center>
       <AnchorPane styleClass="anchorCenter" stylesheets="@../recursos/styles.css" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.85" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+            <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.9" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+            <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="50.0" prefWidth="60.0" styleClass="hamburger" />
             <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="261.0" prefWidth="200.0">
                <children>
                   <AnchorPane fx:id="anchorDrawer" prefHeight="261.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="261.0" prefWidth="200.0">
                            <children>
-                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="OPAC">
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Búsquedas OPAC">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                                  <graphic>
-                                    <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                    <JFXHamburger fx:id="hamburger1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="42.0" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="41.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Préstamo">
+                              <JFXDrawer fx:id="subDrawer" defaultDrawerSize="110.0" prefHeight="176.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane fx:id="subAnchorDrawer" layoutX="500.0" prefHeight="224.0" prefWidth="267.0" />
+                                    <VBox prefHeight="173.0" prefWidth="100.0">
+                                       <children>
+                                          <JFXButton onAction="#btnCodigoOPACPressed" prefHeight="56.0" prefWidth="209.0" styleClass="buttonDrawer" text="Código">
+                                             <graphic>
+                                                <ImageView fx:id="imgIconCodigoOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnAutorOPACPressed" prefHeight="56.0" prefWidth="233.0" styleClass="buttonDrawer" text="Autor">
+                                             <graphic>
+                                                <ImageView fx:id="imgIconAutorOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnPalabraClaveOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Palabra Clave">
+                                             <graphic>
+                                                <ImageView fx:id="imgIconPalabraClaveOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnTituloYAutorOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Titulo y Autor">
+                                             <graphic>
+                                                <ImageView fx:id="imgIconTituloYAutorOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </JFXDrawer>
+                              <JFXButton alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="41.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Prestamo">
                                  <graphic>
                                     <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
@@ -85,7 +115,6 @@
                   </AnchorPane>
                </children>
             </JFXDrawer>
-            <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="50.0" prefWidth="60.0" styleClass="hamburger" />
          </children>
       </AnchorPane>
    </center>

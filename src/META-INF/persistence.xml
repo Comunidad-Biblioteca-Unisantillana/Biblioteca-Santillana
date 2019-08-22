@@ -10,12 +10,9 @@
     <class>entitys.DevolucionPeriodicoEstudiante</class>
     <class>entitys.PrestamoPeriodicoEstudiante</class>
     <class>entitys.PrestamoEnciclopediaProfesor</class>
-    <class>entitys.MateriaPorLibro</class>
     <class>entitys.MultaMapaProfesor</class>
     <class>entitys.MultaEnciclopediaProfesor</class>
-    <class>entitys.Diccionario</class>
     <class>entitys.MultaDiccionarioEstudiante</class>
-    <class>entitys.MateriaPorRevista</class>
     <class>entitys.DevolucionRevistaEstudiante</class>
     <class>entitys.DevolucionEnciclopediaProfesor</class>
     <class>entitys.MultaLibroProfesor</class>
@@ -23,15 +20,12 @@
     <class>entitys.MultaRevistaEstudiante</class>
     <class>entitys.ControlPrecioMulta</class>
     <class>entitys.DevolucionDiccionarioEstudiante</class>
-    <class>entitys.AutorPorLibro</class>
     <class>entitys.PrestamoLibroEstudiante</class>
     <class>entitys.DevolucionPeriodicoProfesor</class>
-    <class>entitys.Periodico</class>
     <class>entitys.DevolucionMapaEstudiante</class>
     <class>entitys.MultaEnciclopediaEstudiante</class>
     <class>entitys.DevolucionLibroEstudiante</class>
     <class>entitys.MultaPeriodicoProfesor</class>
-    <class>entitys.AutorLibro</class>
     <class>entitys.MultaLibroEstudiante</class>
     <class>entitys.PrestamoLibroProfesor</class>
     <class>entitys.ReservaColgenProfesor</class>
@@ -40,25 +34,13 @@
     <class>entitys.MultaRevistaProfesor</class>
     <class>entitys.ReservaColgenEstudiante</class>
     <class>entitys.LoginBibliotecario</class>
-    <class>entitys.Revista</class>
-    <class>entitys.Materia</class>
     <class>entitys.DevolucionEnciclopediaEstudiante</class>
-    <class>entitys.AutorPorEnciclopedia</class>
     <class>entitys.DevolucionRevistaProfesor</class>
-    <class>entitys.AutorDiccionario</class>
-    <class>entitys.MateriaPorEnciclopedia</class>
     <class>entitys.MultaPeriodicoEstudiante</class>
-    <class>entitys.AutorPorDiccionario</class>
     <class>entitys.MultaDiccionarioProfesor</class>
     <class>entitys.MultaMapaEstudiante</class>
     <class>entitys.PrestamoRevistaProfesor</class>
-    <class>entitys.Mapa</class>
     <class>entitys.PrestamoEnciclopediaEstudiante</class>
-    <class>entitys.AutorEnciclopedia</class>
-    <class>entitys.MateriaPorDiccionario</class>
-    <class>entitys.Enciclopedia</class>
-    <class>entitys.CategoriaColeccion</class>
-    <class>entitys.Libro</class>
     <class>entitys.PrestamoPeriodicoProfesor</class>
     <class>entitys.PrestamoDiccionarioEstudiante</class>
     <class>entitys.Bibliotecario_1</class>
@@ -112,11 +94,29 @@
     <class>moduloPrestamo.PrestamoLibroProfesor</class>
     <class>moduloPrestamo.MultaEnciclopediaEstudiante</class>
     <class>moduloPrestamo.PrestamoRevistaProfesor</class>
+    <class>recursos1.entitys.Revista</class>
+    <class>recursos1.entitys.Periodico</class>
+    <class>recursos1.entitys.Libro</class>
+    <class>recursos1.entitys.MateriaPorEnciclopedia</class>
+    <class>recursos1.entitys.MateriaPorLibro</class>
+    <class>recursos1.entitys.MateriaPorRevista</class>
+    <class>recursos1.entitys.Mapa</class>
+    <class>recursos1.entitys.Diccionario</class>
+    <class>recursos1.entitys.Materia</class>
+    <class>recursos1.entitys.MateriaPorDiccionario</class>
+    <class>recursos1.entitys.Enciclopedia</class>
+    <class>recursos1.entitys.AutorPorLibro</class>
+    <class>recursos1.entitys.AutorPorEnciclopedia</class>
+    <class>recursos1.entitys.AutorEnciclopedia</class>
+    <class>recursos1.entitys.CategoriaColeccion</class>
+    <class>recursos1.entitys.AutorDiccionario</class>
+    <class>recursos1.entitys.AutorPorDiccionario</class>
+    <class>recursos1.entitys.AutorLibro</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="1234"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
     </properties>
   </persistence-unit>
 </persistence>
