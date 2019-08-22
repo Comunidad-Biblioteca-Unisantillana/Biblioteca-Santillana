@@ -24,10 +24,20 @@ public class GeneradorDevolucion {
     }
 
     private boolean generarDevolucionEstudiante(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso){
+        FabricaDevolucion fabrica = new FabricaDevolucion();
+        IDevolucion devolucion = fabrica.getDevolucion(tipoRecurso, "estudiante");
+        if(devolucion.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso)){
+            return true;
+        }
         return false;
     }
     
     private boolean generarDevolucionProfesor(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso){
+        FabricaDevolucion fabrica = new FabricaDevolucion();
+        IDevolucion devolucion = fabrica.getDevolucion(tipoRecurso, "estudiante");
+        if(devolucion.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso)){
+            return true;
+        }
         return false;
     }
 }

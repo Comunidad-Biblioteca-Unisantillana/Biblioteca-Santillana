@@ -38,7 +38,8 @@ public class CuentaProfesorStage extends Stage {
             setScene(scene);
             setTitle("Cuenta Profesor");
             getIcons().add(new Image("/recursos/iconUniversity.png"));
-            setMaximized(true);
+            setMinWidth(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
+            setMinHeight(java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-47);
             setResizable(false);
             show();
         } catch (IOException ex) {

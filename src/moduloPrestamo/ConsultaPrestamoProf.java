@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modelo.ConnectionBD;
+import vista.AlertBox;
+import vista.IAlertBox;
 
 /**
  *
@@ -69,7 +71,12 @@ public class ConsultaPrestamoProf extends IConsultarPrestamo{
             System.out.println("No se realizo el readAll correctamente");
         } catch (Exception e) {
             System.out.println("Problema en el readAll");
-        } 
+        } finally{
+            if(prestamos.isEmpty()){
+                IAlertBox alert = new AlertBox();
+                alert.showAlert("Anuncio", "Prestamo profesor", "El historial del profesor esta vacio");
+            }
+        }
         return prestamos;
     }
 
@@ -127,7 +134,12 @@ public class ConsultaPrestamoProf extends IConsultarPrestamo{
             System.out.println("No se realizo el readAll correctamente");
         } catch (Exception e) {
             System.out.println("Problema en el readAll");
-        } 
+        } finally{
+            if(prestamos.isEmpty()){
+                IAlertBox alert = new AlertBox();
+                alert.showAlert("Anuncio", "Prestamo profesor", "El profesor no tiene prestamos actuales");
+            }
+        }
         return prestamos;
     }
     
