@@ -106,7 +106,8 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
             pps.setInt(6, prestamo.getNumRenovaciones());
-
+            pps.setInt(7,prestamo.getCodPrestamoLibroEst());
+            
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");
                 return true;

@@ -99,7 +99,7 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
             pps.setString(3, prestamo.getIdBibliotecario()); 
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
-            
+            pps.setInt(6, prestamo.getCodPrestamoMapaProf());
             if(pps.executeUpdate() > 0){
                System.out.println("Realizo el update");
                return true;

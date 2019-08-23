@@ -3,7 +3,6 @@ package moduloPrestamo.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLInput;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +92,7 @@ public class PrestamoPeriodicoDAOEst extends PrestamoRecursoDAOAbs<PrestamoPerio
             pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
+            pps.setInt(6, prestamo.getCodPrestamoPeriodicoEst());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");

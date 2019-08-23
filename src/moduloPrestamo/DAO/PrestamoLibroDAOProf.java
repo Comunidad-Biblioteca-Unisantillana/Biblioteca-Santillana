@@ -85,10 +85,10 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
         String sqlSentence;
         if (prestamo.getDevuelto() == 's') {
             sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = CURRENT_DATE + " + diasPrestamo + ", numRenovaciones = ?,devuelto = 'si' WHERE codPrestLibroProf = ?";
+                    + "fechaDevolucion = ?, numRenovaciones = ?,devuelto = 'si' WHERE codPrestLibroProf = ?";
         } else {
             sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = CURRENT_DATE + " + diasPrestamo + ", numRenovaciones = ?,devuelto = 'no' WHERE codPrestLibroProf = ?";
+                    + "fechaDevolucion = ? , numRenovaciones = ?,devuelto = 'no' WHERE codPrestLibroProf = ?";
         }
         PreparedStatement pps;
 
@@ -99,7 +99,9 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
             pps.setString(2, prestamo.getIdProfesor());
             pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setInt(5, prestamo.getNumRenovaciones());
+            pps.setDate(5, prestamo.getFechaDevolucion());
+            pps.setInt(6, prestamo.getNumRenovaciones());
+            pps.setInt(7, prestamo.getCodPrestamoLibroProf());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");
