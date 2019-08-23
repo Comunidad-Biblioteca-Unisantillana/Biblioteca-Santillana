@@ -80,6 +80,7 @@ public class DevolucionDiccionarioDAOEst extends DevolucionRecursoDAOAbs<Devoluc
             pps.setString(2, devolucion.getIdBibliotecario());
             pps.setDate(3, (Date) devolucion.getFechaDevolucion());
             pps.setString(4, devolucion.getEstadoDevolucion());
+            pps.setInt(5, devolucion.getCodDevolucionDiccionarioEst());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");

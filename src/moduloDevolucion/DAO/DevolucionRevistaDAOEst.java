@@ -1,6 +1,5 @@
 package moduloDevolucion.DAO;
 
-import entitys.DevolucionRevista;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -130,6 +129,7 @@ public class DevolucionRevistaDAOEst extends DevolucionRecursoDAOAbs<DevolucionR
             pps.setString(2, devolucion.getIdBibliotecario());
             pps.setDate(3, (Date) devolucion.getFechaDevolucion()); 
             pps.setString(4, devolucion.getEstadoDevolucion());
+            pps.setInt(5, devolucion.getCodDevolucionRevistaEst());
             
             if(pps.executeUpdate() > 0){
                System.out.println("Realizo el update");
