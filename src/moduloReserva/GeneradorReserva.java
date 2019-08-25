@@ -2,12 +2,12 @@
 package moduloReserva;
 
 import entitysUsuario.Estudiante;
+import entitysUsuario.EstudianteJpaController;
 import recursos1.entitys.Libro;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javafx.scene.control.TextField;
 import modelo.QueryRecurso;
-import modeloDAO.EstudianteDAO;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -39,8 +39,8 @@ public class GeneradorReserva {
         boolean validarReserva = false;
         IAlertBox alert = new AlertBox();
         
-        EstudianteDAO estDAO = new EstudianteDAO();
-        Estudiante estudiante = estDAO.readDAO(codEstudiante);
+        EstudianteJpaController estJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estJpaController.findEstudiante(codEstudiante);
         
         
         if(estudiante != null){
