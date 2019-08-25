@@ -26,7 +26,7 @@ public class GeneradorRenovacion {
      * @param codEstudiante
      * @return boolean
      */
-    public boolean consultarExistenciaEstudiante(String codEstudiante) {
+    private boolean consultarExistenciaEstudiante(String codEstudiante) {
         EstudianteDAO estDAO = new EstudianteDAO();
         return estDAO.readDAO(codEstudiante) != null;
     }
@@ -37,7 +37,7 @@ public class GeneradorRenovacion {
      * @param idProfesor
      * @return boolean
      */
-    public boolean consultarExistenciaProfesor(String idProfesor) {
+    private boolean consultarExistenciaProfesor(String idProfesor) {
         ProfesorDAO profDAO = new ProfesorDAO();
         return profDAO.readDAO(idProfesor) != null;
     }
@@ -48,7 +48,7 @@ public class GeneradorRenovacion {
      * @param codEstudiante
      * @return boolean
      */
-    public boolean consultarMultaEstudiante(String codEstudiante) {
+    private boolean consultarMultaEstudiante(String codEstudiante) {
         return false;
     }
 
@@ -58,7 +58,7 @@ public class GeneradorRenovacion {
      * @param idProfesor
      * @return boolean
      */
-    public boolean consultarMultaProfesor(String idProfesor) {
+    private boolean consultarMultaProfesor(String idProfesor) {
         return false;
     }
 

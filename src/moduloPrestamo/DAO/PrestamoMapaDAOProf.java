@@ -36,7 +36,7 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
     public boolean createDAO(PrestamoMapaProf prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Mapa_Profesor "
                 + "(codBarraMapa, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
-                + " VALUES (?,?,?, CURRENT_DATE(), CURRENT_DATE(), 'no')";
+                + " VALUES (?,?,?, current_date, current_date, 'no')";
 
         PreparedStatement pps;
 
@@ -71,7 +71,7 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Mapa_Profesor WHERE codPrestMapaProf = " + codigo + ";");
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Mapa_Profesor WHERE codPrestMapaProf = '" + codigo + "';");
 
             while (rs.next()) {
                 prestamo = new PrestamoMapaProf();
@@ -207,7 +207,7 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
         try {
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT codPrestMapaProf FROM Prestamo_Mapa_Profesor "
-                    + "WHERE codBarraMapa = " + codBarra + " AND devuelto = 'no';");
+                    + "WHERE codBarraMapa = '" + codBarra + "' AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestMapaProf");

@@ -58,17 +58,20 @@ public class RenovacionColgenProfFab implements IRenovacion {
             if (prestamoLibroProf != null) {
                 if (prestamoLibroProf.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
                     prestamoLibroProf.setNumRenovaciones(prestamoLibroProf.getNumRenovaciones() + 1);
-                    prestamoLibroDAOProf.updateDAO(prestamoLibroProf);
 
-                    //espacio para el envio del correo
-                    return true;
+                    if (prestamoLibroDAOProf.updateDAO(prestamoLibroProf)) {
+
+                        //espacio para el envio del correo
+                        return true;
+                    }
                 } else {
                     alert.showAlert("Anuncio", "Renovación", "El profesor: " + idUsuario
-                            + ", ya llegó al limite de máximo de tres renovaciones del libro: " + codBarras);
+                            + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
+                            + "\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones");
                 }
             } else {
-                alert.showAlert("Anuncio", "Renovación", "No se encontró un un préstamo actual "
-                        + "del libro asociado al código: " + codBarras);
+                alert.showAlert("Anuncio", "Renovación", "No se encontró un préstamo actual "
+                        + "asociado al libro con el código: " + codBarras);
             }
         }
 
@@ -90,7 +93,7 @@ public class RenovacionColgenProfFab implements IRenovacion {
     }
 
     /**
-     * el matódo vrifica ciertas restricciones sobre el libro a renovar.
+     * el metódo vrifica ciertas restricciones sobre el libro a renovar.
      *
      * @param libro
      * @param codBarras

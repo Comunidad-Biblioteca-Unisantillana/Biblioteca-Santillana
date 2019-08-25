@@ -15,7 +15,7 @@ import vista.IAlertBox;
  * @modificado 24/08/2019
  */
 public class RenovacionColgenEstFab implements IRenovacion {
-    
+
     private IAlertBox alert;
 
     /**
@@ -50,29 +50,31 @@ public class RenovacionColgenEstFab implements IRenovacion {
 
         LibroJpaController libroJpaController = new LibroJpaController();
         Libro libro = libroJpaController.findLibro(codBarras);
-        
+
         if (verificarCondicionesRecurso(libro, codBarras)) {
             PrestamoLibroDAOEst prestamoLibroDAOEst = new PrestamoLibroDAOEst(15);
             PrestamoLibroEst prestamoLibroEst = prestamoLibroDAOEst.readDAO(prestamoLibroDAOEst.readCodigoDAO(codBarras));
-            
+
             if (prestamoLibroEst != null) {
                 if (prestamoLibroEst.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
                     prestamoLibroEst.setNumRenovaciones(prestamoLibroEst.getNumRenovaciones() + 1);
-                    prestamoLibroDAOEst.updateDAO(prestamoLibroEst);
-                    
-                    //espacio para el envio del correo
-                    
-                    return true;
+
+                    if (prestamoLibroDAOEst.updateDAO(prestamoLibroEst)) {
+                        //espacio para el envio del correo
+                        
+                        return true;
+                    }
                 } else {
                     alert.showAlert("Anuncio", "Renovación", "El estudiante: " + idUsuario
-                            + ", ya llegó al limite de máximo de tres renovaciones del libro: " + codBarras);
+                            + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
+                            + "\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones");
                 }
             } else {
-                alert.showAlert("Anuncio", "Renovación", "No se encontró un un préstamo actual "
-                        + "del libro asociado al código: " + codBarras);
+                alert.showAlert("Anuncio", "Renovación", "No se encontró un préstamo actual "
+                        + "asociado al libro con el código: " + codBarras);
             }
         }
-        
+
         return false;
     }
 
@@ -87,11 +89,11 @@ public class RenovacionColgenEstFab implements IRenovacion {
      * @param fechaDevolucion
      */
     private void notificarRenovacion(String codEstudiante, String codBarras, String tituloRecurso, Date fechaRenovacion, Date fechaDevolucion) {
-        
+
     }
 
     /**
-     * el matódo verifica ciertas rrestricciones sobre el libro a renovar.
+     * el metódo verifica ciertas rrestricciones sobre el libro a renovar.
      *
      * @param libro
      * @param codBarras
@@ -109,8 +111,8 @@ public class RenovacionColgenEstFab implements IRenovacion {
             alert.showAlert("Anuncio", "Renovación", "No se encontró un libro asociado al código: " + codBarras
                     + ".\n\nRecurde que solo se puden renovar libros de la colección general.");
         }
-        
+
         return false;
     }
-    
+
 }

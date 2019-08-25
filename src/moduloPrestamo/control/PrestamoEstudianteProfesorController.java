@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import moduloPrestamo.modelo.ConsultaPrestamoEst;
 import moduloPrestamo.modelo.ConsultaPrestamoProf;
 import moduloPrestamo.modelo.IConsultarPrestamo;
+import moduloRenovacion.vista.MensajeRenovarStage;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -52,8 +53,10 @@ public class PrestamoEstudianteProfesorController implements Initializable {
     private Button btnRenovarRecurso;
     private ToggleGroup togleRadio;
     private String codUsuario;
+    private String tipoUsuario;
     private IConsultarPrestamo consulta;
     private IAlertBox alert;
+    private boolean estadoRenovarRecurso;
 
     /**
      * el método que se ejecuta automáticamente al enlazar este controlador con
@@ -78,8 +81,9 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         fechaPrestamoTable.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
         fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
         tablePrestamo.getSelectionModel().clearSelection();
-        
+
         alert = new AlertBox();
+        estadoRenovarRecurso = false;
     }
 
     /**
@@ -98,7 +102,6 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         } else if (event.getSource().equals(radioPrestActual)) {
             prestamos = consulta.getPrestamosActuales(codUsuario);
             btnRenovarRecurso.setDisable(false);
-            tablePrestamo.getSelectionModel().clearSelection();
         }
 
         tablePrestamo.setItems(prestamos);
@@ -116,9 +119,23 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         int filaSeleccionada = tablePrestamo.getSelectionModel().getFocusedIndex();
 
         if (filaSeleccionada > -1) {
-            Prestamo prestamo = tablePrestamo.getSelectionModel().getSelectedItem();
+            if (estadoRenovarRecurso == false) {
+                Prestamo prestamo = tablePrestamo.getSelectionModel().getSelectedItem();
+                estadoRenovarRecurso = true;
+
+                MensajeRenovarStage mensajeRenovarStage = new MensajeRenovarStage();
+                mensajeRenovarStage.cargarDatosMensajeRenovarController(prestamo, codUsuario, tipoUsuario, this);
+
+                ObservableList<Prestamo> prestamos = consulta.getPrestamosActuales(codUsuario);
+                tablePrestamo.setItems(prestamos);
+                 txtMensaje.setText("se encontrarón: " + prestamos.size() + " préstamos.");
+            } else {
+                alert.showAlert("Anuncio", "Renovar recurso", "Por favor cerar la ventana actual "
+                        + "de renovación abierta, para poder renovar otro recurso.");
+            }
 
             tablePrestamo.getSelectionModel().clearSelection();
+
         } else {
             alert.showAlert("Anuncio", "Renovar recurso", "Por favor, seleccionar un recurso "
                     + "de la lista de préstamos actuales para poder realizar la renovación.");
@@ -134,6 +151,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
      */
     public void cargarDatosUsuario(String codUsuario, String tipoUsuario) {
         this.codUsuario = codUsuario;
+        this.tipoUsuario = tipoUsuario;
 
         if (tipoUsuario.equalsIgnoreCase("profesor")) {
             consulta = new ConsultaPrestamoProf();
@@ -142,9 +160,18 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         }
 
         ObservableList<Prestamo> prestamos = consulta.getPrestamosActuales(codUsuario);
-
         tablePrestamo.setItems(prestamos);
         txtMensaje.setText("se encontrarón: " + prestamos.size() + " préstamos.");
+    }
+
+    /**
+     * el metódo modifica el estado en que se encuentra la ventana para renovar
+     * el recurso, para poder renovar otro.
+     *
+     * @param estadoVentanaFicha
+     */
+    public void setEstadoRenovarRecurso(boolean estadoRenovarRecurso) {
+        this.estadoRenovarRecurso = estadoRenovarRecurso;
     }
 
 }

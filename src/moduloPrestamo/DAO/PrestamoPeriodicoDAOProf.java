@@ -37,7 +37,7 @@ public class PrestamoPeriodicoDAOProf extends PrestamoRecursoDAOAbs<PrestamoPeri
     public boolean createDAO(PrestamoPeriodicoProf prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Periodico_Profesor "
                 + "(codBarraPeriodico, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
-                + " VALUES (?,?,?, CURRENT_DATE(), CURRENT_DATE(), 'no')";
+                + " VALUES (?,?,?, current_date, current_date, 'no')";
 
         PreparedStatement pps;
 
@@ -72,7 +72,7 @@ public class PrestamoPeriodicoDAOProf extends PrestamoRecursoDAOAbs<PrestamoPeri
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Periodico_Profesor WHERE codPrestPeriodicoProf = " + codigo + ";");
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Periodico_Profesor WHERE codPrestPeriodicoProf = '" + codigo + "';");
 
             while (rs.next()) {
                 prestamo = new PrestamoPeriodicoProf();
@@ -207,7 +207,7 @@ public class PrestamoPeriodicoDAOProf extends PrestamoRecursoDAOAbs<PrestamoPeri
         try {
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT codPrestPeriodicoProf FROM Prestamo_Periodico_Profesor "
-                    + "WHERE codBarraPeriodico = " + codBarra + " AND devuelto = 'no';");
+                    + "WHERE codBarraPeriodico = '" + codBarra + "' AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestPeriodicoProf");

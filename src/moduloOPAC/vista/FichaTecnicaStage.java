@@ -42,14 +42,14 @@ public class FichaTecnicaStage extends Stage {
             setResizable(false);
             setHeight(alto);
             setWidth(ancho);
-            setOnCloseRequest(new EventHandler<WindowEvent>() {
-                public void handle(WindowEvent we) {
-                    tablaOPACController.setEstadoVentanaFicha(false);
-                }
+            
+            setOnCloseRequest((WindowEvent we) -> {
+                tablaOPACController.setEstadoVentanaFicha(false);
             });
+            
             show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error al generar ventana FichaTecnicaStage");
         }
     }
 

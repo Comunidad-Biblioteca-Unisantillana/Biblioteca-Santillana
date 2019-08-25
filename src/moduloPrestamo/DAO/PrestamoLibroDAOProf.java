@@ -49,7 +49,7 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
     public boolean createDAO(PrestamoLibroProf prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Libro_Profesor "
                 + "(codBarraLibro, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, numRenovaciones, devuelto)"
-                + " VALUES (?,?,?, CURRENT_DATE(), CURRENT_DATE() + " + diasPrestamo + ",?,'no')";
+                + " VALUES (?,?,?, current_date, current_date + " + diasPrestamo + ",?,'no')";
         PreparedStatement pps;
 
         try {
@@ -83,7 +83,7 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Profesor WHERE codPrestLibroProf = " + codigo + ";");
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Profesor WHERE codPrestLibroProf = '" + codigo + "';");
 
             while (rs.next()) {
                 prestamo = new PrestamoLibroProf();
@@ -120,7 +120,7 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
 
         if (diasPrestamo == 15) {//cuando se realiza una renovación y se actuliza la fecha de devolución
             sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, "
-                    + "fechaPrestamo = ?, fechaDevolucion = CURRENT_DATE() + " + diasPrestamo + ", numRenovaciones = ?, "
+                    + "fechaPrestamo = ?, fechaDevolucion = current_date + " + diasPrestamo + ", numRenovaciones = ?, "
                     + "devuelto = ? WHERE codPrestLibroProf = ?";
         } else {//cuando se dvuelve el recurso y se actuliza el atributo devuelto
             sqlSentence = "UPDATE Prestamo_Libro_Profesor "
@@ -230,7 +230,7 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
         try {
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT codPrestLibroProf FROM Prestamo_Libro_Profesor "
-                    + "WHERE codBarraLibro = " + codBarra + " AND devuelto = 'no';");
+                    + "WHERE codBarraLibro = '" + codBarra + "' AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestLibroProf");

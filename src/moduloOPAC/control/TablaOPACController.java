@@ -216,7 +216,7 @@ public class TablaOPACController implements Initializable {
     }
 
     /**
-     * el metódo modifica el estado en que se encuentra la venta que visuliza la
+     * el metódo modifica el estado en que se encuentra la ventana que visuliza la
      * ficha tecnica del recurso, para poder visualizar otro.
      *
      * @param estadoVentanaFicha

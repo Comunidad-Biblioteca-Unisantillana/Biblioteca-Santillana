@@ -49,7 +49,7 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
     public boolean createDAO(PrestamoLibroEst prestamo) {
         String sqlSentence = "INSERT INTO Prestamo_Libro_Estudiante "
                 + "(codBarraLibro, codEstudiante, idBibliotecario, fechaPrestamo, fechaDevolucion, numRenovaciones, devuelto)"
-                + " VALUES (?,?,?, CURRENT_DATE(), CURRENT_DATE() + " + diasPrestamo + ",?, 'no')";
+                + " VALUES (?,?,?, current_date, current_date + " + diasPrestamo + ",?, 'no')";
 
         PreparedStatement pps;
 
@@ -84,7 +84,7 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Estudiante WHERE codPrestLibroEst = " + codigo + ";");
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Estudiante WHERE codPrestLibroEst = '" + codigo + "';");
 
             while (rs.next()) {
                 prestamo = new PrestamoLibroEst();
@@ -121,8 +121,8 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
 
         if (diasPrestamo == 15) {//cuando se realiza una renovación y se actuliza la fecha de devolución
             sqlSentence = "UPDATE Prestamo_Libro_Estudiante "
-                    + "SET codBarraLibro = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = CURRENT_DATE() + " + diasPrestamo + ", numRenovaciones = ?, "
+                    + "SET codPrestLibroEst = ?, codBarraLibro = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
+                    + "fechaDevolucion = current_date + " + diasPrestamo + ", numRenovaciones = ?, "
                     + "devuelto = ? WHERE codPrestLibroEst = ?";
         } else {//cuando se dvuelve el recurso y se actuliza el atributo devuelto
             sqlSentence = "UPDATE Prestamo_Libro_Estudiante "
@@ -136,13 +136,14 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
 
-            pps.setString(1, prestamo.getCodBarraLibro());
-            pps.setString(2, prestamo.getCodEstudiante());
-            pps.setString(3, prestamo.getIdBibliotecario());
-            pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setInt(5, prestamo.getNumRenovaciones());
-            pps.setString(6, prestamo.getDevuelto());
-            pps.setInt(7, prestamo.getCodPrestamoLibroEst());
+            pps.setInt(1, prestamo.getCodPrestamoLibroEst());
+            pps.setString(2, prestamo.getCodBarraLibro());
+            pps.setString(3, prestamo.getCodEstudiante());
+            pps.setString(4, prestamo.getIdBibliotecario());
+            pps.setDate(5, prestamo.getFechaPrestamo());
+            pps.setInt(6, prestamo.getNumRenovaciones());
+            pps.setString(7, prestamo.getDevuelto());
+            pps.setInt(8, prestamo.getCodPrestamoLibroEst());
 
             if (pps.executeUpdate() > 0) {
                 return true;
@@ -234,7 +235,7 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
         try {
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT codPrestLibroEst FROM Prestamo_Libro_Estudiante "
-                    + "WHERE codBarraLibro = " + codBarra + " AND devuelto = 'no';");
+                    + "WHERE codBarraLibro = '" + codBarra + "' AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestLibroEst");
