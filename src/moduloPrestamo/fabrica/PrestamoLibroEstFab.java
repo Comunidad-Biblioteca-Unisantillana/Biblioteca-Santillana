@@ -72,7 +72,8 @@ public class PrestamoLibroEstFab implements IPrestamo {
                             + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Préstamo libro", "No se encuentró un libro asociado al código: " + codBarras);
+                alert.showAlert("Anuncio", "Préstamo libro", "No se encuentró un libro "
+                        + "asociado al código: " + codBarras + ".");
             }
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo del libro a un estudiante");

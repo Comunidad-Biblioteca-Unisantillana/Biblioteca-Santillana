@@ -66,7 +66,8 @@ public class PrestamoRevistaProfFab implements IPrestamo {
                             + ", no ha sido devuelta por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Préstamo revista", "No se encuentró una revista asociada al código: " + codBarras);
+                alert.showAlert("Anuncio", "Préstamo revista", "No se encuentró una revista "
+                        + "asociada al código: " + codBarras + ".");
             }
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo de la revista a un profesor");

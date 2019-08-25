@@ -66,7 +66,8 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
                             + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Préstamo diccionario", "No se encuentró un diccionario asociado al código: " + codBarras);
+                alert.showAlert("Anuncio", "Préstamo diccionario", "No se encuentró un diccionario "
+                        + "asociado al código: " + codBarras  + ".");
             }
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo del diccionario a un profesor");

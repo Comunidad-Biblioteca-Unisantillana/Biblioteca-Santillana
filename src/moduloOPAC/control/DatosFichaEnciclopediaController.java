@@ -74,7 +74,7 @@ public class DatosFichaEnciclopediaController implements IDatosFichaTecnicaContr
      */
     @Override
     public String getDatosLabels() {
-        return "Ficha Técnica Enciclopedia,Título,Código de barras,ISBN,Idioma,País de publicación,Fecha de publicación,Editorial,Edición,"
+        return "Ficha Técnica Enciclopedia  ,Título,Código de barras,ISBN,Idioma,País de publicación,Fecha de publicación,Editorial,Edición,"
                 + "Número de páginas,Cubierta,Dimensiones,Signatura,Disponibilidad,Estado fisico,"
                 + "Categoria,Autores,Materias,Nota,Resumen,"; // -> cadena
     }

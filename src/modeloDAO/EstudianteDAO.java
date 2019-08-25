@@ -74,8 +74,7 @@ public class EstudianteDAO implements InterfacePersonaCRUD<Estudiante> {
         ResultSet rs;
         Estudiante estudiante = null;
         try {
-            
-            System.out.println("SELECT * FROM Estudiante WHERE codEstudiante = '" + codEstudiante + "'");
+           
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT * FROM Estudiante WHERE codEstudiante = '" + codEstudiante + "'" );
             

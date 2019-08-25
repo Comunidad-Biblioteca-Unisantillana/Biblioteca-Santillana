@@ -36,29 +36,37 @@ public class GeneradorPrestamo {
      */
     public void createPrestamo(String codBarra, String codUsuario, String idBibliotecario, String tipoPrestamo, String tipoUsuario) throws Exception {
         IAlertBox alert = new AlertBox();
-        
+
         if (tipoUsuario.equalsIgnoreCase("estudiante")) {
             EstudianteDAO estDAO = new EstudianteDAO();
-            
+
             if (estDAO.readDAO(codUsuario) != null) {
                 //aqui quedaria el metódo que consulta las multas del estudiante.
-                
+
                 if (generarPrestamoEstudiante(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
-                    alert.showAlert("Anuncio", "Préstamo", "El préstamo del estudiante se realizó con éxito.");
+                    alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
+                            + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
+                } else {
+                    alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
+                            + tipoPrestamo + ": " + codBarra + " al estudiante: " + codUsuario + ".");
                 }
             } else {
-                alert.showAlert("Anuncio", "Error usuario", "No hay ningún estudiante asociado al código: " + codUsuario);
+                alert.showAlert("Anuncio", "Error usuario", "No hay ningún estudiante asociado al código: " + codUsuario + ".");
             }
         } else if (tipoUsuario.equalsIgnoreCase("profesor")) {
             ProfesorDAO profDAO = new ProfesorDAO();
-             //aqui quedaria el metódo que consulta las multas del profesor.
-             
+            //aqui quedaria el metódo que consulta las multas del profesor.
+
             if (profDAO.readDAO(codUsuario) != null) {
                 if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
-                    alert.showAlert("Anuncio", "Préstamo", "El préstamo del profesor se realizó con éxito.");
+                    alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
+                            + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
+                } else {
+                    alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
+                            + tipoPrestamo + ": " + codBarra + " al profesor: " + codUsuario + ".");
                 }
             } else {
-                alert.showAlert("Anuncio", "Error usuario", "No hay ningún profesor asociado a la identificación: " + codUsuario);
+                alert.showAlert("Anuncio", "Error usuario", "No hay ningún profesor asociado a la identificación: " + codUsuario + ".");
             }
         }
     }
@@ -95,11 +103,11 @@ public class GeneradorPrestamo {
     private boolean generarPrestamoProfesor(String codBarras, String idProfesor, String idBibliotecario, String tipoPrestamo) {
         FabricaPrestamo fabPrestamo = new FabricaPrestamo();
         IPrestamo prestamoEstudiante = fabPrestamo.getPrestamo(tipoPrestamo, "profesor");//no se tienen encuenta el null
-        
+
         if (prestamoEstudiante.ejecutarPrestamo(codBarras, idProfesor, idBibliotecario)) {
             return true;
         }
-        
+
         return false;
     }
 

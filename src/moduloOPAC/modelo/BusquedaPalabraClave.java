@@ -80,7 +80,7 @@ public class BusquedaPalabraClave extends BusquedaAvanzadaAbs {
                 } else {
                     recurso.setIdioma(rs.getString("idioma"));
                 }
-                
+
                 recurso.setDisponibilidad(rs.getString("disponibilidad"));
                 recurso.setTipoRecurso(entidad);
                 listaRecursos.add(recurso);
@@ -123,7 +123,9 @@ public class BusquedaPalabraClave extends BusquedaAvanzadaAbs {
     }
 
     /**
-     * el metódo retorna la consulta dependiendo de la entidad ingresada.
+     * el metódo retorna la consulta dependiendo de la entidad ingresada. <br>
+     * NOTA: para solucionar el problema para ignorar acentos en consultas
+     * PostgreSql Instalar la extensión unaccents -> create extension unaccent;
      *
      * @param entidad
      * @return query
@@ -134,27 +136,27 @@ public class BusquedaPalabraClave extends BusquedaAvanzadaAbs {
         switch (entidad) {
             case "libro":
                 query = "SELECT codbarralibro AS codbarras, isbn AS isbn_issn, titulo, idioma, disponibilidad FROM libro "
-                        + "WHERE titulo ILIKE '%" + palabraClave + "%';";
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
             case "enciclopedia":
                 query = "SELECT codbarraenciclopedia AS codbarras, isbn AS isbn_issn, titulo, idioma, disponibilidad FROM enciclopedia "
-                        + "WHERE titulo ILIKE '%" + palabraClave + "%';";
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
             case "diccionario":
                 query = "SELECT codbarradiccionario AS codbarras, isbn AS isbn_issn, titulo, idioma, disponibilidad FROM diccionario "
-                        + "WHERE titulo ILIKE '%" + palabraClave + "%';";
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
             case "revista":
                 query = "SELECT codbarrarevista AS codbarras, issn AS isbn_issn, titulo, idioma, disponibilidad FROM revista "
-                        + "WHERE titulo ILIKE '%" + palabraClave + "%';";
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
             case "periodico":
                 query = "SELECT codbarraperiodico AS codbarras, issn AS isbn_issn, nombreperiodico AS titulo, disponibilidad FROM periodico "
-                        + "WHERE nombreperiodico ILIKE '%" + palabraClave + "%';";
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
             default:
                 query = "SELECT codbarramapa AS codbarras, isbn AS isbn_issn, titulo, disponibilidad FROM mapa "
-                        + "WHERE titulo ILIKE '%" + palabraClave + "%';";
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
         }
 

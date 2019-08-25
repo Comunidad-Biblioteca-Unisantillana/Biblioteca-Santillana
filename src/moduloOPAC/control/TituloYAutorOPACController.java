@@ -76,14 +76,20 @@ public class TituloYAutorOPACController implements Initializable {
     private void BtnBuscarTituloAutor(ActionEvent event) {
         String titulo = txtTitulo.getText().trim();
         String nombreAutor = txtNombreAutor.getText().trim();
-        String entidad = cboTipoBusqueda.getSelectionModel().getSelectedItem().toLowerCase();
+        String entidad = cboTipoBusqueda.getValue().toLowerCase();
 
         if (!titulo.isEmpty()) {
             ContextoBusquedaAvanzada contextoBusquedaAvanzada = new ContextoBusquedaAvanzada();
             BusquedaAvanzadaAbs busquedaAvanzadaAbs;
 
             if (!nombreAutor.isEmpty()) {
-                 busquedaAvanzadaAbs = new BusquedaTituloYAutor(titulo, nombreAutor);
+                if (entidad.equals("todos") || entidad.equals("libro") ||
+                        entidad.equals("enciclopedia") || entidad.equals("diccionario")) {
+                    busquedaAvanzadaAbs = new BusquedaTituloYAutor(titulo, nombreAutor);
+                } else {
+                    busquedaAvanzadaAbs = new BusquedaPalabraClave(titulo);
+                    nombreAutor = "";
+                }
             } else {
                 busquedaAvanzadaAbs = new BusquedaPalabraClave(titulo);
             }
@@ -123,7 +129,7 @@ public class TituloYAutorOPACController implements Initializable {
         txtNombreAutor.setText("");
         cboTipoBusqueda.setValue("Todos");
     }
-    
+
     /**
      * el metódo carga el menu de la diferentes consultas con las que cuenta el
      * módulo de OPAC.
@@ -132,15 +138,14 @@ public class TituloYAutorOPACController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloOPAC/vista/MenuOPAC.fxml"));
             gridPaneMenu.add(loader.load(), 0, 0);
-            
+
             MenuOPACController menuOPACController = loader.getController();
             menuOPACController.setBorderPane(rootModulo);
             menuOPACController.setDisableButton("tituloYAutor");
-            
+
         } catch (IOException ex) {
 
         }
     }
 
-    
 }

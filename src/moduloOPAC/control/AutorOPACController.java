@@ -123,7 +123,7 @@ public class AutorOPACController implements Initializable {
             menuOPACController.setDisableButton("autor");
 
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la interfaz MenuOPAC.fxml");
         }
     }
 

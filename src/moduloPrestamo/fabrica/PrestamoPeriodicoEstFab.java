@@ -65,7 +65,8 @@ public class PrestamoPeriodicoEstFab implements IPrestamo {
                             + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Préstamo periódico", "No se encuentró un periódico asociado al código: " + codBarras);
+                alert.showAlert("Anuncio", "Préstamo periódico", "No se encuentró un periódico "
+                        + "asociado al código: " + codBarras + ".");
             }
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo del periódico a un estudiante");

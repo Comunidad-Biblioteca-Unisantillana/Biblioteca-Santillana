@@ -115,7 +115,9 @@ public class BusquedaAutor extends BusquedaAvanzadaAbs {
     }
 
     /**
-     * el metódo retorna la consulta dependiendo de la entidad ingresada.
+     * el metódo retorna la consulta dependiendo de la entidad ingresada. <br>
+     * NOTA: para solucionar el problema para ignorar acentos en consultas
+     * PostgreSql Instalar la extensión unaccents -> create extension unaccent;
      *
      * @param entidad
      * @return query
@@ -128,19 +130,19 @@ public class BusquedaAutor extends BusquedaAvanzadaAbs {
                 query = "SELECT codbarralibro AS codbarras, isbn, titulo, idioma, disponibilidad FROM libro "
                         + "WHERE codbarralibro IN (SELECT codbarralibro FROM autor_por_libro "
                         + "WHERE codautorlibro IN (SELECT codautorlibro FROM autor_libro "
-                        + "WHERE nombres || ' ' || apellidos ILIKE '%" + nombreAutor + "%'));";
+                        + "WHERE unaccent(nombres || ' ' || apellidos) ILIKE unaccent('%" + nombreAutor + "%')));";
                 break;
             case "enciclopedia":
                 query = "SELECT codbarraenciclopedia AS codbarras, isbn, titulo, idioma, disponibilidad FROM enciclopedia "
                         + "WHERE codbarraenciclopedia IN (SELECT codbarraenciclopedia FROM autor_por_enciclopedia "
                         + "WHERE codautorenciclopedia IN (SELECT codautorenciclopedia FROM autor_enciclopedia "
-                        + "WHERE nombres || ' ' || apellidos ILIKE '%" + nombreAutor + "%'));";
+                        + "WHERE unaccent(nombres || ' ' || apellidos) ILIKE unaccent('%" + nombreAutor + "%')));";
                 break;
             default:
                 query = "SELECT codbarradiccionario AS codbarras, isbn, titulo, idioma, disponibilidad FROM diccionario "
                         + "WHERE codbarradiccionario IN (SELECT codbarradiccionario FROM autor_por_diccionario "
                         + "WHERE codautordiccionario IN (SELECT codautordiccionario FROM autor_diccionario "
-                        + "WHERE nombres || ' ' || apellidos ILIKE '%" + nombreAutor + "%'));";
+                        + "WHERE unaccent(nombres || ' ' || apellidos) ILIKE unaccent('%" + nombreAutor + "%')));";
                 break;
         }
 

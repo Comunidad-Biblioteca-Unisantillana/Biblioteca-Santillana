@@ -216,7 +216,8 @@ public class CodigoOPACController implements Initializable {
                 }
                 break;
             default:
-                //No hace nada, pero es cuando un codigo no pertenece a una entidady el metodo retorna "";
+                //No hace nada, pero es cuando un código no pertenece a una entidad y el metódo retorna ""
+                entidad = "todos";
                 break;
         }
 
@@ -232,14 +233,20 @@ public class CodigoOPACController implements Initializable {
                     gridPaneFicha.add(fichaTecticaPanel.cargarFichaTecnica(recurso, "", iBusquedaMateriaRecurso.getCadenaMaterias()), 0, 1);
                 }
             } else {
-                gridPaneFicha.add(fichaTecticaPanel.cargarFichaTecnica(recurso, iBusquedaAutorRecurso.getCadenaAutores(), iBusquedaMateriaRecurso.getCadenaMaterias()), 0, 1);
+                gridPaneFicha.add(fichaTecticaPanel.cargarFichaTecnica(recurso, iBusquedaAutorRecurso.getCadenaAutores(),
+                        iBusquedaMateriaRecurso.getCadenaMaterias()), 0, 1);
             }
         } else {
             if (!gridPaneFicha.getChildren().isEmpty()) {
                 gridPaneFicha.getChildren().clear();
             }
 
-            alert.showAlert("Anuncio", "Busqueda recurso", "No se encontró un recurso asociado al código: " + codigo);
+            if (entidad.equals("todos")) {
+                entidad = "recurso";
+            } 
+
+            alert.showAlert("Anuncio", "Busqueda recurso", "No se encontró ningún/ninguna "
+                    + entidad + " asociado(a) al código: " + codigo + ".");
         }
     }
 
@@ -261,11 +268,11 @@ public class CodigoOPACController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloOPAC/vista/MenuOPAC.fxml"));
             gridPaneMenu.add(loader.load(), 0, 0);
-            
+
             MenuOPACController menuOPACController = loader.getController();
             menuOPACController.setBorderPane(rootModulo);
             menuOPACController.setDisableButton("codigo");
-            
+
         } catch (IOException ex) {
 
         }

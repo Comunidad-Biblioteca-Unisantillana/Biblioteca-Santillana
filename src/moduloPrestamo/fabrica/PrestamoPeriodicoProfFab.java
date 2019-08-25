@@ -47,7 +47,7 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
                     presPerProf.setCodBarraPeriodico(codBarras);
                     presPerProf.setIdProfesor(codUsuario);
                     presPerProf.setIdBibliotecario(idBibliotecario);
-                    
+
                     PrestamoPeriodicoDAOProf presPerDAOProf = new PrestamoPeriodicoDAOProf();
 
                     if (presPerDAOProf.createDAO(presPerProf)) {
@@ -55,24 +55,28 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
                         control.edit(periodico);
 
                         //espacio para el envio del correo
-                        
-                        return true; 
+                        return true;
                     }
-                } else {
-                    alert.showAlert("Anuncio", "Prestamo periodico", "El periodico no se encuentra disponible");
+                } else if (periodico.getDisponibilidad().equalsIgnoreCase("prestado")) {
+                    alert.showAlert("Anuncio", "Préstamo periódico", "El periódico: " + codBarras
+                            + ", se encuentra préstado a otro usuario.");
+                } else if (periodico.getDisponibilidad().equalsIgnoreCase("vencido")) {
+                    alert.showAlert("Anuncio", "Préstamo préstamo", "El periódico: " + codBarras
+                            + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Prestamo periodico", "Ningun periodico tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Préstamo periódico", "No se encuentró un periódico "
+                        + "asociado al código: " + codBarras + ".");
             }
         } catch (Exception e) {
-            System.out.println("error al generar el prestamo del periodico de un profesor");
+            System.out.println("Error al generar el préstamo del periódico a un profesor");
         }
-        return false; 
+        return false;
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al profesor,
-     * notificandole el préstamo de un periódico.
+     * el metódo realiza la construccción del e-mail al profesor, notificandole
+     * el préstamo de un periódico.
      *
      * @param idProfesor
      * @param tituloRecurso

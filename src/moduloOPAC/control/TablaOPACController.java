@@ -89,8 +89,14 @@ public class TablaOPACController implements Initializable {
     public void cargarDatosTabla(String cadena, ObservableList<Recurso> recursos) {
         tableOPAC.setItems(recursos);
         tableOPAC.getSelectionModel().clearSelection();
-        labelMensaje.setText("Hay " + recursos.size()
-                + " resultados obtenidos, con el criterio de búsqueda ingresado: " + cadena);
+
+        if (recursos.size() == 1) {
+            labelMensaje.setText("Hay " + recursos.size()
+                    + " resultado obtenido, con el criterio de búsqueda ingresado: " + cadena + ".");
+        } else {
+            labelMensaje.setText("Hay " + recursos.size()
+                + " resultados obtenidos, con el criterio de búsqueda ingresado: " + cadena + ".");
+        }
     }
 
     /**
@@ -160,7 +166,7 @@ public class TablaOPACController implements Initializable {
                 iBusquedaMateriaRecurso = new BusquedaMateriaEnciclopedia();
                 iBusquedaMateriaRecurso.buscarMateriaRecurso(codigo);
 
-                ancho = 1170;
+                ancho = 1180;
                 alto = 540;
                 break;
             case "diccionario":
@@ -207,7 +213,8 @@ public class TablaOPACController implements Initializable {
                 gridPaneFicha = fichaTecticaPanel.cargarFichaTecnica(recurso, "", iBusquedaMateriaRecurso.getCadenaMaterias());
             }
         } else {
-            gridPaneFicha = fichaTecticaPanel.cargarFichaTecnica(recurso, iBusquedaAutorRecurso.getCadenaAutores(), iBusquedaMateriaRecurso.getCadenaMaterias());
+            gridPaneFicha = fichaTecticaPanel.cargarFichaTecnica(recurso, iBusquedaAutorRecurso.getCadenaAutores(), 
+                    iBusquedaMateriaRecurso.getCadenaMaterias());
         }
 
         FichaTecnicaStage fichaTecnicaStage = new FichaTecnicaStage(alto, ancho);
@@ -216,8 +223,8 @@ public class TablaOPACController implements Initializable {
     }
 
     /**
-     * el metódo modifica el estado en que se encuentra la ventana que visuliza la
-     * ficha tecnica del recurso, para poder visualizar otro.
+     * el metódo modifica el estado en que se encuentra la ventana que visuliza
+     * la ficha tecnica del recurso, para poder visualizar otro.
      *
      * @param estadoVentanaFicha
      */

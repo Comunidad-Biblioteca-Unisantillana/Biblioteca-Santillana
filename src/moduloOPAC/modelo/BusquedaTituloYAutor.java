@@ -46,7 +46,7 @@ public class BusquedaTituloYAutor extends BusquedaAvanzadaAbs {
 
         for (String entidad : entidades) {
             listaRecursosTMP = buscarPorTituloYAutorRestringido(entidad);
-            
+
             if (!listaRecursosTMP.isEmpty()) {
                 listaRecursos.addAll(listaRecursosTMP);
             }
@@ -83,7 +83,7 @@ public class BusquedaTituloYAutor extends BusquedaAvanzadaAbs {
 
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Error al consultar en la " + entidad + ", por titulo y autor.");
+            System.out.println("Error al consultar el " + entidad + ", por titulo y autor.");
         }
 
         return listaRecursos;
@@ -118,7 +118,9 @@ public class BusquedaTituloYAutor extends BusquedaAvanzadaAbs {
     }
 
     /**
-     * el metódo retorna la consulta dependiendo de la entidad ingresada.
+     * el metódo retorna la consulta dependiendo de la entidad ingresada. <br>
+     * NOTA: para solucionar el problema para ignorar acentos en consultas
+     * PostgreSql Instalar la extensión unaccents -> create extension unaccent;
      *
      * @param entidad
      * @return query
@@ -129,21 +131,24 @@ public class BusquedaTituloYAutor extends BusquedaAvanzadaAbs {
         switch (entidad) {
             case "libro":
                 query = "SELECT codbarralibro AS codbarras , isbn, titulo, idioma, disponibilidad FROM libro "
-                        + "WHERE titulo ILIKE '%" + titulo + "%' AND codbarralibro IN (SELECT codbarralibro FROM autor_por_libro "
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + titulo + "%') AND "
+                        + "codbarralibro IN (SELECT codbarralibro FROM autor_por_libro "
                         + "WHERE codautorlibro IN (SELECT codautorlibro FROM autor_libro "
-                        + "WHERE nombres || ' ' || apellidos ILIKE '%" + nombreAutor + "%'));";
+                        + "WHERE unaccent(nombres || ' ' || apellidos) ILIKE unaccent('%" + nombreAutor + "%')));";
                 break;
             case "enciclopedia":
                 query = "SELECT codbarraenciclopedia AS codbarras , isbn, titulo, idioma, disponibilidad FROM enciclopedia "
-                        + "WHERE titulo ILIKE '%" + titulo + "%' AND codbarraenciclopedia IN (SELECT codbarraenciclopedia FROM autor_por_enciclopedia "
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + titulo + "%') AND "
+                        + "codbarraenciclopedia IN (SELECT codbarraenciclopedia FROM autor_por_enciclopedia "
                         + "WHERE codautorenciclopedia IN (SELECT codautorenciclopedia FROM autor_enciclopedia "
-                        + "WHERE nombres || ' ' || apellidos ILIKE '%" + nombreAutor + "%'));";
+                        + "WHERE unaccent(nombres || ' ' || apellidos) ILIKE unaccent('%" + nombreAutor + "%')));";
                 break;
             default:
                 query = "SELECT codbarradiccionario AS codbarras , isbn, titulo, idioma, disponibilidad FROM diccionario "
-                        + "WHERE titulo ILIKE '%" + titulo + "%' AND codbarradiccionario IN (SELECT codbarradiccionario FROM autor_por_diccionario "
+                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + titulo + "%') AND "
+                        + "codbarradiccionario IN (SELECT codbarradiccionario FROM autor_por_diccionario "
                         + "WHERE codautordiccionario IN (SELECT codautordiccionario FROM autor_diccionario "
-                        + "WHERE nombres || ' ' || apellidos ILIKE '%" + nombreAutor + "%'));";
+                        + "WHERE unaccent(nombres || ' ' || apellidos) ILIKE unaccent('%" + nombreAutor + "%')));";
                 break;
         }
 

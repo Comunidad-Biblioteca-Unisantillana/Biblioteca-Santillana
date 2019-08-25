@@ -65,7 +65,8 @@ public class PrestamoEnciclopediaEstFab implements IPrestamo {
                             + ", no ha sido devuelta por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Préstamo enciclopedia", "No se encuentró una encilopedia asociada al código: " + codBarras);
+                alert.showAlert("Anuncio", "Préstamo enciclopedia", "No se encuentró una encilopedia "
+                        + "sociada al código: " + codBarras + ".");
             }
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo de la enciclopedia a un estudiante");
