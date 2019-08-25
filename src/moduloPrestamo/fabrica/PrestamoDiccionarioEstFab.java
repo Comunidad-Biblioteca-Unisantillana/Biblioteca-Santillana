@@ -1,61 +1,92 @@
 package moduloPrestamo.fabrica;
 
+import java.util.Date;
 import moduloPrestamo.entitys.PrestamoDiccionarioEst;
-import  recursos1.controllers.DiccionarioJpaController;
+import recursos1.controllers.DiccionarioJpaController;
 import recursos1.entitys.Diccionario;
-import java.sql.Date;
-import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOEst;
-import moduloPrestamo.IPrestamo;
 import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
- * Clase que genera un prestamo de diccionario a un estudiante
+ * La clase se encarga gestionar el préstamo del diccionario al estudiante.
  *
  * @author Julian
+ * @creado
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoDiccionarioEstFab implements IPrestamo {
 
+    /**
+     * constructor de la clase sin parámetros.
+     */
     public PrestamoDiccionarioEstFab() {
 
     }
 
+    /**
+     * el metódo realiza el préstamo del dicionario al estudiante.
+     *
+     * @param codBarra
+     * @param codUsuario
+     * @param idBibliotecario
+     * @return boolean
+     */
     @Override
-    public boolean ejecutarPrestamo(String codBarra, String codUsuario, String idBibliotecario) {
+    public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
+        
         try {
             DiccionarioJpaController controlDic = new DiccionarioJpaController();
-            Diccionario dicccionario = controlDic.findDiccionario(codBarra);
+            Diccionario dicccionario = controlDic.findDiccionario(codBarras);
+            
             if (dicccionario != null) {
                 if (dicccionario.getDisponibilidad().equalsIgnoreCase("disponible")) {
-
-                    java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
-
-                    PrestamoDiccionarioEst prestDicEst = new PrestamoDiccionarioEst(codBarra, codUsuario,
-                            idBibliotecario, new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
+                    PrestamoDiccionarioEst prestDicEst = new PrestamoDiccionarioEst();
+                    prestDicEst.setCodBarraDiccionario(codBarras);
+                    prestDicEst.setCodEstudiante(codUsuario);
+                    prestDicEst.setIdBibliotecario(idBibliotecario);
+                    
                     PrestamoDiccionarioDAOEst prestDicDAOEst = new PrestamoDiccionarioDAOEst();
+                    
                     if (prestDicDAOEst.createDAO(prestDicEst)) {
-                        System.out.println("Cambiando disponibilidad del diccionario ...");
                         dicccionario.setDisponibilidad("prestado");
                         controlDic.edit(dicccionario);
-                        return true;
+                        
+                        //espacio para el envio del correo
+                        
+                        return true; 
                     }
 
-                } else {
-                    alert.showAlert("Anuncio", "Prestamo diccionario", "el diccionario no se encuentra disponible");
+                } else if (dicccionario.getDisponibilidad().equalsIgnoreCase("prestado")) {
+                    alert.showAlert("Anuncio", "Préstamo diccionario", "El diccionario: " + codBarras
+                            + ", se encuentra préstado a otro usuario.");
+                } else if (dicccionario.getDisponibilidad().equalsIgnoreCase("vencido")) {
+                    alert.showAlert("Anuncio", "Préstamo diccionario", "El dicionario: " + codBarras
+                            + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Prestamo diccionario", "Ningun diccionario tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Préstamo diccionario", "No se encuentró un diccionario asociado al código: " + codBarras);
             }
         } catch (Exception e) {
-            System.out.println("error al generar el prestamo de diccionario de un estudiante");
+            System.out.println("Error al generar el préstamo del diccionario a un estudiante");
         }
-        return false;
+        
+        return false; 
     }
 
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, java.util.Date fechaPrestamo, java.util.Date fechaDevolucion) {
+    /**
+     * el metódo realiza la construccción del e-mail al estudiante, notificandole
+     * el préstamo del diccionario.
+     * 
+     * @param idProfesor
+     * @param tituloRecurso
+     * @param fechaPrestamo
+     * @param fechaDevolucion 
+     */
+    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
 
     }
+    
 }

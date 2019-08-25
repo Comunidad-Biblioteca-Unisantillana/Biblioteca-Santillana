@@ -37,7 +37,7 @@ public class DevolucionPeriodicoEstFab implements IDevolucion {
 
                     PrestamoPeriodicoDAOEst prestDAOEst = new PrestamoPeriodicoDAOEst();
                     PrestamoPeriodicoEst prestEst = prestDAOEst.readDAO(codPrestamo);
-                    if (prestEst.getDevuelto() == 'n') {
+                    if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
                         DevolucionPeriodicoEst devEst = new DevolucionPeriodicoEst(prestEst.getCodPrestamoPeriodicoEst(), idBibliotecario, null, estadoRecurso);
                         DevolucionPeriodicoDAOEst devDAOEst = new DevolucionPeriodicoDAOEst();
                         devDAOEst.createDAO(devEst);
@@ -45,7 +45,7 @@ public class DevolucionPeriodicoEstFab implements IDevolucion {
                         periodico.setDisponibilidad("disponible");
                         control.edit(periodico);
 
-                        prestEst.setDevuelto('s');
+                        prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
                         alert.showAlert("Anuncio", "Devolución periodico", "La devolución del usuario con codigo"
                                 + prestEst.getCodEstudiante()

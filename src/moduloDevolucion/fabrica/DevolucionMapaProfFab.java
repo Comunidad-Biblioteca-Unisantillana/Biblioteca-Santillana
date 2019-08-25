@@ -36,7 +36,7 @@ public class DevolucionMapaProfFab implements IDevolucion {
                 if (codPrestamo > 0) {
                     PrestamoMapaDAOProf prestDAOProf = new PrestamoMapaDAOProf();
                     PrestamoMapaProf prestProf = prestDAOProf.readDAO(codPrestamo);
-                    if (prestProf.getDevuelto() == 'n') {
+                    if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
                         DevolucionMapaProf devProf = new DevolucionMapaProf(prestProf.getCodPrestamoMapaProf(), idBibliotecario, null, estadoRecurso);
                         DevolucionMapaDAOProf devDAOProf = new DevolucionMapaDAOProf();
                         devDAOProf.createDAO(devProf);
@@ -44,7 +44,7 @@ public class DevolucionMapaProfFab implements IDevolucion {
                         mapa.setDisponibilidad("disponible");
                         control.edit(mapa);
 
-                        prestProf.setDevuelto('s');
+                        prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
                         alert.showAlert("Anuncio", "Devolución mapa", "La devolución del usuario con codigo"
                                 + prestProf.getIdProfesor() + "se realizo con exito");

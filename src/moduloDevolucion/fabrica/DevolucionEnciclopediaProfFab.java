@@ -37,7 +37,7 @@ public class DevolucionEnciclopediaProfFab implements IDevolucion {
 
                     PrestamoEnciclopediaDAOProf prestDAOProf = new PrestamoEnciclopediaDAOProf();
                     PrestamoEnciclopediaProf prestProf = prestDAOProf.readDAO(codPrestamo);
-                    if (prestProf.getDevuelto() == 'n') {
+                    if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
                         DevolucionEnciclopediaProf devProf = new DevolucionEnciclopediaProf(prestProf.getCodPrestamoEnciclopediaProf(), idBibliotecario, null, estadoRecurso);
                         DevolucionEnciclopediaDAOProf devDAOProf = new DevolucionEnciclopediaDAOProf();
                         devDAOProf.createDAO(devProf);
@@ -45,7 +45,7 @@ public class DevolucionEnciclopediaProfFab implements IDevolucion {
                         enciclopedia.setDisponibilidad("disponible");
                         control.edit(enciclopedia);
 
-                        prestProf.setDevuelto('s');
+                        prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
                         alert.showAlert("Anuncio", "Devolución enciclopedia", "La devolución del usuario con codigo"
                                 + prestProf.getIdProfesor() + "se realizo con exito");

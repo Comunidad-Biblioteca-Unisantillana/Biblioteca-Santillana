@@ -3,11 +3,12 @@ package moduloPrestamo.entitys;
 import java.sql.Date;
 
 /**
- * entidad Prestamo Periodico Estudiante
+ * clase de la entidad Prestamo Periodico Estudiante.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoPeriodicoEst {
 
@@ -17,20 +18,39 @@ public class PrestamoPeriodicoEst {
     private String idBibliotecario;
     private Date fechaPrestamo;
     private Date fechaDevolucion;
-    private char devuelto;
+    private String devuelto;
 
-    public PrestamoPeriodicoEst(String codBarraPeriodico, String codEstudiante, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    /**
+     * constructor de la clase sin parámetros.
+     */
+    public PrestamoPeriodicoEst() {
+
+    }
+
+    /**
+     * constructor de la clase con parámetros.
+     *
+     * @param codBarraPeriodico
+     * @param codEstudiante
+     * @param idBibliotecario
+     * @param fechaPrestamo
+     * @param fechaDevolucion
+     * @param devuelto
+     */
+    public PrestamoPeriodicoEst(String codBarraPeriodico, String codEstudiante, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, String devuelto) {
         this.codBarraPeriodico = codBarraPeriodico;
         this.codEstudiante = codEstudiante;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoPeriodicoEst() {
         return codPrestamoPeriodicoEst;
     }
-    
+
     public String getCodBarraPeriodico() {
         return codBarraPeriodico;
     }
@@ -51,7 +71,7 @@ public class PrestamoPeriodicoEst {
         return fechaDevolucion;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
@@ -79,9 +99,8 @@ public class PrestamoPeriodicoEst {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
 
-    
 }

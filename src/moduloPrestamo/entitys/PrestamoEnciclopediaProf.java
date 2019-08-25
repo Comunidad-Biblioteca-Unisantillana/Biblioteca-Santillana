@@ -1,32 +1,53 @@
-
 package moduloPrestamo.entitys;
 
 import java.sql.Date;
 
 /**
- * entidad Prestamo_Enciclopedio_Profesor
+ * clase de la entidad Prestamo Enciclopedia Profesor.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoEnciclopediaProf {
-    
-    private int codPrestamoEnciclopedioProf;
-    private String codBarraEnciclopedia,idProfesor, idBibliotecario;
+
+    private int codPrestamoEnciclopediaProf;
+    private String codBarraEnciclopedia;
+    private String idProfesor;
+    private String idBibliotecario;
     private Date fechaPrestamo, fechaDevolucion;
-    private char devuelto;
+    private String devuelto;
+
+    /**
+     * constructor de la clse sin parámetros.
+     */
+    public PrestamoEnciclopediaProf(){
+        
+    }
     
-    public PrestamoEnciclopediaProf(String codBarraEnciclopedia, String idProfesor, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    /**
+     * constructor de la clase con parámetros.
+     *
+     * @param codBarraEnciclopedia
+     * @param idProfesor
+     * @param idBibliotecario
+     * @param fechaPrestamo
+     * @param fechaDevolucion
+     * @param devuelto
+     */
+    public PrestamoEnciclopediaProf(String codBarraEnciclopedia, String idProfesor, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, String devuelto) {
         this.codBarraEnciclopedia = codBarraEnciclopedia;
         this.idProfesor = idProfesor;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoEnciclopediaProf() {
-        return codPrestamoEnciclopedioProf;
+        return codPrestamoEnciclopediaProf;
     }
 
     public String getCodBarraEnciclopedia() {
@@ -49,12 +70,12 @@ public class PrestamoEnciclopediaProf {
         return fechaDevolucion;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
-    public void setCodPrestamoEnciclopedioProf(int codPrestamoEnciclopedioProf) {
-        this.codPrestamoEnciclopedioProf = codPrestamoEnciclopedioProf;
+    public void setCodPrestamoEnciclopediaProf(int codPrestamoEnciclopediaProf) {
+        this.codPrestamoEnciclopediaProf = codPrestamoEnciclopediaProf;
     }
 
     public void setCodBarraEnciclopedia(String codBarraEnciclopedia) {
@@ -77,7 +98,8 @@ public class PrestamoEnciclopediaProf {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
+    
 }

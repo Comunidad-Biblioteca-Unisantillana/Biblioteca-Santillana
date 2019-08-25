@@ -1,4 +1,3 @@
-
 package moduloPrestamo.DAO;
 
 import java.sql.PreparedStatement;
@@ -7,27 +6,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import modelo.ConnectionBD;
 import moduloPrestamo.entitys.PrestamoRevistaEst;
 
 /**
- * Clase que realiza el CRUD sobre la entidad prestamo_revista_estudiante.
+ * clase que realiza el CRUD sobre la entidad PrestamoRevistaEst.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:12/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoRevistaDAOEst extends PrestamoRecursoDAOAbs<PrestamoRevistaEst> {
 
-    public PrestamoRevistaDAOEst(){
+    /**
+     * constructor de la clase sin parámetros.
+     */
+    public PrestamoRevistaDAOEst() {
         connection = ConnectionBD.getInstance();
     }
-    
+
+    /**
+     * el método realiza el INSERT en la BD del préstamo de una revista al
+     * estudiante.
+     *
+     * @param prestamo
+     * @return boolean
+     */
     @Override
     public boolean createDAO(PrestamoRevistaEst prestamo) {
-        String sqlSentence = "INSERT INTO Prestamo_Revista_Estudiante (codBarraRevista, codEstudiante, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
-                + " VALUES (?,?,?,?,?,'no')";
+        String sqlSentence = "INSERT INTO Prestamo_Revista_Estudiante "
+                + "(codBarraRevista, codEstudiante, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
+                + " VALUES (?,?,?, CURRENT_DATE(), CURRENT_DATE(), 'no')";
 
         PreparedStatement pps;
 
@@ -36,155 +46,179 @@ public class PrestamoRevistaDAOEst extends PrestamoRecursoDAOAbs<PrestamoRevista
             pps.setString(1, prestamo.getCodBarraRevista());
             pps.setString(2, prestamo.getCodEstudiante());
             pps.setString(3, prestamo.getIdBibliotecario());
-            pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setDate(5, prestamo.getFechaDevolucion());
 
             if (pps.executeUpdate() > 0) {
-                System.out.println("Registro creado");
                 return true;
             }
-
         } catch (SQLException e) {
-            System.out.println("El registro no se pudo crear " + "\n" + e.getMessage());
+            System.out.println("Error al realizar el createDAO, en préstamo revista estudiante");
         }
+
         return false;
     }
 
+    /**
+     * el método realiza la consulta del préstamo de una revista del estudiante
+     * en la BD, por medio de un código.
+     *
+     * @param codigo
+     * @return prestamo
+     */
     @Override
     public PrestamoRevistaEst readDAO(int codigo) {
         Statement stmt;
         ResultSet rs;
         PrestamoRevistaEst prestamo = null;
-        try{
+
+        try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Revista_Estudiante WHERE codPrestRevistaEst = " + codigo +";");
-           
-            while(rs.next()){
-                prestamo = new PrestamoRevistaEst(rs.getString("codBarraRevista"), rs.getString("codEstudiante"), 
-                                rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Revista_Estudiante WHERE codPrestRevistaEst = " + codigo + ";");
+
+            while (rs.next()) {
+                prestamo = new PrestamoRevistaEst();
                 prestamo.setCodPrestamoRevistaEst(rs.getInt("codPrestRevistaEst"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                prestamo.setCodBarraRevista(rs.getString("codBarraRevista"));
+                prestamo.setCodEstudiante(rs.getString("codEstudiante"));
+                prestamo.setIdBibliotecario(rs.getString("idBibliotecario"));
+                prestamo.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+                prestamo.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+                prestamo.setDevuelto(rs.getString("devuelto"));
             }
+
             rs.close();
+
             return prestamo;
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el readDAO, en préstamo revista estudiante");
         }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "El préstamo de revista con ese codigo no existe");
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
-        }
+
         return prestamo;
     }
-    
 
+    /**
+     * el metódo actuliza un atributo o todos del préstamo de un revista del
+     * estudiante.
+     *
+     * @param prestamo
+     * @return boolean
+     */
     @Override
     public boolean updateDAO(PrestamoRevistaEst prestamo) {
-        String sqlSentence;
-        if(prestamo.getDevuelto() == 's'){
-            sqlSentence = "UPDATE Prestamo_Revista_Estudiante SET codBarraRevista = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                             + "fechaDevolucion = ?,devuelto = 'si' WHERE codPrestRevistaEst = ?";
-        }else{
-            sqlSentence = "UPDATE Prestamo_Revista_Estudiante SET codBarraRevista = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                             + "fechaDevolucion = ?,devuelto = 'no' WHERE codPrestRevistaEst = ?";
-        }
-        
+        String sqlSentence = "UPDATE Prestamo_Revista_Estudiante "
+                + "SET codBarraRevista = ?, codEstudiante = ?, idBibliotecario = ?, fechaPrestamo = ?, "
+                + "fechaDevolucion = ?, devuelto = ? WHERE codPrestRevistaEst = ?";
+
         PreparedStatement pps;
-        
-        try{       
+
+        try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-           
+
             pps.setString(1, prestamo.getCodBarraRevista());
             pps.setString(2, prestamo.getCodEstudiante());
-            pps.setString(3, prestamo.getIdBibliotecario()); 
+            pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
-            pps.setInt(6, prestamo.getCodPrestamoRevistaEst());
-            
-            if(pps.executeUpdate() > 0){
-               System.out.println("Realizo el update");
-               return true;
+            pps.setString(6, prestamo.getDevuelto());
+            pps.setInt(7, prestamo.getCodPrestamoRevistaEst());
+
+            if (pps.executeUpdate() > 0) {
+                return true;
             }
-            else
-                System.out.println("No existe un prestamo con ese codigo");
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el updateDAO, en préstamo revista estudiante");
         }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "No se pudo realizar el update del prestamo revista");
-        }
+
         return false;
     }
 
+    /**
+     * el metódo elimina el préstamo de un revista del estudiante.
+     *
+     * @param pk
+     * @return boolean
+     */
     @Override
     public boolean deleteDAO(int pk) {
         String sqlSentence = "DELETE FROM Prestamo_Revista_Estudiante WHERE codPrestRevistaEst = ?";
-        System.out.println(sqlSentence);
         PreparedStatement pps;
-       
-        try{
-           pps = connection.getConnection().prepareStatement(sqlSentence);
-           
-           pps.setInt(1, pk);
-           
-           if(pps.executeUpdate() > 0){
-               System.out.println("Hizo el delete");
-               return true;
-           }
+
+        try {
+            pps = connection.getConnection().prepareStatement(sqlSentence);
+            pps.setInt(1, pk);
+
+            if (pps.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el deleteDAO, en préstamo revista estudiante");
         }
-        catch(SQLException e){
-           System.err.println("No se pudo realizar el delete de prestamo revista");
-        }
-       return false;
+
+        return false;
     }
 
+    /**
+     * el metódo retorna una lista con todos los préstamos de revistas a los
+     * estudiantes.
+     *
+     * @return prestamos
+     */
     @Override
-    public List<PrestamoRevistaEst> readAllDAO(){
+    public List<PrestamoRevistaEst> readAllDAO() {
         PreparedStatement pps;
         ResultSet rs;
         ArrayList<PrestamoRevistaEst> prestamos = new ArrayList();
-        
-        try{
+
+        try {
             pps = connection.getConnection().prepareStatement("SELECT * FROM Prestamo_Revista_Estudiante");
             rs = pps.executeQuery();
-            
-            while(rs.next()){
-                PrestamoRevistaEst prestamoTmp = new PrestamoRevistaEst(rs.getString("codBarraRevista"), rs.getString("codEstudiante"), 
-                                rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
+
+            while (rs.next()) {
+                PrestamoRevistaEst prestamoTmp = new PrestamoRevistaEst();
                 prestamoTmp.setCodPrestamoRevistaEst(rs.getInt("codPrestRevistaEst"));
-                prestamoTmp.setDevuelto(rs.getString("devuelto").charAt(0));
+                prestamoTmp.setCodBarraRevista(rs.getString("codBarraRevista"));
+                prestamoTmp.setCodEstudiante(rs.getString("codEstudiante"));
+                prestamoTmp.setIdBibliotecario(rs.getString("idBibliotecario"));
+                prestamoTmp.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+                prestamoTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+                prestamoTmp.setDevuelto(rs.getString("devuelto"));
                 prestamos.add(prestamoTmp);
             }
+
             rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el readALLDAO, en préstamo revista estudiante");
         }
-        catch(SQLException e){
-            System.out.println("No se realizo el readAll correctamente en prestamo revista");
-        }
-        catch(Exception e){
-            System.out.println("Problema en el readAll de prestamo revista");
-        }
+
         return prestamos;
     }
 
+    /**
+     * el método realiza la consulta del código del préstamo de una revista del
+     * estudiante en la BD, por medio de un código de barras.
+     *
+     * @param codBarra
+     * @return codPrestamo
+     */
     @Override
     public int readCodigoDAO(String codBarra) {
         Statement stmt;
         ResultSet rs;
         int codPrestamo = -1;
-        try{
+
+        try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT codPrestRevistaEst FROM Prestamo_Revista_Estudiante WHERE codBarraRevista = " + codBarra +";");
-           
-            while(rs.next()){
-                codPrestamo = rs.getInt(1);
+            rs = stmt.executeQuery("SELECT codPrestRevistaEst FROM Prestamo_Revista_Estudiante WHERE codBarraRevista = " + codBarra + ";");
+
+            while (rs.next()) {
+                codPrestamo = rs.getInt("codPrestRevistaEst");
             }
+
             rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el readCodigoDAO, en préstamo revista estudiante");
         }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "El préstamo de revista con ese codigo no existe");
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
-        }
+
         return codPrestamo;
     }
-    
+
 }

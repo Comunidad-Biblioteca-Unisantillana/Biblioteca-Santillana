@@ -37,7 +37,7 @@ public class DevolucionDiccionarioProfFab implements IDevolucion {
                 if (codPrestamo > 0) {
                     PrestamoDiccionarioDAOProf prestDAOProf = new PrestamoDiccionarioDAOProf();
                     PrestamoDiccionarioProf prestProf = prestDAOProf.readDAO(codPrestamo);
-                    if (prestProf.getDevuelto() == 'n') {
+                    if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
                         DevolucionDiccionarioProf devProf = new DevolucionDiccionarioProf(prestProf.getCodPrestamoDiccionarioProf(), idBibliotecario, null, estadoRecurso);
                         DevolucionDiccionarioDAOProf devDAOProf = new DevolucionDiccionarioDAOProf();
                         devDAOProf.createDAO(devProf);
@@ -45,7 +45,7 @@ public class DevolucionDiccionarioProfFab implements IDevolucion {
                         diccionario.setDisponibilidad("disponible");
                         control.edit(diccionario);
 
-                        prestProf.setDevuelto('s');
+                        prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
                         alert.showAlert("Anuncio", "Devolucion", "La devolucion del usuario con codigo"
                                 + prestProf.getIdProfesor() + "se realizo con exito");

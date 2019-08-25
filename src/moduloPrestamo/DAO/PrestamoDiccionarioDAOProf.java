@@ -6,27 +6,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import modelo.ConnectionBD;
 import moduloPrestamo.entitys.PrestamoDiccionarioProf;
-import vista.AlertBox;
-import vista.IAlertBox;
 
 /**
- * Clase que realiza el CRUD sobre las entidades de préstamos.
+ * Clase que realiza el CRUD sobre la entidad PrestamoDiccionarioProf.
  *
- * @author Julian Fecha creación:10/08/2019 Fecha ultima modificación:10/08/2019
+ * @author Julian
+ * @creado 10/08/2019
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDiccionarioProf> {
 
+    /**
+     * constructor de la clase sin parámetros.
+     */
     public PrestamoDiccionarioDAOProf() {
         connection = ConnectionBD.getInstance();
     }
 
+    /**
+     * el método realiza el INSERT en la BD del préstamo de un diccionario al
+     * esudiante.
+     *
+     * @param prestamo
+     * @return boolean
+     */
     @Override
     public boolean createDAO(PrestamoDiccionarioProf prestamo) {
-        String sqlSentence = "INSERT INTO Prestamo_Diccionario_Profesor (codBarraDiccionario, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
-                + " VALUES (?,?,?,?,?,'no')";
+        String sqlSentence = "INSERT INTO Prestamo_Diccionario_Profesor "
+                + "(codBarraDiccionario, idProfesor, idBibliotecario, fechaPrestamo, fechaDevolucion, devuelto)"
+                + " VALUES (?,?,?, CURRENT_DATE(), CURRENT_DATE(), 'no')";
         PreparedStatement pps;
 
         try {
@@ -34,20 +45,24 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
             pps.setString(1, prestamo.getCodBarraDiccionario());
             pps.setString(2, prestamo.getIdProfesor());
             pps.setString(3, prestamo.getIdBibliotecario());
-            pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setDate(5, prestamo.getFechaDevolucion());
 
             if (pps.executeUpdate() > 0) {
-                System.out.println("Registro creado");
                 return true;
             }
-
         } catch (SQLException e) {
-            System.out.println("El registro no se pudo crear " + "\n" + e.getMessage());
+            System.out.println("Error al realizar el createDAO, en préstamo dicionario profesor");
         }
+
         return false;
     }
 
+    /**
+     * el método realiza la consulta del préstamo de un diccionario del profesor
+     * en la BD, por medio de un código.
+     *
+     * @param codigo
+     * @return prestamo
+     */
     @Override
     public PrestamoDiccionarioProf readDAO(int codigo) {
         Statement stmt;
@@ -59,32 +74,39 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
             rs = stmt.executeQuery("SELECT * FROM Prestamo_Diccionario_Profesor WHERE codPrestDicProf = " + codigo + ";");
 
             while (rs.next()) {
-                prestamo = new PrestamoDiccionarioProf(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
+                prestamo = new PrestamoDiccionarioProf();
                 prestamo.setCodPrestamoDiccionarioProf(rs.getInt("codPrestDicProf"));
-                prestamo.setDevuelto(rs.getString("devuelto").charAt(0));
+                prestamo.setCodBarraDiccionario(rs.getString("codBarraDiccionario"));
+                prestamo.setIdProfesor(rs.getString("idProfesor"));
+                prestamo.setIdBibliotecario(rs.getString("idBibliotecario"));
+                prestamo.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+                prestamo.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+                prestamo.setDevuelto(rs.getString("devuelto"));
             }
             rs.close();
+
             return prestamo;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "El préstamo de diccionario con ese codigo no existe");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
+            System.out.println("Error al realizar el readDAO, en préstamo dicionario profesor");
         }
+
         return prestamo;
     }
 
+    /**
+     * el metódo actuliza un atributo o todos del préstamo de un deccionario del
+     * profesor.
+     *
+     * @param prestamo
+     * @return booelan
+     */
     @Override
     public boolean updateDAO(PrestamoDiccionarioProf prestamo) {
-        String sqlSentence;
-        if (prestamo.getDevuelto() == 's') {
-            sqlSentence = "UPDATE Prestamo_Diccionario_Profesor SET codBarraDiccionario = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = ?,devuelto = 'si' WHERE codPrestDicProf = ?";
-        } else {
-            sqlSentence = "UPDATE Prestamo_Diccionario_Profesor SET codBarraDiccionario = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
-                    + "fechaDevolucion = ?,devuelto = 'no' WHERE codPrestDicProf = ?";
-        }
+        String sqlSentence = "UPDATE Prestamo_Diccionario_Profesor "
+                + "SET codBarraDiccionario = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
+                + "fechaDevolucion = ?, devuelto = ? WHERE codPrestDicProf = ?";
         PreparedStatement pps;
+
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setString(1, prestamo.getCodBarraDiccionario());
@@ -92,21 +114,25 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
             pps.setString(3, prestamo.getIdBibliotecario());
             pps.setDate(4, prestamo.getFechaPrestamo());
             pps.setDate(5, prestamo.getFechaDevolucion());
-            pps.setInt(6, prestamo.getCodPrestamoDiccionarioProf());
+            pps.setString(6, prestamo.getDevuelto());
+            pps.setInt(7, prestamo.getCodPrestamoDiccionarioProf());
 
             if (pps.executeUpdate() > 0) {
-                System.out.println("Realizo el update");
                 return true;
-            } else {
-                System.out.println("No existe un prestamo con ese codigo");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar el update del prestamo diccionario de un estudiante");
+            System.out.println("Error al realizar el updateDAO, en préstamo dicionario profesor");
         }
 
         return false;
     }
 
+    /**
+     * el metódo elimina el préstamo de un diccionario del profesor.
+     *
+     * @param pk
+     * @return boolean
+     */
     @Override
     public boolean deleteDAO(int pk) {
         String sqlSentence = "DELETE FROM Prestamo_Diccionario_Profesor WHERE codPrestDicProf = ?";
@@ -117,17 +143,21 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
             pps.setInt(1, pk);
 
             if (pps.executeUpdate() > 0) {
-                System.out.println("Hizo el delete");
                 return true;
             }
         } catch (SQLException e) {
-            IAlertBox alert = new AlertBox();
-            alert.showAlert("Anuncio", "Multa", "Hay una multa pendiente, por lo tanto, el préstamo no se puede borrar");
+            System.out.println("Error al realizar el deleteDAO, en préstamo dicionario profesor");
         }
 
         return false;
     }
 
+    /**
+     * el metódo retorna una lista con todos los préstamos de diccionarios a los
+     * profesores.
+     *
+     * @return prestamos
+     */
     @Override
     public List<PrestamoDiccionarioProf> readAllDAO() {
 
@@ -140,38 +170,50 @@ public class PrestamoDiccionarioDAOProf extends PrestamoRecursoDAOAbs<PrestamoDi
             rs = pps.executeQuery();
 
             while (rs.next()) {
-                PrestamoDiccionarioProf prestamoTmp = new PrestamoDiccionarioProf(rs.getString("codBarraDiccionario"), rs.getString("idProfesor"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaPrestamo"), rs.getDate("fechaDevolucion"));
+                PrestamoDiccionarioProf prestamoTmp = new PrestamoDiccionarioProf();
                 prestamoTmp.setCodPrestamoDiccionarioProf(rs.getInt("codPrestDicProf"));
-                prestamoTmp.setDevuelto(rs.getString("devuelto").charAt(0));
+                prestamoTmp.setCodBarraDiccionario(rs.getString("codBarraDiccionario"));
+                prestamoTmp.setIdProfesor(rs.getString("idProfesor"));
+                prestamoTmp.setIdBibliotecario(rs.getString("idBibliotecario"));
+                prestamoTmp.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+                prestamoTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+                prestamoTmp.setDevuelto(rs.getString("devuelto"));
                 prestamos.add(prestamoTmp);
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("No se realizo el readAll correctamente en prestamo diccionario");
-        } catch (Exception e) {
-            System.out.println("Problema en el readAll de prestamo diccionario");
+            System.out.println("Error al realizar el readALLDAO, en préstamo dicionario profesor");
         }
+
         return prestamos;
     }
 
+    /**
+     * el método realiza la consulta del código del préstamo de un diccionario
+     * del profesor en la BD, por medio de un código de barras.
+     *
+     * @param codBarra
+     * @return
+     */
     @Override
     public int readCodigoDAO(String codBarra) {
         Statement stmt;
         ResultSet rs;
         int codPrestamo = -1;
+
         try {
             stmt = connection.getConnection().createStatement();
             rs = stmt.executeQuery("SELECT codPrestDicProf FROM Prestamo_Diccionario_Profesor WHERE codBarraDiccionario = " + codBarra + ";");
+
             while (rs.next()) {
-                codPrestamo = rs.getInt(1);
+                codPrestamo = rs.getInt("codPrestDicProf");
             }
+
             rs.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "El préstamo de diccionario con ese codigo no existe");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
+            System.out.println("Error al realizar el readCodigoDAO, en préstamo dicionario profesor");
         }
+
         return codPrestamo;
     }
 

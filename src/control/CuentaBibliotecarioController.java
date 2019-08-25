@@ -1,5 +1,6 @@
 package control;
 
+import moduloPrestamo.control.PrestamoBibliotecarioController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
@@ -202,7 +203,7 @@ public class CuentaBibliotecarioController implements Initializable {
      */
     private void loadPrestamo() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoBibliotecario.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloPrestamo/vista/PrestamoBibliotecario.fxml"));
             rootModulo.setCenter(loader.load());
             PrestamoBibliotecarioController control = loader.getController();
             control.setIdBibliotecario(idBibliotecario);

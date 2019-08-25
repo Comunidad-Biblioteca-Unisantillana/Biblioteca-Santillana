@@ -1,5 +1,6 @@
 package control;
 
+import moduloPrestamo.control.PrestamoEstudianteProfesorController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
@@ -156,7 +157,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
      */
     private void loadPrestamo() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PrestamoEstudianteProfesor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloPrestamo/vista/PrestamoEstudianteProfesor.fxml"));
             GridPane parent = loader.load();
             rootModulo.setCenter(parent);
             PrestamoEstudianteProfesorController control = loader.getController();

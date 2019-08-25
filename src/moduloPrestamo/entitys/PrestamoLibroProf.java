@@ -1,36 +1,52 @@
-
 package moduloPrestamo.entitys;
 
 import java.sql.Date;
 
 /**
- * entidad Prestamo Libro Profesor
+ * clase de la entidad Prestamo Libro Profesor.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoLibroProf {
+
     private int codPrestamoLibroProf;
-    private String codBarraLibro,idProfesor, idBibliotecario;
-    private Date fechaPrestamo, fechaDevolucion;
+    private String codBarraLibro;
+    private String idProfesor;
+    private String idBibliotecario;
+    private Date fechaPrestamo;
+    private Date fechaDevolucion;
     private int numRenovaciones;
-    private char devuelto;
-    
+    private String devuelto;
+
     /**
-     * Constructor de la clase
+     * constructor de la clase sin parámetros.
+     */
+    public PrestamoLibroProf() {
+
+    }
+
+    /**
+     * Constructor de la clase con parámetros.
+     *
      * @param codBarraLibro
      * @param idProfesor
      * @param idBibliotecario
      * @param fechaPrestamo
      * @param fechaDevolucion
+     * @param devuelto
      */
-    public PrestamoLibroProf(String codBarraLibro, String idProfesor, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    public PrestamoLibroProf(String codBarraLibro, String idProfesor, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, int numRenovaciones, String devuelto) {
         this.codBarraLibro = codBarraLibro;
         this.idProfesor = idProfesor;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.numRenovaciones = numRenovaciones;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoLibroProf() {
@@ -61,7 +77,7 @@ public class PrestamoLibroProf {
         return numRenovaciones;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
@@ -93,9 +109,8 @@ public class PrestamoLibroProf {
         this.numRenovaciones = numRenovaciones;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
 
-    
 }

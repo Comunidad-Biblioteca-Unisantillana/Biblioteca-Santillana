@@ -1,36 +1,50 @@
-
 package moduloPrestamo.entitys;
 
 import java.sql.Date;
 
 /**
- * entidad Prestamo Mapa Estudiante
+ * clase de la entidad Prestamo Mapa Estudiante.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoMapaEst {
-    
+
     private int codPrestamoMapaEst;
-    private String codBarraMapa,codEstudiante, idBibliotecario;
-    private Date fechaPrestamo, fechaDevolucion;
-    private char devuelto;
-    
+    private String codBarraMapa;
+    private String codEstudiante;
+    private String idBibliotecario;
+    private Date fechaPrestamo;
+    private Date fechaDevolucion;
+    private String devuelto;
+
     /**
-     * Constructor de la clase
+     * constructor de la clase sin parámetros.
+     */
+    public PrestamoMapaEst() {
+
+    }
+
+    /**
+     * Constructor de la clase con parámetros.
+     *
      * @param codBarraMapa
      * @param codEstudiante
      * @param idBibliotecario
      * @param fechaPrestamo
      * @param fechaDevolucion
+     * @param devuelto
      */
-    public PrestamoMapaEst(String codBarraMapa, String codEstudiante, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    public PrestamoMapaEst(String codBarraMapa, String codEstudiante, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, String devuelto) {
         this.codBarraMapa = codBarraMapa;
         this.codEstudiante = codEstudiante;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoMapaEst() {
@@ -57,7 +71,7 @@ public class PrestamoMapaEst {
         return fechaDevolucion;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
@@ -85,7 +99,7 @@ public class PrestamoMapaEst {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
 }

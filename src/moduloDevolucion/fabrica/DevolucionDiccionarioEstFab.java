@@ -35,14 +35,14 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
                 if (codPrestamo > 0) {
                     PrestamoDiccionarioDAOEst prestDAOEst = new PrestamoDiccionarioDAOEst();
                     PrestamoDiccionarioEst prestEst = prestDAOEst.readDAO(codPrestamo);
-                    if (prestEst.getDevuelto() == 'n') {
+                    if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
                         DevolucionDiccionarioEst devEst = new DevolucionDiccionarioEst(prestEst.getCodPrestamoDiccionarioEst(), idBibliotecario, null, estadoRecurso);
                         DevolucionDiccionarioDAOEst devDAOEst = new DevolucionDiccionarioDAOEst();
                         devDAOEst.createDAO(devEst);
                         diccionario.setDisponibilidad("disponible");
                         control.edit(diccionario);
 
-                        prestEst.setDevuelto('s');
+                        prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
                         alert.showAlert("Anuncio", "Devolucion diccionario", "La devolucion del usuario con codigo"
                                 + prestEst.getCodEstudiante() + "se realizo con exito");

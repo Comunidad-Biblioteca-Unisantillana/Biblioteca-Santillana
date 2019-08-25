@@ -3,11 +3,12 @@ package moduloPrestamo.entitys;
 import java.sql.Date;
 
 /**
- * entidad Prestamo Revista Profesor
+ * clase de la entidad Prestamo Revista Profesor.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoRevistaProf {
 
@@ -17,14 +18,33 @@ public class PrestamoRevistaProf {
     private String idBibliotecario;
     private Date fechaPrestamo;
     private Date fechaDevolucion;
-    private char devuelto;
+    private String devuelto;
 
-    public PrestamoRevistaProf(String codBarraRevista, String idProfesor, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    /**
+     * constructor de la clase sin parámetros.
+     */
+    public PrestamoRevistaProf() {
+
+    }
+
+    /**
+     * constructor de la clase con parámetros.
+     *
+     * @param codBarraRevista
+     * @param idProfesor
+     * @param idBibliotecario
+     * @param fechaPrestamo
+     * @param fechaDevolucion
+     * @param devuelto
+     */
+    public PrestamoRevistaProf(String codBarraRevista, String idProfesor, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, String devuelto) {
         this.codBarraRevista = codBarraRevista;
         this.idProfesor = idProfesor;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoRevistaProf() {
@@ -51,7 +71,7 @@ public class PrestamoRevistaProf {
         return fechaDevolucion;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
@@ -79,9 +99,8 @@ public class PrestamoRevistaProf {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
 
-    
 }

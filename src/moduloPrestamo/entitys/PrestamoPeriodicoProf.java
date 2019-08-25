@@ -3,11 +3,12 @@ package moduloPrestamo.entitys;
 import java.sql.Date;
 
 /**
- * entidad Prestamo Periodico Profesor
+ * clase de la entidad Prestamo Periodico Profesor.
  *
- * @author Julian 
- * Fecha creación:11/08/2019 
- * Fecha ultima modificación:12/08/2019
+ * @author Julian
+ * @creado 11/08/2019
+ * @author miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoPeriodicoProf {
 
@@ -17,14 +18,33 @@ public class PrestamoPeriodicoProf {
     private String idBibliotecario;
     private Date fechaPrestamo;
     private Date fechaDevolucion;
-    private char devuelto;
+    private String devuelto;
 
-    public PrestamoPeriodicoProf(String codBarraPeriodico, String idProfesor, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    /**
+     * constructor de la clase con parámetros.
+     */
+    public PrestamoPeriodicoProf() {
+
+    }
+
+    /**
+     * constructor de la clase sin parámetros.
+     *
+     * @param codBarraPeriodico
+     * @param idProfesor
+     * @param idBibliotecario
+     * @param fechaPrestamo
+     * @param fechaDevolucion
+     * @param devuelto
+     */
+    public PrestamoPeriodicoProf(String codBarraPeriodico, String idProfesor, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, String devuelto) {
         this.codBarraPeriodico = codBarraPeriodico;
         this.idProfesor = idProfesor;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoPeriodicoProf() {
@@ -51,7 +71,7 @@ public class PrestamoPeriodicoProf {
         return fechaDevolucion;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
@@ -79,7 +99,8 @@ public class PrestamoPeriodicoProf {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
+
 }

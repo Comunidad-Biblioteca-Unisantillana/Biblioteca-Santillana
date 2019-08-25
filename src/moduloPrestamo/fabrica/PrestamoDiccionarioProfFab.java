@@ -1,62 +1,91 @@
 package moduloPrestamo.fabrica;
 
 import moduloPrestamo.entitys.PrestamoDiccionarioProf;
-import  recursos1.controllers.DiccionarioJpaController;
+import recursos1.controllers.DiccionarioJpaController;
 import recursos1.entitys.Diccionario;
-import java.sql.Date;
-import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOProf;
-import moduloPrestamo.IPrestamo;
 import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
+ * La clase se encarga gestionar el préstamo del diccionario al profesor.
  *
  * @author Julian
+ * @creado
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoDiccionarioProfFab implements IPrestamo {
 
+    /**
+     * constructor de la clase sin parámetros.
+     */
     public PrestamoDiccionarioProfFab() {
 
     }
 
+    /**
+     * el metódo realiza el préstamo del dicionario al profesor.
+     *
+     * @param codBarras
+     * @param codUsuario
+     * @param idBibliotecario
+     * @return boolean
+     */
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
+
         try {
             DiccionarioJpaController controlDic = new DiccionarioJpaController();
             Diccionario dicccionario = controlDic.findDiccionario(codBarras);
+
             if (dicccionario != null) {
                 if (dicccionario.getDisponibilidad().equalsIgnoreCase("disponible")) {
-
-                    java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
-
-                    PrestamoDiccionarioProf prestDicProf = new PrestamoDiccionarioProf(codBarras, codUsuario,
-                            idBibliotecario, new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
+                    PrestamoDiccionarioProf prestDicProf = new PrestamoDiccionarioProf();
+                    prestDicProf.setCodBarraDiccionario(codBarras);
+                    prestDicProf.setIdProfesor(codUsuario);
+                    prestDicProf.setIdBibliotecario(idBibliotecario);
+                    
                     PrestamoDiccionarioDAOProf prestDicDAOProf = new PrestamoDiccionarioDAOProf();
 
                     if (prestDicDAOProf.createDAO(prestDicProf)) {
-                        System.out.println("Cambiando disponibilidad del diccionario ...");
-                        
                         dicccionario.setDisponibilidad("prestado");
                         controlDic.edit(dicccionario);
-                        return true;
+
+                        //espacio para el envio del correo
+                        
+                        return true; 
                     }
 
-                } else {
-                    alert.showAlert("Anuncio", "Prestamo diccionario", "el diccionario no se encuentra disponible");
+                } else if (dicccionario.getDisponibilidad().equalsIgnoreCase("prestado")) {
+                    alert.showAlert("Anuncio", "Préstamo diccionario", "El diccionario: " + codBarras
+                            + ", se encuentra préstado a otro usuario.");
+                } else if (dicccionario.getDisponibilidad().equalsIgnoreCase("vencido")) {
+                    alert.showAlert("Anuncio", "Préstamo diccionario", "El dicionario: " + codBarras
+                            + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Prestamo diccionario", "Ningun diccionario tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Préstamo diccionario", "No se encuentró un diccionario asociado al código: " + codBarras);
             }
         } catch (Exception e) {
-            System.out.println("error al generar el prestamo de diccionario de un profesor");
+            System.out.println("Error al generar el préstamo del diccionario a un profesor");
         }
-        return false;
+
+        return false; 
     }
 
+    /**
+     * el metódo realiza la construccción del e-mail al profesor, notificandole
+     * el préstamo del diccioanrio.
+     *
+     * @param idProfesor
+     * @param tituloRecurso
+     * @param fechaPrestamo
+     * @param fechaDevolucion
+     */
     public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, java.util.Date fechaPrestamo, java.util.Date fechaDevolucion) {
 
     }
+    
 }

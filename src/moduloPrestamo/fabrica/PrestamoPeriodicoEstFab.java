@@ -4,56 +4,86 @@ import moduloPrestamo.entitys.PrestamoPeriodicoEst;
 import recursos1.controllers.PeriodicoJpaController;
 import recursos1.entitys.Periodico;
 import java.sql.Date;
-import modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOEst;
-import moduloPrestamo.IPrestamo;
 import vista.AlertBox;
 import vista.IAlertBox;
 
 /**
+ * La clase se encarga gestionar el préstamo de un periódico al estudiante.
  *
  * @author Julian
+ * @creado
+ * @author Miguel Fernández
+ * @modificado 24/08/2019
  */
 public class PrestamoPeriodicoEstFab implements IPrestamo {
 
+    /**
+     * constructor de la clase sin parámetros.
+     */
     public PrestamoPeriodicoEstFab() {
     }
 
+    /**
+     * el metódo realiza el préstamo de un periódico al estudiante.
+     *
+     * @param codBarras
+     * @param codUsuario
+     * @param idBibliotecario
+     * @return boolean
+     */
     @Override
     public boolean ejecutarPrestamo(String codBarras, String codUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
+
         try {
             PeriodicoJpaController control = new PeriodicoJpaController();
             Periodico periodico = control.findPeriodico(codBarras);
+
             if (periodico != null) {
                 if (periodico.getDisponibilidad().equalsIgnoreCase("disponible")) {
-
-                    java.util.Date fechaActual = new java.util.Date();
-                    java.util.Date fechaDevolucion = ServicioFecha.sumarDiasAFecha(fechaActual, 0);
-
-                    PrestamoPeriodicoEst presPerEst = new PrestamoPeriodicoEst(codBarras, codUsuario, idBibliotecario,
-                            new Date(fechaActual.getTime()), new Date(fechaDevolucion.getTime()));
+                    PrestamoPeriodicoEst presPerEst = new PrestamoPeriodicoEst();
+                    presPerEst.setCodBarraPeriodico(codBarras);
+                    presPerEst.setCodEstudiante(codUsuario);
+                    presPerEst.setIdBibliotecario(idBibliotecario);
+                    
                     PrestamoPeriodicoDAOEst presPerDAOEst = new PrestamoPeriodicoDAOEst();
+
                     if (presPerDAOEst.createDAO(presPerEst)) {
-                        System.out.println("Cambiando disponibilidad del periodico...");
-                        
                         periodico.setDisponibilidad("prestado");
                         control.edit(periodico);
-                        return true;
+
+                        //espacio para enviar correo
+                        
+                        return true; 
                     }
-                } else {
-                    alert.showAlert("Anuncio", "Prestamo periodico", "El periodico no se encuentra disponible");
+                } else if (periodico.getDisponibilidad().equalsIgnoreCase("prestado")) {
+                    alert.showAlert("Anuncio", "Préstamo periódico", "El periódico: " + codBarras
+                            + ", se encuentra préstado a otro usuario.");
+                } else if (periodico.getDisponibilidad().equalsIgnoreCase("vencido")) {
+                    alert.showAlert("Anuncio", "Préstamo periódico", "El periódico: " + codBarras
+                            + ", no ha sido devuelto por el usuario al que se le presto.");
                 }
             } else {
-                alert.showAlert("Anuncio", "Prestamo periodico", "Ningun periodico tiene este codigo de barra");
+                alert.showAlert("Anuncio", "Préstamo periódico", "No se encuentró un periódico asociado al código: " + codBarras);
             }
         } catch (Exception e) {
-            System.out.println("error al generar el prestamo del periodico de un estudiante");
+            System.out.println("Error al generar el préstamo del periódico a un estudiante");
         }
-        return false;
+
+        return false; 
     }
 
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, java.util.Date fechaPrestamo, java.util.Date fechaDevolucion) {
+    /**
+     * el metódo realiza la construccción del e-mail al estudiante,
+     * notificandole el préstamo de un periódico.
+     *
+     * @param idProfesor
+     * @param tituloRecurso
+     * @param fechaPrestamo
+     * @param fechaDevolucion
+     */
+    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
 
     }
 

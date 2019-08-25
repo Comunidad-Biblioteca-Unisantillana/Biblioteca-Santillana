@@ -3,33 +3,48 @@ package moduloPrestamo.entitys;
 import java.sql.Date;
 
 /**
- * entidad Prestamo_Diccionario_Estudiante
+ * clase de la entidad Prestamo Diccionario Estudiante.
  *
- * @author Julian 
- * Fecha creación:10/08/2019 
- * Fecha ultima modificación:11/08/2019
+ * @author Julian
+ * @creado 10/08/2019
+ * @author Julian
+ * @modificado 24/08/2019
  */
 public class PrestamoDiccionarioEst {
 
     private int codPrestamoDiccionarioEst;
-    private String codBarraDiccionario, codEstudiante, idBibliotecario;
-    private Date fechaPrestamo, fechaDevolucion;
-    private char devuelto;
+    private String codBarraDiccionario;
+    private String codEstudiante;
+    private String idBibliotecario;
+    private Date fechaPrestamo;
+    private Date fechaDevolucion;
+    private String devuelto;
 
     /**
-     * Constructor de la clase
+     * constructor sin parámetros.
+     */
+    public PrestamoDiccionarioEst() {
+
+    }
+
+    /**
+     * Constructor de la clase con parámetros.
+     *
      * @param codBarraDiccionario
      * @param codEstudiante
      * @param idBibliotecario
      * @param fechaPrestamo
      * @param fechaDevolucion
+     * @param devuelto
      */
-    public PrestamoDiccionarioEst(String codBarraDiccionario, String codEstudiante, String idBibliotecario, Date fechaPrestamo, Date fechaDevolucion) {
+    public PrestamoDiccionarioEst(String codBarraDiccionario, String codEstudiante, String idBibliotecario, 
+            Date fechaPrestamo, Date fechaDevolucion, String devuelto) {
         this.codBarraDiccionario = codBarraDiccionario;
         this.codEstudiante = codEstudiante;
         this.idBibliotecario = idBibliotecario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.devuelto = devuelto;
     }
 
     public int getCodPrestamoDiccionarioEst() {
@@ -56,7 +71,7 @@ public class PrestamoDiccionarioEst {
         return fechaDevolucion;
     }
 
-    public char getDevuelto() {
+    public String getDevuelto() {
         return devuelto;
     }
 
@@ -84,12 +99,8 @@ public class PrestamoDiccionarioEst {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void setDevuelto(char devuelto) {
+    public void setDevuelto(String devuelto) {
         this.devuelto = devuelto;
     }
-
-    
-
-    
 
 }

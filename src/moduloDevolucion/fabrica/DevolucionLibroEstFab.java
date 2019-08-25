@@ -37,7 +37,7 @@ public class DevolucionLibroEstFab implements IDevolucion {
 
                     PrestamoLibroDAOEst prestDAOEst = new PrestamoLibroDAOEst();
                     PrestamoLibroEst prestEst = prestDAOEst.readDAO(codPrestamo);
-                    if (prestEst.getDevuelto() == 'n') {
+                    if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
                         DevolucionLibroEst devEst = new DevolucionLibroEst(prestEst.getCodPrestamoLibroEst(), idBibliotecario, null, estadoRecurso);
                         DevolucionLibroDAOEst devDAOEst = new DevolucionLibroDAOEst();
                         devDAOEst.createDAO(devEst);
@@ -45,7 +45,7 @@ public class DevolucionLibroEstFab implements IDevolucion {
                         libro.setDisponibilidad("disponible");
                         control.edit(libro);
                         
-                        prestEst.setDevuelto('s');
+                        prestEst.setDevuelto("si");
                         System.out.println("hole");
                         prestDAOEst.updateDAO(prestEst);
                         alert.showAlert("Anuncio", "Devolución libro", "La devolución del usuario con codigo"
