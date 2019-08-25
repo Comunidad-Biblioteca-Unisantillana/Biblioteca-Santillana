@@ -206,7 +206,8 @@ public class PrestamoDiccionarioDAOEst extends PrestamoRecursoDAOAbs<PrestamoDic
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT codPrestDicEst FROM Prestamo_Diccionario_Estudiante WHERE codBarraDiccionario = " + codBarra + ";");
+            rs = stmt.executeQuery("SELECT codPrestDicEst FROM Prestamo_Diccionario_Estudiante "
+                    + "WHERE codBarraDiccionario = " + codBarra + " AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestDicEst");

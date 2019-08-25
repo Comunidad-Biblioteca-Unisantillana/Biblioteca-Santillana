@@ -209,7 +209,8 @@ public class PrestamoMapaDAOEst extends PrestamoRecursoDAOAbs<PrestamoMapaEst> {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT codPrestMapaEst FROM Prestamo_Mapa_Estudiante WHERE codBarraMapa = " + codBarra + ";");
+            rs = stmt.executeQuery("SELECT codPrestMapaEst FROM Prestamo_Mapa_Estudiante "
+                    + "WHERE codBarraMapa = " + codBarra + " AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestMapaEst");

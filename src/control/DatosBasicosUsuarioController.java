@@ -1,13 +1,13 @@
 package control;
 
 import entitysUsuario.Bibliotecario;
-import entitysUsuario.BibliotecarioJpaController;
 import entitysUsuario.Estudiante;
-import entitysUsuario.EstudianteJpaController;
 import entitysUsuario.Profesor;
-import entitysUsuario.ProfesorJpaController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import modeloDAO.BibliotecarioDAO;
+import modeloDAO.EstudianteDAO;
+import modeloDAO.ProfesorDAO;
 
 /**
  * Clase que controla la vista DatosBasicosUsuario.fxml
@@ -29,16 +29,16 @@ public class DatosBasicosUsuarioController {
      */
     public void cargarComponentes(String nombreEntidad,String codigo){
         if(nombreEntidad.equalsIgnoreCase("estudiante")){
-            EstudianteJpaController estJpaController = new EstudianteJpaController();
-            Estudiante est = estJpaController.findEstudiante(codigo);
+            EstudianteDAO estDAO = new EstudianteDAO();
+            Estudiante est = estDAO.readDAO(codigo);
             cargarTextoLabels(est.getNombre() + " " + est.getApellido() ,"Código: " + codigo);
         }else if (nombreEntidad.equalsIgnoreCase("bibliotecario")){
-            BibliotecarioJpaController bibJpaController = new BibliotecarioJpaController();
-            Bibliotecario bib = bibJpaController.findBibliotecario(codigo);
-            cargarTextoLabels(bib.getNombres()+ " " + bib.getApellidos(),"Identificación: " + codigo);
+            BibliotecarioDAO bibDAO = new BibliotecarioDAO();
+            Bibliotecario bib = bibDAO.readDAO(codigo);
+            cargarTextoLabels(bib.getNombre() + " " + bib.getApellido() ,"Identificación: " + codigo);
         }else if (nombreEntidad.equalsIgnoreCase("profesor")){
-            ProfesorJpaController profJpaController= new ProfesorJpaController();
-            Profesor prof = profJpaController.findProfesor(codigo);
+            ProfesorDAO profDAO = new ProfesorDAO();
+            Profesor prof = profDAO.readDAO(codigo);
             cargarTextoLabels(prof.getNombres() + " " + prof.getApellidos(), "Identificación: " + codigo);
         }
     }

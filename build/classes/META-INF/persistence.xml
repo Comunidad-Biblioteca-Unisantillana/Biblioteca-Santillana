@@ -51,7 +51,6 @@
     <class>entitys.Profesor</class>
     <class>entitysUsuario.Bibliotecario</class>
     <class>entitysUsuario.Estudiante</class>
-    <class>entitysUsuario.Profesor</class>
     <class>moduloPrestamo.MultaMapaProfesor</class>
     <class>moduloPrestamo.PrestamoDiccionarioProfesor</class>
     <class>moduloPrestamo.DevolucionDiccionarioEstudiante</class>

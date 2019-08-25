@@ -207,7 +207,8 @@ public class PrestamoPeriodicoDAOEst extends PrestamoRecursoDAOAbs<PrestamoPerio
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT codPrestPeriodicoEst FROM Prestamo_Periodico_Estudiante WHERE codBarraPeriodico = " + codBarra + ";");
+            rs = stmt.executeQuery("SELECT codPrestPeriodicoEst FROM Prestamo_Periodico_Estudiante "
+                    + "WHERE codBarraPeriodico = " + codBarra + " AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestPeriodicoEst");

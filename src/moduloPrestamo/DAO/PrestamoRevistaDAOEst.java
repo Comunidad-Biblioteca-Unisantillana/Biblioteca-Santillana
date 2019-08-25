@@ -207,7 +207,8 @@ public class PrestamoRevistaDAOEst extends PrestamoRecursoDAOAbs<PrestamoRevista
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT codPrestRevistaEst FROM Prestamo_Revista_Estudiante WHERE codBarraRevista = " + codBarra + ";");
+            rs = stmt.executeQuery("SELECT codPrestRevistaEst FROM Prestamo_Revista_Estudiante "
+                    + "WHERE codBarraRevista = " + codBarra + " AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestRevistaEst");

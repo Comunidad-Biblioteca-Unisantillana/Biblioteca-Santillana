@@ -118,11 +118,11 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
     public boolean updateDAO(PrestamoLibroProf prestamo) {
         String sqlSentence;
 
-        if (diasPrestamo == 15 || diasPrestamo == 2) {
+        if (diasPrestamo == 15) {//cuando se realiza una renovación y se actuliza la fecha de devolución
             sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, "
                     + "fechaPrestamo = ?, fechaDevolucion = CURRENT_DATE() + " + diasPrestamo + ", numRenovaciones = ?, "
                     + "devuelto = ? WHERE codPrestLibroProf = ?";
-        } else {
+        } else {//cuando se dvuelve el recurso y se actuliza el atributo devuelto
             sqlSentence = "UPDATE Prestamo_Libro_Profesor "
                     + "SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaPrestamo = ?, "
                     + "fechaDevolucion = '" + prestamo.getFechaDevolucion() + "', numRenovaciones = ?,"
@@ -229,7 +229,8 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT codPrestLibroProf FROM Prestamo_Libro_Profesor WHERE codBarraLibro = " + codBarra + ";");
+            rs = stmt.executeQuery("SELECT codPrestLibroProf FROM Prestamo_Libro_Profesor "
+                    + "WHERE codBarraLibro = " + codBarra + " AND devuelto = 'no';");
 
             while (rs.next()) {
                 codPrestamo = rs.getInt("codPrestLibroProf");

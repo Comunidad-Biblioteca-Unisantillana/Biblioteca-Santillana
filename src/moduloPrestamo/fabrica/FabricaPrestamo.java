@@ -28,7 +28,7 @@ public class FabricaPrestamo {
      */
     public IPrestamo getPrestamo(String tipoPrestamo, String usuario) {
         IPrestamo prestamo = null;
-        
+
         if (usuario.equalsIgnoreCase("estudiante")) {
             switch (tipoPrestamo) {
                 case "libro":
@@ -50,7 +50,7 @@ public class FabricaPrestamo {
                     prestamo = new PrestamoMapaEstFab();
                     break;
                 default:
-                    System.out.println("Error al crear un préstamo al estudiante de la entidad: " + tipoPrestamo);
+                    System.out.println("Error al crear un préstamo al estudiante de la entidad: " + tipoPrestamo + ", que no existe.");
                     break;
             }
         } else {
@@ -74,11 +74,11 @@ public class FabricaPrestamo {
                     prestamo = new PrestamoMapaProfFab();
                     break;
                 default:
-                    System.out.println("Error al crear un préstamo al profesor de la entidad: " + tipoPrestamo);
+                    System.out.println("Error al crear un préstamo al profesor de la entidad: " + tipoPrestamo + ", que no existe.");
                     break;
             }
         }
-        
+
         return prestamo;
     }
 
