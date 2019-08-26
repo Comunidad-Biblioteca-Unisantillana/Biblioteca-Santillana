@@ -60,18 +60,24 @@ public class RenovacionColgenProfFab implements IRenovacion {
                     prestamoLibroProf.setNumRenovaciones(prestamoLibroProf.getNumRenovaciones() + 1);
 
                     if (prestamoLibroDAOProf.updateDAO(prestamoLibroProf)) {
-
                         //espacio para el envio del correo
+
+                        alert.showAlert("Anuncio", "Renovación", "La renovación del libro: " + codBarras
+                                + ", se realizó con exito");
+                        
                         return true;
+                    } else {
+                        alert.showAlert("Anuncio", "Renovación", "La renovación del libro: " + codBarras
+                                + ", no se pudo realizar");
                     }
                 } else {
                     alert.showAlert("Anuncio", "Renovación", "El profesor: " + idUsuario
                             + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
-                            + "\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones");
+                            + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
                 }
             } else {
                 alert.showAlert("Anuncio", "Renovación", "No se encontró un préstamo actual "
-                        + "asociado al libro con el código: " + codBarras);
+                        + "asociado al libro con el código: " + codBarras + ".");
             }
         }
 

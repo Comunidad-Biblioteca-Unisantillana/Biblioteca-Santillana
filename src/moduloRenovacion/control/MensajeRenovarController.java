@@ -31,28 +31,34 @@ public class MensajeRenovarController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
 
     /**
-     * 
-     * @param event 
+     * el metódo realiza la renovación del recurso.
+     *
+     * @param event
      */
     @FXML
     private void btnRevonar(ActionEvent event) {
         prestEstProfController.setEstadoRenovarRecurso(false);
         GeneradorRenovacion generadorRenovacion = new GeneradorRenovacion();
         generadorRenovacion.createRenovacion(prestamo.getCodBarrasRecurso(), codUsuario, tipoUsuario);
+        prestEstProfController.cargarDatosUsuario(codUsuario, tipoUsuario);
         stage = (Stage) tfMensaje.getScene().getWindow();
         stage.close();
     }
 
     /**
-     * 
-     * @param event 
+     * el metódo cancela la renovación del recurso.
+     *
+     * @param event
      */
     @FXML
     private void btnCancelar(ActionEvent event) {
@@ -76,10 +82,10 @@ public class MensajeRenovarController implements Initializable {
         this.codUsuario = codUsuario;
         this.tipoUsuario = tipoUsuario;
         this.prestEstProfController = prestEstProfController;
-        
-        tfMensaje.setText("Desea renovar el recurso:" 
-                + "\n\nCódigo de barras: " + prestamo.getCodBarrasRecurso() 
-                + "\nTitulo: " + prestamo.getTituloRecurso());    
+
+        tfMensaje.setText("Desea renovar el recurso:"
+                + "\n\nCódigo de barras: " + prestamo.getCodBarrasRecurso()
+                + "\nTitulo: " + prestamo.getTituloRecurso());
     }
 
 }

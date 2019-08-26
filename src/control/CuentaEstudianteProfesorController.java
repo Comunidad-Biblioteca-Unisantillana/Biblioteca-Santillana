@@ -61,8 +61,8 @@ public class CuentaEstudianteProfesorController implements Initializable {
     private String tipoUsuario;
 
     /**
-     * Método que se ejecuta automáticamente al enlazar<br>
-     * este controlador con su respectiva vista
+     * el metódo ejecuta automáticamente al enlazar<br>
+     * este controlador con su respectiva vista.
      *
      * @param url
      * @param rb
@@ -78,7 +78,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Método que retona a la ventana del login
+     * el metódo que retona a la ventana del login.
      *
      * @param event
      */
@@ -92,13 +92,17 @@ public class CuentaEstudianteProfesorController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     private void itemAcercaDePressed(ActionEvent event) {
 
     }
 
     /**
-     * Método que cambia un módulo por el de préstamo
+     * el metódo cambia un módulo por el de préstamo.
      *
      * @param event
      */
@@ -109,7 +113,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Método que cambia un módulo por el de multa
+     * el metódo cambia un módulo por el de multa.
      *
      * @param event
      */
@@ -147,12 +151,12 @@ public class CuentaEstudianteProfesorController implements Initializable {
             btnPrestamo.setDisable(false);
             btnMulta.setDisable(true);
         }
-        
+
         imd.valorPorDefecto();
     }
 
     /**
-     * Método que carga el modulo préstamo del<br>
+     * el método carga el módulo préstamo del<br>
      * usuario(Estudiante,Profesor).
      */
     private void loadPrestamo() {
@@ -168,7 +172,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Método que carga el modulo multa del<br>
+     * el metódo carga el módulo multa del<br>
      * usuario(Estudiante,Profesor).
      */
     private void loadMulta() {
@@ -184,7 +188,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * el metódo que carga el modulo OPAC del Estudiante o Profesor, por defecto
+     * el metódo que carga el módulo OPAC del Estudiante o Profesor, por defecto
      * en el tipo de busqueda a: busqueda por codigo.
      */
     private void loadOPAC() {
@@ -200,7 +204,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Metodo que muestra el nombre y el codigo del usuario en la ventana
+     * el metódo que muestra el nombre y el codigo del usuario en la ventana.
      */
     public void loadDatosBasicos() {
         try {
@@ -215,7 +219,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Metodo que asigna un stage.
+     * el metódo que asigna un stage.
      *
      * @param stage
      */
@@ -224,7 +228,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Método que asigna el código del usuario.
+     * el metódo que asigna el código del usuario.
      *
      * @param codigo
      */
@@ -233,11 +237,12 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * Metodo que asigna el tipo de usuario(Estudiante o Profesor)
+     * el metoódo que asigna el tipo de usuario(Estudiante o Profesor).
      *
      * @param tipoUsuario
      */
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+    
 }

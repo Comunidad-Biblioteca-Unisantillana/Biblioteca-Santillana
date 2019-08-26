@@ -26,7 +26,7 @@ import vista.LoginUnisantillanaStage;
  *
  * @author stiven valencia
  * @creado: 05/09/2018
- * @Miguel Fernández
+ * @author Miguel Fernández
  * @modificado: 21/08/2019
  */
 public class CuentaBibliotecarioController implements Initializable {
@@ -49,6 +49,8 @@ public class CuentaBibliotecarioController implements Initializable {
     @FXML
     private ImageView imgIconMulta;
     @FXML
+    private ImageView imgIconRenovacion;
+    @FXML
     private JFXButton btnOPAC;
     @FXML
     private JFXButton btnPrestamo;
@@ -59,12 +61,14 @@ public class CuentaBibliotecarioController implements Initializable {
     @FXML
     private JFXButton btnMulta;
     @FXML
+    private JFXButton btnRenovacion;
+    @FXML
     private ImageView imgIconOPAC;
     private String idBibliotecario;
     private IniciarMenuDesplegable imd;
 
     /**
-     * Método que se ejecuta automáticamente al enlazar<br>
+     * el método ejecuta automáticamente al enlazar<br>
      * este controlador con su respectiva vista
      *
      * @param url
@@ -78,12 +82,13 @@ public class CuentaBibliotecarioController implements Initializable {
         imgIconDevolucion.setImage(new Image("/recursos/iconDevolucion.png"));
         imgIconMulta.setImage(new Image("/recursos/iconMulta.png"));
         imgIconOPAC.setImage(new Image("/recursos/iconOPAC.png"));
+        imgIconRenovacion.setImage(new Image("/recursos/iconOPAC.png"));
         loadOPAC();
         valoresPorDefecto("OPAC");
     }
 
     /**
-     * Método que cambia un módulo por el de préstamo
+     * el método cambia un módulo por el de préstamo.
      *
      * @param event
      */
@@ -94,7 +99,7 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
-     * Método que cambia un módulo por el de reserva
+     * el método cambia un módulo por el de reserva.
      *
      * @param event
      */
@@ -105,7 +110,7 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
-     * Método que cambia un módulo por el de devolución
+     * el método cambia un módulo por el de devolución.
      *
      * @param event
      */
@@ -116,7 +121,7 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
-     * Método que cambia un módulo por el de multa
+     * el método cambia un módulo por el de multa.
      *
      * @param event
      */
@@ -138,6 +143,17 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
+     * el metódo cambia el módulo por el de Renovación.
+     *
+     * @param event
+     */
+    @FXML
+    void btnRenovacionPressed(ActionEvent event) {
+        loadRenovacion();
+        valoresPorDefecto("renovacion");
+    }
+
+    /**
      * el metódo repliega la barra del menu e inhabilta el botón del módulo
      * selecionado.
      */
@@ -148,37 +164,49 @@ public class CuentaBibliotecarioController implements Initializable {
             btnReserva.setDisable(false);
             btnDevolucion.setDisable(false);
             btnMulta.setDisable(false);
+            btnRenovacion.setDisable(false);
         } else if (modulo.equals("prestamo")) {
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(true);
             btnReserva.setDisable(false);
             btnDevolucion.setDisable(false);
             btnMulta.setDisable(false);
+            btnRenovacion.setDisable(false);
         } else if (modulo.equals("reserva")) {
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(true);
             btnDevolucion.setDisable(false);
             btnMulta.setDisable(false);
+            btnRenovacion.setDisable(false);
         } else if (modulo.equals("devolucion")) {
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(false);
             btnDevolucion.setDisable(true);
             btnMulta.setDisable(false);
-        } else {
+            btnRenovacion.setDisable(false);
+        } else if (modulo.equals("OPAC")) {
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(false);
             btnDevolucion.setDisable(false);
             btnMulta.setDisable(true);
+            btnRenovacion.setDisable(false);
+        } else {
+            btnOPAC.setDisable(false);
+            btnPrestamo.setDisable(false);
+            btnReserva.setDisable(false);
+            btnDevolucion.setDisable(false);
+            btnMulta.setDisable(false);
+            btnRenovacion.setDisable(true);
         }
 
         imd.valorPorDefecto();
     }
 
     /**
-     * Método que retorna a la ventana login
+     * el método retorna a la ventana login.
      *
      * @param event
      */
@@ -189,7 +217,7 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
-     * Método que muestra la información del programa
+     * el método muestra la información del programa
      *
      * @param event
      */
@@ -199,7 +227,7 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
-     * Metodo que carga el modulo prestamo del bibliotecario
+     * el metódo carga el módulo préstamo del bibliotecario.
      */
     private void loadPrestamo() {
         try {
@@ -208,12 +236,12 @@ public class CuentaBibliotecarioController implements Initializable {
             PrestamoBibliotecarioController control = loader.getController();
             control.setIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la vista PrestamoBibliotecario.fxml");
         }
     }
 
     /**
-     * Metodo que carga el modulo reserva del bibliotecario
+     * el metódo carga el módulo reserva del bibliotecario.
      */
     private void loadReserva() {
         try {
@@ -222,12 +250,12 @@ public class CuentaBibliotecarioController implements Initializable {
             ReservaBibliotecarioController control = loader.getController();
             control.setIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la vista ReservaBibliotecario.fxml");
         }
     }
 
     /**
-     * Metodo que carga el modulo devolución del bibliotecario
+     * el metódo carga el módulo devolución del bibliotecario.
      */
     private void loadDevolucion() {
         try {
@@ -236,12 +264,12 @@ public class CuentaBibliotecarioController implements Initializable {
             DevolucionBibliotecarioController control = loader.getController();
             control.setIdBibliotecario(idBibliotecario);
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la vista DevolucionBibliotecario.fxml");
         }
     }
 
     /**
-     * Metodo que carga el modulo multa del bibliotecario
+     * el metódo carga el módulo multa del bibliotecario.
      */
     private void loadMulta() {
         try {
@@ -249,13 +277,13 @@ public class CuentaBibliotecarioController implements Initializable {
             rootModulo.setCenter(loader.load());
             MultaBibliotecarioController control = loader.getController();
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la vista MultaBibliotecario.fxml");
         }
     }
 
     /**
-     * el metódo que carga el modulo OPAC del Estudiante o Profesor, por defecto
-     * en el tipo de busqueda a: busqueda por codigo.
+     * el metódo carga el módulo OPAC del Estudiante o Profesor, por defecto en
+     * el tipo de busqueda a: busqueda por codigo.
      */
     private void loadOPAC() {
         try {
@@ -265,13 +293,25 @@ public class CuentaBibliotecarioController implements Initializable {
             CodigoOPACController codigoOPACController = loader.getController();
             codigoOPACController.cargarMenuOPAC(rootModulo);
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la vista CodigoOPAC.fxml");
         }
     }
 
     /**
-     * Metodo que muestra el nombre y la identificación del bibliotecario en la
-     * ventana
+     * el metódo carga el módulo de renovación del bibliotecario.
+     */
+    private void loadRenovacion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloRenovacion/vista/RenovacionBibliotecario.fxml"));
+            rootModulo.setCenter(loader.load());
+        } catch (IOException ex) {
+            System.out.println("Error al cargar la vista RenovacionBibliotecario.fxml");
+        }
+    }
+
+    /**
+     * el metódo muestra el nombre y la identificación del bibliotecario en la
+     * ventana.
      */
     public void loadDatosBasicosBibliotecario() {
         try {
@@ -281,12 +321,12 @@ public class CuentaBibliotecarioController implements Initializable {
             DatosBasicosUsuarioController control = loader.getController();
             control.cargarComponentes("bibliotecario", idBibliotecario);
         } catch (IOException ex) {
-
+            System.out.println("Error al cargar la vista DatosBasicosUsuario.fxml");
         }
     }
 
     /**
-     * Método que asigna la identificación del bibliotecario.
+     * el método asigna la identificación del bibliotecario.
      *
      * @param idBibliotecario
      */
@@ -295,11 +335,12 @@ public class CuentaBibliotecarioController implements Initializable {
     }
 
     /**
-     * Metodo que asigna stage de bibliotecario
+     * el metódo asigna stage de bibliotecario.
      *
      * @param stage
      */
     public void setStage(CuentaBibliotecarioStage stage) {
         this.stage = stage;
     }
+
 }

@@ -72,41 +72,39 @@ public class GeneradorRenovacion {
     public void createRenovacion(String codBarras, String codUsuario, String tipoUsuario) {
         IAlertBox alert = new AlertBox();
         FabricaRenovacion fabricaRenovacion = new FabricaRenovacion();
-        IRenovacion iRenovacion = null;
+        IRenovacion renovacion = null;
 
         switch (tipoUsuario) {
             case "estudiante":
                 if (consultarExistenciaEstudiante(codUsuario)) {
                     //espacio para validar multas del usuario
 
-                    iRenovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
+                    renovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
                 } else {
-                    alert.showAlert("Anuncio", "Renovación", "No hay ningún estudiante asociado al código: " + codUsuario);
+                    alert.showAlert("Anuncio", "Renovación", "No hay ningún estudiante "
+                            + "asociado al código: " + codUsuario + ".");
                 }
                 break;
             case "profesor":
                 if (consultarExistenciaProfesor(codUsuario)) {
                     //espacio para validar multas del usuario
 
-                    iRenovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
+                    renovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
                 } else {
-                    alert.showAlert("Anuncio", "Renovación", "No hay ningún profesor asociado al código: " + codUsuario);
+                    alert.showAlert("Anuncio", "Renovación", "No hay ningún profesor "
+                            + "asociado al código: " + codUsuario + ".");
                 }
                 break;
             default:
-                System.out.println("Error al crear la renovación del usuario: " + tipoUsuario + ", que no existe.");
+                System.out.println("Error al crear la renovación del usuario: " 
+                        + tipoUsuario + ", que no existe.");
                 break;
         }
 
-        if (iRenovacion != null) {
-            if (iRenovacion.ejecutarRenovacion(codBarras, codUsuario)) {
-                alert.showAlert("Anuncio", "Renovación", "La renovación del libro: " + codBarras
-                        + ", se realizó con exito");
-            } else {
-                alert.showAlert("Anuncio", "Renovación", "La renovación del libro: " + codBarras
-                        + ", no se pudo realizar");
-            }
+        if (renovacion != null) {
+            renovacion.ejecutarRenovacion(codBarras, codUsuario);
         }
+
     }
 
 }

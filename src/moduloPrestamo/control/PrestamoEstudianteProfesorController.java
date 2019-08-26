@@ -105,7 +105,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         }
 
         tablePrestamo.setItems(prestamos);
-        txtMensaje.setText("se encontrarón: " + prestamos.size() + " préstamos.");
+        txtMensaje.setText("Se encontrarón: " + prestamos.size() + " préstamos.");
     }
 
     /**
@@ -125,10 +125,6 @@ public class PrestamoEstudianteProfesorController implements Initializable {
 
                 MensajeRenovarStage mensajeRenovarStage = new MensajeRenovarStage();
                 mensajeRenovarStage.cargarDatosMensajeRenovarController(prestamo, codUsuario, tipoUsuario, this);
-
-                ObservableList<Prestamo> prestamos = consulta.getPrestamosActuales(codUsuario);
-                tablePrestamo.setItems(prestamos);
-                 txtMensaje.setText("se encontrarón: " + prestamos.size() + " préstamos.");
             } else {
                 alert.showAlert("Anuncio", "Renovar recurso", "Por favor cerar la ventana actual "
                         + "de renovación abierta, para poder renovar otro recurso.");
@@ -161,7 +157,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
 
         ObservableList<Prestamo> prestamos = consulta.getPrestamosActuales(codUsuario);
         tablePrestamo.setItems(prestamos);
-        txtMensaje.setText("se encontrarón: " + prestamos.size() + " préstamos.");
+        txtMensaje.setText("Se encontrarón: " + prestamos.size() + " préstamos.");
     }
 
     /**

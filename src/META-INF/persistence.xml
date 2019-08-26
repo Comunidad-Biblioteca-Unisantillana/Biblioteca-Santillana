@@ -111,6 +111,7 @@
     <class>recursos1.entitys.AutorDiccionario</class>
     <class>recursos1.entitys.AutorPorDiccionario</class>
     <class>recursos1.entitys.AutorLibro</class>
+    <class>moduloRenovacion.control.RenovacionBibliotecarioController</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

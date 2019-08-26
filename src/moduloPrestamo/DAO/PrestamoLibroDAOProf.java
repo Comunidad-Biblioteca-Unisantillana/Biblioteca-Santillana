@@ -119,7 +119,8 @@ public class PrestamoLibroDAOProf extends PrestamoRecursoDAOAbs<PrestamoLibroPro
         String sqlSentence;
 
         if (diasPrestamo == 15) {//cuando se realiza una renovación y se actuliza la fecha de devolución
-            sqlSentence = "UPDATE Prestamo_Libro_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, "
+            sqlSentence = "UPDATE Prestamo_Libro_Profesor "
+                    + "SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, "
                     + "fechaPrestamo = ?, fechaDevolucion = current_date + " + diasPrestamo + ", numRenovaciones = ?, "
                     + "devuelto = ? WHERE codPrestLibroProf = ?";
         } else {//cuando se dvuelve el recurso y se actuliza el atributo devuelto
