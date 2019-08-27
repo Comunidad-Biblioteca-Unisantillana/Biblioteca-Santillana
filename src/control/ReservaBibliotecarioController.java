@@ -1,12 +1,15 @@
 package control;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import moduloReserva.GeneradorReserva;
+import moduloReserva.modelo.GeneradorReserva;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -23,9 +26,7 @@ public class ReservaBibliotecarioController implements Initializable{
     @FXML
     private JFXTextField txtCodUserReserva;
     @FXML
-    private JFXTextField txtFechaReserva;
-    @FXML
-    private JFXTextField txtFechaLimite;
+    private JFXComboBox<String> cboTipoUsuario;
     
     private String idBibliotecario;
     
@@ -40,6 +41,9 @@ public class ReservaBibliotecarioController implements Initializable{
         KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
         eventoTecla.soloNumeros(codBarrasResTxt);
         eventoTecla.soloNumeros(txtCodUserReserva);
+        ObservableList<String> listaTipoRecurso = FXCollections.observableArrayList( "Estudiante", "Profesor");
+        cboTipoUsuario.setItems(listaTipoRecurso);
+        cboTipoUsuario.setValue("Estudiante");
     }
     
     /**
@@ -54,11 +58,7 @@ public class ReservaBibliotecarioController implements Initializable{
         if(!codBarrasResTxt.getText().isEmpty() && !txtCodUserReserva.getText().isEmpty()){
             try{
                 GeneradorReserva generador = new GeneradorReserva();
-
-                if(generador.createReserva(codBarrasResTxt.getText(), txtCodUserReserva.getText(), idBibliotecario, 
-                        txtFechaReserva, txtFechaLimite)){
-                    alert.showAlert("Anuncio", "Reserva", "La reserva ha sido realizado con éxito!");
-                }
+                generador.createReserva(codBarrasResTxt.getText(), txtCodUserReserva.getText(), cboTipoUsuario.getValue(), idBibliotecario);
             }
             catch(Exception e){
                 System.out.println("Error al realizar la reseva");

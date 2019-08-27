@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -32,12 +33,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="21.0" prefWidth="173.0" text="Fecha reserva:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="15.0" />
-         </GridPane.margin>
-      </Label>
-      <Label prefHeight="21.0" prefWidth="172.0" text="Fecha límite reserva:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <Label prefHeight="21.0" prefWidth="185.0" text="Tipo de usuario:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
@@ -62,14 +58,11 @@
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="txtFechaReserva" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="txtFechaLimite" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </GridPane.margin></JFXTextField>
       <Label alignment="CENTER" prefHeight="38.0" prefWidth="173.0" style="-fx-font-size: 30;" text="RESERVAS" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+      <JFXComboBox fx:id="cboTipoUsuario" prefHeight="29.0" prefWidth="257.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </GridPane.margin>
+      </JFXComboBox>
    </children>
 </GridPane>

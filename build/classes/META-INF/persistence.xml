@@ -2,97 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="BibliotecaSantiPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>entitys.Reservalibrocolecciongeneral</class>
-    <class>entitys.PrestamoMapaEstudiante</class>
-    <class>entitys.PrestamoDiccionarioProfesor</class>
-    <class>entitys.PrestamoMapaProfesor</class>
-    <class>entitys.DevolucionDiccionarioProfesor</class>
-    <class>entitys.DevolucionPeriodicoEstudiante</class>
-    <class>entitys.PrestamoPeriodicoEstudiante</class>
-    <class>entitys.PrestamoEnciclopediaProfesor</class>
-    <class>entitys.MultaMapaProfesor</class>
-    <class>entitys.MultaEnciclopediaProfesor</class>
-    <class>entitys.MultaDiccionarioEstudiante</class>
-    <class>entitys.DevolucionRevistaEstudiante</class>
-    <class>entitys.DevolucionEnciclopediaProfesor</class>
-    <class>entitys.MultaLibroProfesor</class>
-    <class>entitys.DevolucionLibroProfesor</class>
-    <class>entitys.MultaRevistaEstudiante</class>
     <class>entitys.ControlPrecioMulta</class>
-    <class>entitys.DevolucionDiccionarioEstudiante</class>
-    <class>entitys.PrestamoLibroEstudiante</class>
-    <class>entitys.DevolucionPeriodicoProfesor</class>
-    <class>entitys.DevolucionMapaEstudiante</class>
-    <class>entitys.MultaEnciclopediaEstudiante</class>
-    <class>entitys.DevolucionLibroEstudiante</class>
-    <class>entitys.MultaPeriodicoProfesor</class>
-    <class>entitys.MultaLibroEstudiante</class>
-    <class>entitys.PrestamoLibroProfesor</class>
-    <class>entitys.ReservaColgenProfesor</class>
-    <class>entitys.PrestamoRevistaEstudiante</class>
-    <class>entitys.DevolucionMapaProfesor</class>
-    <class>entitys.MultaRevistaProfesor</class>
-    <class>entitys.ReservaColgenEstudiante</class>
-    <class>entitys.LoginBibliotecario</class>
-    <class>entitys.DevolucionEnciclopediaEstudiante</class>
-    <class>entitys.DevolucionRevistaProfesor</class>
-    <class>entitys.MultaPeriodicoEstudiante</class>
-    <class>entitys.MultaDiccionarioProfesor</class>
-    <class>entitys.MultaMapaEstudiante</class>
-    <class>entitys.PrestamoRevistaProfesor</class>
-    <class>entitys.PrestamoEnciclopediaEstudiante</class>
-    <class>entitys.PrestamoPeriodicoProfesor</class>
-    <class>entitys.PrestamoDiccionarioEstudiante</class>
-    <class>entitys.Bibliotecario_1</class>
-    <class>entitys.Profesor_1</class>
-    <class>entitys.Estudiante_1</class>
-    <class>entitys.Estudiante</class>
-    <class>entitys.Bibliotecario</class>
-    <class>entitys.Profesor</class>
-    <class>entitysUsuario.Bibliotecario</class>
-    <class>entitysUsuario.Estudiante</class>
-    <class>moduloPrestamo.MultaMapaProfesor</class>
-    <class>moduloPrestamo.PrestamoDiccionarioProfesor</class>
-    <class>moduloPrestamo.DevolucionDiccionarioEstudiante</class>
-    <class>moduloPrestamo.MultaLibroEstudiante</class>
-    <class>moduloPrestamo.PrestamoPeriodicoEstudiante</class>
-    <class>moduloPrestamo.ReservaColgenProfesor</class>
-    <class>moduloPrestamo.PrestamoMapaProfesor</class>
-    <class>moduloPrestamo.DevolucionMapaEstudiante</class>
-    <class>moduloPrestamo.PrestamoLibroEstudiante</class>
-    <class>moduloPrestamo.LoginBibliotecario</class>
-    <class>moduloPrestamo.MultaRevistaProfesor</class>
-    <class>moduloPrestamo.DevolucionDiccionarioProfesor</class>
-    <class>moduloPrestamo.DevolucionEnciclopediaEstudiante</class>
-    <class>moduloPrestamo.MultaPeriodicoEstudiante</class>
-    <class>moduloPrestamo.MultaLibroProfesor</class>
-    <class>moduloPrestamo.DevolucionMapaProfesor</class>
-    <class>moduloPrestamo.DevolucionRevistaProfesor</class>
-    <class>moduloPrestamo.PrestamoMapaEstudiante</class>
-    <class>moduloPrestamo.DevolucionRevistaEstudiante</class>
-    <class>moduloPrestamo.MultaPeriodicoProfesor</class>
-    <class>moduloPrestamo.MultaDiccionarioEstudiante</class>
-    <class>moduloPrestamo.Bibliotecario</class>
-    <class>moduloPrestamo.ReservaColgenEstudiante</class>
-    <class>moduloPrestamo.MultaMapaEstudiante</class>
-    <class>moduloPrestamo.DevolucionEnciclopediaProfesor</class>
-    <class>moduloPrestamo.PrestamoEnciclopediaProfesor</class>
-    <class>moduloPrestamo.MultaRevistaEstudiante</class>
-    <class>moduloPrestamo.PrestamoEnciclopediaEstudiante</class>
-    <class>moduloPrestamo.Profesor</class>
-    <class>moduloPrestamo.DevolucionLibroProfesor</class>
-    <class>moduloPrestamo.PrestamoDiccionarioEstudiante</class>
-    <class>moduloPrestamo.DevolucionPeriodicoProfesor</class>
-    <class>moduloPrestamo.DevolucionLibroEstudiante</class>
-    <class>moduloPrestamo.DevolucionPeriodicoEstudiante</class>
-    <class>moduloPrestamo.MultaEnciclopediaProfesor</class>
-    <class>moduloPrestamo.Estudiante</class>
-    <class>moduloPrestamo.PrestamoPeriodicoProfesor</class>
-    <class>moduloPrestamo.PrestamoRevistaEstudiante</class>
-    <class>moduloPrestamo.MultaDiccionarioProfesor</class>
-    <class>moduloPrestamo.PrestamoLibroProfesor</class>
-    <class>moduloPrestamo.MultaEnciclopediaEstudiante</class>
-    <class>moduloPrestamo.PrestamoRevistaProfesor</class>
     <class>recursos1.entitys.Revista</class>
     <class>recursos1.entitys.Periodico</class>
     <class>recursos1.entitys.Libro</class>
@@ -111,7 +21,9 @@
     <class>recursos1.entitys.AutorDiccionario</class>
     <class>recursos1.entitys.AutorPorDiccionario</class>
     <class>recursos1.entitys.AutorLibro</class>
-    <class>moduloRenovacion.control.RenovacionBibliotecarioController</class>
+    <class>usuario.entitys.Bibliotecario</class>
+    <class>usuario.entitys.Profesor</class>
+    <class>usuario.entitys.Estudiante</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

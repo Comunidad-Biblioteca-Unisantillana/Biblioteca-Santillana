@@ -1,6 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +10,9 @@ import moduloDevolucion.IDevolucion;
 import moduloDevolucion.entitys.DevolucionEnciclopediaEst;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOEst;
 import moduloPrestamo.entitys.PrestamoEnciclopediaEst;
+import moduloReserva.DAO.ReservaColgenDAOEst;
+import moduloReserva.entitys.ReservaColgenEstudiante;
+import moduloReserva.fabrica.ReservaColgenEstFab;
 import recursos1.controllers.EnciclopediaJpaController;
 import recursos1.entitys.Enciclopedia;
 import vista.AlertBox;
@@ -37,10 +41,13 @@ public class DevolucionEnciclopediaEstFab implements IDevolucion {
                     PrestamoEnciclopediaDAOEst prestDAOEst = new PrestamoEnciclopediaDAOEst();
                     PrestamoEnciclopediaEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        DevolucionEnciclopediaEst devEst = new DevolucionEnciclopediaEst(prestEst.getCodPrestamoEnciclopediaEst(), idBibliotecario, null, estadoRecurso);
+                        java.util.Date fechaDevolucion =  new java.util.Date();
+                        
+                        DevolucionEnciclopediaEst devEst = new DevolucionEnciclopediaEst(prestEst.getCodPrestamoEnciclopediaEst(),
+                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
                         DevolucionEnciclopediaDAOEst devDAOEst = new DevolucionEnciclopediaDAOEst();
                         devDAOEst.createDAO(devEst);
-
+                        
                         enciclopedia.setDisponibilidad("disponible");
                         control.edit(enciclopedia);
 

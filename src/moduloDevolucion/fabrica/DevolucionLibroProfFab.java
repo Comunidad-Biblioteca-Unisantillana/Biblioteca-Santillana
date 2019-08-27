@@ -1,14 +1,18 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.ServicioFecha;
 import moduloDevolucion.DAO.DevolucionLibroDAOProf;
 import moduloDevolucion.IDevolucion;
 import moduloDevolucion.entitys.DevolucionLibroProf;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
+import moduloReserva.DAO.ReservaColgenDAOProf;
+import moduloReserva.entitys.ReservaColgenProfesor;
 import recursos1.controllers.LibroJpaController;
 import recursos1.entitys.Libro;
 import vista.AlertBox;
@@ -37,13 +41,24 @@ public class DevolucionLibroProfFab implements IDevolucion {
                     PrestamoLibroDAOProf prestDAOProf = new PrestamoLibroDAOProf();
                     PrestamoLibroProf prestProf = prestDAOProf.readDAO(codPrestamo);
                     if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
-                        DevolucionLibroProf devProf = new DevolucionLibroProf(prestProf.getCodPrestamoLibroProf(), idBibliotecario, null, estadoRecurso);
+                        java.util.Date fechaDevolucion =  new java.util.Date();
+                        
+                        DevolucionLibroProf devProf = new DevolucionLibroProf(prestProf.getCodPrestamoLibroProf(),
+                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
                         DevolucionLibroDAOProf devDAOProf = new DevolucionLibroDAOProf();
                         devDAOProf.createDAO(devProf);
-
-                        libro.setDisponibilidad("disponible");
+                        ReservaColgenDAOProf reservaDAO = new ReservaColgenDAOProf();
+                        ReservaColgenProfesor reserva = reservaDAO.readDAO(codBarras);
+                        if((libro.getCodcategoriacoleccion().getNombrecol().equalsIgnoreCase("general")) && (reserva != null)){
+                            reserva.setFechaRetencion(new Date(fechaDevolucion.getTime()));
+                            java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(fechaDevolucion, 5);
+                            reserva.setFechaLimiteReserva(new Date(fechaLimiteReserva.getTime()));
+                            libro.setDisponibilidad("reservado");
+                        }else{
+                            libro.setDisponibilidad("disponible");
+                        }
                         control.edit(libro);
-
+                        //Se actualiza el prestamo
                         prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
                         alert.showAlert("Anuncio", "Devolución libro", "La devolución del usuario con codigo"

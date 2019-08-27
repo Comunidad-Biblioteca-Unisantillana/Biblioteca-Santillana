@@ -1,7 +1,7 @@
 package moduloRenovacion.modelo;
 
-import modeloDAO.EstudianteDAO;
-import modeloDAO.ProfesorDAO;
+import usuario.controllers.EstudianteJpaController;
+import usuario.controllers.ProfesorJpaController;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -27,8 +27,8 @@ public class GeneradorRenovacion {
      * @return boolean
      */
     private boolean consultarExistenciaEstudiante(String codEstudiante) {
-        EstudianteDAO estDAO = new EstudianteDAO();
-        return estDAO.readDAO(codEstudiante) != null;
+        EstudianteJpaController estJPA = new EstudianteJpaController();
+        return estJPA.findEstudiante(codEstudiante) != null;
     }
 
     /**
@@ -38,8 +38,8 @@ public class GeneradorRenovacion {
      * @return boolean
      */
     private boolean consultarExistenciaProfesor(String idProfesor) {
-        ProfesorDAO profDAO = new ProfesorDAO();
-        return profDAO.readDAO(idProfesor) != null;
+        ProfesorJpaController profJPA = new ProfesorJpaController();
+        return profJPA.findProfesor(idProfesor) != null;
     }
 
     /**

@@ -1,6 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +39,9 @@ public class DevolucionMapaEstFab implements IDevolucion {
                     PrestamoMapaDAOEst prestDAOEst = new PrestamoMapaDAOEst();
                     PrestamoMapaEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        DevolucionMapaEst devEst = new DevolucionMapaEst(prestEst.getCodPrestamoMapaEst(), idBibliotecario, null, estadoRecurso);
+                        java.util.Date fechaDevolucion =  new java.util.Date();
+                        
+                        DevolucionMapaEst devEst = new DevolucionMapaEst(prestEst.getCodPrestamoMapaEst(), idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
                         DevolucionMapaDAOEst devDAOEst = new DevolucionMapaDAOEst();
                         devDAOEst.createDAO(devEst);
 

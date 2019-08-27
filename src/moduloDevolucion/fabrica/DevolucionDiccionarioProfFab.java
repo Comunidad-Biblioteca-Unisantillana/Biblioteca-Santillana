@@ -1,6 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
+import java.sql.Date;
 import recursos1.controllers.DiccionarioJpaController;
 import recursos1.entitys.Diccionario;
 import java.util.List;
@@ -38,7 +39,10 @@ public class DevolucionDiccionarioProfFab implements IDevolucion {
                     PrestamoDiccionarioDAOProf prestDAOProf = new PrestamoDiccionarioDAOProf();
                     PrestamoDiccionarioProf prestProf = prestDAOProf.readDAO(codPrestamo);
                     if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
-                        DevolucionDiccionarioProf devProf = new DevolucionDiccionarioProf(prestProf.getCodPrestamoDiccionarioProf(), idBibliotecario, null, estadoRecurso);
+                        java.util.Date fechaDevolucion =  new java.util.Date();
+                        
+                        DevolucionDiccionarioProf devProf = new DevolucionDiccionarioProf(prestProf.getCodPrestamoDiccionarioProf(),
+                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
                         DevolucionDiccionarioDAOProf devDAOProf = new DevolucionDiccionarioDAOProf();
                         devDAOProf.createDAO(devProf);
 

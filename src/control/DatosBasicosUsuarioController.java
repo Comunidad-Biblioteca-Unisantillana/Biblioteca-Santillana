@@ -1,13 +1,14 @@
 package control;
 
-import entitysUsuario.Bibliotecario;
-import entitysUsuario.Estudiante;
-import entitysUsuario.Profesor;
+
+import usuario.controllers.BibliotecarioJpaController;
+import usuario.controllers.EstudianteJpaController;
+import usuario.controllers.ProfesorJpaController;
+import usuario.entitys.Bibliotecario;
+import usuario.entitys.Estudiante;
+import usuario.entitys.Profesor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import modeloDAO.BibliotecarioDAO;
-import modeloDAO.EstudianteDAO;
-import modeloDAO.ProfesorDAO;
 
 /**
  * Clase que controla la vista DatosBasicosUsuario.fxml
@@ -29,16 +30,16 @@ public class DatosBasicosUsuarioController {
      */
     public void cargarComponentes(String nombreEntidad,String codigo){
         if(nombreEntidad.equalsIgnoreCase("estudiante")){
-            EstudianteDAO estDAO = new EstudianteDAO();
-            Estudiante est = estDAO.readDAO(codigo);
+            EstudianteJpaController estJPA =  new EstudianteJpaController();
+            Estudiante est = estJPA.findEstudiante(codigo);
             cargarTextoLabels(est.getNombre() + " " + est.getApellido() ,"Código: " + codigo);
         }else if (nombreEntidad.equalsIgnoreCase("bibliotecario")){
-            BibliotecarioDAO bibDAO = new BibliotecarioDAO();
-            Bibliotecario bib = bibDAO.readDAO(codigo);
-            cargarTextoLabels(bib.getNombre() + " " + bib.getApellido() ,"Identificación: " + codigo);
+            BibliotecarioJpaController bibJPA =  new BibliotecarioJpaController();
+            Bibliotecario bib = bibJPA.findBibliotecario(codigo);
+            cargarTextoLabels(bib.getNombres() + " " + bib.getApellidos() ,"Identificación: " + codigo);
         }else if (nombreEntidad.equalsIgnoreCase("profesor")){
-            ProfesorDAO profDAO = new ProfesorDAO();
-            Profesor prof = profDAO.readDAO(codigo);
+            ProfesorJpaController profJPA = new ProfesorJpaController();
+            Profesor prof = profJPA.findProfesor(codigo);
             cargarTextoLabels(prof.getNombres() + " " + prof.getApellidos(), "Identificación: " + codigo);
         }
     }

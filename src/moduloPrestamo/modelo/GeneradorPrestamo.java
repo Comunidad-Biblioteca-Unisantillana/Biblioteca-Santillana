@@ -2,8 +2,8 @@ package moduloPrestamo.modelo;
 
 import moduloPrestamo.fabrica.IPrestamo;
 import moduloPrestamo.fabrica.FabricaPrestamo;
-import modeloDAO.EstudianteDAO;
-import modeloDAO.ProfesorDAO;
+import usuario.controllers.EstudianteJpaController;
+import usuario.controllers.ProfesorJpaController;
 import vista.AlertBox;
 import vista.IAlertBox;
 
@@ -38,9 +38,9 @@ public class GeneradorPrestamo {
         IAlertBox alert = new AlertBox();
 
         if (tipoUsuario.equalsIgnoreCase("estudiante")) {
-            EstudianteDAO estDAO = new EstudianteDAO();
+            EstudianteJpaController estJPA = new EstudianteJpaController();
 
-            if (estDAO.readDAO(codUsuario) != null) {
+            if (estJPA.findEstudiante(codUsuario) != null) {
                 //aqui quedaria el metódo que consulta las multas del estudiante.
 
                 if (generarPrestamoEstudiante(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
@@ -54,10 +54,10 @@ public class GeneradorPrestamo {
                 alert.showAlert("Anuncio", "Error usuario", "No hay ningún estudiante asociado al código: " + codUsuario + ".");
             }
         } else if (tipoUsuario.equalsIgnoreCase("profesor")) {
-            ProfesorDAO profDAO = new ProfesorDAO();
+            ProfesorJpaController profJPA = new ProfesorJpaController();
             //aqui quedaria el metódo que consulta las multas del profesor.
 
-            if (profDAO.readDAO(codUsuario) != null) {
+            if (profJPA.findProfesor(codUsuario) != null) {
                 if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
                     alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
                             + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
