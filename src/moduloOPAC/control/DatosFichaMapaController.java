@@ -2,7 +2,7 @@ package moduloOPAC.control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import recursos1.entitys.Mapa;
+import recursos.entitys.Mapa;
 
 /**
  * Clase que carga los datos de la consulta en la ficha del mapa.

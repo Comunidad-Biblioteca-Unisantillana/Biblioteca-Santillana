@@ -1,10 +1,10 @@
 
 package moduloReserva.modelo;
 
-import usuario.controllers.EstudianteJpaController;
-import usuario.controllers.ProfesorJpaController;
-import vista.AlertBox;
-import vista.IAlertBox;
+import usuarios.control.EstudianteJpaController;
+import usuarios.control.ProfesorJpaController;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que se encarga de generar una reserva

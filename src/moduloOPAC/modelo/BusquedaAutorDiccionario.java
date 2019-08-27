@@ -1,8 +1,8 @@
 package moduloOPAC.modelo;
 
 import java.util.List;
-import recursos1.controllers.AutorPorDiccionarioJpaController;
-import recursos1.entitys.AutorDiccionario;
+import recursos.controllers.AutorPorDiccionarioJpaController;
+import recursos.entitys.AutorDiccionario;
 
 /**
  * @author Miguel Fernández

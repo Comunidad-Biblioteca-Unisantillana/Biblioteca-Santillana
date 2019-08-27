@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="260.0" prefWidth="400.0" stylesheets="@../../recursos/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloRenovacion.control.MensajeRenovarController">
+<GridPane prefHeight="260.0" prefWidth="400.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloRenovacion.control.MensajeRenovarController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />

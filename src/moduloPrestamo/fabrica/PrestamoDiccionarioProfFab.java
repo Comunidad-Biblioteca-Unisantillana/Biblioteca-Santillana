@@ -1,11 +1,12 @@
 package moduloPrestamo.fabrica;
 
+import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoDiccionarioProf;
-import recursos1.controllers.DiccionarioJpaController;
-import recursos1.entitys.Diccionario;
+import recursos.controllers.DiccionarioJpaController;
+import recursos.entitys.Diccionario;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOProf;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * La clase se encarga gestionar el préstamo del diccionario al profesor.

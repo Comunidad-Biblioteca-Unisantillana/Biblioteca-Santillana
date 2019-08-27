@@ -1,12 +1,13 @@
 package moduloPrestamo.fabrica;
 
+import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoEnciclopediaEst;
-import recursos1.controllers.EnciclopediaJpaController;
-import recursos1.entitys.Enciclopedia;
+import recursos.controllers.EnciclopediaJpaController;
+import recursos.entitys.Enciclopedia;
 import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOEst;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * La clase se encarga gestionar el préstamo de la enciclopedia al estudiante.

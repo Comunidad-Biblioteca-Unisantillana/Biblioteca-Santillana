@@ -1,8 +1,8 @@
 package moduloOPAC.modelo;
 
 import java.util.List;
-import recursos1.controllers.AutorPorEnciclopediaJpaController;
-import recursos1.entitys.AutorEnciclopedia;
+import recursos.controllers.AutorPorEnciclopediaJpaController;
+import recursos.entitys.AutorEnciclopedia;
 
 /**
  * @author Miguel Fernández

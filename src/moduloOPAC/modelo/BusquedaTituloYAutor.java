@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  *

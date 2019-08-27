@@ -26,8 +26,8 @@ import moduloOPAC.modelo.IBusquedaAutorRecurso;
 import moduloOPAC.modelo.IBusquedaMateriaRecurso;
 import moduloOPAC.vista.FichaTecnicaPanel;
 import moduloOPAC.vista.FichaTecnicaStage;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * clase que controla la vista TablaOPAC.fxml

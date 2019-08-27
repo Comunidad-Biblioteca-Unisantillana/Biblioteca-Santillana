@@ -36,7 +36,7 @@ public class MensajeRenovarStage extends Stage {
             Scene scene = new Scene(root);
             setScene(scene);
             setTitle("Renovar recurso");
-            getIcons().add(new Image("/recursos/iconUniversity.png"));
+            getIcons().add(new Image("/general/recursos/img/iconUniversity.png"));
             centerOnScreen();
             setResizable(false);
 

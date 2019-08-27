@@ -11,12 +11,12 @@ import moduloOPAC.control.DatosFichaMapaController;
 import moduloOPAC.control.DatosFichaPeriodicoController;
 import moduloOPAC.control.DatosFichaRevistaController;
 import moduloOPAC.control.IDatosFichaTecnicaController;
-import recursos1.entitys.Diccionario;
-import recursos1.entitys.Enciclopedia;
-import recursos1.entitys.Libro;
-import recursos1.entitys.Mapa;
-import recursos1.entitys.Periodico;
-import recursos1.entitys.Revista;
+import recursos.entitys.Diccionario;
+import recursos.entitys.Enciclopedia;
+import recursos.entitys.Libro;
+import recursos.entitys.Mapa;
+import recursos.entitys.Periodico;
+import recursos.entitys.Revista;
 
 /**
  * Clase que se encarga de crear la vista de una ficha técnica.
@@ -43,9 +43,9 @@ public class FichaTecnicaPanel {
         arregloTextField = new JFXTextField[15];
         arregloTextArea = new JFXTextArea[4];
         rootFicha = new GridPane();
-        rootFicha.getStylesheets().add("/recursos/stylesFichaTecnica.css");
+        rootFicha.getStylesheets().add("/general/recursos/styles/stylesFichaTecnica.css");
         rootFicha.setStyle("-fx-border-color: black;"
-                + "        -fx-border-width: 2px;");
+                + "        -fx-border-width: 2 px;");
     }
 
     /**

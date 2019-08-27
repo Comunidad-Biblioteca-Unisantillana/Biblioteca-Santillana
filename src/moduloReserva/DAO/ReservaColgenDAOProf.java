@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 import moduloReserva.entitys.ReservaColgenProfesor;
 
 /**

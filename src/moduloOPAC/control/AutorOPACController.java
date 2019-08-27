@@ -18,8 +18,8 @@ import moduloOPAC.modelo.BusquedaAutor;
 import moduloOPAC.modelo.BusquedaAvanzadaAbs;
 import moduloOPAC.modelo.ContextoBusquedaAvanzada;
 import moduloOPAC.modelo.Recurso;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que controla la vista AutorOPAC.fxml

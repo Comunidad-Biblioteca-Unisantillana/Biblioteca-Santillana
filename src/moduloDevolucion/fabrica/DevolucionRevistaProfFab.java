@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moduloDevolucion.DAO.DevolucionRevistaDAOProf;
-import moduloDevolucion.IDevolucion;
+import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionRevistaProf;
 import moduloPrestamo.DAO.PrestamoRevistaDAOProf;
 import moduloPrestamo.entitys.PrestamoRevistaProf;
-import recursos1.controllers.RevistaJpaController;
-import recursos1.entitys.Revista;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.controllers.RevistaJpaController;
+import recursos.entitys.Revista;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * @author Camilo Jaramillo

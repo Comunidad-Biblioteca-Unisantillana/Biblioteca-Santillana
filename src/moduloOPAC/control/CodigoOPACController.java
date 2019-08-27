@@ -2,7 +2,7 @@ package moduloOPAC.control;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import control.KeyEventJFXTextFieldController;
+import general.control.KeyEventJFXTextFieldController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,13 +29,13 @@ import moduloOPAC.modelo.ContextoBusquedaPorCodigo;
 import moduloOPAC.modelo.IBusquedaAutorRecurso;
 import moduloOPAC.modelo.IBusquedaMateriaRecurso;
 import moduloOPAC.vista.FichaTecnicaPanel;
-import recursos1.entitys.Diccionario;
-import recursos1.entitys.Enciclopedia;
-import recursos1.entitys.Libro;
-import recursos1.entitys.Periodico;
-import recursos1.entitys.Revista;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.entitys.Diccionario;
+import recursos.entitys.Enciclopedia;
+import recursos.entitys.Libro;
+import recursos.entitys.Periodico;
+import recursos.entitys.Revista;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que controla la vista CodigoOPAC.fxml

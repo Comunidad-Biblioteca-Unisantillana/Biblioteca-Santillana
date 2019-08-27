@@ -2,16 +2,16 @@
 package moduloReserva.fabrica;
 
 import java.sql.Date;
-import modelo.ServicioFecha;
+import general.modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloReserva.DAO.ReservaColgenDAOProf;
 import moduloReserva.entitys.ReservaColgenProfesor;
 import moduloReserva.modelo.IReserva;
-import recursos1.controllers.LibroJpaController;
-import recursos1.entitys.Libro;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.controllers.LibroJpaController;
+import recursos.entitys.Libro;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  *

@@ -2,18 +2,18 @@ package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
 import java.sql.Date;
-import recursos1.controllers.DiccionarioJpaController;
-import recursos1.entitys.Diccionario;
+import recursos.controllers.DiccionarioJpaController;
+import recursos.entitys.Diccionario;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moduloDevolucion.DAO.DevolucionDiccionarioDAOEst;
-import moduloDevolucion.IDevolucion;
+import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionDiccionarioEst;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOEst;
 import moduloPrestamo.entitys.PrestamoDiccionarioEst;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * @author Camilo Jaramillo

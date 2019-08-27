@@ -1,12 +1,13 @@
 package moduloPrestamo.fabrica;
 
+import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoLibroProf;
-import recursos1.controllers.LibroJpaController;
-import recursos1.entitys.Libro;
+import recursos.controllers.LibroJpaController;
+import recursos.entitys.Libro;
 import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * la clase se encarga gestionar el préstamo del libro al profesor.

@@ -1,7 +1,7 @@
 package moduloPrestamo.DAO;
 
 import java.util.List;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  * clase abstracta de los préstamos de los recursos.

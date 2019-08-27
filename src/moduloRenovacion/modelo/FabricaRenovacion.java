@@ -1,5 +1,8 @@
 package moduloRenovacion.modelo;
 
+import moduloRenovacion.fabrica.RenovacionColgenProfFab;
+import moduloRenovacion.fabrica.RenovacionColgenEstFab;
+
 /**
  * Clase que se encarga de fabricar la renovación de un libro tanto de profesor
  * como estudiante.

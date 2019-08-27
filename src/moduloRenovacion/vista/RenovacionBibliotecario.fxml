@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../../recursos/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloRenovacion.control.RenovacionBibliotecarioController">
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloRenovacion.control.RenovacionBibliotecarioController">
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
