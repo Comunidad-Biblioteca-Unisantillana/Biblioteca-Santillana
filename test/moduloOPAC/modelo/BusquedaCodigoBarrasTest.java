@@ -47,7 +47,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar el nombre de una entidad ingresando un código de barras correcto.
      */
     @Test
-    public void testBuscarEntidadEncontrada() {
+    public void testBuscarEntidadCorrecta() {
         System.out.println("buscar el nombre de una entidad ingresando un código de barras correcto");
         String codBarras = "472601";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -61,7 +61,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar el nombre de una entidad ingresando un código de barras erroneo.
      */
     @Test
-    public void testBuscarEntidadNoEncontrada() {
+    public void testBuscarEntidadErronea() {
         System.out.println("buscar el nombre de una entidad ingresando un código de barras erroneo");
         String codBarras = "66545rfuvbi909";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -75,7 +75,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un libro ingresando un código de barras correcto.
      */
     @Test
-    public void testBuscarLibroPorCodigoEncontrado() {
+    public void testBuscarLibroPorCodigoCorrecto() {
         System.out.println("buscar un libro ingresando un código de barras correcto");
         String codBarras = "472601";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -127,7 +127,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un diccionario ingresando un código de barras correcto.
      */
     @Test
-    public void testBuscarDiccionarioPorCodigoEncontrado() {
+    public void testBuscarDiccionarioPorCodigoCorrecto() {
         System.out.println("buscar un diccionario ingresando un código de barras correcto");
         String codBarras = "254916";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -140,7 +140,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un diccionario ingresando un código de barras erroneo.
      */
     @Test
-    public void testBuscarDiccionarioPorCodigoNoEncontrado() {
+    public void testBuscarDiccionarioPorCodigoErroneo() {
         System.out.println("buscar un diccionario ingresando un código de barras erroneo");
         String codBarras = "d2jdoinx9dnoincw";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -153,7 +153,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar una revista ingresando un código de barras correcto.
      */
     @Test
-    public void testBuscarRevistaPorCodigoEncontrado() {
+    public void testBuscarRevistaPorCodigoCorrecto() {
         System.out.println("buscar una revista ingresando un código de barras correcto");
         String codBarras = "421257";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -167,7 +167,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar una revista ingresando un código de barras erroneo.
      */
     @Test
-    public void testBuscarRevistaPorCodigoNoEncontrado() {
+    public void testBuscarRevistaPorCodigoErroneo() {
         System.out.println("buscar una revista ingresando un código de barras erroneo");
         String codBarras = "ncskncsnacpnc";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -181,7 +181,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un periodico ingresando un código de barras correcto.
      */
     @Test
-    public void testBuscarPeriodicoPorCodigoEncontrado() {
+    public void testBuscarPeriodicoPorCodigoCorrecto() {
         System.out.println("buscar un periodico ingresando un código de barras correcto");
         String codBarras = "158570";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -195,7 +195,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un periodico ingresando un código de barras erroneo.
      */
     @Test
-    public void testBuscarPeriodicoPorCodigoNoEncontrado() {
+    public void testBuscarPeriodicoPorCodigoErroneo() {
         System.out.println("buscar un periodico ingresando un código de barras erroneo");
         String codBarras = "1223456677";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -209,7 +209,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un mapa ingresando un código de barras correcto.
      */
     @Test
-    public void testBuscarMapaPorCodigoEncontrado() {
+    public void testBuscarMapaPorCodigoCorrecto() {
         System.out.println("buscar un mapa ingresando un código de barras correcto");
         String codBarras = "459858";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
@@ -222,7 +222,7 @@ public class BusquedaCodigoBarrasTest {
      * Test que se encarga de buscar un mapa ingresando un código de barras erroneo.
      */
     @Test
-    public void testBuscarMapaPorCodigoNoEncontrado() {
+    public void testBuscarMapaPorCodigoErroneo() {
         System.out.println("buscar un mapa ingresando un código de barras erroneo");
         String codBarras = "ii2dk2kcjck";
         BusquedaCodigoBarras instance = new BusquedaCodigoBarras();
