@@ -28,7 +28,7 @@ public class PrestamoDiccionarioEstFab implements IPrestamo {
     /**
      * el metódo realiza el préstamo del dicionario al estudiante.
      *
-     * @param codBarra
+     * @param codBarras
      * @param codUsuario
      * @param idBibliotecario
      * @return boolean

@@ -177,7 +177,7 @@ public class MapaJpaController implements Serializable {
      * 
      * @return 
      */
-    private List<Mapa> findMapaEntities() {
+    public List<Mapa> findMapaEntities() {
         return findMapaEntities(true, -1, -1);
     }
 

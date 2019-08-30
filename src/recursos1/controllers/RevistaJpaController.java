@@ -261,7 +261,7 @@ public class RevistaJpaController implements Serializable {
      * 
      * @return 
      */
-    private List<Revista> findRevistaEntities() {
+    public List<Revista> findRevistaEntities() {
         return findRevistaEntities(true, -1, -1);
     }
 
