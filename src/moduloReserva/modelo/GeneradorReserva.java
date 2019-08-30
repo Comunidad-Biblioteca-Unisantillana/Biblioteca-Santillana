@@ -28,7 +28,7 @@ public class GeneradorReserva {
             }
         }else{
             ProfesorJpaController profesor = new ProfesorJpaController();
-            if(profesor.findProfesor(codBarras) != null){
+            if(profesor.findProfesor(codUsuario) != null){
                 if(generarReserva(codBarras, codUsuario, tipoUsuario, idBibliotecario)){
                     alert.showAlert("Anuncio", "Reserva profesor", "La reserva se realizo con exito");
                 }
