@@ -18,7 +18,7 @@ public abstract class ReservaRecursoDAOAbs<T> {
     
     public abstract boolean createDAO(T reserva);
     
-    public abstract boolean deleteDAO(String codigo);
+    public abstract boolean deleteDAO(String codigo, String codUsario);
     
     public abstract List<T> readAllDAO();
     

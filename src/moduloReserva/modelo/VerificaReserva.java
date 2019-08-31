@@ -34,7 +34,9 @@ public class VerificaReserva {
      * @return boolean
      */
     public boolean liberarReservaAPrestamoEst(String codEstudiante, String codBarraRecurso) {
-        return false;
+        ReservaColgenDAOEst reservaColgenDAOEst = new ReservaColgenDAOEst();
+
+        return reservaColgenDAOEst.deleteDAO(codBarraRecurso, codEstudiante);
     }
 
     /**
@@ -46,7 +48,9 @@ public class VerificaReserva {
      * @return boolean
      */
     public boolean liberarReservaAPrestamoProf(String idProfesor, String codBarraRecurso) {
-        return false;
+        ReservaColgenDAOProf reservaColgenDAOProf = new ReservaColgenDAOProf();
+
+        return reservaColgenDAOProf.deleteDAO(codBarraRecurso, idProfesor);
     }
 
     /**
