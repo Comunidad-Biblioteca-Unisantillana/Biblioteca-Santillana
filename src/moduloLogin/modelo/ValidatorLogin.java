@@ -4,9 +4,9 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.base.ValidatorBase;
 import javafx.scene.control.TextInputControl;
-import modeloDAO.LoginBibliotecarioDAO;
-import modeloDAO.LoginEstudianteDAO;
-import modeloDAO.LoginProfesorDAO;
+import moduloLogin.DAO.LoginBibliotecarioDAO;
+import moduloLogin.DAO.LoginEstudianteDAO;
+import moduloLogin.DAO.LoginProfesorDAO;
 
 /**
  * Clase que se encarga de verificar que los datos<br>
