@@ -4,6 +4,9 @@ import usuarios.control.EstudianteJpaController;
 import usuarios.control.ProfesorJpaController;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloMulta.modelo.IVerificaMulta;
+import moduloMulta.modelo.VerificaMultaEstudiante;
+import moduloMulta.modelo.VerificaMultaProfesor;
 
 /**
  * @author Miguel Fernández
@@ -43,23 +46,22 @@ public class GeneradorRenovacion {
     }
 
     /**
-     * el metódo verifica si el estudiante, cuenta con alguna multa.
+     * el método consulta las multas de un usuario, por medio del código.
      *
-     * @param codEstudiante
+     * @param codUsuario
+     * @param tipoUsuario
      * @return boolean
      */
-    private boolean consultarMultaEstudiante(String codEstudiante) {
-        return false;
-    }
+    public boolean consultarMulta(String codUsuario, String tipoUsuario) {
+        IVerificaMulta iVerificaMulta;
 
-    /**
-     * el metódo verifica si el profesor, cuenta con alguna multa.
-     *
-     * @param idProfesor
-     * @return boolean
-     */
-    private boolean consultarMultaProfesor(String idProfesor) {
-        return false;
+        if (tipoUsuario.equalsIgnoreCase("estudiante")) {
+            iVerificaMulta = new VerificaMultaEstudiante();
+        } else {
+            iVerificaMulta = new VerificaMultaProfesor();
+        }
+
+        return iVerificaMulta.verificarMultaUsuario(codUsuario);
     }
 
     /**
@@ -77,26 +79,37 @@ public class GeneradorRenovacion {
         switch (tipoUsuario) {
             case "estudiante":
                 if (consultarExistenciaEstudiante(codUsuario)) {
-                    //espacio para validar multas del usuario
-
-                    renovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
+                    if (!consultarMulta(codUsuario, tipoUsuario)) {
+                        renovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
+                    } else {
+                        alert.showAlert("Anuncio", "Estudiante multado", "El estudiante: " + codUsuario
+                                + ", tiene cargado en su cuenta una multa. Por lo tanto no se le puede prestar "
+                                + "el libro : " + codBarras + ", hasta que cancele la multa.");
+                    }
                 } else {
                     alert.showAlert("Anuncio", "Renovación", "No hay ningún estudiante "
                             + "asociado al código: " + codUsuario + ".");
                 }
                 break;
+
             case "profesor":
                 if (consultarExistenciaProfesor(codUsuario)) {
-                    //espacio para validar multas del usuario
+                    if (!consultarMulta(codUsuario, tipoUsuario)) {
 
-                    renovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
+                        renovacion = fabricaRenovacion.getRenovacion(tipoUsuario);
+                    } else {
+                        alert.showAlert("Anuncio", "Profesor multado", "El profesor: " + codUsuario
+                                + ", tiene cargado en su cuenta una multa. Por lo tanto no se le puede prestar "
+                                + "el libro : " + codBarras + ", hasta que cancele la multa.");
+                    }
                 } else {
                     alert.showAlert("Anuncio", "Renovación", "No hay ningún profesor "
                             + "asociado al código: " + codUsuario + ".");
                 }
                 break;
+
             default:
-                System.out.println("Error al crear la renovación del usuario: " 
+                System.out.println("Error al crear la renovación del usuario: "
                         + tipoUsuario + ", que no existe.");
                 break;
         }
