@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="BibliotecaSanti_F.jar" size="6122335" download="eager" />
-=======
-    <jar href="BibliotecaSanti_F.jar" size="6192018" download="eager" />
->>>>>>> origin/desarrollo
+    <jar href="BibliotecaSanti_F.jar" size="6158684" download="eager" />
     <jar href="lib\eclipselink.jar" size="8478776" download="eager" />
     <jar href="lib\javax.persistence_2.1.0.v201304241213.jar" size="164637" download="eager" />
     <jar href="lib\jfoenix-8.0.1.jar" size="2405714" download="eager" />
