@@ -1,6 +1,6 @@
 package moduloMulta.fabrica;
 
-import ModuloMulta.MultaRevistaEst;
+import moduloMulta.entitys.MultaRevistaEst;
 import java.sql.Date;
 import java.util.List;
 import moduloDevolucion.entitys.DevolucionRevistaEst;
