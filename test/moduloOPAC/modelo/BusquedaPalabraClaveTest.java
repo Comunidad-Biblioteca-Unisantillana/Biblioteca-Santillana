@@ -38,28 +38,28 @@ public class BusquedaPalabraClaveTest {
     public void tearDown() {
     }
     /**
-     * Test of buscarRecursos method, of class BusquedaPalabraClave.
+     * Test que busca un recurso por una palabra clave correcta y entidad correcta.
      */
-//    @Test
-//    public void testBuscarRecursosPorPalabraClaveCorrecto() {
-//        System.out.println("buscar recursos por palabra clave");
-//        String entidad = "todos";
-//        BusquedaPalabraClave instance = new BusquedaPalabraClave("hush");
-//        ObservableList<Recurso> expResult = instance.buscarRecursos(entidad);
-//        ObservableList<Recurso> result = instance.buscarRecursos(entidad);
-//        assertEquals(expResult, result);
-//    }
-//    /**
-//     * Test of buscarRecursos method, of class BusquedaPalabraClave.
-//     */
-//    @Test
-//    public void testBuscarRecursosPorPalabraClaveErroneo() {
-//        System.out.println("buscar recursos por palabra clave");
-//        String entidad = "todos";
-//        BusquedaPalabraClave instance = new BusquedaPalabraClave("nuhd9onq09dq");
-//        ObservableList<Recurso> expResult = instance.buscarRecursos(entidad);
-//        ObservableList<Recurso> result = instance.buscarRecursos(entidad);
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void testBuscarRecursosPorPalabraClaveCorrecto() {
+        System.out.println("buscar recursos por palabra clave");
+        String entidad = "libro";
+        BusquedaPalabraClave instance = new BusquedaPalabraClave("hush");
+        ObservableList<Recurso> expResult = instance.buscarRecursos(entidad);
+        ObservableList<Recurso> result = expResult;
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test que busca sobre todas las entidades una palabra clave incorrecta.
+     */
+    @Test
+    public void testBuscarRecursosPorPalabraClaveErroneo() {
+        System.out.println("buscar recursos por palabra clave");
+        String entidad = "todos";
+        BusquedaPalabraClave instance = new BusquedaPalabraClave("nuhd9onq09dq");
+        ObservableList<Recurso> expResult = null;
+        ObservableList<Recurso> result = instance.buscarRecursos(entidad);
+        assertEquals(expResult, result);
+    }
     
 }
