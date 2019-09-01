@@ -83,7 +83,7 @@ public class PrestamoLibroProfFab implements IPrestamo {
                             control.edit(libro);
                             VerificaReserva verificaReserva = new VerificaReserva();
 
-                            if (!verificaReserva.liberarReservaAPrestamoEst(codUsuario, codBarras)) {
+                            if (!verificaReserva.liberarReservaAPrestamoProf(codUsuario, codBarras)) {
                                 System.out.println("Error al eliminar la reserva del libro del profesor, después de generar el préstamo.");
                             }
 

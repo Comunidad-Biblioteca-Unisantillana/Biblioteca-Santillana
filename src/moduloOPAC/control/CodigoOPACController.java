@@ -84,7 +84,7 @@ public class CodigoOPACController implements Initializable {
      * @param event
      */
     @FXML
-    private void BtnBuscarCodigo(ActionEvent event) {
+    private void btnBuscarCodigo(ActionEvent event) {
         String codigo = txtCodigo.getText().trim();
         String entidad = cboTipoBusqueda.getSelectionModel().getSelectedItem().toLowerCase();
         BusquedaCodigoAbs busquedaCodigoAbs = null;
