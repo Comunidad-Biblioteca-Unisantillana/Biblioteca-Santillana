@@ -6,7 +6,7 @@
 package moduloReserva.DAO;
 
 import java.util.List;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  *

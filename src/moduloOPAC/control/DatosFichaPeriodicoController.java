@@ -2,7 +2,7 @@ package moduloOPAC.control;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import recursos1.entitys.Periodico;
+import recursos.entitys.Periodico;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 

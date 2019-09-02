@@ -18,8 +18,8 @@ import moduloOPAC.modelo.BusquedaAvanzadaAbs;
 import moduloOPAC.modelo.BusquedaPalabraClave;
 import moduloOPAC.modelo.ContextoBusquedaAvanzada;
 import moduloOPAC.modelo.Recurso;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que controla la vista PalabraClaveOPAC.fxml

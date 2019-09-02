@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  *
@@ -88,7 +88,7 @@ public class BusquedaPalabraClave extends BusquedaAvanzadaAbs {
 
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Error al consultar en la " + entidad + ", por palabra clave.");
+            System.out.println("Error al consultar en la entidad " + entidad + ", por palabra clave.");
         }
 
         return listaRecursos;
@@ -152,7 +152,7 @@ public class BusquedaPalabraClave extends BusquedaAvanzadaAbs {
                 break;
             case "periodico":
                 query = "SELECT codbarraperiodico AS codbarras, issn AS isbn_issn, nombreperiodico AS titulo, disponibilidad FROM periodico "
-                        + "WHERE unaccent(titulo) ILIKE unaccent('%" + palabraClave + "%');";
+                        + "WHERE unaccent(nombreperiodico) ILIKE unaccent('%" + palabraClave + "%');";
                 break;
             default:
                 query = "SELECT codbarramapa AS codbarras, isbn AS isbn_issn, titulo, disponibilidad FROM mapa "

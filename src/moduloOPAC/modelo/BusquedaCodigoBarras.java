@@ -1,21 +1,21 @@
 package moduloOPAC.modelo;
 
-import recursos1.controllers.DiccionarioJpaController;
-import recursos1.controllers.EnciclopediaJpaController;
-import recursos1.controllers.LibroJpaController;
-import recursos1.controllers.MapaJpaController;
-import recursos1.controllers.PeriodicoJpaController;
-import recursos1.controllers.RevistaJpaController;
-import recursos1.entitys.Diccionario;
-import recursos1.entitys.Enciclopedia;
-import recursos1.entitys.Libro;
-import recursos1.entitys.Mapa;
-import recursos1.entitys.Periodico;
-import recursos1.entitys.Revista;
+import recursos.controllers.DiccionarioJpaController;
+import recursos.controllers.EnciclopediaJpaController;
+import recursos.controllers.LibroJpaController;
+import recursos.controllers.MapaJpaController;
+import recursos.controllers.PeriodicoJpaController;
+import recursos.controllers.RevistaJpaController;
+import recursos.entitys.Diccionario;
+import recursos.entitys.Enciclopedia;
+import recursos.entitys.Libro;
+import recursos.entitys.Mapa;
+import recursos.entitys.Periodico;
+import recursos.entitys.Revista;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  *

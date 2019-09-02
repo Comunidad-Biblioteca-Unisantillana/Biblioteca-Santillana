@@ -20,8 +20,8 @@ import moduloPrestamo.modelo.ConsultaPrestamoEst;
 import moduloPrestamo.modelo.ConsultaPrestamoProf;
 import moduloPrestamo.modelo.IConsultarPrestamo;
 import moduloRenovacion.vista.MensajeRenovarStage;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que controla el panel préstamo del estudiante o profesor.

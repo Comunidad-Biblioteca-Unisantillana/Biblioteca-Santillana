@@ -1,12 +1,13 @@
 package moduloPrestamo.fabrica;
 
+import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoPeriodicoEst;
-import recursos1.controllers.PeriodicoJpaController;
-import recursos1.entitys.Periodico;
+import recursos.controllers.PeriodicoJpaController;
+import recursos.entitys.Periodico;
 import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOEst;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * La clase se encarga gestionar el préstamo de un periódico al estudiante.

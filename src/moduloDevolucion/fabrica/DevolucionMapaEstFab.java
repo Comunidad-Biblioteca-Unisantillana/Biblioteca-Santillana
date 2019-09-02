@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moduloDevolucion.DAO.DevolucionMapaDAOEst;
-import moduloDevolucion.IDevolucion;
+import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionMapaEst;
 import moduloPrestamo.DAO.PrestamoMapaDAOEst;
 import moduloPrestamo.entitys.PrestamoMapaEst;
-import recursos1.controllers.MapaJpaController;
-import recursos1.entitys.Mapa;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.controllers.MapaJpaController;
+import recursos.entitys.Mapa;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * @author Camilo Jaramillo

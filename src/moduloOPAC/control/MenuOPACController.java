@@ -43,7 +43,7 @@ public class MenuOPACController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imgIconMenu.setImage(new Image("/recursos/iconOPAC.png"));
+        imgIconMenu.setImage(new Image("/general/recursos/img/iconOPAC.png"));
     }
 
     /**

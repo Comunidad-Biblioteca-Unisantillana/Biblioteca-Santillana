@@ -2,7 +2,7 @@ package moduloPrestamo.control;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import control.KeyEventJFXTextFieldController;
+import general.control.KeyEventJFXTextFieldController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -11,8 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import moduloPrestamo.modelo.GeneradorPrestamo;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que controla la vista PrestamoBibliotecario.fxml

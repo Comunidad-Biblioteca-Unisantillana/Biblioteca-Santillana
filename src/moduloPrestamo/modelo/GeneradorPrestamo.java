@@ -1,11 +1,9 @@
 package moduloPrestamo.modelo;
 
-import moduloPrestamo.fabrica.IPrestamo;
-import moduloPrestamo.fabrica.FabricaPrestamo;
-import usuario.controllers.EstudianteJpaController;
-import usuario.controllers.ProfesorJpaController;
-import vista.AlertBox;
-import vista.IAlertBox;
+import usuarios.control.EstudianteJpaController;
+import usuarios.control.ProfesorJpaController;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que se encarga de generar un préstamo de un recurso.

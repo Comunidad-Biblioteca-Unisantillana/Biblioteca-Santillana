@@ -2,16 +2,16 @@
 package moduloReserva.fabrica;
 
 import java.sql.Date;
-import modelo.ServicioFecha;
+import general.modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloReserva.DAO.ReservaColgenDAOProf;
 import moduloReserva.entitys.ReservaColgenProfesor;
 import moduloReserva.modelo.IReserva;
-import recursos1.controllers.LibroJpaController;
-import recursos1.entitys.Libro;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.controllers.LibroJpaController;
+import recursos.entitys.Libro;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  *
@@ -35,11 +35,9 @@ public class ReservaColgenProfFab implements IReserva {
                         if (prestamo != null) {
                             
                             java.util.Date fechaActual = new java.util.Date();
-                            java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(prestamo.getFechaDevolucion(), 5);
 
                             ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, codUsuario, idBibliotecario,
                                     new Date(fechaActual.getTime()));
-                            reserva.setFechaLimiteReserva(new Date( fechaLimiteReserva.getTime()));
 
                             ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
                             resDAO.createDAO(reserva);

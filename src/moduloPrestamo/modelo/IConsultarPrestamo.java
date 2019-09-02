@@ -1,7 +1,7 @@
 package moduloPrestamo.modelo;
 
 import javafx.collections.ObservableList;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  *

@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moduloDevolucion.DAO.DevolucionPeriodicoDAOEst;
-import moduloDevolucion.IDevolucion;
+import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionPeriodicoEst;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOEst;
 import moduloPrestamo.entitys.PrestamoPeriodicoEst;
-import recursos1.controllers.PeriodicoJpaController;
-import recursos1.entitys.Periodico;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.controllers.PeriodicoJpaController;
+import recursos.entitys.Periodico;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * @author Camilo Jaramillo

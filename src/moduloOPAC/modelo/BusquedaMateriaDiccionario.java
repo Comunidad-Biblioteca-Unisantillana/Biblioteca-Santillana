@@ -1,8 +1,8 @@
 package moduloOPAC.modelo;
 
 import java.util.List;
-import recursos1.controllers.MateriaPorDiccionarioJpaController;
-import recursos1.entitys.Materia;
+import recursos.controllers.MateriaPorDiccionarioJpaController;
+import recursos.entitys.Materia;
 
 /**
  * @author Miguel Fernández

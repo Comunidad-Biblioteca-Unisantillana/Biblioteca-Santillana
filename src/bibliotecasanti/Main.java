@@ -2,8 +2,8 @@ package bibliotecasanti;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import modelo.ConnectionBD;
-import vista.LoginUnisantillanaStage;
+import general.modelo.ConnectionBD;
+import moduloLogin.vista.LoginUnisantillanaStage;
 
 /**
  *

@@ -5,18 +5,18 @@ import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.ServicioFecha;
+import general.modelo.ServicioFecha;
 import moduloDevolucion.DAO.DevolucionLibroDAOProf;
-import moduloDevolucion.IDevolucion;
+import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionLibroProf;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloReserva.DAO.ReservaColgenDAOProf;
 import moduloReserva.entitys.ReservaColgenProfesor;
-import recursos1.controllers.LibroJpaController;
-import recursos1.entitys.Libro;
-import vista.AlertBox;
-import vista.IAlertBox;
+import recursos.controllers.LibroJpaController;
+import recursos.entitys.Libro;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * @author Camilo Jaramillo

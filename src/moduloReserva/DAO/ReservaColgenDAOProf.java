@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 import moduloReserva.entitys.ReservaColgenProfesor;
 
 /**
@@ -25,7 +25,7 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
     public boolean createDAO(ReservaColgenProfesor reserva) {
         String sqlSentence = "INSERT INTO Reserva_Colgen_Profesor (codBarraLibro, idProfesor"
                 + ", idBibliotecario, fechaReserva, fechaRetencion, fechaLimiteReserva)"
-                + " VALUES (?,?,?,?,?,?)";
+                + " VALUES (?,?,?,current_date,?,?)";
         PreparedStatement pps;
 
         try {
@@ -33,9 +33,8 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             pps.setString(1, reserva.getCodBarraLibro());
             pps.setString(2, reserva.getIdProfesor());
             pps.setString(3, reserva.getIdBibliotecario());
-            pps.setDate(4, reserva.getFechaReserva());
-            pps.setDate(5, reserva.getFechaRetencion());
-            pps.setDate(6, reserva.getFechaLimiteReserva());
+            pps.setDate(4, reserva.getFechaRetencion());
+            pps.setDate(5, reserva.getFechaLimiteReserva());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Reserva creada");
@@ -114,9 +113,9 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             rs.close();
             return reserva;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "El préstamo de revista con ese codigo no existe");
+            System.out.println("No existe una reserva  con ese codigo");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
+            System.out.println("No se pudo realizar la consulta");
         }
         return reserva;
     }

@@ -19,8 +19,8 @@ import moduloOPAC.modelo.BusquedaPalabraClave;
 import moduloOPAC.modelo.BusquedaTituloYAutor;
 import moduloOPAC.modelo.ContextoBusquedaAvanzada;
 import moduloOPAC.modelo.Recurso;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * Clase que controla la vista TituloYAutor.fxml

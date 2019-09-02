@@ -1,12 +1,13 @@
 package moduloPrestamo.fabrica;
 
+import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoMapaProf;
-import recursos1.controllers.MapaJpaController;
-import recursos1.entitys.Mapa;
+import recursos.controllers.MapaJpaController;
+import recursos.entitys.Mapa;
 import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoMapaDAOProf;
-import vista.AlertBox;
-import vista.IAlertBox;
+import general.vista.AlertBox;
+import general.vista.IAlertBox;
 
 /**
  * La clase se encarga gestionar el préstamo del mapa al profesor.

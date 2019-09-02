@@ -1,7 +1,7 @@
 package moduloDevolucion.DAO;
 
 import java.util.List;
-import modelo.ConnectionBD;
+import general.modelo.ConnectionBD;
 
 /**
  * @author Camilo Jaramillo

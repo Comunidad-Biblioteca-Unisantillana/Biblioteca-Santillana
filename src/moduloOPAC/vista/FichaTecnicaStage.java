@@ -37,7 +37,7 @@ public class FichaTecnicaStage extends Stage {
             Scene scene = new Scene(root);
             setScene(scene);
             setTitle("Ficha Técnica");
-            getIcons().add(new Image("/recursos/iconUniversity.png"));
+            getIcons().add(new Image("/general/recursos/img/iconUniversity.png"));
             centerOnScreen();
             setResizable(false);
             setHeight(alto);

@@ -1,12 +1,12 @@
 package moduloOPAC.modelo;
 
-import recursos1.entitys.Diccionario;
-import recursos1.entitys.Enciclopedia;
-import recursos1.entitys.Libro;
-import recursos1.entitys.Mapa;
-import recursos1.entitys.Periodico;
-import recursos1.entitys.Revista;
-import modelo.ConnectionBD;
+import recursos.entitys.Diccionario;
+import recursos.entitys.Enciclopedia;
+import recursos.entitys.Libro;
+import recursos.entitys.Mapa;
+import recursos.entitys.Periodico;
+import recursos.entitys.Revista;
+import general.modelo.ConnectionBD;
 
 /**
  *

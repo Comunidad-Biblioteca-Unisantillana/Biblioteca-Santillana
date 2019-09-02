@@ -12,12 +12,11 @@ import moduloPrestamo.DAO.PrestamoDiccionarioDAOEst;
 import moduloPrestamo.entitys.PrestamoDiccionarioEst;
 import moduloPrestamo.modelo.GeneradorPrestamo;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import recursos1.controllers.DiccionarioJpaController;
-import recursos1.entitys.Diccionario;
-import usuario.controllers.EstudianteJpaController;
-import usuario.entitys.Estudiante;
-
+import static org.junit.Assert.assertEquals;
+import recursos.controllers.DiccionarioJpaController;
+import recursos.entitys.Diccionario;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 /**
  *
  * @author Storkolm
@@ -29,7 +28,7 @@ public class PrestamoDiccionarioEstFabTest {
 
     /**
      * Prueba #1
-     * Meetodo que se encarga de probar que todos los estudiantes<br>
+     * Metodo que se encarga de probar que todos los estudiantes<br>
      * puedan registrar prestamos
      */
     @Test
@@ -52,6 +51,7 @@ public class PrestamoDiccionarioEstFabTest {
         }
         assertEquals(true, result);
     }
+
 
     /**
      * Metodo que se encarga de mostrar los prestamos<br>
@@ -85,35 +85,9 @@ public class PrestamoDiccionarioEstFabTest {
         }
     }
 
-    /**
-     * Prueba #2
-     * Metodo que se encarga de 
-     * Nota: este metodo no aplica para estas pruebas porque el estudiante no se verifica en la parte donde se hacen pruebas
-     */
-    @Test
-    public void testEstudianteNA() {
-        System.out.println("--------------------------Prueba 2-----------------------------");
-        String codEstudiantes[] = {"", "gut1tg8dg127dg12d89129gd8gdqw98d1892981y2dy982d1982yd1",
-            "82157378125637816523786123876382176328", "asjdgg44sad90d¿1'2}'12d'kdj23bfdu9h31e89hb12e9uh1de2uwdh9",
-            "/**/ -*/*-//*-/ewd*-213e/*23/e-*d/23*-d/*-23d/*-23d/*-32d*-23/d*-2/3*e/wqd54qew4213efwefvefwk","123123123",
-        "123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123"
-        ,"123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123"};
-        boolean result = true;
-        for (String codEstudiante : codEstudiantes) {
-            GeneradorPrestamo instance = new GeneradorPrestamo();
-            try {
-                instance.createPrestamo("254922", codEstudiante, "1102515566", "diccionario", "estudiante");
-                result = true;
-                break;
-            } catch (ExceptionInInitializerError | NoClassDefFoundError ex) {
-                result = false;
-            } catch (Exception ex) {
 
-            }
-        }
-        assertEquals(false, result);
-    }
-
+    
+    
     /**
      * Prueba 3
      * Metodo que prueba cualquier tipo de entrada<br>
@@ -172,6 +146,7 @@ public class PrestamoDiccionarioEstFabTest {
         assertEquals(false, result);
     }
 
+    
     /**
      * Prueba 6,7,8
      * Metodo que  se encarga de probar que se actualize la disponibilidad<br>
