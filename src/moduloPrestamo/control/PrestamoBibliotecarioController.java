@@ -102,7 +102,7 @@ public class PrestamoBibliotecarioController implements Initializable {
     private void limpiarCampos() {
         codBarrasPresTxt.setText("");
         codUserPresTxt.setText("");
-        cboTipoPrestamo.setValue("Todos");
+        cboTipoPrestamo.setValue("Libro");
         cboTipoUsuario.setValue("Estudiante");
     }
 

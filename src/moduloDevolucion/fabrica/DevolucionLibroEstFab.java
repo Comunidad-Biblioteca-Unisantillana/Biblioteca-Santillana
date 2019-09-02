@@ -55,6 +55,7 @@ public class DevolucionLibroEstFab implements IDevolucion {
                             reserva.setFechaRetencion(new Date(fechaDevolucion.getTime()));
                             java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(fechaDevolucion, 5);
                             reserva.setFechaLimiteReserva(new Date(fechaLimiteReserva.getTime()));
+                            reservaDAO.updateDAO(reserva);
                             libro.setDisponibilidad("reservado");
                         }else{
                             libro.setDisponibilidad("disponible");
@@ -85,7 +86,8 @@ public class DevolucionLibroEstFab implements IDevolucion {
         List<PrestamoLibroEst> prestamos = prestDAOEst.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraLibro().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraLibro().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoLibroEst();
                 break;
             }

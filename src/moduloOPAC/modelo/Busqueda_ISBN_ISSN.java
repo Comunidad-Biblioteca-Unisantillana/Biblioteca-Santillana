@@ -48,7 +48,7 @@ public class Busqueda_ISBN_ISSN extends BusquedaCodigoAbs {
             ResultSet rs;
             String query;
 
-            for (int i = 5; i < entidades.length; i++) {
+            for (int i = 4; i < entidades.length; i++) {
                 query = "SELECT * FROM " + entidades[i] + " WHERE issn = '" + isbn_issn + "'";
 
                 rs = stmt.executeQuery(query);

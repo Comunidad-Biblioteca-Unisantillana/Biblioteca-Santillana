@@ -51,13 +51,14 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
     }
 
     @Override
-    public boolean deleteDAO(String codigo) {
-        String sqlSentence = "DELETE FROM Reserva_Colgen_Estudiante WHERE codBarraLibro = ?";
+    public boolean deleteDAO(String codigo, String codEstudiante) {
+        String sqlSentence = "DELETE FROM Reserva_Colgen_Estudiante WHERE codBarraLibro = ? AND codEstudiante = ?";
         PreparedStatement pps;
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setString(1, codigo);
+            pps.setString(2, codEstudiante);
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Hizo el delete");

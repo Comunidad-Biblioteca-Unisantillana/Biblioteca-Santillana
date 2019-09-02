@@ -48,13 +48,14 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
     }
 
     @Override
-    public boolean deleteDAO(String codigo) {
-        String sqlSentence = "DELETE FROM Reserva_Colgen_Profesor WHERE codBarraLibro = ?";
+    public boolean deleteDAO(String codigo,  String idProfesor) {
+        String sqlSentence = "DELETE FROM Reserva_Colgen_Profesor WHERE codBarraLibro = ? AND idProfesor = ?";
         PreparedStatement pps;
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             pps.setString(1, codigo);
+            pps.setString(2, idProfesor);
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Hizo el delete");
@@ -77,8 +78,8 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             rs = pps.executeQuery();
 
             while (rs.next()) {
-                ReservaColgenProfesor reservaTmp = new ReservaColgenProfesor(rs.getString("codBarraLibro"), rs.getString("idProfesor"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaReserva"));
+                ReservaColgenProfesor reservaTmp = new ReservaColgenProfesor(rs.getString("codBarraLibro"), rs.getString("idBibliotecario"),
+                        rs.getString("idProfesor"), rs.getDate("fechaReserva"));
                 reservaTmp.setCodReservaColgenProf(rs.getInt("codReservaColgenProf"));
                 reservaTmp.setFechaLimiteReserva(rs.getDate("fechaLimiteReserva"));
                 reservaTmp.setFechaRetencion(rs.getDate("fechaRetencion"));
@@ -104,8 +105,8 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             rs = stmt.executeQuery("SELECT * FROM Reserva_Colgen_Profesor WHERE codBarraLibro = '" + codigo + "';");
 
             while (rs.next()) {
-                reserva = new ReservaColgenProfesor(rs.getString("codBarraLibro"), rs.getString("codEstudiante"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaReserva"));
+                reserva = new ReservaColgenProfesor(rs.getString("codBarraLibro"), rs.getString("idBibliotecario"),
+                        rs.getString("idProfesor"), rs.getDate("fechaReserva"));
                 reserva.setCodReservaColgenProf(rs.getInt("codReservaColgenProf"));
                 reserva.setFechaLimiteReserva(rs.getDate("fechaLimiteReserva"));
                 reserva.setFechaRetencion(rs.getDate("fechaRetencion"));

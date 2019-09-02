@@ -8,6 +8,9 @@ import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloReserva.DAO.ReservaColgenDAOProf;
+import moduloReserva.entitys.ReservaColgenProfesor;
+import moduloReserva.modelo.VerificaReserva;
 
 /**
  * la clase se encarga gestionar el préstamo del libro al profesor.
@@ -59,13 +62,39 @@ public class PrestamoLibroProfFab implements IPrestamo {
                     if (prestLibDAOProf.createDAO(prestLibProf)) {
                         libro.setDisponibilidad("prestado");
                         control.edit(libro);
-                        
+
                         //espacio para enviar el correo electronico                        
-                        
                         estadoPrestamo = true;
                     }
                 } else if (libro.getDisponibilidad().equalsIgnoreCase("reservado")) {
-                    //espacio para realizar el prestamo de la reserva y eliminacion de la misma
+                    ReservaColgenDAOProf reservaColgenDAOProf = new ReservaColgenDAOProf();
+                    ReservaColgenProfesor reserva = reservaColgenDAOProf.readDAO(codBarras);
+
+                    if (reserva.getIdProfesor().equalsIgnoreCase(codUsuario)) {
+                        PrestamoLibroProf prestLibProf = new PrestamoLibroProf();
+                        prestLibProf.setCodBarraLibro(codBarras);
+                        prestLibProf.setIdProfesor(codUsuario);
+                        prestLibProf.setIdBibliotecario(idBibliotecario);
+                        prestLibProf.setNumRenovaciones(0);
+
+                        PrestamoLibroDAOProf prestLibDAOProf = new PrestamoLibroDAOProf(15);
+
+                        if (prestLibDAOProf.createDAO(prestLibProf)) {
+                            libro.setDisponibilidad("prestado");
+                            control.edit(libro);
+                            VerificaReserva verificaReserva = new VerificaReserva();
+
+                            if (!verificaReserva.liberarReservaAPrestamoProf(codUsuario, codBarras)) {
+                                System.out.println("Error al eliminar la reserva del libro del profesor, después de generar el préstamo.");
+                            }
+
+                            //espacio para enviar el correo electronico                        
+                            estadoPrestamo = true;
+                        }
+                    } else {
+                        alert.showAlert("Anuncio", "Libro reservado", "El libro con el código: " + codBarras
+                                + " , se encuentra reservado por otro usuario.");
+                    }
                 } else if (libro.getDisponibilidad().equalsIgnoreCase("prestado")) {
                     alert.showAlert("Anuncio", "Préstamo libro", "El libro: " + codBarras
                             + ", se encuentra préstado a otro usuario.");

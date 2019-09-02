@@ -84,7 +84,8 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Estudiante WHERE codPrestLibroEst = '" + codigo + "';");
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Estudiante "
+                    + "WHERE codPrestLibroEst = '" + codigo + "';");
 
             while (rs.next()) {
                 prestamo = new PrestamoLibroEst();

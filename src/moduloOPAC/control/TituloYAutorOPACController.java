@@ -73,7 +73,7 @@ public class TituloYAutorOPACController implements Initializable {
      * @param event
      */
     @FXML
-    private void BtnBuscarTituloAutor(ActionEvent event) {
+    private void btnBuscarTituloAutor(ActionEvent event) {
         String titulo = txtTitulo.getText().trim();
         String nombreAutor = txtNombreAutor.getText().trim();
         String entidad = cboTipoBusqueda.getValue().toLowerCase();
