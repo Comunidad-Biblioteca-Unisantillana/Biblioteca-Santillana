@@ -117,8 +117,6 @@ public class BusquedaPalabraClave extends BusquedaAvanzadaAbs {
             for (int i = 0; i < listaRecursos.size(); i++) {
                 recursos.add(listaRecursos.get(i));
             }
-        }else{
-            return null;
         }
 
         return recursos;
