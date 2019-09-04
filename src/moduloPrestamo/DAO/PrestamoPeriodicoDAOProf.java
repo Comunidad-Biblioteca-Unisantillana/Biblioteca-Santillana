@@ -181,6 +181,7 @@ public class PrestamoPeriodicoDAOProf extends PrestamoRecursoDAOAbs<PrestamoPeri
                 prestamoTmp.setFechaPrestamo(rs.getDate("fechaPrestamo"));
                 prestamoTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 prestamoTmp.setDevuelto(rs.getString("devuelto"));
+                prestamos.add(prestamoTmp);
             }
 
             rs.close();
