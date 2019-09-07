@@ -1,13 +1,18 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoEnciclopediaEst;
 import recursos.controllers.EnciclopediaJpaController;
 import recursos.entitys.Enciclopedia;
-import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOEst;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * La clase se encarga gestionar el préstamo de la enciclopedia al estudiante.
@@ -15,7 +20,7 @@ import general.vista.IAlertBox;
  * @author Julian
  * @creado
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado 07/09/2019
  */
 public class PrestamoEnciclopediaEstFab implements IPrestamo {
 
@@ -27,7 +32,7 @@ public class PrestamoEnciclopediaEstFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo de la encilopedia al estudiante.
+     * el método realiza el préstamo de la encilopedia al estudiante.
      *
      * @param codBarras
      * @param codUsuario
@@ -54,9 +59,9 @@ public class PrestamoEnciclopediaEstFab implements IPrestamo {
                         enciclopedia.setDisponibilidad("prestado");
                         control.edit(enciclopedia);
 
-                        //espacio para el envio del correo
-                        
-                        return true; 
+                        notificarPrestamoEmail(codUsuario, enciclopedia);
+
+                        return true;
                     }
                 } else if (enciclopedia.getDisponibilidad().equalsIgnoreCase("prestado")) {
                     alert.showAlert("Anuncio", "Préstamo enciclopedia", "La encilopedia: " + codBarras
@@ -73,20 +78,38 @@ public class PrestamoEnciclopediaEstFab implements IPrestamo {
             System.out.println("Error al generar el préstamo de la enciclopedia a un estudiante");
         }
 
-        return false; 
+        return false;
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al estudiante,
-     * notificandole el préstamo de la enciclopedia.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole del préstamo de la
+     * enciclopedia.
      *
-     * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param codEstudiante
+     * @param enciclopedia
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String codEstudiante, Enciclopedia enciclopedia) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        PrestamoEnciclopediaDAOEst prestEncDAOEst = new PrestamoEnciclopediaDAOEst();
+        PrestamoEnciclopediaEst prestEncEst = prestEncDAOEst.readDAO(prestEncDAOEst.readCodigoDAO(enciclopedia.getCodbarraenciclopedia()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + enciclopedia.getTitulo() + ";"
+                + enciclopedia.getCodbarraenciclopedia() + ";"
+                + formatoFecha.format((Date) prestEncEst.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestEncEst.getFechaDevolucion()) + ";"
+                + "referencia;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
 
 }

@@ -1,16 +1,21 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoLibroEst;
 import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
-import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoLibroDAOEst;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import moduloReserva.DAO.ReservaColgenDAOEst;
 import moduloReserva.entitys.ReservaColgenEstudiante;
 import moduloReserva.modelo.VerificaReserva;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * la clase se encarga gestionar el préstamo del libro al estudiante.
@@ -18,7 +23,7 @@ import moduloReserva.modelo.VerificaReserva;
  * @author Julian
  * @creado
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado 07/09/2019
  */
 public class PrestamoLibroEstFab implements IPrestamo {
 
@@ -30,7 +35,7 @@ public class PrestamoLibroEstFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo del libro al estudiante.
+     * el método realiza el préstamo del libro al estudiante.
      *
      * @param codBarras
      * @param codUsuario
@@ -61,14 +66,13 @@ public class PrestamoLibroEstFab implements IPrestamo {
                     if (prestLibDAOEst.createDAO(prestLibEst)) {
                         libro.setDisponibilidad("prestado");
                         control.edit(libro);
-
-                        //espacio para enviar el correo
+                        notificarPrestamoEmail(codUsuario, libro);
                         estadoPrestamo = true;
                     }
                 } else if (libro.getDisponibilidad().equalsIgnoreCase("reservado")) {
                     ReservaColgenDAOEst reservaColgenDAOEst = new ReservaColgenDAOEst();
                     ReservaColgenEstudiante reserva = reservaColgenDAOEst.readDAO(codBarras);
-                    
+
                     if (reserva.getCodEstudiante().equalsIgnoreCase(codUsuario)) {
                         PrestamoLibroEst prestLibEst = new PrestamoLibroEst();
                         prestLibEst.setCodBarraLibro(codBarras);
@@ -87,7 +91,7 @@ public class PrestamoLibroEstFab implements IPrestamo {
                                 System.out.println("Error al eliminar la reserva del libro del estudiante, después de generar el préstamo.");
                             }
 
-                            //espacio para enviar el correo
+                            notificarPrestamoEmail(codUsuario, libro);
                             estadoPrestamo = true;
                         }
                     } else {
@@ -113,16 +117,34 @@ public class PrestamoLibroEstFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al estudiante,
-     * notificandole el préstamo del libro.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole del préstamo de la
+     * libro.
      *
-     * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param codEstudiante
+     * @param libro
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String codEstudiante, Libro libro) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        PrestamoLibroDAOEst prestLibroDAOEst = new PrestamoLibroDAOEst();
+        PrestamoLibroEst prestLibroEst = prestLibroDAOEst.readDAO(prestLibroDAOEst.readCodigoDAO(libro.getCodbarralibro()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + libro.getTitulo() + ";"
+                + libro.getCodbarralibro() + ";"
+                + formatoFecha.format((Date) prestLibroEst.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestLibroEst.getFechaDevolucion()) + ";"
+                + libro.getCodcategoriacoleccion().getNombrecol() + ";"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
 
 }

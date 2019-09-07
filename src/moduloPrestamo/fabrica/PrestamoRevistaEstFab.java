@@ -1,13 +1,18 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoRevistaEst;
 import recursos.controllers.RevistaJpaController;
 import recursos.entitys.Revista;
-import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoRevistaDAOEst;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * la clase se encarga gestionar el préstamo de la revista al estudiante.
@@ -15,7 +20,7 @@ import general.vista.IAlertBox;
  * @author Julian
  * @creado
  * @author Miguel Fernández
- * @modificado 23/08/2019
+ * @modificado 07/09/2019
  */
 public class PrestamoRevistaEstFab implements IPrestamo {
 
@@ -26,7 +31,7 @@ public class PrestamoRevistaEstFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo de la revista al estudiante.
+     * el método realiza el préstamo de la revista al estudiante.
      *
      * @param codBarras
      * @param codUsuario
@@ -53,10 +58,9 @@ public class PrestamoRevistaEstFab implements IPrestamo {
                     if (presRevDAOEst.createDAO(presRevEst)) {
                         revista.setDisponibilidad("prestado");
                         control.edit(revista);
+                        notificarPrestamoEmail(codUsuario, revista);
 
-                        //espacio para el envio del correo
-                        
-                        return true; 
+                        return true;
                     }
                 } else if (revista.getDisponibilidad().equalsIgnoreCase("prestado")) {
                     alert.showAlert("Anuncio", "Préstamo revista", "La revista: " + codBarras
@@ -72,21 +76,39 @@ public class PrestamoRevistaEstFab implements IPrestamo {
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo de la revista a un estudiante");
         }
-        
-        return false; 
+
+        return false;
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al estudiante,
-     * notificandole el préstamo de la enciclopedia.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole del préstamo de la
+     * revista.
      *
-     * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param codEstudiante
+     * @param revista
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String codEstudiante, Revista revista) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        PrestamoRevistaDAOEst prestRevDAOEst = new PrestamoRevistaDAOEst();
+        PrestamoRevistaEst prestRevEst = prestRevDAOEst.readDAO(prestRevDAOEst.readCodigoDAO(revista.getCodbarrarevista()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + revista.getTitulo() + ";"
+                + revista.getCodbarrarevista() + ";"
+                + formatoFecha.format((Date) prestRevEst.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestRevEst.getFechaDevolucion()) + ";"
+                + "hemeroteca;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
 
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import general.modelo.ConnectionBD;
+import java.sql.Date;
 import moduloReserva.entitys.ReservaColgenProfesor;
 
 /**
@@ -33,8 +34,8 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             pps.setString(1, reserva.getCodBarraLibro());
             pps.setString(2, reserva.getIdProfesor());
             pps.setString(3, reserva.getIdBibliotecario());
-            pps.setDate(4, reserva.getFechaRetencion());
-            pps.setDate(5, reserva.getFechaLimiteReserva());
+            pps.setDate(4, (Date) reserva.getFechaRetencion());
+            pps.setDate(5, (Date) reserva.getFechaLimiteReserva());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Reserva creada");
@@ -132,9 +133,9 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             pps.setString(1, reserva.getCodBarraLibro());
             pps.setString(2, reserva.getIdProfesor());
             pps.setString(3, reserva.getIdBibliotecario());
-            pps.setDate(4, reserva.getFechaReserva());
-            pps.setDate(5, reserva.getFechaRetencion());
-            pps.setDate(6, reserva.getFechaLimiteReserva());
+            pps.setDate(4, (Date) reserva.getFechaReserva());
+            pps.setDate(5, (Date) reserva.getFechaRetencion());
+            pps.setDate(6, (Date) reserva.getFechaLimiteReserva());
             pps.setInt(7, reserva.getCodReservaColgenProf());
 
             if (pps.executeUpdate() > 0) {

@@ -1,13 +1,18 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoRevistaProf;
 import recursos.controllers.RevistaJpaController;
 import recursos.entitys.Revista;
-import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoRevistaDAOProf;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * La clase se encarga gestionar el préstamo de la revista al estudiante.
@@ -27,7 +32,7 @@ public class PrestamoRevistaProfFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo de la al profesor.
+     * el método realiza el préstamo de la al profesor.
      *
      * @param codBarras
      * @param codUsuario
@@ -48,14 +53,13 @@ public class PrestamoRevistaProfFab implements IPrestamo {
                     presRevProf.setCodBarraRevista(codBarras);
                     presRevProf.setIdProfesor(codUsuario);
                     presRevProf.setIdBibliotecario(idBibliotecario);
-                    
+
                     PrestamoRevistaDAOProf presRevDAOProf = new PrestamoRevistaDAOProf();
 
                     if (presRevDAOProf.createDAO(presRevProf)) {
                         revista.setDisponibilidad("prestado");
                         control.edit(revista);
-
-                        //esppacio para el envio del correo
+                        notificarPrestamoEmail(codUsuario, revista);
                         
                         return true;
                     }
@@ -74,20 +78,38 @@ public class PrestamoRevistaProfFab implements IPrestamo {
             System.out.println("Error al generar el préstamo de la revista a un profesor");
         }
 
-        return false; 
+        return false;
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al profesor,
-     * notificandole el préstamo de la enciclopedia.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole del préstamo del
+     * revista.
      *
      * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param revista
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String idProfesor, Revista revista) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        PrestamoRevistaDAOProf prestRevDAOProf = new PrestamoRevistaDAOProf();
+        PrestamoRevistaProf prestRevProf = prestRevDAOProf.readDAO(prestRevDAOProf.readCodigoDAO(revista.getCodbarrarevista()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificación: " + idProfesor + ";"
+                + revista.getTitulo()+ ";"
+                + revista.getCodbarrarevista() + ";"
+                + formatoFecha.format((Date) prestRevProf.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestRevProf.getFechaDevolucion()) + ";"
+                + "hemeroteca;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
 
 }

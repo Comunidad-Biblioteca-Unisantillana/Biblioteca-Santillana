@@ -1,5 +1,6 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoDiccionarioProf;
 import recursos.controllers.DiccionarioJpaController;
@@ -7,6 +8,11 @@ import recursos.entitys.Diccionario;
 import moduloPrestamo.DAO.PrestamoDiccionarioDAOProf;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * La clase se encarga gestionar el préstamo del diccionario al profesor.
@@ -26,7 +32,7 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo del dicionario al profesor.
+     * el método realiza el préstamo del dicionario al profesor.
      *
      * @param codBarras
      * @param codUsuario
@@ -47,16 +53,15 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
                     prestDicProf.setCodBarraDiccionario(codBarras);
                     prestDicProf.setIdProfesor(codUsuario);
                     prestDicProf.setIdBibliotecario(idBibliotecario);
-                    
+
                     PrestamoDiccionarioDAOProf prestDicDAOProf = new PrestamoDiccionarioDAOProf();
 
                     if (prestDicDAOProf.createDAO(prestDicProf)) {
                         dicccionario.setDisponibilidad("prestado");
                         controlDic.edit(dicccionario);
+                        notificarPrestamoEmail(codUsuario, dicccionario);
 
-                        //espacio para el envio del correo
-                        
-                        return true; 
+                        return true;
                     }
 
                 } else if (dicccionario.getDisponibilidad().equalsIgnoreCase("prestado")) {
@@ -68,26 +73,44 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
                 }
             } else {
                 alert.showAlert("Anuncio", "Préstamo diccionario", "No se encuentró un diccionario "
-                        + "asociado al código: " + codBarras  + ".");
+                        + "asociado al código: " + codBarras + ".");
             }
         } catch (Exception e) {
             System.out.println("Error al generar el préstamo del diccionario a un profesor");
         }
 
-        return false; 
+        return false;
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al profesor, notificandole
-     * el préstamo del diccioanrio.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole del préstamo del
+     * dicionario.
      *
      * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param diccionario
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, java.util.Date fechaPrestamo, java.util.Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String idProfesor, Diccionario diccionario) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        PrestamoDiccionarioDAOProf prestDicDAOProf = new PrestamoDiccionarioDAOProf();
+        PrestamoDiccionarioProf prestDicProf = prestDicDAOProf.readDAO(prestDicDAOProf.readCodigoDAO(diccionario.getCodbarradiccionario()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificación: " + idProfesor + ";"
+                + diccionario.getTitulo() + ";"
+                + diccionario.getCodbarradiccionario() + ";"
+                + formatoFecha.format((Date) prestDicProf.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestDicProf.getFechaDevolucion()) + ";"
+                + "referencia;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
-    
+
 }

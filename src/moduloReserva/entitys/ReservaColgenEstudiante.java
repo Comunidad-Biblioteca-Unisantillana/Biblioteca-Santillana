@@ -1,7 +1,7 @@
 
 package moduloReserva.entitys;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
