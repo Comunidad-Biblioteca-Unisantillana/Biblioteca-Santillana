@@ -98,9 +98,13 @@ public class NotificacionEmail {
                 contenido = contenido.replaceAll("texto4", xDatos[3]);
                 contenido = contenido.replaceAll("texto5", xDatos[4]);
                 contenido = contenido.replaceAll("texto6", xDatos[5]);
-                contenido = contenido.replaceAll("texto7", xDatos[6]);
 
-                if (nombreMensaje.equalsIgnoreCase("mensajeprestamo")) {
+                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo")
+                        || nombreMensaje.equalsIgnoreCase("mensajeRetencion")) {
+                    contenido = contenido.replaceAll("texto7", xDatos[6]);
+                }
+
+                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo")) {
                     if (xDatos[7].equalsIgnoreCase("general")) {
                         contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo o renovarlo "
                                 + "dentro de las fechas correspondientes para evitar multas. Si lo desea puede renovar "
@@ -113,7 +117,7 @@ public class NotificacionEmail {
                         contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo dentro de las fechas "
                                 + "correspondientes para evitar multas.");
                     }
-                } else {
+                } else if (nombreMensaje.equalsIgnoreCase("mensajeRetencion")) {
                     contenido = contenido.replaceAll("texto8", xDatos[7]);
                 }
 
@@ -126,16 +130,6 @@ public class NotificacionEmail {
         } else {
             System.out.println("Error el archivo no existe");
         }
-    }
-
-    /**
-     *
-     * @param idProfesor
-     * @param asunto
-     * @param contenido
-     */
-    public void gestionarNotificacionProf(String datos, String nombreMensaje) {
-
     }
 
 }

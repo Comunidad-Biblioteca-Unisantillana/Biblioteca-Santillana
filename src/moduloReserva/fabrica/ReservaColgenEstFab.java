@@ -9,6 +9,9 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloPrestamo.DAO.PrestamoLibroDAOProf;
+import moduloPrestamo.DAO.PrestamoRecursoDAOAbs;
+import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloReserva.modelo.VerificaReserva;
 
 /**
@@ -58,10 +61,12 @@ public class ReservaColgenEstFab implements IReserva {
                 if (libro.getDisponibilidad().equalsIgnoreCase("prestado")) {
                     if (libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen")) {
                         if (!consultarReservas(codBarras)) {
-                            PrestamoLibroDAOEst presDAO = new PrestamoLibroDAOEst();
-                            PrestamoLibroEst prestamo = presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
+                            PrestamoRecursoDAOAbs presDAO = new PrestamoLibroDAOEst();
+                            PrestamoLibroEst prestamo = (PrestamoLibroEst) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
+                            presDAO = new PrestamoLibroDAOProf();
+                            PrestamoLibroProf prestamo1 = (PrestamoLibroProf) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
 
-                            if (prestamo != null) {
+                            if (prestamo != null || prestamo1 != null) {
                                 ReservaColgenEstudiante reserva = new ReservaColgenEstudiante(codBarras, codUsuario, idBibliotecario);
 
                                 ReservaColgenDAOEst resDAO = new ReservaColgenDAOEst();

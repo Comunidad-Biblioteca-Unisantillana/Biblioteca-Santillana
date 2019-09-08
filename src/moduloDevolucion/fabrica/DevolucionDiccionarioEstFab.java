@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import recursos.controllers.DiccionarioJpaController;
 import recursos.entitys.Diccionario;
 import java.util.List;
@@ -14,11 +14,17 @@ import moduloPrestamo.DAO.PrestamoDiccionarioDAOEst;
 import moduloPrestamo.entitys.PrestamoDiccionarioEst;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:21 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionDiccionarioEstFab implements IDevolucion {
 
@@ -37,10 +43,8 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
                     PrestamoDiccionarioDAOEst prestDAOEst = new PrestamoDiccionarioDAOEst();
                     PrestamoDiccionarioEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionDiccionarioEst devEst = new DevolucionDiccionarioEst(prestEst.getCodPrestamoDiccionarioEst(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionDiccionarioDAOEst devDAOEst = new DevolucionDiccionarioDAOEst();
                         devDAOEst.createDAO(devEst);
                         diccionario.setDisponibilidad("disponible");
@@ -48,6 +52,8 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
 
                         prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
+
+                        notificarDevolucion(prestEst.getCodEstudiante(), diccionario, codPrestamo);
                         alert.showAlert("Anuncio", "Devolucion diccionario", "La devolucion del usuario con codigo"
                                 + prestEst.getCodEstudiante() + "se realizo con exito");
                     } else {
@@ -69,7 +75,8 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
         List<PrestamoDiccionarioEst> prestamos = prestDAOEst.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraDiccionario().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraDiccionario().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoDiccionarioEst();
                 break;
             }
@@ -77,7 +84,36 @@ public class DevolucionDiccionarioEstFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String codEstudiante, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole de la devoluciòn del
+     * dicionario.
+     *
+     * @param codEstudiante
+     * @param diccionario
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String codEstudiante, Diccionario diccionario, int codPrestamo) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        DevolucionDiccionarioDAOEst devDAOEst = new DevolucionDiccionarioDAOEst();
+        DevolucionDiccionarioEst devEst = devDAOEst.readDAO(devDAOEst.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + diccionario.getTitulo() + ";"
+                + diccionario.getCodbarradiccionario() + ";"
+                + formatoFecha.format((Date) devEst.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
-}//end DevolucionDiccionarioEstFab
+
+}

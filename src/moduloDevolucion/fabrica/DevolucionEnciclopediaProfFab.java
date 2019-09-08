@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +14,17 @@ import recursos.controllers.EnciclopediaJpaController;
 import recursos.entitys.Enciclopedia;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:33 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionEnciclopediaProfFab implements IDevolucion {
 
@@ -39,10 +45,8 @@ public class DevolucionEnciclopediaProfFab implements IDevolucion {
                     PrestamoEnciclopediaDAOProf prestDAOProf = new PrestamoEnciclopediaDAOProf();
                     PrestamoEnciclopediaProf prestProf = prestDAOProf.readDAO(codPrestamo);
                     if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionEnciclopediaProf devProf = new DevolucionEnciclopediaProf(prestProf.getCodPrestamoEnciclopediaProf(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionEnciclopediaDAOProf devDAOProf = new DevolucionEnciclopediaDAOProf();
                         devDAOProf.createDAO(devProf);
 
@@ -51,6 +55,8 @@ public class DevolucionEnciclopediaProfFab implements IDevolucion {
 
                         prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
+
+                        notificarDevolucion(prestProf.getIdProfesor(), enciclopedia, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución enciclopedia", "La devolución del usuario con codigo"
                                 + prestProf.getIdProfesor() + "se realizo con exito");
                     } else {
@@ -76,7 +82,8 @@ public class DevolucionEnciclopediaProfFab implements IDevolucion {
         List<PrestamoEnciclopediaProf> prestamos = prestDAOProf.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraEnciclopedia().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraEnciclopedia().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoEnciclopediaProf();
                 break;
             }
@@ -84,7 +91,36 @@ public class DevolucionEnciclopediaProfFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String idProfesor, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole de la devoluciòn de la
+     * enciclopedia.
+     *
+     * @param idProfesor
+     * @param enciclopedia
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String idProfesor, Enciclopedia enciclopedia, int codPrestamo) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        DevolucionEnciclopediaDAOProf devDAOProf = new DevolucionEnciclopediaDAOProf();
+        DevolucionEnciclopediaProf devProf = devDAOProf.readDAO(devDAOProf.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificaciòn: " + idProfesor + ";"
+                + enciclopedia.getTitulo() + ";"
+                + enciclopedia.getCodbarraenciclopedia() + ";"
+                + formatoFecha.format((Date) devProf.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
+
 }
