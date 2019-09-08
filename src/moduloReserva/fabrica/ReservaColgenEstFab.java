@@ -1,6 +1,5 @@
 package moduloReserva.fabrica;
 
-import general.modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoLibroDAOEst;
 import moduloPrestamo.entitys.PrestamoLibroEst;
 import moduloReserva.DAO.ReservaColgenDAOEst;
@@ -10,7 +9,6 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
-import java.util.Date;
 import moduloReserva.modelo.VerificaReserva;
 
 /**
@@ -18,7 +16,8 @@ import moduloReserva.modelo.VerificaReserva;
  *
  * @author Julian
  * @creado: 24/08/2019
- * @modificado:26/08/2019
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class ReservaColgenEstFab implements IReserva {
 
@@ -63,11 +62,7 @@ public class ReservaColgenEstFab implements IReserva {
                             PrestamoLibroEst prestamo = presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
 
                             if (prestamo != null) {
-
-                                java.util.Date fechaActual = new java.util.Date();
-
-                                ReservaColgenEstudiante reserva = new ReservaColgenEstudiante(codBarras, codUsuario, idBibliotecario,
-                                        new Date(fechaActual.getTime()));
+                                ReservaColgenEstudiante reserva = new ReservaColgenEstudiante(codBarras, codUsuario, idBibliotecario);
 
                                 ReservaColgenDAOEst resDAO = new ReservaColgenDAOEst();
                                 resDAO.createDAO(reserva);

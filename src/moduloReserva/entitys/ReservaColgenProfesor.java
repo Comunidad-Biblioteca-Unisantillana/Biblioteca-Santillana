@@ -10,6 +10,9 @@ import java.util.Date;
 /**
  *
  * @author Storkolm
+ * @creado:
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class ReservaColgenProfesor {
     
@@ -21,11 +24,10 @@ public class ReservaColgenProfesor {
     private String idBibliotecario;
     private String idProfesor;
 
-    public ReservaColgenProfesor(String codBarraLibro, String idBibliotecario, String idProfesor, Date fechaReserva) {
+    public ReservaColgenProfesor(String codBarraLibro, String idBibliotecario, String idProfesor) {
         this.codBarraLibro = codBarraLibro;
         this.idBibliotecario = idBibliotecario;
         this.idProfesor = idProfesor;
-        this.fechaReserva = fechaReserva;
     }
 
     public String getCodBarraLibro() {

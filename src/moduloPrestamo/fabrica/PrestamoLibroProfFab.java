@@ -21,9 +21,9 @@ import usuarios.entitys.Profesor;
  * la clase se encarga gestionar el préstamo del libro al profesor.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoLibroProfFab implements IPrestamo {
 

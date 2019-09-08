@@ -18,9 +18,9 @@ import usuarios.entitys.Estudiante;
  * La clase se encarga gestionar el préstamo de un periódico al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 07/09/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoPeriodicoEstFab implements IPrestamo {
 
@@ -82,7 +82,7 @@ public class PrestamoPeriodicoEstFab implements IPrestamo {
 
     /**
      * el método realiza concatenación de los datos necesarios para la
-     * construcción del e-mail al estudiante, notificandole del préstamo de la
+     * construcción del e-mail al estudiante, notificandole del préstamo del
      * periódico.
      *
      * @param codEstudiante

@@ -18,9 +18,9 @@ import usuarios.entitys.Profesor;
  * La clase se encarga gestionar el préstamo de la revista al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 23/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoRevistaProfFab implements IPrestamo {
 
@@ -83,7 +83,7 @@ public class PrestamoRevistaProfFab implements IPrestamo {
 
     /**
      * el método realiza concatenación de los datos necesarios para la
-     * construcción del e-mail al profesor, notificandole del préstamo del
+     * construcción del e-mail al profesor, notificandole del préstamo de la
      * revista.
      *
      * @param idProfesor

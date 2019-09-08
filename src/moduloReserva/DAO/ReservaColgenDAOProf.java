@@ -1,4 +1,3 @@
-
 package moduloReserva.DAO;
 
 import java.sql.PreparedStatement;
@@ -15,8 +14,11 @@ import moduloReserva.entitys.ReservaColgenProfesor;
 /**
  *
  * @author Storkolm
+ * @creado:
+ * @author Miguel Fernández
+ * @modificado: 07/08/2019
  */
-public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProfesor>{
+public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProfesor> {
 
     public ReservaColgenDAOProf() {
         connection = ConnectionBD.getInstance();
@@ -49,7 +51,7 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
     }
 
     @Override
-    public boolean deleteDAO(String codigo,  String idProfesor) {
+    public boolean deleteDAO(String codigo, String idProfesor) {
         String sqlSentence = "DELETE FROM Reserva_Colgen_Profesor WHERE codBarraLibro = ? AND idProfesor = ?";
         PreparedStatement pps;
 
@@ -80,7 +82,8 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
 
             while (rs.next()) {
                 ReservaColgenProfesor reservaTmp = new ReservaColgenProfesor(rs.getString("codBarraLibro"), rs.getString("idBibliotecario"),
-                        rs.getString("idProfesor"), rs.getDate("fechaReserva"));
+                        rs.getString("idProfesor"));
+                reservaTmp.setFechaReserva(rs.getDate("fechaReserva"));
                 reservaTmp.setCodReservaColgenProf(rs.getInt("codReservaColgenProf"));
                 reservaTmp.setFechaLimiteReserva(rs.getDate("fechaLimiteReserva"));
                 reservaTmp.setFechaRetencion(rs.getDate("fechaRetencion"));
@@ -107,7 +110,8 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
 
             while (rs.next()) {
                 reserva = new ReservaColgenProfesor(rs.getString("codBarraLibro"), rs.getString("idBibliotecario"),
-                        rs.getString("idProfesor"), rs.getDate("fechaReserva"));
+                        rs.getString("idProfesor"));
+                reserva.setFechaReserva(rs.getDate("fechaReserva"));
                 reserva.setCodReservaColgenProf(rs.getInt("codReservaColgenProf"));
                 reserva.setFechaLimiteReserva(rs.getDate("fechaLimiteReserva"));
                 reserva.setFechaRetencion(rs.getDate("fechaRetencion"));
@@ -125,7 +129,7 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
     @Override
     public boolean updateDAO(ReservaColgenProfesor reserva) {
         String sqlSentence = "UPDATE Reserva_Colgen_Profesor SET codBarraLibro = ?, idProfesor = ?, idBibliotecario = ?, fechaReserva = ?, "
-                + "fechaRetencion = ?,fechaLimiteReserva = ? WHERE codReservaColgenProf = ?";
+                + "fechaRetencion = current_date, fechaLimiteReserva = current_date + 5 WHERE codReservaColgenProf = ?";
         PreparedStatement pps;
 
         try {
@@ -134,9 +138,7 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
             pps.setString(2, reserva.getIdProfesor());
             pps.setString(3, reserva.getIdBibliotecario());
             pps.setDate(4, (Date) reserva.getFechaReserva());
-            pps.setDate(5, (Date) reserva.getFechaRetencion());
-            pps.setDate(6, (Date) reserva.getFechaLimiteReserva());
-            pps.setInt(7, reserva.getCodReservaColgenProf());
+            pps.setInt(5, reserva.getCodReservaColgenProf());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");
@@ -149,5 +151,5 @@ public class ReservaColgenDAOProf extends ReservaRecursoDAOAbs<ReservaColgenProf
         }
         return false;
     }
-    
+
 }

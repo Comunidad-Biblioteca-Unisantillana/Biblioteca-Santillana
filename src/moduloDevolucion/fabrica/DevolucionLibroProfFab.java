@@ -17,11 +17,16 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloReserva.DAO.ReservaColgenDAOEst;
+import moduloReserva.DAO.ReservaRecursoDAOAbs;
+import moduloReserva.entitys.ReservaColgenEstudiante;
+import moduloReserva.modelo.VerificaReserva;
 
 /**
- * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:41 a. m.
+ * @author Julian
+ * @creado: 04/08/2019
+ * @author Mifuel Fernández
+ * @modificado: 07/09/2019
  */
 public class DevolucionLibroProfFab implements IDevolucion {
 
@@ -41,24 +46,39 @@ public class DevolucionLibroProfFab implements IDevolucion {
                     PrestamoLibroDAOProf prestDAOProf = new PrestamoLibroDAOProf();
                     PrestamoLibroProf prestProf = prestDAOProf.readDAO(codPrestamo);
                     if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
+                        java.util.Date fechaDevolucion = new java.util.Date();
+
                         DevolucionLibroProf devProf = new DevolucionLibroProf(prestProf.getCodPrestamoLibroProf(),
                                 idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
                         DevolucionLibroDAOProf devDAOProf = new DevolucionLibroDAOProf();
                         devDAOProf.createDAO(devProf);
-                        ReservaColgenDAOProf reservaDAO = new ReservaColgenDAOProf();
-                        ReservaColgenProfesor reserva = reservaDAO.readDAO(codBarras);
-                        if((libro.getCodcategoriacoleccion().getNombrecol().equalsIgnoreCase("general")) && (reserva != null)){
-                            reserva.setFechaRetencion(new Date(fechaDevolucion.getTime()));
-                            java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(fechaDevolucion, 5);
-                            reserva.setFechaLimiteReserva(new Date(fechaLimiteReserva.getTime()));
-                            reservaDAO.updateDAO(reserva);
+                        //se verifica si esta reservado
+                        Object reserva = verificarReserva(codBarras);
+                        
+                        if ((libro.getCodcategoriacoleccion().getNombrecol().equalsIgnoreCase("general")) && (reserva != null)) {
+                            if (reserva instanceof ReservaColgenEstudiante) {
+                                ReservaColgenDAOEst reservaDAO = new ReservaColgenDAOEst();
+                                ReservaColgenEstudiante reservaEst = (ReservaColgenEstudiante) reserva;
+
+                                if (reservaDAO.updateDAO(reservaEst)) {
+                                    new VerificaReserva().notificarRetencionEmailEst(libro);
+                                }
+                            } else {
+                                ReservaColgenDAOProf reservaDAO = new ReservaColgenDAOProf();
+                                ReservaColgenProfesor reservaProf = (ReservaColgenProfesor) reserva;
+                                
+                                if (reservaDAO.updateDAO(reservaProf)) {
+                                    new VerificaReserva().notificarRetencionEmailProf(libro);
+                                }
+                            }
+                            
                             libro.setDisponibilidad("reservado");
-                        }else{
+                        } else {
                             libro.setDisponibilidad("disponible");
                         }
+                        
                         control.edit(libro);
+                        
                         //Se actualiza el prestamo
                         prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
@@ -96,10 +116,24 @@ public class DevolucionLibroProfFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public boolean verificarReserva(String codBarras) {
-        return false;
-    }
+    /**
+     * el método retorna la reserva asociada al libro del estudiante o profesor.
+     *
+     * @param codBarras
+     * @return reserva
+     */
+    public Object verificarReserva(String codBarras) {
+        ReservaRecursoDAOAbs reservaDAO = new ReservaColgenDAOEst();
+        Object reserva = reservaDAO.readDAO(codBarras);
 
+        if (reserva == null) {
+            reservaDAO = new ReservaColgenDAOProf();
+            reserva = reservaDAO.readDAO(codBarras);
+        }
+
+        return reserva;
+    }
+    
     public void notificarDevolucion(String idProfesor, String tituloRecurso, java.util.Date fechaDevolucion) {
 
     }

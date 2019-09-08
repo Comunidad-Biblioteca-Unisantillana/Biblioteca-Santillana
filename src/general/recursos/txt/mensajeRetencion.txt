@@ -1,0 +1,56 @@
+Reserva retenida. Biblioteca unisantillana.
+<b>
+<font color = "#222222" size = "5px" face = "Arial">
+Reservaciones de material bibliográfico
+</font>
+<br/>
+<br/>
+<font color = "#222222" size = "3px" face = "Arial">
+Retención de material
+</font>
+<br/>
+<br/>
+<font color = "#222222" size = "2px" face = "Arial">
+Apreciado Usuario(a): texto1, texto2
+<br/>
+texto3
+</b>
+<br/>
+<br/>
+Cordial saludo.
+<br/>
+<br/>
+Este correo es para informarle que el siguiente material bibliográfico, previamente reservado por usted, puede ser recogido en la ubicación:
+<br/>
+<br/>
+Título: texto4
+<br/>
+Código: texto5
+<br/>
+Fecha de reserva: texto6
+<br/>
+Fecha de retención: texto7
+<br/>
+Fecha limite de retención: texto8
+<br/>
+Recoger en: Biblioteca
+<br/>
+<p align = "justify">
+Por favor recoger el material en 5 días a partir de hoy, de lo contrario se entenderá que no necesita el material y este volverá a circulación. 
+</p>
+<p align = "justify">
+En caso de alguna duda, recomendación o inconveniente por favor diríjase a la biblioteca o envíe un mensaje al correo: bibliotecaunisantillana@gmail.com.
+</p>
+Gracias por utilizar nuestros servicios,
+<br/>
+<br/>
+<b>
+Cordialmente,
+<br/>
+<br/>
+División de Biblioteca Unisantillana.
+</b>
+<br/>
+<br/>
+Nota: Este es un mensaje automático, creado por el sistema de manejo de biblioteca.
+</font>

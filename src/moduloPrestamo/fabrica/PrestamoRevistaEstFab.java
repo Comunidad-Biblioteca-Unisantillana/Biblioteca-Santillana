@@ -18,9 +18,9 @@ import usuarios.entitys.Estudiante;
  * la clase se encarga gestionar el préstamo de la revista al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 07/09/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoRevistaEstFab implements IPrestamo {
 

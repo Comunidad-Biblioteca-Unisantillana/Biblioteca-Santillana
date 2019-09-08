@@ -18,9 +18,9 @@ import usuarios.entitys.Estudiante;
  * La clase se encarga gestionar el préstamo del diccionario de un estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 07/09/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoDiccionarioEstFab implements IPrestamo {
 

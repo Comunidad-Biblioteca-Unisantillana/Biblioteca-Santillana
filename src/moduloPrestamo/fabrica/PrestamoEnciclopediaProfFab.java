@@ -18,9 +18,9 @@ import usuarios.entitys.Profesor;
  * clase que se encarga gestionar el préstamo de la enciclopedia al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoEnciclopediaProfFab implements IPrestamo {
 
@@ -82,7 +82,7 @@ public class PrestamoEnciclopediaProfFab implements IPrestamo {
 
     /**
      * el método realiza concatenación de los datos necesarios para la
-     * construcción del e-mail al profesor, notificandole del préstamo del
+     * construcción del e-mail al profesor, notificandole del préstamo de la
      * enciclopedia.
      *
      * @param idProfesor

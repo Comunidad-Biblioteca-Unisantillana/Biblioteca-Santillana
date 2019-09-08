@@ -18,9 +18,9 @@ import usuarios.entitys.Profesor;
  * La clase se encarga gestionar el préstamo del mapa al profesor.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoMapaProfFab implements IPrestamo {
 

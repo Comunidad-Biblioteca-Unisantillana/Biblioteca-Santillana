@@ -21,9 +21,9 @@ import usuarios.entitys.Estudiante;
  * la clase se encarga gestionar el préstamo del libro al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 07/09/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoLibroEstFab implements IPrestamo {
 
@@ -118,7 +118,7 @@ public class PrestamoLibroEstFab implements IPrestamo {
 
     /**
      * el método realiza concatenación de los datos necesarios para la
-     * construcción del e-mail al estudiante, notificandole del préstamo de la
+     * construcción del e-mail al estudiante, notificandole del préstamo del
      * libro.
      *
      * @param codEstudiante

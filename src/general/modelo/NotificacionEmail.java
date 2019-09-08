@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -102,17 +100,21 @@ public class NotificacionEmail {
                 contenido = contenido.replaceAll("texto6", xDatos[5]);
                 contenido = contenido.replaceAll("texto7", xDatos[6]);
 
-                if (xDatos[7].equalsIgnoreCase("general")) {
-                    contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo o renovarlo "
-                            + "dentro de las fechas correspondientes para evitar multas. Si lo desea puede renovar "
-                            + "el material desde su cuenta (ingresando a préstamos actuales), digitando su password "
-                            + "el cual es su código de usuario como estudiante o cédula como otro tipo de usuario de "
-                            + "la misma (sin puntos ni espacios) y hacer la renovación máximo el mismo día de vencimiento; "
-                            + "tenga en cuenta que si actualmente tiene alguna multa cargada en su cuenta o el libro fué "
-                            + "reservado, o habrá llegado al límite de renovaciones, no podrá realizar la renovación.");
+                if (nombreMensaje.equalsIgnoreCase("mensajeprestamo")) {
+                    if (xDatos[7].equalsIgnoreCase("general")) {
+                        contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo o renovarlo "
+                                + "dentro de las fechas correspondientes para evitar multas. Si lo desea puede renovar "
+                                + "el material desde su cuenta (ingresando a préstamos actuales), digitando su password "
+                                + "el cual es su código de usuario como estudiante o cédula como otro tipo de usuario de "
+                                + "la misma (sin puntos ni espacios) y hacer la renovación máximo el mismo día de vencimiento; "
+                                + "tenga en cuenta que si actualmente tiene alguna multa cargada en su cuenta o el libro fué "
+                                + "reservado, o habrá llegado al límite de renovaciones, no podrá realizar la renovación.");
+                    } else {
+                        contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo dentro de las fechas "
+                                + "correspondientes para evitar multas.");
+                    }
                 } else {
-                    contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo dentro de las fechas "
-                            + "correspondientes para evitar multas.");
+                    contenido = contenido.replaceAll("texto8", xDatos[7]);
                 }
 
                 enviarEmail(asunto, contenido, xDatos[8]);
