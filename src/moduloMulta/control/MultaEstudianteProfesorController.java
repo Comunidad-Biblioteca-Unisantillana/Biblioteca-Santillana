@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package moduloMulta.control;
 
 import usuarios.control.CuentaEstudianteProfesorController;
@@ -13,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import moduloMulta.modelo.ConsultaMulta;
+import moduloMulta.modelo.ConsultaMultaAbs;
+import moduloMulta.modelo.ConsultaMultaEst;
+import moduloMulta.modelo.ConsultaMultaProf;
 
 /**
  * clase que controla el panel multa del estudiante
@@ -27,34 +25,42 @@ public class MultaEstudianteProfesorController {
     @FXML
     private TableColumn<Multa, Integer> colCodMulta;
     @FXML
-    private TableColumn<Multa, Integer> colCodPrestamo;
+    private TableColumn<Multa, String> colCodBarra;
+    @FXML
+    private TableColumn<Multa, String> tituloRecurso;
+    @FXML
+    private TableColumn<Multa, String> colTipo;
     @FXML
     private TableColumn<Multa, Integer> colDiasAtrasados;
     @FXML
     private TableColumn<Multa, Integer> colValorTot;
     @FXML
     private TableColumn<Multa, String> colCancelado;
-    @FXML
-    private TableColumn<Multa, String> colTipo;
+    
 
     /**
      * Metodo que carga los datos de las multas de un estudiante o profesor
      *
-     * @param codEstudiante
+     * @param codUsuario
      * @param tipoUsuario
      */
-    public void cargarDatosTableMultas(String codEstudiante,String tipoUsuario)  {
-        if(tipoUsuario.equals("profesor"))return;
+    public void cargarDatosTableMultas(String codUsuario,String tipoUsuario)  {
+        ConsultaMultaAbs consultas;
+        if(tipoUsuario.equals("profesor")){
+            consultas = new ConsultaMultaProf();
+        }else{
+            consultas = new ConsultaMultaEst();
+        }
         try {
-            ConsultaMulta consulta = new ConsultaMulta();
-
             colCodMulta.setCellValueFactory(new PropertyValueFactory<>("codMulta"));
-            colCodPrestamo.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
+            colCodBarra.setCellValueFactory(new PropertyValueFactory<>("codBarrasRecurso"));
+            tituloRecurso.setCellValueFactory(new PropertyValueFactory<>("tituloRecurso"));
+            colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoRecurso"));
             colDiasAtrasados.setCellValueFactory(new PropertyValueFactory<>("diasAtrasados"));
             colValorTot.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
-            colCancelado.setCellValueFactory(new PropertyValueFactory<>("cancelado"));
-            colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-            tableMulta.setItems(consulta.getMultas(codEstudiante));
+            colCancelado.setCellValueFactory(new PropertyValueFactory<>("candelado"));
+            
+            tableMulta.setItems(consultas.getMultasUsuario(codUsuario));
         } catch (Exception ex) {
             Logger.getLogger(CuentaEstudianteProfesorController.class.getName()).log(Level.SEVERE, null, ex);
         }

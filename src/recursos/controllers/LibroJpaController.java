@@ -329,7 +329,7 @@ public class LibroJpaController implements Serializable {
      * 
      * @return 
      */
-    private List<Libro> findLibroEntities() {
+    public List<Libro> findLibroEntities() {
         return findLibroEntities(true, -1, -1);
     }
 

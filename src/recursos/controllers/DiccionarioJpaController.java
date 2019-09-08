@@ -327,7 +327,7 @@ public class DiccionarioJpaController implements Serializable {
      *
      * @return
      */
-    private List<Diccionario> findDiccionarioEntities() {
+    public List<Diccionario> findDiccionarioEntities() {
         return findDiccionarioEntities(true, -1, -1);
     }
 

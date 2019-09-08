@@ -24,6 +24,7 @@
     <class>recursos.entitys.AutorLibro</class>
     <class>recursos.entitys.Enciclopedia</class>
     <class>recursos.entitys.Mapa</class>
+    <class>general.recursos.txt.NewEntity</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/PruebaBiblioteca"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

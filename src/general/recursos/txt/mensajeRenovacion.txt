@@ -1,0 +1,66 @@
+Notificación renovación no presencial de material. Biblioteca unisantillana.
+<b>
+<font color = "#222222" size = "5px" face = "Arial">
+División de Bibliotecas
+</font>
+<br/>
+<br/>
+<font color = "#222222" size = "3px" face = "Arial">
+Renovación no presencial de material
+</font>
+<br/>
+<br/>
+<font color = "#222222" size = "2px" face = "Arial">
+Apreciado Usuario(a): texto1, texto2
+<br/>
+texto3
+</b>
+<br/>
+<br/>
+Estimado Usuario,
+<br/>
+<br/>
+A su nombre se ha registrado la siguiente transacción de renovación no presencial de material bibliográfico:
+<br/>
+<br/>
+<b>
+Título: 
+</b>
+texto4
+<br/>
+<b>
+Código: 
+</b>
+texto5
+<br/>
+<br/>
+Fecha de renovación: texto6
+<br/>
+Para devolver el: <b>texto7</b>
+<br/>
+<p align = "justify">
+texto8
+</p>
+Gracias por utilizar nuestros servicios,
+<br/>
+<p align = "justify">
+Si usted extravía algún material se le solicita acercarse a la biblioteca correspondiente a la mayor brevedad 
+o envíe un mensaje al correo: bibliotecaunisantillana@gmail.com.
+</p>
+<strong>
+<font color = "black" size = "2px" face = "Tahoma">
+El no recibo de notificaciones de parte de la biblioteca no lo exime del pago​ de multas por retraso en la devolución del material.
+</font>
+</strong>
+<br/>
+<br/>
+<b>
+Cordialmente,
+<br/>
+<br/>
+División de Biblioteca Unisantillana.
+</b>
+<br/>
+<br/>
+Nota: Este es un mensaje automático, creado por el sistema de manejo de biblioteca.
+</font>

@@ -1,11 +1,10 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import general.modelo.ServicioFecha;
 import moduloDevolucion.DAO.DevolucionLibroDAOProf;
 import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionLibroProf;
@@ -17,11 +16,21 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import moduloReserva.DAO.ReservaColgenDAOEst;
+import moduloReserva.DAO.ReservaRecursoDAOAbs;
+import moduloReserva.entitys.ReservaColgenEstudiante;
+import moduloReserva.modelo.VerificaReserva;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
- * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:41 a. m.
+ * @author Julian
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionLibroProfFab implements IDevolucion {
 
@@ -41,26 +50,42 @@ public class DevolucionLibroProfFab implements IDevolucion {
                     PrestamoLibroDAOProf prestDAOProf = new PrestamoLibroDAOProf();
                     PrestamoLibroProf prestProf = prestDAOProf.readDAO(codPrestamo);
                     if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionLibroProf devProf = new DevolucionLibroProf(prestProf.getCodPrestamoLibroProf(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionLibroDAOProf devDAOProf = new DevolucionLibroDAOProf();
                         devDAOProf.createDAO(devProf);
-                        ReservaColgenDAOProf reservaDAO = new ReservaColgenDAOProf();
-                        ReservaColgenProfesor reserva = reservaDAO.readDAO(codBarras);
-                        if((libro.getCodcategoriacoleccion().getNombrecol().equalsIgnoreCase("general")) && (reserva != null)){
-                            reserva.setFechaRetencion(new Date(fechaDevolucion.getTime()));
-                            java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(fechaDevolucion, 5);
-                            reserva.setFechaLimiteReserva(new Date(fechaLimiteReserva.getTime()));
+                        //se verifica si esta reservado
+                        Object reserva = verificarReserva(codBarras);
+                        
+                        if ((libro.getCodcategoriacoleccion().getNombrecol().equalsIgnoreCase("general")) && (reserva != null)) {
+                            if (reserva instanceof ReservaColgenEstudiante) {
+                                ReservaColgenDAOEst reservaDAO = new ReservaColgenDAOEst();
+                                ReservaColgenEstudiante reservaEst = (ReservaColgenEstudiante) reserva;
+
+                                if (reservaDAO.updateDAO(reservaEst)) {
+                                    new VerificaReserva().notificarRetencionEmailEst(libro);
+                                }
+                            } else {
+                                ReservaColgenDAOProf reservaDAO = new ReservaColgenDAOProf();
+                                ReservaColgenProfesor reservaProf = (ReservaColgenProfesor) reserva;
+                                
+                                if (reservaDAO.updateDAO(reservaProf)) {
+                                    new VerificaReserva().notificarRetencionEmailProf(libro);
+                                }
+                            }
+                            
                             libro.setDisponibilidad("reservado");
-                        }else{
+                        } else {
                             libro.setDisponibilidad("disponible");
                         }
+                        
                         control.edit(libro);
+                        
                         //Se actualiza el prestamo
                         prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
+                        
+                        notificarDevolucion(prestProf.getIdProfesor(), libro, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución libro", "La devolución del usuario con codigo"
                                 + prestProf.getIdProfesor() + "se realizo con exito");
                     } else {
@@ -86,7 +111,8 @@ public class DevolucionLibroProfFab implements IDevolucion {
         List<PrestamoLibroProf> prestamos = prestDAOProf.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraLibro().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraLibro().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoLibroProf();
                 break;
             }
@@ -94,11 +120,54 @@ public class DevolucionLibroProfFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public boolean verificarReserva(String codBarras) {
-        return false;
-    }
+    /**
+     * el método retorna la reserva asociada al libro del estudiante o profesor.
+     *
+     * @param codBarras
+     * @return reserva
+     */
+    public Object verificarReserva(String codBarras) {
+        ReservaRecursoDAOAbs reservaDAO = new ReservaColgenDAOEst();
+        Object reserva = reservaDAO.readDAO(codBarras);
 
-    public void notificarDevolucion(String idProfesor, String tituloRecurso, java.util.Date fechaDevolucion) {
+        if (reserva == null) {
+            reservaDAO = new ReservaColgenDAOProf();
+            reserva = reservaDAO.readDAO(codBarras);
+        }
 
+        return reserva;
     }
+    
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole de la devoluciòn del
+     * libro.
+     *
+     * @param idProfesor
+     * @param libro
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String idProfesor, Libro libro, int codPrestamo) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
+
+        DevolucionLibroDAOProf devDAOProf = new DevolucionLibroDAOProf();
+        DevolucionLibroProf devProf = devDAOProf.readDAO(devDAOProf.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificaciòn: " + idProfesor + ";"
+                + libro.getTitulo() + ";"
+                + libro.getCodbarralibro() + ";"
+                + formatoFecha.format((Date) devProf.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
+    }
+    
 }

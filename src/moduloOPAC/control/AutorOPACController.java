@@ -67,7 +67,7 @@ public class AutorOPACController implements Initializable {
      * @param event
      */
     @FXML
-    private void BtnBuscarAutor(ActionEvent event) {
+    private void btnBuscarAutor(ActionEvent event) {
         String nombreAutor = txtNombreAutor.getText().trim();
         String entidad = cboTipoBusqueda.getSelectionModel().getSelectedItem().toLowerCase();
 
