@@ -99,20 +99,21 @@ public class NotificacionEmail {
                 contenido = contenido.replaceAll("texto5", xDatos[4]);
                 contenido = contenido.replaceAll("texto6", xDatos[5]);
 
-                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo")
-                        || nombreMensaje.equalsIgnoreCase("mensajeRetencion")) {
+                if (!nombreMensaje.equalsIgnoreCase("mensajeDevolucion")) {
                     contenido = contenido.replaceAll("texto7", xDatos[6]);
                 }
 
-                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo")) {
+                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo") 
+                        || nombreMensaje.equalsIgnoreCase("mensajeRenovacion")) {
                     if (xDatos[7].equalsIgnoreCase("general")) {
                         contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo o renovarlo "
                                 + "dentro de las fechas correspondientes para evitar multas. Si lo desea puede renovar "
                                 + "el material desde su cuenta (ingresando a préstamos actuales), digitando su password "
                                 + "el cual es su código de usuario como estudiante o cédula como otro tipo de usuario de "
-                                + "la misma (sin puntos ni espacios) y hacer la renovación máximo el mismo día de vencimiento; "
-                                + "tenga en cuenta que si actualmente tiene alguna multa cargada en su cuenta o el libro fué "
-                                + "reservado, o habrá llegado al límite de renovaciones, no podrá realizar la renovación.");
+                                + "la misma (sin puntos ni espacios) para ingresar a su cuenta y hacer la renovación máximo "
+                                + "el mismo día de vencimiento; tenga en cuenta que si actualmente tiene alguna multa cargada "
+                                + "en su cuenta o el libro fué reservado, o habrá llegado al límite de renovaciones, no podrá "
+                                + "realizar la renovación.");
                     } else {
                         contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo dentro de las fechas "
                                 + "correspondientes para evitar multas.");

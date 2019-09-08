@@ -39,10 +39,7 @@ Fecha de préstamo:
 </b>
 texto6
 <br/>
-<b>
-Para devolver el: 
-</b>
-texto7
+Para devolver el: <b>texto7</b>
 <br/>
 <p align = "justify">
 texto8

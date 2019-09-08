@@ -3,6 +3,7 @@ package general.vista;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -46,13 +47,7 @@ public class AlertBox implements IAlertBox {
 
         //Cambia el icono de la ventana
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        //stage.getIcons().add(new Image("file:imagenes/login.png"));
-
-        //inserta la imagen 
-        //ImageView imagen = new ImageView("file:imagenes/login.png");
-        //imagen.setFitHeight(50);
-        //imagen.setFitWidth(50);
-        //ventana.setGraphic(imagen);
+        stage.getIcons().add(new Image("/general/recursos/img/iconUniversity.png"));
     }
 
 }
