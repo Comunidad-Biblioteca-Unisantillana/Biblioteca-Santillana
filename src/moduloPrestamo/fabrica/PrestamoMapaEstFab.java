@@ -1,21 +1,26 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoMapaEst;
 import recursos.controllers.MapaJpaController;
 import recursos.entitys.Mapa;
-import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoMapaDAOEst;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * La clase se encarga gestionar el préstamo del mapa al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoMapaEstFab implements IPrestamo {
 
@@ -26,7 +31,7 @@ public class PrestamoMapaEstFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo del mapa al estudiante.
+     * el método realiza el préstamo del mapa al estudiante.
      *
      * @param codBarras
      * @param codUsuario
@@ -53,8 +58,7 @@ public class PrestamoMapaEstFab implements IPrestamo {
                     if (prestMapaDAOEst.createDAO(prestMapaEst)) {
                         mapa.setDisponibilidad("prestado");
                         control.edit(mapa);
-                        
-                        //espacio para enviar el correo
+                        notificarPrestamoEmail(codUsuario, mapa);
                         
                         return true; 
                     }
@@ -77,16 +81,34 @@ public class PrestamoMapaEstFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al estudiante,
-     * notificandole el préstamo del mapa.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole del préstamo del
+     * mapa.
      *
-     * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param codEstudiante
+     * @param mapa
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String codEstudiante, Mapa mapa) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        PrestamoMapaDAOEst prestMapaDAOEst = new PrestamoMapaDAOEst();
+        PrestamoMapaEst prestMapaEst = prestMapaDAOEst.readDAO(prestMapaDAOEst.readCodigoDAO(mapa.getCodbarramapa()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + mapa.getTitulo() + ";"
+                + mapa.getCodbarramapa() + ";"
+                + formatoFecha.format((Date) prestMapaEst.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestMapaEst.getFechaDevolucion()) + ";"
+                + "mapoteca;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
 
 }

@@ -1,7 +1,5 @@
 package moduloReserva.fabrica;
 
-import java.sql.Date;
-import general.modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloReserva.DAO.ReservaColgenDAOProf;
@@ -11,11 +9,17 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloPrestamo.DAO.PrestamoLibroDAOEst;
+import moduloPrestamo.DAO.PrestamoRecursoDAOAbs;
+import moduloPrestamo.entitys.PrestamoLibroEst;
 import moduloReserva.modelo.VerificaReserva;
 
 /**
  *
  * @author Julian
+ * @creado:
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class ReservaColgenProfFab implements IReserva {
 
@@ -48,17 +52,13 @@ public class ReservaColgenProfFab implements IReserva {
                 if (libro.getDisponibilidad().equalsIgnoreCase("prestado")) {
                     if (libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen")) {
                         if (!consultarReservas(codBarras)) {
-                            PrestamoLibroDAOProf presDAO = new PrestamoLibroDAOProf();
-                            PrestamoLibroProf prestamo = presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
+                            PrestamoRecursoDAOAbs presDAO = new PrestamoLibroDAOProf();
+                            PrestamoLibroProf prestamo = (PrestamoLibroProf) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
+                            presDAO = new PrestamoLibroDAOEst();
+                            PrestamoLibroEst prestamo1 = (PrestamoLibroEst) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
 
-                            if (prestamo != null) {
-
-                                java.util.Date fechaActual = new java.util.Date();
-                                java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(prestamo.getFechaDevolucion(), 5);
-
-                                ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, idBibliotecario, codUsuario,
-                                        new Date(fechaActual.getTime()));
-                                reserva.setFechaLimiteReserva(new Date(fechaLimiteReserva.getTime()));
+                            if (prestamo != null || prestamo1 != null) {
+                                ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, idBibliotecario, codUsuario);
 
                                 ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
                                 resDAO.createDAO(reserva);

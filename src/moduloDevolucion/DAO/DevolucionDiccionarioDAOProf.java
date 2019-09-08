@@ -12,8 +12,9 @@ import moduloDevolucion.entitys.DevolucionDiccionarioProf;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:18 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernàndez
+ * @modificado: 08/09/2019
  */
 public class DevolucionDiccionarioDAOProf extends DevolucionRecursoDAOAbs<DevolucionDiccionarioProf> {
 
@@ -75,8 +76,9 @@ public class DevolucionDiccionarioDAOProf extends DevolucionRecursoDAOAbs<Devolu
             rs = pps.executeQuery();
 
             while (rs.next()) {
-                DevolucionDiccionarioProf devolucionTmp = new DevolucionDiccionarioProf(rs.getInt("codPrestDicProf"), rs.getString("idBibliotecario"), rs.getDate("fechaDevolucion"),
+                DevolucionDiccionarioProf devolucionTmp = new DevolucionDiccionarioProf(rs.getInt("codPrestDicProf"), rs.getString("idBibliotecario"),
                         rs.getString("estadoDevolucion"));
+                devolucionTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 devolucionTmp.setCodDevolucionDiccionarioProf(rs.getInt("codDevDicProf"));
                 devoluciones.add(devolucionTmp);
             }
@@ -100,8 +102,9 @@ public class DevolucionDiccionarioDAOProf extends DevolucionRecursoDAOAbs<Devolu
             rs = stmt.executeQuery("SELECT * FROM Devolucion_Diccionario_Profesor WHERE codDevDicProf = " + codigo + ";");
 
             while (rs.next()) {
-                devolucion = new DevolucionDiccionarioProf(rs.getInt("codPrestDicProf"), rs.getString("idBibliotecario"), rs.getDate("fechaDevolucion"),
+                devolucion = new DevolucionDiccionarioProf(rs.getInt("codPrestDicProf"), rs.getString("idBibliotecario"),
                         rs.getString("estadoDevolucion"));
+                devolucion.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 devolucion.setCodDevolucionDiccionarioProf(rs.getInt("codDevDicProf"));
             }
             rs.close();
@@ -138,6 +141,36 @@ public class DevolucionDiccionarioDAOProf extends DevolucionRecursoDAOAbs<Devolu
             System.out.println("No se pudo realizar el update de devolucion diccionario del profesor");
         }
         return false;
+    }
+
+    /**
+     * el método realiza la consulta del código de la devolución de una
+     * diccionario del profesor en la BD, por medio del código del préstamo.
+     *
+     * @param codPrestamo
+     * @return codDevolucion
+     */
+    @Override
+    public int readCodigoDAO(int codPrestamo) {
+        Statement stmt;
+        ResultSet rs;
+        int codDevolucion = -1;
+
+        try {
+            stmt = connection.getConnection().createStatement();
+            rs = stmt.executeQuery("SELECT codDevDicProf FROM Devolucion_Diccionario_Profesor "
+                    + "WHERE codPrestDicProf = '" + codPrestamo + "';");
+
+            while (rs.next()) {
+                codDevolucion = rs.getInt("codDevDicProf");
+            }
+
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el readCodigoDAO, en devolución diccionario profesor");
+        }
+
+        return codDevolucion;
     }
 
 }

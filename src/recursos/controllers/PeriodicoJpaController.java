@@ -178,7 +178,7 @@ public class PeriodicoJpaController implements Serializable {
      *
      * @return
      */
-    private List<Periodico> findPeriodicoEntities() {
+    public List<Periodico> findPeriodicoEntities() {
         return findPeriodicoEntities(true, -1, -1);
     }
 

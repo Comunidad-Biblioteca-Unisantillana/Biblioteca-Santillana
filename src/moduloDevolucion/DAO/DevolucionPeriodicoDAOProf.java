@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import general.modelo.ConnectionBD;
-import moduloDevolucion.entitys.DevolucionPeriodicoEst;
 import moduloDevolucion.entitys.DevolucionPeriodicoProf;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:49 a. m.
+ * @creado 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionPeriodicoDAOProf extends DevolucionRecursoDAOAbs<DevolucionPeriodicoProf> {
 
@@ -69,25 +69,24 @@ public class DevolucionPeriodicoDAOProf extends DevolucionRecursoDAOAbs<Devoluci
         PreparedStatement pps;
         ResultSet rs;
         ArrayList<DevolucionPeriodicoProf> devoluciones = new ArrayList();
-        
-        try{
+
+        try {
             pps = connection.getConnection().prepareStatement("SELECT * FROM Devolucion_Periodico_Profesor");
             rs = pps.executeQuery();
-            
-            while(rs.next()){
-                DevolucionPeriodicoProf devolucionTmp = new DevolucionPeriodicoProf(rs.getInt("codPrestPeriodicoProf"), rs.getString("idBibliotecario"), 
-                        rs.getDate("fechaDevolucion"), rs.getString("estadoDevolucion"));
+
+            while (rs.next()) {
+                DevolucionPeriodicoProf devolucionTmp = new DevolucionPeriodicoProf(rs.getInt("codPrestPeriodicoProf"), rs.getString("idBibliotecario"),
+                        rs.getString("estadoDevolucion"));
+                devolucionTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 devolucionTmp.setCodDevolucionPeriodicoProf(rs.getInt("codDevPeriodicoProf"));
                 devoluciones.add(devolucionTmp);
             }
             rs.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("No se realizo el readAll correctamente sobre devolucion de periodico del profesor");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Problema en el readAll");
-        }      
+        }
         return devoluciones;
     }
 
@@ -96,25 +95,24 @@ public class DevolucionPeriodicoDAOProf extends DevolucionRecursoDAOAbs<Devoluci
         Statement stmt;
         ResultSet rs;
         DevolucionPeriodicoProf devolucion = null;
-        
-        try{
+
+        try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Devolucion_Periodico_Profesor WHERE codDevPeriodicoProf = " + codigo +";");
-           
-            while(rs.next()){
-                devolucion = new DevolucionPeriodicoProf(rs.getInt("codPrestPeriodicoProf"), rs.getString("idBibliotecario"), rs.getDate("fechaDevolucion"),
-                                   rs.getString("estadoDevolucion"));
+            rs = stmt.executeQuery("SELECT * FROM Devolucion_Periodico_Profesor WHERE codDevPeriodicoProf = " + codigo + ";");
+
+            while (rs.next()) {
+                devolucion = new DevolucionPeriodicoProf(rs.getInt("codPrestPeriodicoProf"), rs.getString("idBibliotecario"),
+                        rs.getString("estadoDevolucion"));
+                devolucion.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 devolucion.setCodDevolucionPeriodicoProf(rs.getInt("codDevPeriodicoProf"));
             }
             rs.close();
             return devolucion;
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("La devolución de periodico de profesor con ese codigo no existe");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("No se pudo realizar la consulta");
-        }  
+        }
         return devolucion;
     }
 
@@ -123,28 +121,56 @@ public class DevolucionPeriodicoDAOProf extends DevolucionRecursoDAOAbs<Devoluci
         String sqlSentence = "UPDATE Devolucion_Periodico_Profesor SET codPrestPeriodicoProf = ?, idBibliotecario = ?, fechaDevolucion = ?, estadoDevolucion = ?"
                 + " WHERE codDevPeriodicoProf = ?";
         PreparedStatement pps;
-        
-        try{       
+
+        try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-           
+
             pps.setInt(1, devolucion.getCodPrestamoPeriodicoProf());
             pps.setString(2, devolucion.getIdBibliotecario());
-            pps.setDate(3, (Date) devolucion.getFechaDevolucion()); 
+            pps.setDate(3, (Date) devolucion.getFechaDevolucion());
             pps.setString(4, devolucion.getEstadoDevolucion());
             pps.setInt(5, devolucion.getCodDevolucionPeriodicoProf());
-            
-            if(pps.executeUpdate() > 0){
-               System.out.println("Realizo el update");
-               return true;
-            }
-            else
+
+            if (pps.executeUpdate() > 0) {
+                System.out.println("Realizo el update");
+                return true;
+            } else {
                 System.out.println("No existe una devolucion de periodico de profesor con ese codigo");
-        }
-        catch(SQLException e){
+            }
+        } catch (SQLException e) {
             System.out.println("No se pudo realizar el update de devolucion de periodico del profesor");
-        } 
+        }
         return false;
     }
 
-    
+    /**
+     * el método realiza la consulta del código de la devolución de un periódico
+     * del profesor en la BD, por medio del código del préstamo.
+     *
+     * @param codPrestamo
+     * @return codDevolucion
+     */
+    @Override
+    public int readCodigoDAO(int codPrestamo) {
+        Statement stmt;
+        ResultSet rs;
+        int codDevolucion = -1;
+
+        try {
+            stmt = connection.getConnection().createStatement();
+            rs = stmt.executeQuery("SELECT codDevPeriodicoProf FROM Devolucion_Periodico_Profesor "
+                    + "WHERE codPrestPeriodicoProf = '" + codPrestamo + "';");
+
+            while (rs.next()) {
+                codDevolucion = rs.getInt("codDevPeriodicoProf");
+            }
+
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el readCodigoDAO, en devolución periódico profesor");
+        }
+
+        return codDevolucion;
+    }
+
 }

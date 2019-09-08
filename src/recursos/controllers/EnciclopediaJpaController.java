@@ -260,7 +260,7 @@ public class EnciclopediaJpaController implements Serializable {
      *
      * @return
      */
-    private List<Enciclopedia> findEnciclopediaEntities() {
+    public List<Enciclopedia> findEnciclopediaEntities() {
         return findEnciclopediaEntities(true, -1, -1);
     }
 

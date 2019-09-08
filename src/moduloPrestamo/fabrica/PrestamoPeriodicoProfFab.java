@@ -1,21 +1,26 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoPeriodicoProf;
 import recursos.controllers.PeriodicoJpaController;
 import recursos.entitys.Periodico;
-import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOProf;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * La clase se encarga gestionar el préstamo de un periódico al profesor.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 23/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoPeriodicoProfFab implements IPrestamo {
 
@@ -27,7 +32,7 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo de un periódico al profesor.
+     * el método realiza el préstamo de un periódico al profesor.
      *
      * @param codBarras
      * @param codUsuario
@@ -54,8 +59,8 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
                     if (presPerDAOProf.createDAO(presPerProf)) {
                         periodico.setDisponibilidad("prestado");
                         control.edit(periodico);
-
-                        //espacio para el envio del correo
+                        notificarPrestamoEmail(codUsuario, periodico);
+                        
                         return true;
                     }
                 } else if (periodico.getDisponibilidad().equalsIgnoreCase("prestado")) {
@@ -76,16 +81,34 @@ public class PrestamoPeriodicoProfFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al profesor, notificandole
-     * el préstamo de un periódico.
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole del préstamo del
+     * periódico.
      *
      * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion
+     * @param periodico
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String idProfesor, Periodico periodico) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        PrestamoPeriodicoDAOProf prestPerDAOProf = new PrestamoPeriodicoDAOProf();
+        PrestamoPeriodicoProf prestPerProf = prestPerDAOProf.readDAO(prestPerDAOProf.readCodigoDAO(periodico.getCodbarraperiodico()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificación: " + idProfesor + ";"
+                + periodico.getNombreperiodico() + ";"
+                + periodico.getCodbarraperiodico() + ";"
+                + formatoFecha.format((Date) prestPerProf.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestPerProf.getFechaDevolucion()) + ";"
+                + "hemeroteca;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
 
 }

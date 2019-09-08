@@ -11,15 +11,17 @@ import general.modelo.ConnectionBD;
  */
 public abstract class DevolucionRecursoDAOAbs<T> {
 
-	protected ConnectionBD connection;
+    protected ConnectionBD connection;
 
-	public abstract boolean createDAO(T devolucion);
-        
-        public abstract boolean deleteDAO(int codigo);
-        
-        public abstract List<T> readAllDAO();
+    public abstract boolean createDAO(T devolucion);
 
-	public abstract T readDAO(int codigo);
+    public abstract boolean deleteDAO(int codigo);
 
-	public abstract boolean updateDAO(T devolucion);
+    public abstract List<T> readAllDAO();
+
+    public abstract T readDAO(int codigo);
+
+    public abstract boolean updateDAO(T devolucion);
+
+    public abstract int readCodigoDAO(int codPrestamo);
 }

@@ -10,7 +10,7 @@ import moduloLogin.vista.LoginUnisantillanaStage;
  * @author stive
  */
 public class Main extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
         LoginUnisantillanaStage.getInstance();
@@ -23,5 +23,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

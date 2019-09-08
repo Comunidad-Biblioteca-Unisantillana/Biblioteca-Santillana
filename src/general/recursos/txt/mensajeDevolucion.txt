@@ -1,0 +1,56 @@
+Notificación de devolución material. Biblioteca unisantillana.
+<b>
+<font color = "#222222" size = "5px" face = "Arial">
+Transacción circulación División de Biblioteca - Unisantillana
+</font>
+<br/>
+<br/>
+<font color = "#222222" size = "3px" face = "Arial">
+Devolución de material
+</font>
+<br/>
+<br/>
+<font color = "#222222" size = "2px" face = "Arial">
+Apreciado Usuario(a): texto1, texto2
+<br/>
+texto3
+</b>
+<br/>
+<br/>
+Estimado Usuario,
+<br/>
+<br/>
+A su nombre se ha registrado la siguiente transacción de devolución de material bibliográfico:
+<br/>
+<br/>
+<b>
+Título: 
+</b>
+texto4
+<br/>
+<b>
+Código: 
+</b>
+texto5
+<br/>
+<br/>
+Fecha de devolucion: <b>texto6</b>
+<br/>
+<br/>
+Gracias por utilizar nuestros servicios,
+<br/>
+<p align = "justify">
+Si usted extravía algún material se le solicita acercarse a la biblioteca a la mayor brevedad o 
+envíe un mensaje al correo: bibliotecaunisantillana@gmail.com.
+</p>
+<br/>
+<b>
+Cordialmente,
+<br/>
+<br/>
+División de Biblioteca Unisantillana.
+</b>
+<br/>
+<br/>
+Nota: Este es un mensaje automático, creado por el sistema de manejo de biblioteca.
+</font>

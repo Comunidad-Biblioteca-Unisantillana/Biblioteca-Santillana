@@ -13,11 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import general.modelo.ConnectionBD;
+import java.sql.Date;
 import moduloReserva.entitys.ReservaColgenEstudiante;
 
 /**
  *
- * @author Storkolm
+ * @author Julian
+ * @creado:
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstudiante> {
 
@@ -28,7 +32,7 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
     @Override
     public boolean createDAO(ReservaColgenEstudiante reserva) {
         String sqlSentence = "INSERT INTO Reserva_Colgen_Estudiante (codBarraLibro, codEstudiante, idBibliotecario, fechaReserva, fechaRetencion, fechaLimiteReserva)"
-                + " VALUES (?,?,?,?,?,?)";
+                + " VALUES (?,?,?,current_date,?,?)";
         PreparedStatement pps;
 
         try {
@@ -36,9 +40,8 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
             pps.setString(1, reserva.getCodBarraLibro());
             pps.setString(2, reserva.getCodEstudiante());
             pps.setString(3, reserva.getIdBibliotecario());
-            pps.setDate(4, reserva.getFechaReserva());
-            pps.setDate(5, reserva.getFechaRetencion());
-            pps.setDate(6, reserva.getFechaLimiteReserva());
+            pps.setDate(4, (Date) reserva.getFechaRetencion());
+            pps.setDate(5, (Date) reserva.getFechaLimiteReserva());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Reserva creada");
@@ -84,7 +87,8 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
 
             while (rs.next()) {
                 ReservaColgenEstudiante reservaTmp = new ReservaColgenEstudiante(rs.getString("codBarraLibro"), rs.getString("codEstudiante"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaReserva"));
+                        rs.getString("idBibliotecario"));
+                reservaTmp.setFechaReserva(rs.getDate("fechaReserva"));
                 reservaTmp.setCodReservaColgenEst(rs.getInt("codReservaColgenEst"));
                 reservaTmp.setFechaLimiteReserva(rs.getDate("fechaLimiteReserva"));
                 reservaTmp.setFechaRetencion(rs.getDate("fechaRetencion"));
@@ -111,7 +115,8 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
 
             while (rs.next()) {
                 reserva = new ReservaColgenEstudiante(rs.getString("codBarraLibro"), rs.getString("codEstudiante"),
-                        rs.getString("idBibliotecario"), rs.getDate("fechaReserva"));
+                        rs.getString("idBibliotecario"));
+                reserva.setFechaReserva(rs.getDate("fechaReserva"));
                 reserva.setCodReservaColgenEst(rs.getInt("codReservaColgenEst"));
                 reserva.setFechaLimiteReserva(rs.getDate("fechaLimiteReserva"));
                 reserva.setFechaRetencion(rs.getDate("fechaRetencion"));
@@ -119,9 +124,9 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
             rs.close();
             return reserva;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "El préstamo de revista con ese codigo no existe");
+            System.out.println("No existe una reserva con ese codigo");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar la consulta");
+            System.out.println("No se pudo realizar la consulta");
         }
         return reserva;
     }
@@ -129,7 +134,7 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
     @Override
     public boolean updateDAO(ReservaColgenEstudiante reserva) {
         String sqlSentence = "UPDATE Reserva_Colgen_Estudiante SET codBarraLibro = ?, codEstudiante = ?, idBibliotecario = ?, fechaReserva = ?, "
-                + "fechaRetencion = ?,fechaLimiteReserva = ? WHERE codReservaColgenEst = ?";
+                + "fechaRetencion = current_date, fechaLimiteReserva = current_date + 5 WHERE codReservaColgenEst = ?";
         PreparedStatement pps;
 
         try {
@@ -137,10 +142,8 @@ public class ReservaColgenDAOEst extends ReservaRecursoDAOAbs<ReservaColgenEstud
             pps.setString(1, reserva.getCodBarraLibro());
             pps.setString(2, reserva.getCodEstudiante());
             pps.setString(3, reserva.getIdBibliotecario());
-            pps.setDate(4, reserva.getFechaReserva());
-            pps.setDate(5, reserva.getFechaRetencion());
-            pps.setDate(6, reserva.getFechaLimiteReserva());
-            pps.setInt(7, reserva.getCodReservaColgenEst());
+            pps.setDate(4, (Date) reserva.getFechaReserva());
+            pps.setInt(5, reserva.getCodReservaColgenEst());
 
             if (pps.executeUpdate() > 0) {
                 System.out.println("Realizo el update");
