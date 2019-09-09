@@ -46,7 +46,7 @@ public class MensajeRenovarController implements Initializable {
      * @param event
      */
     @FXML
-    private void btnRevonar(ActionEvent event) {
+    private void btnRenovar(ActionEvent event) {
         prestEstProfController.setEstadoRenovarRecurso(false);
         GeneradorRenovacion generadorRenovacion = new GeneradorRenovacion();
         generadorRenovacion.createRenovacion(prestamo.getCodBarrasRecurso(), codUsuario, tipoUsuario);
