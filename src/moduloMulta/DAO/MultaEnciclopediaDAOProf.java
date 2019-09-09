@@ -20,8 +20,6 @@ import moduloMulta.entitys.MultaEnciclopediaProf;
  */
 public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf> {
 
-    private ConnectionBD connection;
-
     /**
      * constructor de la clase sin paràmetros.
      */
@@ -44,7 +42,7 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaEnciclopediaProf());
+            pps.setInt(1, multa.getCodPrestamoEnciclopediaProf());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
@@ -55,7 +53,7 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el CreateDAO, en multa enciclopedia profesor");
+            System.out.println("Error al realizar el CreateDAO, en multa enciclopedia profesor " + e.getMessage());
         }
 
         return false;
@@ -119,7 +117,7 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
 
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error al realizar el readAllDAO, en multa enciclopedia profesor");
+            System.out.println("Error al realizar el readAllDAO, en multa enciclopedia profesor " + e.getMessage());
         }
 
         return multas;
@@ -224,7 +222,7 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el updateDAO, en multa enciclopedia profesor");
+            System.out.println("Error al realizar el updateDAO, en multa enciclopedia profesor " + e.getMessage());
         }
 
         return false;

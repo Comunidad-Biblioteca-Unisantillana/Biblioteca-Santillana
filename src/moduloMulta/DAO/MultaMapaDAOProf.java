@@ -19,7 +19,6 @@ import moduloMulta.entitys.MultaMapaProf;
  */
 public class MultaMapaDAOProf extends MultaDAOAbs<MultaMapaProf> {
 
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.
@@ -43,7 +42,7 @@ public class MultaMapaDAOProf extends MultaDAOAbs<MultaMapaProf> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaMapaProf());
+            pps.setInt(1, multa.getCodPrestamoMapaProf());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());

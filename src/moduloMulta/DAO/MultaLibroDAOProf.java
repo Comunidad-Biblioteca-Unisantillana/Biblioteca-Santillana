@@ -20,7 +20,6 @@ import moduloMulta.entitys.MultaLibroProf;
  */
 public class MultaLibroDAOProf extends MultaDAOAbs<MultaLibroProf> {
 
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.
@@ -44,7 +43,7 @@ public class MultaLibroDAOProf extends MultaDAOAbs<MultaLibroProf> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaLibroProf());
+            pps.setInt(1, multa.getCodPrestamoLibroProf());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());

@@ -44,7 +44,7 @@ public class MultaDiccionarioDAOProf extends MultaDAOAbs<MultaDiccionarioProf> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaDiccionarioProf());
+            pps.setInt(1, multa.getCodPrestamoDiccionarioProf());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
@@ -55,7 +55,7 @@ public class MultaDiccionarioDAOProf extends MultaDAOAbs<MultaDiccionarioProf> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el CreateDAO, en multa diccionario profesor");
+            System.out.println("Error al realizar el CreateDAO, en multa diccionario profesor " + e.getMessage());
         }
 
         return false;
@@ -119,7 +119,7 @@ public class MultaDiccionarioDAOProf extends MultaDAOAbs<MultaDiccionarioProf> {
 
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error al realizar el readAllDAO, en multa diccionario profesor");
+            System.out.println("Error al realizar el readAllDAO, en multa diccionario profesor " + e.getMessage());
         }
 
         return multas;
@@ -224,7 +224,7 @@ public class MultaDiccionarioDAOProf extends MultaDAOAbs<MultaDiccionarioProf> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el updateDAO, en multa diccionario profesor");
+            System.out.println("Error al realizar el updateDAO, en multa diccionario profesor " + e.getMessage());
         }
 
         return false;
