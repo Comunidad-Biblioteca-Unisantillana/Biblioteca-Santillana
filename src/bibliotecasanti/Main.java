@@ -22,10 +22,10 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
         VerificaReservaVencida verificaReservaVencida = new VerificaReservaVencida();
         verificaReservaVencida.setName("TareaProgramadaReserva");
         verificaReservaVencida.start();
+        launch(args);
     }
 
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="869.0" style="-fx-border-color: black; -fx-border-width: 2 px;" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloLogin.control.FichaUsuarioController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="10.0" prefWidth="195.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="196.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="80.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="10.0" prefWidth="195.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="196.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="80.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="61.25" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label fx:id="labelFicha" alignment="CENTER" prefWidth="278.0" text="Datos del Usuario" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label fx:id="labelCodigo" prefWidth="161.0" text="Còdigo" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <Label layoutX="15.0" layoutY="85.0" prefWidth="161.0" text="Identificaciòn" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Label>
+      <Label layoutX="15.0" layoutY="146.0" prefWidth="161.0" text="Nombres" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Label layoutX="15.0" layoutY="206.0" prefWidth="161.0" text="Fecha de nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <Label layoutX="15.0" layoutY="266.0" prefWidth="161.0" text="Correo electronico" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+      <Label layoutX="15.0" layoutY="328.0" prefWidth="161.0" text="Ciudad de residencia" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+      <Label layoutX="15.0" layoutY="390.0" prefWidth="161.0" text="Nacionalidad" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtCodigo" editable="false" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtIdentificacion" editable="false" layoutX="186.0" layoutY="84.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtNombres" editable="false" layoutX="186.0" layoutY="145.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtFechaNac" editable="false" layoutX="186.0" layoutY="205.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtCorreo" editable="false" layoutX="186.0" layoutY="266.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtCiudad" editable="false" layoutX="186.0" layoutY="328.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtNacionalidad" editable="false" layoutX="186.0" layoutY="390.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <Label fx:id="labelPlan" layoutX="26.0" layoutY="452.0" prefWidth="164.0" text="Plan" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Label>
+      <Label layoutX="580.0" layoutY="85.0" prefWidth="164.0" text="Tipo de identificaciòn" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Label>
+      <Label layoutX="580.0" layoutY="146.0" prefWidth="164.0" text="Apellidos" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Label layoutX="580.0" layoutY="206.0" prefWidth="164.0" text="Edad" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <Label layoutX="580.0" layoutY="266.0" prefWidth="164.0" text="Direcciòn" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtPlan" editable="false" layoutX="203.0" layoutY="452.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtTipoID" editable="false" layoutX="634.0" layoutY="84.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtApellidos" editable="false" layoutX="634.0" layoutY="145.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin></JFXTextField>
+      <JFXTextField fx:id="txtEdad" editable="false" layoutX="634.0" layoutY="205.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <JFXTextField fx:id="txtDireccion" editable="false" layoutX="634.0" layoutY="266.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin></JFXTextField>
+   </children>
+</GridPane>

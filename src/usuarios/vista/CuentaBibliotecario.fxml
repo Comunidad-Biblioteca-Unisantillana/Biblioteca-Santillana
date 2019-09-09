@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -19,10 +20,6 @@
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#itemSalirPressed" text="Salir" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ayuda">
-            <items>
               <MenuItem mnemonicParsing="false" onAction="#itemAcercaDe" text="Acerca de" />
             </items>
           </Menu>
@@ -34,12 +31,20 @@
          <children>
             <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.9" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
             <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="50.0" prefWidth="60.0" styleClass="hamburger" />
-            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="261.0" prefWidth="200.0">
+            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="392.0" prefWidth="200.0">
                <children>
-                  <AnchorPane fx:id="anchorDrawer" prefHeight="261.0" prefWidth="200.0">
+                  <AnchorPane fx:id="anchorDrawer" prefHeight="392.0" prefWidth="200.0">
                      <children>
-                        <VBox prefHeight="261.0" prefWidth="200.0">
+                        <VBox prefHeight="392.0" prefWidth="200.0">
                            <children>
+                              <JFXButton fx:id="btnConsultarUsuario" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="5.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnConsultarUsuarioPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Buscar Usuario">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconConsultarUsuario" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </JFXButton>
                               <JFXButton fx:id="btnOPAC" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="OPAC">
                                  <font>
                                     <Font size="18.0" />

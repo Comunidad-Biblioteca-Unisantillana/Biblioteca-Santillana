@@ -1,7 +1,6 @@
 package moduloOPAC.vista;
 
 import java.io.IOException;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

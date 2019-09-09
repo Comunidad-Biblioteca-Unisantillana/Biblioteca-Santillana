@@ -2,6 +2,7 @@ package moduloRenovacion.control;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import general.control.KeyEventJFXTextFieldController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -36,6 +37,9 @@ public class RenovacionBibliotecarioController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
+        eventoTecla.soloNumeros(txtCodBarras);
+        eventoTecla.soloNumeros(txtcodUsuario);
         ObservableList<String> listaTipoUsuario = FXCollections.observableArrayList("Estudiante", "Profesor");
         cboTipoUsuario.setItems(listaTipoUsuario);
         cboTipoUsuario.setValue("Estudiante");
