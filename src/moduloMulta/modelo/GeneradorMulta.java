@@ -1,4 +1,4 @@
-package ModuloMulta;
+package moduloMulta.modelo;
 
 
 /**

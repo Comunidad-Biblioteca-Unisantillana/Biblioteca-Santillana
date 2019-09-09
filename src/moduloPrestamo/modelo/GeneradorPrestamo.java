@@ -64,7 +64,7 @@ public class GeneradorPrestamo {
                 if (!consultarMulta(codUsuario, tipoUsuario)) {
                     if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
                         alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
-                                + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
+                                + ": " + codBarra + " al profesor: " + codUsuario + ", se realizó con éxito.");
                     } else {
                         alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
                                 + tipoPrestamo + ": " + codBarra + " al profesor: " + codUsuario + ".");

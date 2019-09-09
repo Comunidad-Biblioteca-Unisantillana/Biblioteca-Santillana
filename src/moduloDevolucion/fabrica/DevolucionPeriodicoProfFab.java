@@ -75,7 +75,8 @@ public class DevolucionPeriodicoProfFab implements IDevolucion {
         List<PrestamoPeriodicoProf> prestamos = prestDAOProf.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraPeriodico().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraPeriodico().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoPeriodicoProf();
                 break;
             }
