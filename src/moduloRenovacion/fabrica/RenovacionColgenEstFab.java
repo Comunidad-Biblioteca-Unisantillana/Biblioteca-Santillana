@@ -1,6 +1,6 @@
 package moduloRenovacion.fabrica;
 
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.DAO.PrestamoLibroDAOEst;
 import moduloPrestamo.entitys.PrestamoLibroEst;
 import moduloRenovacion.modelo.IRenovacion;
@@ -8,13 +8,18 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import moduloReserva.modelo.VerificaReserva;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * @author Miguel Fernández
  * @creado 24/08/2019
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado 08/09/2019
  */
 public class RenovacionColgenEstFab implements IRenovacion {
 
@@ -28,7 +33,7 @@ public class RenovacionColgenEstFab implements IRenovacion {
     }
 
     /**
-     * el metódo se encarga de verificar si existe una reserva del recurso a
+     * el método se encarga de verificar si existe una reserva del recurso a
      * renovar.
      *
      * @param codBarras
@@ -47,7 +52,7 @@ public class RenovacionColgenEstFab implements IRenovacion {
     }
 
     /**
-     * el metódo se encarga de realizar la renovaión del recurso solicitado por
+     * el método se encarga de realizar la renovaión del recurso solicitado por
      * el estudiante.
      *
      * @param codBarras
@@ -69,7 +74,7 @@ public class RenovacionColgenEstFab implements IRenovacion {
                         prestamoLibroEst.setNumRenovaciones(prestamoLibroEst.getNumRenovaciones() + 1);
 
                         if (prestamoLibroDAOEst.updateDAO(prestamoLibroEst)) {
-                            //espacio para el envio del correo
+                            notificarPrestamoEmail(idUsuario, libro);
 
                             alert.showAlert("Anuncio", "Renovación exitosa", "La renovación del libro: " + codBarras
                                     + ", se realizó con exito");
@@ -99,21 +104,38 @@ public class RenovacionColgenEstFab implements IRenovacion {
     }
 
     /**
-     * el metódo realiza la construcción del correo, para notificar al
-     * estudiante de que resucro se renovó.
+     * el método realiza la concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole de la renovación del
+     * libro.
      *
      * @param codEstudiante
-     * @param codBarras
-     * @param tituloRecurso
-     * @param fechaRenovacion
-     * @param fechaDevolucion
+     * @param libro
      */
-    private void notificarRenovacion(String codEstudiante, String codBarras, String tituloRecurso, Date fechaRenovacion, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String codEstudiante, Libro libro) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        PrestamoLibroDAOEst prestamoLibroDAOEst = new PrestamoLibroDAOEst();
+        PrestamoLibroEst prestamoLibroEst = prestamoLibroDAOEst.readDAO(prestamoLibroDAOEst.readCodigoDAO(libro.getCodbarralibro()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + libro.getTitulo() + ";"
+                + libro.getCodbarralibro() + ";"
+                + formatoFecha.format(new Date().getTime()) + ";"
+                + formatoFecha.format((Date) prestamoLibroEst.getFechaDevolucion()) + ";"
+                + libro.getCodcategoriacoleccion().getNombrecol() + ";"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeRenovacion");
     }
 
     /**
-     * el metódo verifica ciertas rrestricciones sobre el libro a renovar.
+     * el método verifica ciertas rrestricciones sobre el libro a renovar.
      *
      * @param libro
      * @param codBarras

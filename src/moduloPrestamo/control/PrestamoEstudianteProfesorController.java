@@ -80,7 +80,6 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         tituloTable.setCellValueFactory(new PropertyValueFactory<>("tituloRecurso"));
         fechaPrestamoTable.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
         fechaDevolucionTable.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucion"));
-        tablePrestamo.getSelectionModel().clearSelection();
 
         alert = new AlertBox();
         estadoRenovarRecurso = false;
@@ -106,6 +105,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
 
         tablePrestamo.setItems(prestamos);
         txtMensaje.setText("Se encontrarón: " + prestamos.size() + " préstamos.");
+        tablePrestamo.getSelectionModel().clearSelection();
     }
 
     /**
@@ -158,6 +158,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
         ObservableList<Prestamo> prestamos = consulta.getPrestamosActuales(codUsuario);
         tablePrestamo.setItems(prestamos);
         txtMensaje.setText("Se encontrarón: " + prestamos.size() + " préstamos.");
+        tablePrestamo.getSelectionModel().clearSelection();
     }
 
     /**

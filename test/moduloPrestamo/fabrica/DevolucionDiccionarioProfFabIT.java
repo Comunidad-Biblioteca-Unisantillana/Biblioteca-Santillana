@@ -5,12 +5,9 @@
  */
 package moduloPrestamo.fabrica;
 
-import java.util.List;
 import moduloDevolucion.fabrica.DevolucionDiccionarioProfFab;
 import org.junit.*;
-import static org.junit.Assert.*;
-import recursos.controllers.DiccionarioJpaController;
-import recursos.entitys.Diccionario;
+import static org.junit.Assert.assertEquals;
 
 /**
  *

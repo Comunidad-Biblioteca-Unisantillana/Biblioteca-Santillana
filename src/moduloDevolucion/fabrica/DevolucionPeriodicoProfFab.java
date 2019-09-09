@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +14,17 @@ import recursos.controllers.PeriodicoJpaController;
 import recursos.entitys.Periodico;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:55 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionPeriodicoProfFab implements IDevolucion {
 
@@ -38,10 +44,8 @@ public class DevolucionPeriodicoProfFab implements IDevolucion {
                     PrestamoPeriodicoDAOProf prestDAOProf = new PrestamoPeriodicoDAOProf();
                     PrestamoPeriodicoProf prestProf = prestDAOProf.readDAO(codPrestamo);
                     if (prestProf.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionPeriodicoProf devProf = new DevolucionPeriodicoProf(prestProf.getCodPrestamoPeriodicoProf(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionPeriodicoDAOProf devDAOProf = new DevolucionPeriodicoDAOProf();
                         devDAOProf.createDAO(devProf);
 
@@ -50,6 +54,8 @@ public class DevolucionPeriodicoProfFab implements IDevolucion {
 
                         prestProf.setDevuelto("si");
                         prestDAOProf.updateDAO(prestProf);
+
+                        notificarDevolucion(prestProf.getIdProfesor(), periodico, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución periodico", "La devolución del usuario con codigo"
                                 + prestProf.getIdProfesor() + "se realizo con exito");
                     } else {
@@ -84,7 +90,36 @@ public class DevolucionPeriodicoProfFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String idProfesor, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole de la devoluciòn de la
+     * periòdico.
+     *
+     * @param idProfesor
+     * @param periodico
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String idProfesor, Periodico periodico, int codPrestamo) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        DevolucionPeriodicoDAOProf devDAOProf = new DevolucionPeriodicoDAOProf();
+        DevolucionPeriodicoProf devProf = devDAOProf.readDAO(devDAOProf.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificaciòn: " + idProfesor + ";"
+                + periodico.getNombreperiodico()+ ";"
+                + periodico.getCodbarraperiodico() + ";"
+                + formatoFecha.format((Date) devProf.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
+    
 }

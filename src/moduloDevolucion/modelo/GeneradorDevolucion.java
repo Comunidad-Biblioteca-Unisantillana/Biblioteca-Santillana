@@ -1,8 +1,5 @@
 package moduloDevolucion.modelo;
 
-import general.vista.AlertBox;
-import general.vista.IAlertBox;
-
 /**
  * @author Camilo Jaramillo
  * @version 1.0

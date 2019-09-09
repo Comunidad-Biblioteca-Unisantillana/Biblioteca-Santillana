@@ -1,11 +1,12 @@
 package moduloDevolucion.entitys;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:38:01 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class DevolucionRevistaProf {
 
@@ -15,10 +16,9 @@ public class DevolucionRevistaProf {
     private Date fechaDevolucion;
     private String estadoDevolucion;
 
-    public DevolucionRevistaProf(int codPrestamoRevistaProf, String idBibliotecario, Date fechaDevolucion, String estadoDevolucion) {
+    public DevolucionRevistaProf(int codPrestamoRevistaProf, String idBibliotecario, String estadoDevolucion) {
         this.codPrestamoRevistaProf = codPrestamoRevistaProf;
         this.idBibliotecario = idBibliotecario;
-        this.fechaDevolucion = fechaDevolucion;
         this.estadoDevolucion = estadoDevolucion;
     }
 

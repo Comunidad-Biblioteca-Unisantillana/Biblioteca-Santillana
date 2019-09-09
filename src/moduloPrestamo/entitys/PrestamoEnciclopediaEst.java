@@ -1,6 +1,6 @@
 package moduloPrestamo.entitys;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * clase de la entidad Prestamo Enciclopedia Estudiante.

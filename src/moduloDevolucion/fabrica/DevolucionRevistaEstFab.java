@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +14,17 @@ import recursos.controllers.RevistaJpaController;
 import recursos.entitys.Revista;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:38:00 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionRevistaEstFab implements IDevolucion {
 
@@ -39,10 +45,8 @@ public class DevolucionRevistaEstFab implements IDevolucion {
                     PrestamoRevistaDAOEst prestDAOEst = new PrestamoRevistaDAOEst();
                     PrestamoRevistaEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionRevistaEst devEst = new DevolucionRevistaEst(prestEst.getCodPrestamoRevistaEst(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionRevistaDAOEst devDAOEst = new DevolucionRevistaDAOEst();
                         devDAOEst.createDAO(devEst);
 
@@ -51,6 +55,8 @@ public class DevolucionRevistaEstFab implements IDevolucion {
 
                         prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
+
+                        notificarDevolucion(prestEst.getCodEstudiante(), revista, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución revista", "La devolución del usuario con codigo"
                                 + prestEst.getCodEstudiante()
                                 + "se realizo con exito");
@@ -73,7 +79,8 @@ public class DevolucionRevistaEstFab implements IDevolucion {
         List<PrestamoRevistaEst> prestamos = prestDAOEst.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraRevista().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraRevista().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoRevistaEst();
                 break;
             }
@@ -81,7 +88,36 @@ public class DevolucionRevistaEstFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String codEstudiante, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole de la devoluciòn de
+     * la revista.
+     *
+     * @param codEstudiante
+     * @param revista
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String codEstudiante, Revista revista, int codPrestamo) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        DevolucionRevistaDAOEst devDAOEst = new DevolucionRevistaDAOEst();
+        DevolucionRevistaEst devEst = devDAOEst.readDAO(devDAOEst.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + revista.getTitulo() + ";"
+                + revista.getCodbarrarevista() + ";"
+                + formatoFecha.format((Date) devEst.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
+    
 }

@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,18 +10,21 @@ import moduloDevolucion.modelo.IDevolucion;
 import moduloDevolucion.entitys.DevolucionEnciclopediaEst;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOEst;
 import moduloPrestamo.entitys.PrestamoEnciclopediaEst;
-import moduloReserva.DAO.ReservaColgenDAOEst;
-import moduloReserva.entitys.ReservaColgenEstudiante;
-import moduloReserva.fabrica.ReservaColgenEstFab;
 import recursos.controllers.EnciclopediaJpaController;
 import recursos.entitys.Enciclopedia;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:29 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionEnciclopediaEstFab implements IDevolucion {
 
@@ -41,18 +44,18 @@ public class DevolucionEnciclopediaEstFab implements IDevolucion {
                     PrestamoEnciclopediaDAOEst prestDAOEst = new PrestamoEnciclopediaDAOEst();
                     PrestamoEnciclopediaEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionEnciclopediaEst devEst = new DevolucionEnciclopediaEst(prestEst.getCodPrestamoEnciclopediaEst(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionEnciclopediaDAOEst devDAOEst = new DevolucionEnciclopediaDAOEst();
                         devDAOEst.createDAO(devEst);
-                        
+
                         enciclopedia.setDisponibilidad("disponible");
                         control.edit(enciclopedia);
 
                         prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
+
+                        notificarDevolucion(prestEst.getCodEstudiante(), enciclopedia, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución enciclopedia", "La devolución del usuario con codigo"
                                 + prestEst.getCodEstudiante() + "se realizo con exito");
                     } else {
@@ -74,7 +77,8 @@ public class DevolucionEnciclopediaEstFab implements IDevolucion {
         List<PrestamoEnciclopediaEst> prestamos = prestDAOEst.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraEnciclopedia().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraEnciclopedia().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoEnciclopediaEst();
                 break;
             }
@@ -82,7 +86,36 @@ public class DevolucionEnciclopediaEstFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String codEstudiante, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole de la devoluciòn de
+     * la enciclopedia.
+     *
+     * @param codEstudiante
+     * @param enciclopedia
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String codEstudiante, Enciclopedia enciclopedia, int codPrestamo) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        DevolucionEnciclopediaDAOEst devDAOEst = new DevolucionEnciclopediaDAOEst();
+        DevolucionEnciclopediaEst devEst = devDAOEst.readDAO(devDAOEst.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + enciclopedia.getTitulo() + ";"
+                + enciclopedia.getCodbarraenciclopedia() + ";"
+                + formatoFecha.format((Date) devEst.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
+
 }

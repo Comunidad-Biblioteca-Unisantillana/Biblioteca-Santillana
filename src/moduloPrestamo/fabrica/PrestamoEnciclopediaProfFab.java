@@ -1,5 +1,6 @@
 package moduloPrestamo.fabrica;
 
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.modelo.IPrestamo;
 import moduloPrestamo.entitys.PrestamoEnciclopediaProf;
 import recursos.controllers.EnciclopediaJpaController;
@@ -8,14 +9,18 @@ import java.sql.Date;
 import moduloPrestamo.DAO.PrestamoEnciclopediaDAOProf;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * clase que se encarga gestionar el préstamo de la enciclopedia al estudiante.
  *
  * @author Julian
- * @creado
+ * @creado:
  * @author Miguel Fernández
- * @modificado 24/08/2019
+ * @modificado: 07/09/2019
  */
 public class PrestamoEnciclopediaProfFab implements IPrestamo {
 
@@ -27,7 +32,7 @@ public class PrestamoEnciclopediaProfFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza el préstamo de la encilopedia al profesor.
+     * el método realiza el préstamo de la encilopedia al profesor.
      *
      * @param codBarras
      * @param codUsuario
@@ -53,8 +58,7 @@ public class PrestamoEnciclopediaProfFab implements IPrestamo {
                     if (presEncDAOProf.createDAO(presEncProf)) {
                         enciclopedia.setDisponibilidad("prestado");
                         control.edit(enciclopedia);
-                        
-                        //espacio para el envio del correo
+                        notificarPrestamoEmail(codUsuario, enciclopedia);
                         
                         return true; 
                     }
@@ -77,16 +81,34 @@ public class PrestamoEnciclopediaProfFab implements IPrestamo {
     }
 
     /**
-     * el metódo realiza la construccción del e-mail al profesor,
-     * notificandole el préstamo de la enciclopedia.
-     * 
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole del préstamo de la
+     * enciclopedia.
+     *
      * @param idProfesor
-     * @param tituloRecurso
-     * @param fechaPrestamo
-     * @param fechaDevolucion 
+     * @param enciclopedia
      */
-    public void notificarPrestamoEmail(String idProfesor, String tituloRecurso, Date fechaPrestamo, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String idProfesor, Enciclopedia enciclopedia) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        PrestamoEnciclopediaDAOProf prestEncDAOProf = new PrestamoEnciclopediaDAOProf();
+        PrestamoEnciclopediaProf prestEncProf = prestEncDAOProf.readDAO(prestEncDAOProf.readCodigoDAO(enciclopedia.getCodbarraenciclopedia()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificación: " + idProfesor + ";"
+                + enciclopedia.getTitulo() + ";"
+                + enciclopedia.getCodbarraenciclopedia() + ";"
+                + formatoFecha.format((Date) prestEncProf.getFechaPrestamo()) + ";"
+                + formatoFecha.format((Date) prestEncProf.getFechaDevolucion()) + ";"
+                + "referencia;"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajePrestamo");
     }
     
 }

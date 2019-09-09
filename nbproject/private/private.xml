@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/control/CancelarMultaController.java</file>
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/vista/CancelarMultaStage.java</file>
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/control/MultaBibliotecarioController.java</file>
+            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/fabrica/MultaEnciclopediaEstFab.java</file>
+            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/fabrica/MultaEnciclopediaProfFab.java</file>
+            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/modelo/GeneradorMulta.java</file>
+            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
         </group>
     </open-files>
 </project-private>

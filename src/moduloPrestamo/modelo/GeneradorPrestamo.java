@@ -26,7 +26,7 @@ public class GeneradorPrestamo {
     }
 
     /**
-     * el método se encarga de crear un préstamoñ
+     * el método se encarga de crear un préstamo a un usuario.
      *
      * @param codBarra
      * @param codUsuario
@@ -37,6 +37,7 @@ public class GeneradorPrestamo {
      */
     public void createPrestamo(String codBarra, String codUsuario, String idBibliotecario, String tipoPrestamo, String tipoUsuario) throws Exception {
         IAlertBox alert = new AlertBox();
+
         if (tipoUsuario.equalsIgnoreCase("estudiante")) {
             EstudianteJpaController estJPA = new EstudianteJpaController();
 

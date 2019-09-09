@@ -20,7 +20,6 @@ import moduloMulta.entitys.MultaRevistaProf;
  */
 public class MultaRevistaDAOProf extends MultaDAOAbs<MultaRevistaProf> {
 
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.

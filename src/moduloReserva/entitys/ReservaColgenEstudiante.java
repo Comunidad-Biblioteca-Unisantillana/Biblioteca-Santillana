@@ -1,11 +1,14 @@
 
 package moduloReserva.entitys;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
  * @author Julian
+ * @creado: 
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class ReservaColgenEstudiante {
     
@@ -17,11 +20,10 @@ public class ReservaColgenEstudiante {
     private Date fechaRetencion;
     private String idBibliotecario;
 
-    public ReservaColgenEstudiante(String codBarraLibro, String codEstudiante, String idBibliotecario, Date fechaReserva) {
+    public ReservaColgenEstudiante(String codBarraLibro, String codEstudiante, String idBibliotecario) {
         this.codBarraLibro = codBarraLibro;
         this.codEstudiante = codEstudiante;
         this.idBibliotecario = idBibliotecario;
-        this.fechaReserva = fechaReserva;
     }
 
     public String getCodBarraLibro() {
