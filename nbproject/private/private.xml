@@ -3,20 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/fabrica/MultaEnciclopediaEstFab.java</file>
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/fabrica/MultaEnciclopediaProfFab.java</file>
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/moduloMulta/modelo/GeneradorMulta.java</file>
-            <file>file:/C:/Users/Storkolm/Desktop/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
-=======
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloPrestamo/control/PrestamoEstudianteProfesorController.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloRenovacion/vista/MensajeRenovarStage.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloRenovacion/fabrica/RenovacionColgenEstFabTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloRenovacion/fabrica/RenovacionColgenProfFabTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloRenovacion/modelo/IRenovacion.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloRenovacion/modelo/GeneradorRenovacion.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloRenovacion/control/MensajeRenovarController.java</file>
->>>>>>> test
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/META-INF/persistence.xml</file>
         </group>
     </open-files>
 </project-private>
