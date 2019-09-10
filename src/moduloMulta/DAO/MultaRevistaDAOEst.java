@@ -44,7 +44,7 @@ public class MultaRevistaDAOEst extends MultaDAOAbs<MultaRevistaEst> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaRevistaEst());
+            pps.setInt(1, multa.getCodPrestamoRevistaEst());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());

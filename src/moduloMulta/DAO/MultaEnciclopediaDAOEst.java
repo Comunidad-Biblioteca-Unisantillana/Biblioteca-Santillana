@@ -20,7 +20,6 @@ import moduloMulta.entitys.MultaEnciclopediaEst;
  */
 public class MultaEnciclopediaDAOEst extends MultaDAOAbs<MultaEnciclopediaEst> {
 
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.
@@ -44,7 +43,7 @@ public class MultaEnciclopediaDAOEst extends MultaDAOAbs<MultaEnciclopediaEst> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaEnciclopediaEst());
+            pps.setInt(1, multa.getCodPrestamoEnciclopediaEst());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
@@ -55,7 +54,7 @@ public class MultaEnciclopediaDAOEst extends MultaDAOAbs<MultaEnciclopediaEst> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el CreateDAO, en multa enciclopedia estudiante");
+            System.out.println("Error al realizar el CreateDAO, en multa enciclopedia estudiante " + e.getMessage());
         }
 
         return false;
@@ -119,7 +118,7 @@ public class MultaEnciclopediaDAOEst extends MultaDAOAbs<MultaEnciclopediaEst> {
 
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error al realizar el readAllDAO, en multa enciclopedia estudiante");
+            System.out.println("Error al realizar el readAllDAO, en multa enciclopedia estudiante " + e.getMessage());
         }
 
         return multas;
@@ -204,7 +203,7 @@ public class MultaEnciclopediaDAOEst extends MultaDAOAbs<MultaEnciclopediaEst> {
     @Override
     public boolean updateDAO(MultaEnciclopediaEst multa) {
         String sqlSentence = "UPDATE multa_enciclopedia_estudiante "
-                + "SET codprestenest = ?, diasatrasados = ?, codpreciomulta = ?, valortotalmulta = ?, "
+                + "SET codprestencest = ?, diasatrasados = ?, codpreciomulta = ?, valortotalmulta = ?, "
                 + "estadocancelacion = ?, descripcioncancelacion = ?, fechamulta = ? "
                 + "WHERE codmultaencest = ?";
         PreparedStatement pps;
@@ -224,7 +223,7 @@ public class MultaEnciclopediaDAOEst extends MultaDAOAbs<MultaEnciclopediaEst> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el updateDAO, en multa enciclopedia estudiante");
+            System.out.println("Error al realizar el updateDAO, en multa enciclopedia estudiante " + e.getMessage());
         }
 
         return false;

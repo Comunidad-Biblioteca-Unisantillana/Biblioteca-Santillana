@@ -20,7 +20,6 @@ import moduloMulta.entitys.MultaPeriodicoProf;
  */
 public class MultaPeriodicoDAOProf extends MultaDAOAbs<MultaPeriodicoProf> {
 
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.

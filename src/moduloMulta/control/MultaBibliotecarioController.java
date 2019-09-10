@@ -13,19 +13,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import moduloMulta.modelo.ConsultaMulta;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
 import java.sql.Date;
+import javafx.scene.control.Label;
 import moduloMulta.modelo.ConsultaMultaAbs;
 import moduloMulta.modelo.ConsultaMultaEst;
 import moduloMulta.modelo.ConsultaMultaProf;
+import moduloMulta.vista.CancelarMultaStage;
 
 /**
  * Clase que controla la vista MultaBibliotecario.fxml
- * @author Julian
- * Fecha de Creación: 18/07/2019
- * Fecha de ultima Modificación: 04/08/2019
+ *
+ * @author Julian Fecha de Creación: 18/07/2019 Fecha de ultima Modificación:
+ * 04/08/2019
  */
 public class MultaBibliotecarioController implements Initializable {
 
@@ -55,123 +56,24 @@ public class MultaBibliotecarioController implements Initializable {
     private TableColumn<Multa, Integer> colValorTot;
     @FXML
     private TableColumn<Multa, String> colCancelado;
-    
+    @FXML
+    private Label lblCodUsuario;
 
-    private int codMulta = 0;
-    private String tipo = "";
-    private String idUsuario = "";
-    private boolean consultoMultas = false;
     private String tipoUsuario = "estudiante";
 
     /**
      * Método que se ejecuta automáticamente al enlazar<br>
      * este controlador con su respectiva vista
+     *
      * @param url
-     * @param rb 
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         KeyEventJFXTextFieldController eventoTecla = new KeyEventJFXTextFieldController();
         eventoTecla.soloNumeros(codUserHisMulTxt);
-        tableMulta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Multa> arg0, Multa oldValue, Multa newValue) -> {
-            tipo = newValue.getTipoRecurso();
-            codMulta = newValue.getCodMulta();
-        });
         setDisableButton();
-        cargarAllMultas();
-    }
-
-    /**
-     * Método que por medio de un código busca el<br>
-     * historial de multas de un usuario
-     * @param event 
-     */
-    @FXML
-    private void btnconsultarHisMulPressed(ActionEvent event) {
-        consultoMultas = false;
-        if (!codUserHisMulTxt.getText().isEmpty()) {
-            try {
-                cargarDatosTableMultas(codUserHisMulTxt.getText());
-                consultoMultas = true;
-            } catch (Exception ex) {
-                System.err.println("Error al cargar los datos del historial de multas");
-            }
-        } else {
-            IAlertBox alert = new AlertBox();
-            alert.showAlert("Anuncio", "Historial de multas de un estudiante", "Ingrese el código del estudiante");
-        }
-    }
-
-    /**
-     * Metodo que se encarga de eliminar la multa de<br>
-     * un usuario
-     * @param event
-     * @throws Exception 
-     */
-    @FXML
-    private void btnCancelarMultaPressed(ActionEvent event) throws Exception {
-        IAlertBox alert = new AlertBox();
-        if (consultoMultas) {
-            ConsultaMulta consultaMulta = new ConsultaMulta();
-            if (consultaMulta.eliminarMulta(codMulta, tipo)) {
-                alert.showAlert("Anuncio", "Multa", "La multa ha sido eliminada");
-                cargarDatosTableMultas(idUsuario);
-
-            } else {
-                alert.showAlert("Anuncio", "Login Estudiante", "La multa no ha sido eliminada");
-            }
-        } else {
-            alert.showAlert("Anuncio", "Login Estudiante", "No hay multas seleccionadas");
-        }
-    }
-    
-    @FXML
-    private void btnMultaEstudiantePressed(ActionEvent e){
-        tipoUsuario = "estudiante";
-        setDisableButton();
-        cargarAllMultas();
-    }
-    
-    @FXML
-    private void btnMultaProfesorPressed(ActionEvent e){
-        tipoUsuario = "profesor";
-        setDisableButton();
-        cargarAllMultas();
-    }
-
-    /**
-     * Método que se encarga de cargar las multas que se han realizado a un
-     * estudiante por medio de código.
-     * @param idUsuario
-     * @throws Exception
-     */
-    public void cargarDatosTableMultas(String idUsuario) throws Exception {
-        ConsultaMultaAbs consulta;
-        if(tipoUsuario.equalsIgnoreCase("estudiante")){
-            consulta = new ConsultaMultaEst();
-        }else{
-            consulta = new ConsultaMultaProf();
-        }
-        colCodMulta.setCellValueFactory(new PropertyValueFactory<>("codMulta"));
-        colCodUsuario.setCellValueFactory(new PropertyValueFactory<>("codPrestamo"));
-        colDiasAtrasados.setCellValueFactory(new PropertyValueFactory<>("diasAtrasados"));
-        colValorTot.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
-        colCancelado.setCellValueFactory(new PropertyValueFactory<>("cancelado"));
-        colTituloRecurso.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        tableMulta.setItems(consulta.getMultasUsuario(idUsuario));
-
-        this.idUsuario = idUsuario;
-    }
-    
-    public void cargarAllMultas(){
-        ConsultaMultaAbs consulta;
-        if(tipoUsuario.equalsIgnoreCase("estudiante")){
-            consulta = new ConsultaMultaEst();
-            colCodUsuario.setText("Código estudiante");
-        }else{
-            consulta = new ConsultaMultaProf();
-            colCodUsuario.setText("Identificacíon profesor");
-        }
+        //cargamos las columnas
         colCodMulta.setCellValueFactory(new PropertyValueFactory<>("codMulta"));
         colCodUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
         colNombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
@@ -181,19 +83,109 @@ public class MultaBibliotecarioController implements Initializable {
         colDiasAtrasados.setCellValueFactory(new PropertyValueFactory<>("diasAtrasados"));
         colValorTot.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
         colCancelado.setCellValueFactory(new PropertyValueFactory<>("candelado"));
+        //cargamos los datos
+        cargarAllMultas();
+    }
+
+    /**
+     * Método que por medio de un código busca el<br>
+     * historial de multas de un usuario
+     *
+     * @param event
+     */
+    @FXML
+    private void btnConsultarPressed(ActionEvent event) {
+        IAlertBox alert = new AlertBox();
+        if (!codUserHisMulTxt.getText().isEmpty()) {
+            cargarAllMultas();
+            for (int i = 0; i < tableMulta.getItems().size(); i++) {
+                System.out.println(i);
+                if (!tableMulta.getItems().get(i).getIdUsuario().equals(codUserHisMulTxt.getText().trim())) {
+                    tableMulta.getItems().remove(i);
+                    i--;
+                }
+            }
+            if (tableMulta.getItems().isEmpty()) {
+                alert.showAlert("Anuncio", "Multa " + tipoUsuario, "No se encontraron multas");
+                cargarAllMultas();
+            } else {
+                codUserHisMulTxt.setText("");
+            }
+        } else {
+            alert.showAlert("Anuncio", "Multa " + tipoUsuario, "El campo esta vacio");
+        }
+    }
+
+    /**
+     * Metodo que se encarga de eliminar la multa de<br>
+     * un usuario
+     *
+     * @param event
+     * @throws Exception
+     */
+    @FXML
+    private void btnCancelarMultaPressed(ActionEvent event) throws Exception {
+        IAlertBox alert = new AlertBox();
+        if (tableMulta.getSelectionModel().getSelectedIndex() > -1) {
+            CancelarMultaStage stage = new CancelarMultaStage();
+            stage.cargarComponentes(tipoUsuario,tableMulta);
+        }else{
+            alert.showAlert("Anuncio", "Multa " + tipoUsuario, "Seleccione una fila");
+        }
+        System.out.println(tableMulta.getSelectionModel().getSelectedIndex());
+    }
+
+    /**
+     * Metodo que carga todas las multas de los estudiantes
+     *
+     * @param e
+     */
+    @FXML
+    private void btnMultaEstudiantePressed(ActionEvent e) {
+        tipoUsuario = "estudiante";
+        setDisableButton();
+        cargarAllMultas();
+    }
+
+    /**
+     * Metodo que carga todas las multas de los profesores
+     *
+     * @param e
+     */
+    @FXML
+    private void btnMultaProfesorPressed(ActionEvent e) {
+        tipoUsuario = "profesor";
+        setDisableButton();
+        cargarAllMultas();
+    }
+
+    /**
+     * Metodo que carga todas las multas de los usuarios(estudiante/profesor)
+     */
+    private void cargarAllMultas() {
+        ConsultaMultaAbs consulta;
+        if (tipoUsuario.equalsIgnoreCase("estudiante")) {
+            consulta = new ConsultaMultaEst();
+            colCodUsuario.setText("Código estudiante");
+        } else {
+            consulta = new ConsultaMultaProf();
+            colCodUsuario.setText("Identificacíon profesor");
+        }
         tableMulta.setItems(consulta.getMultasAll());
     }
-    
+
     /**
      * el metódo inhabilita el botón que se haya seleccionado.
      *
      * @param busqueda
      */
     private void setDisableButton() {
-        if(tipoUsuario.equalsIgnoreCase("estudiante")){
+        if (tipoUsuario.equalsIgnoreCase("estudiante")) {
+            lblCodUsuario.setText("Código estudiante");
             btnMultaEstudiante.setDisable(true);
             btnMultaProfesor.setDisable(false);
-        }else{
+        } else {
+            lblCodUsuario.setText("Identificación profesor");
             btnMultaEstudiante.setDisable(false);
             btnMultaProfesor.setDisable(true);
         }

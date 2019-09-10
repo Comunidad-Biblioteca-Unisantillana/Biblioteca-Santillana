@@ -1,6 +1,5 @@
 package moduloMulta.DAO;
 
-import general.modelo.ConnectionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,8 +18,6 @@ import moduloMulta.entitys.MultaDiccionarioEst;
  * @modificado: 31/08/2019
  */
 public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
-
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.
@@ -44,7 +41,7 @@ public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaDiccionarioEst());
+            pps.setInt(1, multa.getCodPrestamoDiccionarioEst());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
@@ -55,7 +52,7 @@ public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el CreateDAO, en multa diccionario estudiante");
+            System.out.println("Error al realizar el CreateDAO, en multa diccionario estudiante " + e.getMessage());
         }
 
         return false;
@@ -119,7 +116,7 @@ public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
 
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error al realizar el readAllDAO, en multa diccionario estudiante");
+            System.out.println("Error al realizar el readAllDAO, en multa diccionario estudiante " + e.getMessage());
         }
 
         return multas;
@@ -224,7 +221,7 @@ public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el updateDAO, en multa diccionario estudiante");
+            System.out.println("Error al realizar el updateDAO, en multa diccionario estudiante " + e.getMessage());
         }
 
         return false;

@@ -31,9 +31,7 @@ public class ConsultaMultaEst extends ConsultaMultaAbs<Multa> {
      * @return
      */
     @Override
-    public boolean eliminarMulta(int codMulta, String tipoRecurso) {
-        Statement stmt;
-        ResultSet rs;
+    public boolean eliminarMulta(int codMulta, String tipoRecurso,String descripcion) {
         String atributo;
         if (tipoRecurso.length() > 9) {
             atributo = "codMulta" + tipoRecurso.substring(0, 2) + "Est";
@@ -41,16 +39,15 @@ public class ConsultaMultaEst extends ConsultaMultaAbs<Multa> {
             atributo = "codMulta" + tipoRecurso + "Est";
         }
         try {
-            stmt = ConnectionBD.getInstance().getConnection().createStatement();
-            System.out.println("Se establecio la conexión a la BD");
-
-            String sqlSentence = "DELETE FROM Multa_" + tipoRecurso + "_Estudiante WHERE " + atributo + " = " + codMulta + ";";
-            rs = stmt.executeQuery(sqlSentence);
-            while (rs.next()) {
+            String sqlSentence = "UPDATE Multa_" + tipoRecurso + "_Estudiante SET estadoCancelacion = 'anulada',descripcionCancelacion = ?"
+                    + " WHERE " + atributo + " = ?";
+            PreparedStatement pps = connection.getConnection().prepareStatement(sqlSentence);
+            pps.setString(1, descripcion);
+            pps.setInt(2, codMulta);
+            if(pps.executeUpdate() > 0){
+                System.out.println("Actualizo");
                 return true;
             }
-            rs.close();
-            System.out.println("Bases de datos cerrada");
         } catch (SQLException ex) {
 
         }
@@ -70,37 +67,38 @@ public class ConsultaMultaEst extends ConsultaMultaAbs<Multa> {
         PreparedStatement pps;
         ResultSet rs;
         ArrayList<Multa> multasTmp = new ArrayList();
-        String sqlSentence = 
-        " SELECT e.codEstudiante, e.nombre, e.apellido, md.codMultaDicEst AS codMulta, d.codBarraDiccionario AS codBarra, d.titulo, md.diasAtrasados, md.valorTotalMulta, md.estadoCancelacion, md.fechaMulta"
-            + " FROM Multa_Diccionario_Estudiante md, Diccionario d,Prestamo_Diccionario_Estudiante pd, Estudiante e"
-            + " WHERE  pd.codPrestDicEst = md.codPrestDicEst AND pd.codBarraDiccionario = d.codBarraDiccionario AND e.codEstudiante = pd.codEstudiante"
-            + " UNION " +
-        " SELECT es.codEstudiante, es.nombre, es.apellido, me.codMultaEncEst AS codMulta,e.codBarraEnciclopedia AS codBarra,e.titulo ,me.diasAtrasados,me.valorTotalMulta,me.estadoCancelacion, me.fechaMulta"
-            + " FROM Multa_Enciclopedia_Estudiante me, Enciclopedia e,Prestamo_Enciclopedia_Estudiante pe, Estudiante es"
-            + " WHERE pe.codPrestEncEst = me.codPrestEncEst AND pe.codBarraEnciclopedia = e.codBarraEnciclopedia AND es.codEstudiante = pe.codEstudiante"
-            + " UNION " +
-        " SELECT e.codEstudiante, e.nombre, e.apellido, ml.codMultaLibroEst AS codMulta,l.codBarraLibro AS codBarra,l.titulo ,ml.diasAtrasados,ml.valorTotalMulta,ml.estadoCancelacion, ml.fechaMulta "
-            + " FROM Multa_Libro_Estudiante ml, Libro l,Prestamo_Libro_Estudiante pl, Estudiante e"
-            + " WHERE pl.codPrestLibroEst = ml.codPrestLibroEst AND pl.codBarraLibro = l.codBarraLibro AND e.codEstudiante = pl.codEstudiante"
-            + " UNION " +
-        "SELECT e.codEstudiante, e.nombre, e.apellido, mmapa.codMultaMapaEst AS codMulta, mapa.codBarraMapa AS codBarra,mapa.titulo ,mmapa.diasAtrasados,mmapa.valorTotalMulta,mmapa.estadoCancelacion, mmapa.fechaMulta"
-            + " FROM Multa_Mapa_Estudiante mmapa, Mapa mapa,Prestamo_Mapa_Estudiante pmapa, Estudiante e"
-            + " WHERE pmapa.codPrestMapaEst = mmapa.codPrestMapaEst AND pmapa.codBarraMapa = mapa.codBarraMapa AND e.codEstudiante = pmapa.codEstudiante"
-            + " UNION " +
-        " SELECT e.codEstudiante, e.nombre, e.apellido, mper.codMultaPeriodicoEst AS codMulta, per.codBarraPeriodico AS codBarra,per.nombrePeriodico AS titulo ,mper.diasAtrasados,mper.valorTotalMulta,mper.estadoCancelacion, mper.fechaMulta"
-            + " FROM Multa_Periodico_Estudiante mper, Periodico per,Prestamo_Periodico_Estudiante pper, Estudiante e"
-            + " WHERE pper.codPrestPeriodicoEst = mper.codPrestPeriodicoEst AND pper.codBarraPeriodico = per.codBarraPeriodico AND e.codEstudiante = pper.codEstudiante"
-            + " UNION " +
-        " SELECT e.codEstudiante, e.nombre, e.apellido, mr.codMultaRevistaEst AS codMulta, r.codBarraRevista AS codBarra,r.titulo ,mr.diasAtrasados,mr.valorTotalMulta,mr.estadoCancelacion, mr.fechaMulta"
-            + " FROM Multa_Revista_Estudiante mr, Revista r,Prestamo_Revista_Estudiante pr, Estudiante e"
-            + " WHERE pr.codPrestRevistaEst = mr.codPrestRevistaEst AND pr.codBarraRevista = r.codBarraRevista AND e.codEstudiante = pr.codEstudiante";
-        
+        String sqlSentence
+                = " SELECT e.codEstudiante, e.nombre, e.apellido, md.codMultaDicEst AS codMulta, d.codBarraDiccionario AS codBarra, d.titulo, md.diasAtrasados, md.valorTotalMulta, md.estadoCancelacion, md.fechaMulta, TABLE_NAME "
+                + " FROM Multa_Diccionario_Estudiante md, Diccionario d,Prestamo_Diccionario_Estudiante pd, Estudiante e, information_schema.TABLES "
+                + " WHERE  pd.codPrestDicEst = md.codPrestDicEst AND pd.codBarraDiccionario = d.codBarraDiccionario AND e.codEstudiante = pd.codEstudiante AND md.estadoCancelacion = 'no' AND table_name = 'diccionario'"
+                + " UNION "
+                + " SELECT es.codEstudiante, es.nombre, es.apellido, me.codMultaEncEst AS codMulta,e.codBarraEnciclopedia AS codBarra,e.titulo ,me.diasAtrasados,me.valorTotalMulta,me.estadoCancelacion, me.fechaMulta, TABLE_NAME "
+                + " FROM Multa_Enciclopedia_Estudiante me, Enciclopedia e,Prestamo_Enciclopedia_Estudiante pe, Estudiante es, information_schema.TABLES "
+                + " WHERE pe.codPrestEncEst = me.codPrestEncEst AND pe.codBarraEnciclopedia = e.codBarraEnciclopedia AND es.codEstudiante = pe.codEstudiante AND me.estadoCancelacion = 'no' AND table_name = 'enciclopedia'"
+                + " UNION "
+                + " SELECT e.codEstudiante, e.nombre, e.apellido, ml.codMultaLibroEst AS codMulta,l.codBarraLibro AS codBarra,l.titulo ,ml.diasAtrasados,ml.valorTotalMulta,ml.estadoCancelacion, ml.fechaMulta, TABLE_NAME "
+                + " FROM Multa_Libro_Estudiante ml, Libro l,Prestamo_Libro_Estudiante pl, Estudiante e, information_schema.TABLES "
+                + " WHERE pl.codPrestLibroEst = ml.codPrestLibroEst AND pl.codBarraLibro = l.codBarraLibro AND e.codEstudiante = pl.codEstudiante AND ml.estadoCancelacion = 'no' AND table_name = 'libro'"
+                + " UNION "
+                + " SELECT e.codEstudiante, e.nombre, e.apellido, mmapa.codMultaMapaEst AS codMulta, mapa.codBarraMapa AS codBarra,mapa.titulo ,mmapa.diasAtrasados,mmapa.valorTotalMulta,mmapa.estadoCancelacion, mmapa.fechaMulta, TABLE_NAME "
+                + " FROM Multa_Mapa_Estudiante mmapa, Mapa mapa,Prestamo_Mapa_Estudiante pmapa, Estudiante e, information_schema.TABLES "
+                + " WHERE pmapa.codPrestMapaEst = mmapa.codPrestMapaEst AND pmapa.codBarraMapa = mapa.codBarraMapa AND e.codEstudiante = pmapa.codEstudiante AND mmapa.estadoCancelacion = 'no' AND table_name = 'mapa'"
+                + " UNION "
+                + " SELECT e.codEstudiante, e.nombre, e.apellido, mper.codMultaPeriodicoEst AS codMulta, per.codBarraPeriodico AS codBarra,per.nombrePeriodico AS titulo ,mper.diasAtrasados,mper.valorTotalMulta,mper.estadoCancelacion, mper.fechaMulta, TABLE_NAME "
+                + " FROM Multa_Periodico_Estudiante mper, Periodico per,Prestamo_Periodico_Estudiante pper, Estudiante e, information_schema.TABLES "
+                + " WHERE pper.codPrestPeriodicoEst = mper.codPrestPeriodicoEst AND pper.codBarraPeriodico = per.codBarraPeriodico AND e.codEstudiante = pper.codEstudiante AND mper.estadoCancelacion = 'no' AND table_name = 'periodico'"
+                + " UNION "
+                + " SELECT e.codEstudiante, e.nombre, e.apellido, mr.codMultaRevistaEst AS codMulta, r.codBarraRevista AS codBarra,r.titulo ,mr.diasAtrasados,mr.valorTotalMulta,mr.estadoCancelacion, mr.fechaMulta, TABLE_NAME "
+                + " FROM Multa_Revista_Estudiante mr, Revista r,Prestamo_Revista_Estudiante pr, Estudiante e, information_schema.TABLES "
+                + " WHERE pr.codPrestRevistaEst = mr.codPrestRevistaEst AND pr.codBarraRevista = r.codBarraRevista AND e.codEstudiante = pr.codEstudiante AND mr.estadoCancelacion = 'no' AND table_name = 'revista'"
+                + " ORDER BY fechaMulta DESC";
+
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
             rs = pps.executeQuery();
 
             while (rs.next()) {
-                Multa multaTmp = new Multa(rs.getString("estadoCancelacion"), rs.getInt("codMulta"), rs.getInt("diasAtrasados"), "", rs.getInt("valorTotalMulta"));
+                Multa multaTmp = new Multa(rs.getString("estadoCancelacion"), rs.getInt("codMulta"), rs.getInt("diasAtrasados"), rs.getString("TABLE_NAME"), rs.getInt("valorTotalMulta"));
                 multaTmp.setIdUsuario(rs.getString("codEstudiante"));
                 multaTmp.setNombreUsuario(rs.getString("nombre") + " " + rs.getString("apellido"));
                 multaTmp.setCodBarrasRecurso(rs.getString("codBarra"));
@@ -139,45 +137,45 @@ public class ConsultaMultaEst extends ConsultaMultaAbs<Multa> {
         ResultSet rs;
         ArrayList<Multa> multasTmp = new ArrayList();
 
-        String sqlSentences[] = {
-        " SELECT md.codMultaDicEst AS codMulta,d.codBarraDiccionario AS codBarra,d.titulo ,md.diasAtrasados,md.valorTotalMulta,md.estadoCancelacion"
-            + "FROM Multa_Diccionario_Estudiante md, Diccionario d,Prestamo_Diccionario_Estudiante pd"
-            + "WHERE pd.codEstudiante = '" + codUsuario + "' AND pd.codPrestDicEst = md.codPrestDicEst AND pd.codBarraDiccionario = d.codBarraDiccionario",
-        " SELECT me.codMultaEncEst AS codMulta,e.codBarraEnciclopedia AS codBarra,e.titulo ,me.diasAtrasados,me.valorTotalMulta,me.estadoCancelacion"
-            + "FROM Multa_Enciclopedia_Estudiante me, Enciclopedia e,Prestamo_Enciclopedia_Estudiante pe"
-            + "WHERE pe.codEstudiante = '" + codUsuario + "' AND pe.codPrestEncEst = me.codPrestEncEst AND pe.codBarraEnciclopedia = e.codBarraEnciclopedia",
-        " SELECT ml.codMultaLibroEst AS codMulta,l.codBarraLibro AS codBarra,l.titulo ,ml.diasAtrasados,ml.valorTotalMulta,ml.estadoCancelacion "
-            + "FROM Multa_Libro_Estudiante ml, Libro l,Prestamo_Libro_Estudiante pl "
-            + "WHERE pl.codEstudiante = '" + codUsuario + "' AND pl.codPrestLibroEst = ml.codPrestLibroEst AND pl.codBarraLibro = l.codBarraLibro",
-        " SELECT mmapa.codMultaMapaEst AS codMulta, mapa.codBarraMapa AS codBarra,mapa.titulo ,mmapa.diasAtrasados,mmapa.valorTotalMulta,mmapa.estadoCancelacion"
-            + "FROM Multa_Mapa_Estudiante mmapa, Mapa mapa,Prestamo_Mapa_Estudiante pmapa"
-            + "WHERE pmapa.codEstudiante = '" + codUsuario + "' AND pmapa.codPrestMapaEst = mmapa.codPrestMapaEst AND pmapa.codBarraMapa = mapa.codBarraMapa",
-        " SELECT mper.codMultaPeriodicoEst AS codMulta, per.codBarraPeriodico AS codBarra,per.nombrePeriodico AS titulo ,mper.diasAtrasados,mper.valorTotalMulta,mper.estadoCancelacion"
-            + "FROM Multa_Periodico_Estudiante mper, Periodico per,Prestamo_Periodico_Estudiante pper"
-            + "WHERE pper.codEstudiante = '" + codUsuario + "' AND pper.codPrestPeriodicoEst = mper.codPrestPeriodicoEst AND pper.codBarraPeriodico = per.codBarraPeriodico",
-        " SELECT mr.codMultaRevistaEst AS codMulta, r.codBarraRevista AS codBarra,r.titulo ,mr.diasAtrasados,mr.valorTotalMulta,mr.estadoCancelacion"
-            + "FROM Multa_Revista_Estudiante mr, Revista r,Prestamo_Revista_Estudiante pr"
-            + "WHERE pr.codEstudiante = '" + codUsuario + "' AND pr.codPrestRevistaEst = mr.codPrestRevistaEst AND pr.codBarraRevista = r.codBarraRevista"};
-        
-        String[] tipoRecursos = {"Diccionario", "Enciclopedia", "Libro", "Mapa", "Periodico", "Revista"};
+        String sqlSentence = 
+              " SELECT md.codMultaDicEst AS codMulta,d.codBarraDiccionario AS codBarra,d.titulo ,md.diasAtrasados,md.valorTotalMulta,md.estadoCancelacion, TABLE_NAME "
+            + " FROM Multa_Diccionario_Estudiante md, Diccionario d,Prestamo_Diccionario_Estudiante pd, information_schema.TABLES "
+            + " WHERE pd.codEstudiante = '" + codUsuario + "' AND pd.codPrestDicEst = md.codPrestDicEst AND pd.codBarraDiccionario = d.codBarraDiccionario AND md.estadoCancelacion = 'no' AND table_name = 'diccionario'"
+            + " UNION "
+            + " SELECT me.codMultaEncEst AS codMulta,e.codBarraEnciclopedia AS codBarra,e.titulo ,me.diasAtrasados,me.valorTotalMulta,me.estadoCancelacion, TABLE_NAME "
+            + " FROM Multa_Enciclopedia_Estudiante me, Enciclopedia e,Prestamo_Enciclopedia_Estudiante pe, information_schema.TABLES "
+            + " WHERE pe.codEstudiante = '" + codUsuario + "' AND pe.codPrestEncEst = me.codPrestEncEst AND pe.codBarraEnciclopedia = e.codBarraEnciclopedia AND me.estadoCancelacion = 'no' AND table_name = 'enciclopedia'"
+            + " UNION "
+            + " SELECT ml.codMultaLibroEst AS codMulta,l.codBarraLibro AS codBarra,l.titulo ,ml.diasAtrasados,ml.valorTotalMulta,ml.estadoCancelacion, TABLE_NAME "
+            + " FROM Multa_Libro_Estudiante ml, Libro l,Prestamo_Libro_Estudiante pl, information_schema.TABLES "
+            + " WHERE pl.codEstudiante = '" + codUsuario + "' AND pl.codPrestLibroEst = ml.codPrestLibroEst AND pl.codBarraLibro = l.codBarraLibro AND ml.estadoCancelacion = 'no' AND table_name = 'libro'"
+            + " UNION "
+            + " SELECT mmapa.codMultaMapaEst AS codMulta, mapa.codBarraMapa AS codBarra,mapa.titulo ,mmapa.diasAtrasados,mmapa.valorTotalMulta,mmapa.estadoCancelacion, TABLE_NAME "
+            + " FROM Multa_Mapa_Estudiante mmapa, Mapa mapa,Prestamo_Mapa_Estudiante pmapa, information_schema.TABLES "
+            + " WHERE pmapa.codEstudiante = '" + codUsuario + "' AND pmapa.codPrestMapaEst = mmapa.codPrestMapaEst AND pmapa.codBarraMapa = mapa.codBarraMapa AND mmapa.estadoCancelacion = 'no' AND table_name = 'mapa'"
+            + " UNION "
+            + " SELECT mper.codMultaPeriodicoEst AS codMulta, per.codBarraPeriodico AS codBarra,per.nombrePeriodico AS titulo ,mper.diasAtrasados,mper.valorTotalMulta,mper.estadoCancelacion, TABLE_NAME "
+            + " FROM Multa_Periodico_Estudiante mper, Periodico per,Prestamo_Periodico_Estudiante pper, information_schema.TABLES "
+            + " WHERE pper.codEstudiante = '" + codUsuario + "' AND pper.codPrestPeriodicoEst = mper.codPrestPeriodicoEst AND pper.codBarraPeriodico = per.codBarraPeriodico AND mper.estadoCancelacion = 'no' AND table_name = 'periodico'"
+            + " UNION "
+            + " SELECT mr.codMultaRevistaEst AS codMulta, r.codBarraRevista AS codBarra,r.titulo ,mr.diasAtrasados,mr.valorTotalMulta,mr.estadoCancelacion, TABLE_NAME "
+            + " FROM Multa_Revista_Estudiante mr, Revista r,Prestamo_Revista_Estudiante pr, information_schema.TABLES "
+            + " WHERE pr.codEstudiante = '" + codUsuario + "' AND pr.codPrestRevistaEst = mr.codPrestRevistaEst AND pr.codBarraRevista = r.codBarraRevista AND mr.estadoCancelacion = 'no' AND table_name = 'revista'";
+        try {
+            pps = connection.getConnection().prepareStatement(sqlSentence);
+            rs = pps.executeQuery();
 
-        for (int i = 0; i < tipoRecursos.length; i++) {
-            try {
-                pps = connection.getConnection().prepareStatement(sqlSentences[i]);
-                rs = pps.executeQuery();
-
-                while (rs.next()) {
-                    Multa multaTmp = new Multa(rs.getString("estadoCancelacion"), rs.getInt("codMulta"), rs.getInt("diasAtrasados"), tipoRecursos[i], rs.getInt("valorTotalMulta"));
-                    multaTmp.setCodBarrasRecurso(rs.getString("codBarra"));
-                    multaTmp.setTituloRecurso(rs.getString("titulo"));
-                    multasTmp.add(multaTmp);
-                }
-                rs.close();
-            } catch (SQLException e) {
-                System.out.println("no se encontro multa en la entidad " + tipoRecursos[i]);
-            } catch (Exception e) {
-                System.out.println("Problema en el readAll");
+            while (rs.next()) {
+                Multa multaTmp = new Multa(rs.getString("estadoCancelacion"), rs.getInt("codMulta"), rs.getInt("diasAtrasados"), rs.getString("TABLE_NAME"), rs.getInt("valorTotalMulta"));
+                multaTmp.setCodBarrasRecurso(rs.getString("codBarra"));
+                multaTmp.setTituloRecurso(rs.getString("titulo"));
+                multasTmp.add(multaTmp);
             }
+            rs.close();
+        } catch (SQLException e) {
+
+        } catch (Exception e) {
+            System.out.println("Problema en el readAll");
         }
         if (!multasTmp.isEmpty()) {
             multasTmp.forEach((mult) -> {

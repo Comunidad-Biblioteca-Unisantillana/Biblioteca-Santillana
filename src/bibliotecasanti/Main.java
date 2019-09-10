@@ -1,9 +1,11 @@
 package bibliotecasanti;
 
+import moduloReserva.modelo.VerificaReservaVencida;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import general.modelo.ConnectionBD;
 import moduloLogin.vista.LoginUnisantillanaStage;
+import moduloMulta.modelo.GeneradorMulta;
 
 /**
  *
@@ -15,6 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         LoginUnisantillanaStage.getInstance();
         ConnectionBD.getInstance();
+        GeneradorMulta.getInstance().start();
     }
 
     /**
@@ -22,6 +25,9 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        VerificaReservaVencida verificaReservaVencida = new VerificaReservaVencida();
+        verificaReservaVencida.setName("TareaProgramadaReserva");
+        verificaReservaVencida.start();
     }
 
 }
