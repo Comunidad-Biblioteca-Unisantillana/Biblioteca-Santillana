@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         LoginUnisantillanaStage.getInstance();
         ConnectionBD.getInstance();
-        GeneradorMulta.getInstance().start();
+        //GeneradorMulta.getInstance().start();
     }
 
     /**
