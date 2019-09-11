@@ -21,7 +21,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <JFXButton alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" onAction="#btnCerarSesion" prefHeight="34.0" prefWidth="138.0" style="-fx-font-size: 14; -fx-background-color: red;" text="Cerrar sesión" textAlignment="CENTER">
+            <JFXButton alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" onAction="#btnCerarSesion" prefHeight="34.0" prefWidth="138.0" styleClass="salir" stylesheets="@../../general/recursos/styles/styles.css" text="Cerrar sesión" textAlignment="CENTER">
                <font>
                   <Font size="1.0" />
                </font></JFXButton>

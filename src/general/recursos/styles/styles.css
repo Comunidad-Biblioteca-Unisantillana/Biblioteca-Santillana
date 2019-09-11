@@ -83,3 +83,12 @@ JFXComboBox{
     -fx-text-fill: white;
     -fx-padding: 0 0 0 10;   
 }
+
+.salir{
+    -fx-font-size: 14px;
+    -fx-background-color: red;
+}
+.salir:hover{
+     -fx-background-color: #FF4B4B;
+
+}
