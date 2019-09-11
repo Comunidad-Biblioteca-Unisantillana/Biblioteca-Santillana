@@ -45,7 +45,7 @@ public class FichaTecnicaPanel {
         rootFicha = new GridPane();
         rootFicha.getStylesheets().add("/general/recursos/styles/stylesFichaTecnica.css");
         rootFicha.setStyle("-fx-border-color: black;"
-                + "        -fx-border-width: 2 px;");
+                + "        -fx-border-width: 1 px;");
     }
 
     /**

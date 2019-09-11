@@ -69,7 +69,7 @@ public class PalabraClaveOPACController implements Initializable {
      */
     @FXML
     private void btnBuscarPalabraClave(ActionEvent event) {
-        String palabraClave = txtPalabraClave.getText().replaceAll("'", "\'").trim();
+        String palabraClave = txtPalabraClave.getText().trim();
         String entidad = cboTipoBusqueda.getSelectionModel().getSelectedItem().toLowerCase();
 
         if (!palabraClave.isEmpty()) {
