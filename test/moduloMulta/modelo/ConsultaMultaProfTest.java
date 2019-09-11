@@ -7,10 +7,6 @@ package moduloMulta.modelo;
 
 import javafx.collections.ObservableList;
 import moduloMulta.entitys.Multa;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,21 +19,6 @@ public class ConsultaMultaProfTest {
     public ConsultaMultaProfTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
     /**
      * Método que verifica todas las multas de todos los estudiantes.
      */
@@ -45,9 +26,12 @@ public class ConsultaMultaProfTest {
     public void testGetMultasAll() {
         System.out.println("Ejecutando test multas estudiantes");
         ConsultaMultaProf instance = new ConsultaMultaProf();
-        ObservableList<Multa> expResult = null;
-        ObservableList<Multa> result = instance.getMultasAll();
-        assertEquals(expResult, result);
+        ObservableList<Multa> multas = instance.getMultasAll();
+        boolean resultado = true;
+        if(multas.isEmpty()){
+            resultado = false;
+        }
+        assertEquals(true, resultado);
     }
     /**
      * Método que verifica todas las multas de un profesor.
@@ -57,9 +41,12 @@ public class ConsultaMultaProfTest {
         System.out.println("Ejecutando test multas profesor");
         String idUsuario = "946789878";
         ConsultaMultaProf instance = new ConsultaMultaProf();
-        ObservableList<Multa> expResult = null;
-        ObservableList<Multa> result = instance.getMultasUsuario(idUsuario);
-        assertEquals(expResult, result);
+        ObservableList<Multa> multas = instance.getMultasUsuario(idUsuario);
+        boolean resultado = true;
+        if(multas.isEmpty()){
+            resultado = false;
+        }
+        assertEquals(true, resultado);
     }
     
 }

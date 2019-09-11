@@ -27,22 +27,6 @@ public class BusquedaCodigoBarrasTest {
     public BusquedaCodigoBarrasTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test que se encarga de buscar el nombre de una entidad ingresando un código de barras correcto.
      */

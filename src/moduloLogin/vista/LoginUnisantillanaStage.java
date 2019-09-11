@@ -24,7 +24,7 @@ public class LoginUnisantillanaStage extends Stage{
             Parent root = FXMLLoader.load(getClass().getResource("/moduloLogin/vista/LoginUnisantillana.fxml"));
             Scene scene = new Scene(root);
             setScene(scene);
-            setTitle("Login Unisantillana");
+            setTitle("Login Biblioteca");
             getIcons().add(new Image("/general/recursos/img/iconUniversity.png"));
             setMinWidth(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
             setMinHeight(java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-47);

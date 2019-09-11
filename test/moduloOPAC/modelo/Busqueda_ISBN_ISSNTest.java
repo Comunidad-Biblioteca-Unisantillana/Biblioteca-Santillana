@@ -27,22 +27,6 @@ public class Busqueda_ISBN_ISSNTest {
     public Busqueda_ISBN_ISSNTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test que se encarga de buscar una entidad por un código ISSN correcto.
      */

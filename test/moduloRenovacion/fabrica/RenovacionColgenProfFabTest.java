@@ -5,10 +5,10 @@
  */
 package moduloRenovacion.fabrica;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import moduloPrestamo.DAO.PrestamoLibroDAOProf;
+import moduloPrestamo.modelo.GeneradorPrestamo;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,22 +19,6 @@ import static org.junit.Assert.*;
 public class RenovacionColgenProfFabTest {
 
     public RenovacionColgenProfFabTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -49,6 +33,7 @@ public class RenovacionColgenProfFabTest {
         boolean expResult = true;
         boolean result = instance.ejecutarRenovacion(codBarras, idUsuario);
         assertEquals(expResult, result);
+
     }
 
     /**

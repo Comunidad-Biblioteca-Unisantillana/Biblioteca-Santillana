@@ -13,37 +13,27 @@ import static org.junit.Assert.*;
  * @author Stiven
  */
 public class BusquedaPalabraClaveSinFiltroTest {
-    
+
     public BusquedaPalabraClaveSinFiltroTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+
     /**
-     * Test que busca un recurso por una palabra clave sin filtro correcta y una entidad correcta.
+     * Test que busca un recurso por una palabra clave sin filtro correcta y una
+     * entidad correcta.
      */
     @Test
     public void testBuscarRecursosPorPalabraClaveSinFiltroCorrecto() {
         System.out.println("buscar recursos por palabra clave sin filtro");
         String entidad = "libro";
         BusquedaPalabraClave instance = new BusquedaPalabraClave("hu");
-        ObservableList<Recurso> expResult = instance.buscarRecursos(entidad);
-        ObservableList<Recurso> result = expResult;
-        assertEquals(expResult, result);
+        ObservableList<Recurso> recursos = instance.buscarRecursos(entidad);
+        boolean resultado = true;
+        if (recursos.isEmpty()) {
+            resultado = false;
+        }
+        assertEquals(true, resultado);
     }
+
     /**
      * Test que busca sobre todas las entidades una palabra clave incorrecta.
      */
@@ -52,9 +42,12 @@ public class BusquedaPalabraClaveSinFiltroTest {
         System.out.println("buscar recursos por palabra clave");
         String entidad = "todos";
         BusquedaPalabraClave instance = new BusquedaPalabraClave("hu9dq");
-        ObservableList<Recurso> expResult = null;
-        ObservableList<Recurso> result = instance.buscarRecursos(entidad);
-        assertEquals(expResult, result);
+        ObservableList<Recurso> recursos = instance.buscarRecursos(entidad);
+        boolean resultado = true;
+        if (recursos.isEmpty()) {
+            resultado = false;
+        }
+        assertEquals(false, resultado);
     }
-    
+
 }

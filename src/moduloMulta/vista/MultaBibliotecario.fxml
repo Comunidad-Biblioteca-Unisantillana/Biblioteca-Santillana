@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloMulta.control.MultaBibliotecarioController">
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloMulta.control.MultaBibliotecarioController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
@@ -32,8 +32,8 @@
             <TableColumn fx:id="colCodUsuario" editable="false" prefWidth="194.0" text="Código usuario" />
             <TableColumn fx:id="colNombreUsuario" editable="false" maxWidth="237.0" minWidth="0.0" prefWidth="183.0" text="Nombre" />
             <TableColumn fx:id="colFechaMulta" prefWidth="119.0" text="Fecha multa" />
-            <TableColumn fx:id="colCodBarraRecurso" prefWidth="141.0" text="Codigo recurso" />
-            <TableColumn fx:id="colTituloRecurso" prefWidth="273.0" text="Titulo recurso" />
+            <TableColumn fx:id="colCodBarraRecurso" prefWidth="141.0" text="Código recurso" />
+            <TableColumn fx:id="colTituloRecurso" prefWidth="273.0" text="Título recurso" />
             <TableColumn fx:id="colDiasAtrasados" editable="false" minWidth="5.0" prefWidth="134.0" text="Días atrasados" />
             <TableColumn fx:id="colValorTot" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="70.0" text="Valor" />
             <TableColumn fx:id="colCancelado" maxWidth="100.0" minWidth="1.0" prefWidth="100.0" text="Cancelado" />
@@ -70,7 +70,7 @@
             <Insets bottom="40.0" />
          </GridPane.margin>
       </Label>
-      <HBox maxHeight="40.0" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-width: 2; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <HBox maxHeight="40.0" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <children>
             <JFXButton fx:id="btnMultaEstudiante" buttonType="RAISED" onAction="#btnMultaEstudiantePressed" prefHeight="40.0" prefWidth="250.0" styleClass="buttonDrawer" text="Multa estudiante" />
             <JFXButton fx:id="btnMultaProfesor" buttonType="RAISED" onAction="#btnMultaProfesorPressed" prefHeight="40.0" prefWidth="250.0" styleClass="buttonDrawer" text="Multa profesor" />
