@@ -19,7 +19,7 @@ public class Main extends Application {
         ConnectionBD.getInstance();
         //VerificaReservaVencida.getInstance().start();
         //GeneradorMulta.getInstance().start();
-        
+       
     }
 
     /**
