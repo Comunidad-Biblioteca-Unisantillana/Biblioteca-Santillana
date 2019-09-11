@@ -70,7 +70,7 @@
             <Insets bottom="40.0" />
          </GridPane.margin>
       </Label>
-      <HBox maxHeight="40.0" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-border-width: 8; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <HBox maxHeight="40.0" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-width: 2; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <children>
             <JFXButton fx:id="btnMultaEstudiante" buttonType="RAISED" onAction="#btnMultaEstudiantePressed" prefHeight="40.0" prefWidth="250.0" styleClass="buttonDrawer" text="Multa estudiante" />
             <JFXButton fx:id="btnMultaProfesor" buttonType="RAISED" onAction="#btnMultaProfesorPressed" prefHeight="40.0" prefWidth="250.0" styleClass="buttonDrawer" text="Multa profesor" />

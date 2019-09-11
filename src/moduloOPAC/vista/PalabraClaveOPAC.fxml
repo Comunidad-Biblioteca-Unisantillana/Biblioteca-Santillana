@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="716.0" maxWidth="1366.0" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloOPAC.control.PalabraClaveOPACController">
+<GridPane maxHeight="716.0" maxWidth="1366.0" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloOPAC.control.PalabraClaveOPACController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="311.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="326.0" />
@@ -46,7 +46,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="582.0" style="-fx-font-size: 30;" stylesheets="@../recursos/styles.css" text="OPAC - Búsqueda por palabra clave" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="582.0" style="-fx-font-size: 30;" stylesheets="@../recursos/styles.css" text="OPAC - BÚSQUEDA POR PALABRA CLAVE" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
@@ -54,7 +54,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarPalabraClave" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarPalabraClave" prefHeight="32.0" prefWidth="170.0" text="Buscar recurso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

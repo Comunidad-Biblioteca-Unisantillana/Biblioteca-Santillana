@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="869.0" style="-fx-border-color: black; -fx-border-width: 2 px;" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloLogin.control.FichaUsuarioController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="869.0" style="-fx-border-color: black; -fx-border-width: 2 px;" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloLogin.control.FichaUsuarioController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="10.0" prefWidth="195.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="196.0" />
@@ -28,12 +28,12 @@
   </rowConstraints>
    <children>
       <Label fx:id="labelFicha" alignment="CENTER" prefWidth="278.0" text="Datos del Usuario" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <Label fx:id="labelCodigo" prefWidth="161.0" text="Còdigo" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Label fx:id="labelCodigo" prefWidth="161.0" text="Código" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label layoutX="15.0" layoutY="85.0" prefWidth="161.0" text="Identificaciòn" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Label layoutX="15.0" layoutY="85.0" prefWidth="161.0" text="Identificación" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Label>
@@ -59,13 +59,13 @@
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Label>
-      <Label layoutX="580.0" layoutY="85.0" prefWidth="164.0" text="Tipo de identificaciòn" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Label layoutX="580.0" layoutY="85.0" prefWidth="164.0" text="Tipo de identificación" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Label>
       <Label layoutX="580.0" layoutY="146.0" prefWidth="164.0" text="Apellidos" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <Label layoutX="580.0" layoutY="206.0" prefWidth="164.0" text="Edad" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-      <Label layoutX="580.0" layoutY="266.0" prefWidth="164.0" text="Direcciòn" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+      <Label layoutX="580.0" layoutY="266.0" prefWidth="164.0" text="Dirección" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
       <JFXTextField fx:id="txtPlan" editable="false" layoutX="203.0" layoutY="452.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets />

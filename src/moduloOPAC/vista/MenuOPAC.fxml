@@ -10,7 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloOPAC.control.MenuOPACController">
+
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -18,7 +20,7 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="202.0" style="-fx-border-radius: 10; -fx-border-width: 8; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="202.0" style="-fx-border-width: 2; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css">
          <children>
             <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="207.0" style="-fx-background-color: #2E86C1; -fx-background-radius: 0; -fx-border-color: #21618C; -fx-border-radius: 0; -fx-border-width: 1; -fx-font-size: 17;" text="Búsquedas por">
                <graphic>
@@ -33,7 +35,7 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXButton fx:id="btnAutor" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnAutorOPACPressed" prefHeight="40.0" prefWidth="196.0" styleClass="buttonDrawer" text="Autor">
+            <JFXButton fx:id="btnAutor" buttonType="RAISED" contentDisplay="CENTER" onAction="#btnAutorOPACPressed" prefHeight="40.0" prefWidth="220.0" styleClass="buttonDrawer" text="Autor">
                <font>
                   <Font size="15.0" />
                </font>

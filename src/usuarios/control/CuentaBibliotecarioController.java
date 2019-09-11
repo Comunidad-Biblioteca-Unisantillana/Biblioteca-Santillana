@@ -84,13 +84,13 @@ public class CuentaBibliotecarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
-        imgIconConsultarUsuario.setImage(new Image("/general/recursos/img/iconOPAC.png"));
-        imgIconPrestamo.setImage(new Image("/general/recursos/img/iconPrestamo.png"));
+        imgIconConsultarUsuario.setImage(new Image("/general/recursos/img/iconBuscarUsuario.png"));
+        imgIconPrestamo.setImage(new Image("/general/recursos/img/iconPrestamoRecurso.png"));
         imgIconReserva.setImage(new Image("/general/recursos/img/iconReserva.png"));
         imgIconDevolucion.setImage(new Image("/general/recursos/img/iconDevolucion.png"));
         imgIconMulta.setImage(new Image("/general/recursos/img/iconMulta.png"));
         imgIconOPAC.setImage(new Image("/general/recursos/img/iconOPAC.png"));
-        imgIconRenovacion.setImage(new Image("/general/recursos/img/iconOPAC.png"));
+        imgIconRenovacion.setImage(new Image("/general/recursos/img/iconRenovacion.png"));
         loadConsultaUusuario();
         valoresPorDefecto("consultaUsuario");
     }

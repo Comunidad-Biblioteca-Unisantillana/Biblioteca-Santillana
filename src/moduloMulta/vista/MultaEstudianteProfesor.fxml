@@ -24,7 +24,7 @@
       <TableView fx:id="tableMulta" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="2">
          <columns>
             <TableColumn fx:id="colCodMulta" editable="false" prefWidth="133.00003051757812" text="Código multa" />
-            <TableColumn fx:id="colCodBarra" prefWidth="148.0" text="Codigo recurso" />
+            <TableColumn fx:id="colCodBarra" prefWidth="148.0" text="Código recurso" />
             <TableColumn fx:id="tituloRecurso" prefWidth="425.0" text="Titulo recurso" />
             <TableColumn fx:id="colTipo" prefWidth="111.0" text="Tipo" />
             <TableColumn fx:id="colDiasAtrasados" editable="false" prefWidth="145.0" text="Días atrasados" />
