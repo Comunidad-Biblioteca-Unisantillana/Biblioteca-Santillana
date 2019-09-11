@@ -17,7 +17,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         LoginUnisantillanaStage.getInstance();
         ConnectionBD.getInstance();
+        //VerificaReservaVencida.getInstance().start();
         //GeneradorMulta.getInstance().start();
+   
     }
 
     /**
@@ -25,9 +27,6 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        VerificaReservaVencida verificaReservaVencida = new VerificaReservaVencida();
-        verificaReservaVencida.setName("TareaProgramadaReserva");
-        verificaReservaVencida.start();
     }
 
 }

@@ -8,9 +8,11 @@ package moduloPrestamo.fabrica;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import moduloMulta.modelo.VerificaMultaEstudiante;
 
 import moduloPrestamo.DAO.PrestamoRevistaDAOEst;
 import moduloPrestamo.entitys.PrestamoRevistaEst;
+import moduloReserva.fabrica.ReservaColgenEstFab;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import recursos.controllers.RevistaJpaController;
@@ -18,42 +20,50 @@ import recursos.entitys.Revista;
 import usuarios.control.EstudianteJpaController;
 import usuarios.entitys.Estudiante;
 
-
 /**
  *
  * @author Storkolm
  */
 public class PrestamoRevistaEstFabTest {
-    
+
     public PrestamoRevistaEstFabTest() {
     }
-    
+
     /**
-     * Prueba #1
-     * Metodo que se encarga de probar que todos los estudiantes<br>
+     * Prueba #1 Metodo que se encarga de probar que todos los estudiantes<br>
      * puedan registrar prestamos
      */
     @Test
     public void testEjecutarPrestamoEstudiantes() {
         System.out.println("--------------------------Prueba 1--------------------------------------");
-        String codBarras = "421263";
+        String codBarras = "254922";
         String idBibliotecario = "1102515566";
         EstudianteJpaController controlEst = new EstudianteJpaController();
         List<Estudiante> estudiantes = controlEst.findEstudianteEntities();
         PrestamoRevistaEstFab instance = new PrestamoRevistaEstFab();
+        ReservaColgenEstFab instance2 = new ReservaColgenEstFab();
+        VerificaMultaEstudiante instance3 = new VerificaMultaEstudiante();
         boolean result = false;
+        boolean resultReserva = false;
+        boolean resultMulta = false;
         for (int i = 0; i < estudiantes.size(); i++) {
             result = instance.ejecutarPrestamo(codBarras, estudiantes.get(i).getCodestudiante(), idBibliotecario);
-            if (result) {
+            resultReserva = instance2.consultarReservas(codBarras);
+            resultMulta = instance3.buscarMultaLibro(estudiantes.get(i).getCodestudiante());
+            if (result && resultReserva) {
                 readAndDeletePrestamoTest(instance);
             } else {
                 System.out.println("Error con el codigo de estudiante: " + estudiantes.get(i).getCodestudiante());
                 break;
             }
+            if (resultMulta) {
+                System.out.println("El estudiante: " + estudiantes.get(i).getCodestudiante() + "Cuenta con una multa");
+            }
         }
         assertEquals(true, result);
+
     }
-    
+
     /**
      * Metodo que se encarga de mostrar los prestamos<br>
      * realizados por las pruebas y de borralos
@@ -85,9 +95,9 @@ public class PrestamoRevistaEstFabTest {
             }
         }
     }
+
     /**
-     * Prueba 3
-     * Metodo que prueba cualquier tipo de entrada<br>
+     * Prueba 3 Metodo que prueba cualquier tipo de entrada<br>
      * en el campo de codigo de barras
      */
     @Test
@@ -95,9 +105,9 @@ public class PrestamoRevistaEstFabTest {
         System.out.println("--------------------------Prueba 3-----------------------------");
         String codBarras[] = {"", "gut1tg8dg127dg12d89129gd8gdqw98d1892981y2dy982d1982yd1",
             "82157378125637816523786123876382176328", "asjdgg44sad90d¿1'2}'12d'kdj23bfdu9h31e89hb12e9uh1de2uwdh9",
-            "/**/ -*/*-//*-/ewd*-213e/*23/e-*d/23*-d/*-23d/*-23d/*-32d*-23/d*-2/3*e/wqd54qew4213efwefvefwk","123123123",
-        "123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123"
-        ,"123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123","123123123"};
+            "/**/ -*/*-//*-/ewd*-213e/*23/e-*d/23*-d/*-23d/*-23d/*-32d*-23/d*-2/3*e/wqd54qew4213efwefvefwk", "123123123",
+            "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123",
+             "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123", "123123123"};
         boolean result = false;
         PrestamoRevistaEstFab instance = new PrestamoRevistaEstFab();
         for (String codBarra : codBarras) {
@@ -113,11 +123,11 @@ public class PrestamoRevistaEstFabTest {
         }
         assertEquals(false, result);
     }
+
     /**
-     * Prueba 5
-     * Metodo que se encarga de probar que todos los recursos<br>
+     * Prueba 5 Metodo que se encarga de probar que todos los recursos<br>
      * que no esten disponibles no se puedan prestar
-     * 
+     *
      */
     @Test
     public void testRecursoNoDisponible() {
@@ -141,8 +151,7 @@ public class PrestamoRevistaEstFabTest {
         }
         assertEquals(false, result);
     }
-    
-     
+
     /**
      * Prueba 6,7,8
      */
@@ -165,7 +174,7 @@ public class PrestamoRevistaEstFabTest {
                     result = false;
                     break;
                 }
-            }else{
+            } else {
                 System.out.println("|\n|");
                 System.out.println("la revista con codigo de barra " + recurso.get(i).getCodbarrarevista() + " se encuentra prestado o reservado");
             }

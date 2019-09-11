@@ -26,11 +26,12 @@ import recursos.entitys.Libro;
 public class VerificaReservaVencida extends Thread {
 
     private ConnectionBD connection;
+    private static VerificaReservaVencida instance = null;
 
     /**
      * constructor de la clase sin paràmetros.
      */
-    public VerificaReservaVencida() {
+    private VerificaReservaVencida() {
         connection = ConnectionBD.getInstance();
     }
 
@@ -142,6 +143,13 @@ public class VerificaReservaVencida extends Thread {
         }
 
         reserva.deleteDAO(codBarraLibro, codUsuario);
+    }
+    
+    public static final VerificaReservaVencida getInstance() {
+        if (instance == null) {
+            instance = new VerificaReservaVencida();
+        }
+        return instance;
     }
 
 }

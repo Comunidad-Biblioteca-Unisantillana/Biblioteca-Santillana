@@ -5,6 +5,7 @@ import moduloPrestamo.control.PrestamoEstudianteProfesorController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import general.vista.InformacionEmpresaStage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import moduloOPAC.control.CodigoOPACController;
 import usuarios.vista.CuentaEstudianteStage;
 import usuarios.vista.CuentaProfesorStage;
@@ -55,9 +55,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
     private JFXButton btnPrestamo;
     @FXML
     private JFXButton btnMulta;
-    private String idBibliotecario;
     private IniciarMenuDesplegable imd;
-    private Stage stage;
     private String codigo;
     private String tipoUsuario;
 
@@ -99,7 +97,7 @@ public class CuentaEstudianteProfesorController implements Initializable {
      */
     @FXML
     private void itemAcercaDePressed(ActionEvent event) {
-
+        new InformacionEmpresaStage();
     }
 
     /**
@@ -220,15 +218,6 @@ public class CuentaEstudianteProfesorController implements Initializable {
     }
 
     /**
-     * el metódo que asigna un stage.
-     *
-     * @param stage
-     */
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    /**
      * el metódo que asigna el código del usuario.
      *
      * @param codigo
@@ -245,5 +234,5 @@ public class CuentaEstudianteProfesorController implements Initializable {
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
+
 }

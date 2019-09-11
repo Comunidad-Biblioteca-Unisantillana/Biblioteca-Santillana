@@ -45,7 +45,7 @@ public class ConsultaMultaProfTest {
     public void testGetMultasAll() {
         System.out.println("Ejecutando test multas estudiantes");
         ConsultaMultaProf instance = new ConsultaMultaProf();
-        ObservableList<Multa> expResult = instance.getMultasAll();
+        ObservableList<Multa> expResult = null;
         ObservableList<Multa> result = instance.getMultasAll();
         assertEquals(expResult, result);
     }

@@ -31,7 +31,7 @@ public class ReservaColgenEstFab implements IReserva {
      * @param codBarras
      * @return boolean
      */
-    private boolean consultarReservas(String codBarras) {
+    public boolean consultarReservas(String codBarras) {
         VerificaReserva verificaReserva = new VerificaReserva();
 
         if (!verificaReserva.verificarReservaEst(codBarras)) {
@@ -71,6 +71,9 @@ public class ReservaColgenEstFab implements IReserva {
 
                                 ReservaColgenDAOEst resDAO = new ReservaColgenDAOEst();
                                 resDAO.createDAO(reserva);
+                                System.out.println("Actualizando dispinibilidad.....");
+                                libro.setDisponibilidad("reservado");
+                                control.edit(libro);
                                 return true;
                             } else {
                                 System.out.println("El prestamo es null");

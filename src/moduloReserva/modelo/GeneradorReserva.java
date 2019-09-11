@@ -18,7 +18,7 @@ public class GeneradorReserva {
     public GeneradorReserva() {
     }
 
-    public void createReserva(String codBarras, String codUsuario, String tipoUsuario, String idBibliotecario) {
+    public boolean createReserva(String codBarras, String codUsuario, String tipoUsuario, String idBibliotecario) {
         IAlertBox alert = new AlertBox();
         if (tipoUsuario.equalsIgnoreCase("estudiante")) {
             EstudianteJpaController estudiante = new EstudianteJpaController();
@@ -26,6 +26,7 @@ public class GeneradorReserva {
                 if (!consultarMulta(codUsuario, tipoUsuario)) {
                     if (generarReserva(codBarras, codUsuario, tipoUsuario, idBibliotecario)) {
                         alert.showAlert("Anuncio", "Reserva estudiante", "La reserva se realizo con exito");
+                        return true;
                     }
                 } else {
                     alert.showAlert("Anuncio", "Estudiante multado", "El estudiante: " + codUsuario
@@ -41,6 +42,7 @@ public class GeneradorReserva {
                 if (!consultarMulta(codUsuario, tipoUsuario)) {
                     if (generarReserva(codBarras, codUsuario, tipoUsuario, idBibliotecario)) {
                         alert.showAlert("Anuncio", "Reserva profesor", "La reserva se realizo con exito");
+                        return true;
                     }
                 } else {
                     alert.showAlert("Anuncio", "Profesor multado", "El profesor: " + codUsuario
@@ -51,6 +53,7 @@ public class GeneradorReserva {
                 alert.showAlert("Anuncio", "Reserva profesor", "No existe un profesor con esa identificación");
             }
         }
+        return false;
     }
 
     private boolean generarReserva(String codBarras, String codUsuario, String tipoUsuario, String idBibliotecario) {

@@ -30,8 +30,7 @@ public class GeneradorMulta extends Thread {
                         multa = multaFab.getMulta(tipoMulta1, tipoUsuario1);
                         multa.generarMulta();
                         multa.actualizarDiasAtrasadosMulta();
-                        sleep(2000);
-
+                        sleep(100000);
                     }
                 }
             } catch (InterruptedException ex) {

@@ -11,7 +11,7 @@ and open the template in the editor.
     -fx-cursor: hand;
     -fx-background-color: #026AA7;
     -fx-background-radius: 5;
-    -fx-border-color: black;
+    -fx-border-color: #2E86C1;
     -fx-border-radius: 5;
     -fx-text-fill: white;
     -fx-font-size: 17;
@@ -82,4 +82,13 @@ JFXComboBox{
     -fx-font-size: 11.6pt;
     -fx-text-fill: white;
     -fx-padding: 0 0 0 10;   
+}
+
+.salir{
+    -fx-font-size: 14px;
+    -fx-background-color: red;
+}
+.salir:hover{
+     -fx-background-color: #FF4B4B;
+
 }

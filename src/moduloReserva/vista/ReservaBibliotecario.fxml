@@ -33,7 +33,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="21.0" prefWidth="185.0" text="Tipo de usuario:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <Label prefHeight="21.0" prefWidth="185.0" text="Tipo de usuario" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>

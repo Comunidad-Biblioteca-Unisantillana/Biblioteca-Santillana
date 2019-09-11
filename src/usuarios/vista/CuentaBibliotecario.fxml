@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,17 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="usuarios.control.CuentaBibliotecarioController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="usuarios.control.CuentaBibliotecarioController">
    <top>
       <MenuBar stylesheets="@../../general/recursos/styles/stylesMenu.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#itemSalirPressed" text="Salir" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ayuda">
-            <items>
               <MenuItem mnemonicParsing="false" onAction="#itemAcercaDe" text="Acerca de" />
             </items>
           </Menu>
@@ -34,12 +31,20 @@
          <children>
             <BorderPane fx:id="rootModulo" layoutX="42.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.9" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
             <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="50.0" prefWidth="60.0" styleClass="hamburger" />
-            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="261.0" prefWidth="200.0">
+            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="110.0" layoutY="50.0" prefHeight="392.0" prefWidth="200.0">
                <children>
-                  <AnchorPane fx:id="anchorDrawer" prefHeight="261.0" prefWidth="200.0">
+                  <AnchorPane fx:id="anchorDrawer" prefHeight="392.0" prefWidth="200.0">
                      <children>
-                        <VBox prefHeight="261.0" prefWidth="200.0">
+                        <VBox prefHeight="392.0" prefWidth="200.0">
                            <children>
+                              <JFXButton fx:id="btnConsultarUsuario" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="5.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnConsultarUsuarioPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Buscar usuario">
+                                 <graphic>
+                                    <ImageView fx:id="imgIconConsultarUsuario" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </JFXButton>
                               <JFXButton fx:id="btnOPAC" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="70.0" onAction="#btnOPACPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="OPAC">
                                  <font>
                                     <Font size="18.0" />
@@ -48,7 +53,7 @@
                                     <ImageView fx:id="imgIconOPAC" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton fx:id="btnPrestamo" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="45.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Prestamo">
+                              <JFXButton fx:id="btnPrestamo" alignment="TOP_RIGHT" contentDisplay="RIGHT" graphicTextGap="45.0" onAction="#btnPrestamoPressed" prefHeight="50.0" prefWidth="200.0" styleClass="buttonDrawer" text="Préstamo">
                                  <graphic>
                                     <ImageView fx:id="imgIconPrestamo" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>

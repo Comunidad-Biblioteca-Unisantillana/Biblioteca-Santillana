@@ -11,12 +11,14 @@ import java.util.logging.Logger;
 
 import moduloPrestamo.DAO.PrestamoPeriodicoDAOEst;
 import moduloPrestamo.entitys.PrestamoPeriodicoEst;
+import moduloReserva.fabrica.ReservaColgenEstFab;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import recursos.controllers.PeriodicoJpaController;
 import recursos.entitys.Periodico;
 import usuarios.control.EstudianteJpaController;
 import usuarios.entitys.Estudiante;
+import moduloMulta.modelo.VerificaMultaEstudiante;
 
 
 /**
@@ -28,30 +30,39 @@ public class PrestamoPeriodicoEstFabTest {
     public PrestamoPeriodicoEstFabTest() {
     }
     /**
-     * Prueba #1
-     * Metodo que se encarga de probar que todos los estudiantes<br>
-     * puedan registrar prestamos
-     */
-    @Test
-    public void testEjecutarPrestamoEstudiantes() {
-        System.out.println("--------------------------Prueba 1--------------------------------------");
-        String codBarras = "158632";
-        String idBibliotecario = "1102515566";
-        EstudianteJpaController controlEst = new EstudianteJpaController();
-        List<Estudiante> estudiantes = controlEst.findEstudianteEntities();
-        PrestamoPeriodicoEstFab instance = new PrestamoPeriodicoEstFab();
-        boolean result = false;
-        for (int i = 0; i < estudiantes.size(); i++) {
-            result = instance.ejecutarPrestamo(codBarras, estudiantes.get(i).getCodestudiante(), idBibliotecario);
-            if (result) {
-                readAndDeletePrestamoTest(instance);
-            } else {
-                System.out.println("Error con el codigo de estudiante: " + estudiantes.get(i).getCodestudiante());
-                break;
-            }
-        }
-        assertEquals(true, result);
-    }
+	 * Prueba #1 Metodo que se encarga de probar que todos los estudiantes<br>
+	 * puedan registrar prestamos
+	 */
+	@Test
+	public void testEjecutarPrestamoEstudiantes() {
+		System.out.println("--------------------------Prueba 1--------------------------------------");
+		String codBarras = "254922";
+		String idBibliotecario = "1102515566";
+		EstudianteJpaController controlEst = new EstudianteJpaController();
+		List<Estudiante> estudiantes = controlEst.findEstudianteEntities();
+		PrestamoPeriodicoEstFab instance = new PrestamoPeriodicoEstFab();
+		ReservaColgenEstFab instance2 = new ReservaColgenEstFab();
+		VerificaMultaEstudiante instance3 = new VerificaMultaEstudiante();
+		boolean result = false;
+		boolean resultReserva = false;
+		boolean resultMulta = false;
+		for (int i = 0; i < estudiantes.size(); i++) {
+			result = instance.ejecutarPrestamo(codBarras, estudiantes.get(i).getCodestudiante(), idBibliotecario);
+			resultReserva = instance2.consultarReservas(codBarras);
+			resultMulta = instance3.buscarMultaLibro(estudiantes.get(i).getCodestudiante());
+			if (result && resultReserva) {
+				readAndDeletePrestamoTest(instance);
+			} else {
+				System.out.println("Error con el codigo de estudiante: " + estudiantes.get(i).getCodestudiante());
+				break;
+			}
+			if (resultMulta) {
+				System.out.println("El estudiante: " + estudiantes.get(i).getCodestudiante() + "Cuenta con una multa");
+			}
+		}
+		assertEquals(true, result);
+		
+	}
 
     
     /**

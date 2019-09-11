@@ -6,8 +6,16 @@
         <group/>
 =======
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
             <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/META-INF/persistence.xml</file>
+=======
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/vista/MultaBibliotecario.fxml</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/recursos/styles/styles.css</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/recursos/styles/stylesMenu.css</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/recursos/styles/stylesLogin.css</file>
+>>>>>>> desarrollo
         </group>
 >>>>>>> desarrollo
     </open-files>
