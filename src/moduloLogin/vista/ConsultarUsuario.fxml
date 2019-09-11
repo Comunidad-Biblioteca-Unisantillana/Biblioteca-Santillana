@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="716.0" maxWidth="1366.0" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloLogin.control.ConsultarUsuarioController">
+<GridPane maxHeight="716.0" maxWidth="1366.0" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloLogin.control.ConsultarUsuarioController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="311.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="326.0" />
@@ -30,7 +30,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="84.0" prefHeight="505.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="390.0" style="-fx-font-size: 30;" stylesheets="@../recursos/styles.css" text="Buscar Usuario" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="390.0" style="-fx-font-size: 30;" stylesheets="@../recursos/styles.css" text="BUSCAR USUARIO" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
@@ -38,7 +38,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label alignment="CENTER" prefHeight="37.0" prefWidth="277.0" text="Còdigo/Identificaciòn" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Label alignment="CENTER" prefHeight="37.0" prefWidth="277.0" text="Còdigo/Identificación" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
@@ -53,7 +53,7 @@
       </JFXTextField>
       <Label alignment="CENTER" prefHeight="37.0" prefWidth="277.0" text="Tipo de usuario" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <JFXComboBox fx:id="cboTipoUsuario" prefHeight="35.0" prefWidth="192.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarUsuario" prefHeight="32.0" prefWidth="170.0" text="Buscar Usuario" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarUsuario" prefHeight="32.0" prefWidth="170.0" text="Buscar usuario" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
