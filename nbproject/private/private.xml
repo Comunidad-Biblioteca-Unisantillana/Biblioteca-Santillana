@@ -2,33 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionEnciclopediaProfFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionMapaProfFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionMapaEstFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionRevistaEstFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/control/TituloYAutorOPACController.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionEnciclopediaEstFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionPeriodicoEstFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/vista/TituloYAutorOPAC.fxml</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionDiccionarioProfFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionRevistaProfFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/recursos/entitys/Libro.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/modelo/BusquedaTituloYAutor.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/vista/MenuOPAC.fxml</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionDiccionarioEstFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionLibroProfFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/vista/PalabraClaveOPAC.fxml</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/control/PalabraClaveOPACController.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloPrestamo/vista/PrestamoBibliotecario.fxml</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloMulta/control/ControlPrecioMultaJpaController.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionLibroEstFab.java</file>
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloDevolucion/fabrica/DevolucionPeriodicoProfFab.java</file>
-=======
-            <file>file:/C:/Users/UNIVALLE/Desktop/Biblioteca-Santillana/src/moduloOPAC/vista/FichaTecnicaPanel.java</file>
->>>>>>> interfaz
-        </group>
+        <group/>
     </open-files>
 </project-private>
