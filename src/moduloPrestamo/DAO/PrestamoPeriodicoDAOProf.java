@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import general.modelo.ConnectionBD;
+import java.sql.Date;
 import moduloPrestamo.entitys.PrestamoPeriodicoProf;
 
 /**
@@ -116,8 +117,8 @@ public class PrestamoPeriodicoDAOProf extends PrestamoRecursoDAOAbs<PrestamoPeri
             pps.setString(1, prestamo.getCodBarraPeriodico());
             pps.setString(2, prestamo.getIdProfesor());
             pps.setString(3, prestamo.getIdBibliotecario());
-            pps.setDate(4, prestamo.getFechaPrestamo());
-            pps.setDate(5, prestamo.getFechaDevolucion());
+            pps.setDate(4, (Date) prestamo.getFechaPrestamo());
+            pps.setDate(5, (Date) prestamo.getFechaDevolucion());
             pps.setString(6, prestamo.getDevuelto());
             pps.setInt(7, prestamo.getCodPrestamoPeriodicoProf());
 
@@ -181,6 +182,7 @@ public class PrestamoPeriodicoDAOProf extends PrestamoRecursoDAOAbs<PrestamoPeri
                 prestamoTmp.setFechaPrestamo(rs.getDate("fechaPrestamo"));
                 prestamoTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 prestamoTmp.setDevuelto(rs.getString("devuelto"));
+                prestamos.add(prestamoTmp);
             }
 
             rs.close();

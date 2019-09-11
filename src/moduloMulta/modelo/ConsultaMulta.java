@@ -70,9 +70,9 @@ public class ConsultaMulta {
             rs = pps.executeQuery();
 
             while (rs.next()) {
-                Multa multaTmp = new Multa(rs.getInt("codMulta"), rs.getInt("codPrestamo"), rs.getInt("diasAtrasados"),
-                        rs.getInt("valorTotalMulta"), rs.getString("cancelado"), rs.getString("tipo"));
-                multasTmp.add(multaTmp);
+//                Multa multaTmp = new Multa(rs.getInt("codMulta"), rs.getInt("codPrestamo"), rs.getInt("diasAtrasados"),
+//                        rs.getInt("valorTotalMulta"), rs.getString("cancelado"), rs.getString("tipo"));
+//                multasTmp.add(multaTmp);
             }
 
             if (!multasTmp.isEmpty()) {

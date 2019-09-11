@@ -1,8 +1,5 @@
-
 package moduloReserva.fabrica;
 
-import java.sql.Date;
-import general.modelo.ServicioFecha;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloReserva.DAO.ReservaColgenDAOProf;
@@ -12,12 +9,38 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloPrestamo.DAO.PrestamoLibroDAOEst;
+import moduloPrestamo.DAO.PrestamoRecursoDAOAbs;
+import moduloPrestamo.entitys.PrestamoLibroEst;
+import moduloReserva.modelo.VerificaReserva;
 
 /**
  *
  * @author Julian
+ * @creado:
+ * @author Miguel Fernández
+ * @modificado: 07/09/2019
  */
 public class ReservaColgenProfFab implements IReserva {
+
+    /**
+     * el metódo se encarga de verificar si existe una reserva del recurso a
+     * reservar.
+     *
+     * @param codBarras
+     * @return boolean
+     */
+    private boolean consultarReservas(String codBarras) {
+        VerificaReserva verificaReserva = new VerificaReserva();
+
+        if (!verificaReserva.verificarReservaEst(codBarras)) {
+            if (!verificaReserva.verificarReservaProf(codBarras)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     @Override
     public boolean ejecutarReserva(String codBarras, String codUsuario, String idBibliotecario) {
@@ -28,24 +51,27 @@ public class ReservaColgenProfFab implements IReserva {
             if (libro != null) {
                 if (libro.getDisponibilidad().equalsIgnoreCase("prestado")) {
                     if (libro.getCodcategoriacoleccion().getCodcategoriacoleccion().equalsIgnoreCase("colgen")) {
+                        if (!consultarReservas(codBarras)) {
+                            PrestamoRecursoDAOAbs presDAO = new PrestamoLibroDAOProf();
+                            PrestamoLibroProf prestamo = (PrestamoLibroProf) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
+                            presDAO = new PrestamoLibroDAOEst();
+                            PrestamoLibroEst prestamo1 = (PrestamoLibroEst) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
 
-                        PrestamoLibroDAOProf presDAO = new PrestamoLibroDAOProf();
-                        PrestamoLibroProf prestamo = presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
-                        
-                        if (prestamo != null) {
-                            
-                            java.util.Date fechaActual = new java.util.Date();
-                            java.util.Date fechaLimiteReserva = ServicioFecha.sumarDiasAFecha(prestamo.getFechaDevolucion(), 5);
+                            if (prestamo != null || prestamo1 != null) {
+                                ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, idBibliotecario, codUsuario);
 
-                            ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, codUsuario, idBibliotecario,
-                                    new Date(fechaActual.getTime()));
-                            reserva.setFechaLimiteReserva(new Date( fechaLimiteReserva.getTime()));
-
-                            ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
-                            resDAO.createDAO(reserva);
-                            return true;
+                                ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
+                                resDAO.createDAO(reserva);
+                                System.out.println("Actualizando dispinibilidad.....");
+                                libro.setDisponibilidad("reservado");
+                                control.edit(libro);
+                                return true;
+                            } else {
+                                System.out.println("El prestamo es null");
+                            }
                         } else {
-                            System.out.println("El prestamo es null");
+                            alert.showAlert("Anuncio", "Libro reservado", "El libro con el código: " + codBarras
+                                    + " , se encuentra reservado por otro usuario.");
                         }
                     } else {
                         alert.showAlert("Anuncio", "Reserva estudiante", "El libro no se puede reservar, no es de colección general");
@@ -60,5 +86,5 @@ public class ReservaColgenProfFab implements IReserva {
         }
         return false;
     }
-    
+
 }

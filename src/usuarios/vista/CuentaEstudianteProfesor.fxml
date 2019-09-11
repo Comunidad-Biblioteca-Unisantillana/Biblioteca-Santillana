@@ -21,10 +21,6 @@
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#itemSalirPressed" text="Salir" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ayuda">
-            <items>
               <MenuItem mnemonicParsing="false" onAction="#itemAcercaDePressed" text="Acerca de" />
             </items>
           </Menu>

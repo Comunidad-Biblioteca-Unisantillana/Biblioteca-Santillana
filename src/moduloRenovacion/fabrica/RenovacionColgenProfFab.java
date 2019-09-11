@@ -1,6 +1,6 @@
 package moduloRenovacion.fabrica;
 
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import moduloPrestamo.DAO.PrestamoLibroDAOProf;
 import moduloPrestamo.entitys.PrestamoLibroProf;
 import moduloRenovacion.modelo.IRenovacion;
@@ -8,12 +8,18 @@ import recursos.controllers.LibroJpaController;
 import recursos.entitys.Libro;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import moduloReserva.modelo.VerificaReserva;
+import usuarios.control.ProfesorJpaController;
+import usuarios.entitys.Profesor;
 
 /**
  * @author Miguel Fernández
  * @creado 24/08/2019
  * @author Miguel Fernández
- * @modificado 25/08/2019
+ * @modificado 08/09/2019
  */
 public class RenovacionColgenProfFab implements IRenovacion {
 
@@ -27,18 +33,26 @@ public class RenovacionColgenProfFab implements IRenovacion {
     }
 
     /**
-     * el metódo se encarga de verificar si existe una reserva del recurso a
+     * el método se encarga de verificar si existe una reserva del recurso a
      * renovar.
      *
      * @param codBarras
      * @return boolean
      */
     private boolean consultarReservas(String codBarras) {
-        return false;
+        VerificaReserva verificaReserva = new VerificaReserva();
+
+        if (!verificaReserva.verificarReservaEst(codBarras)) {
+            if (!verificaReserva.verificarReservaProf(codBarras)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
-     * el metódo se encarga de realizar la renovaión del recurso solicitado por
+     * el método se encarga de realizar la renovaión del recurso solicitado por
      * el profesor.
      *
      * @param codBarras
@@ -47,38 +61,42 @@ public class RenovacionColgenProfFab implements IRenovacion {
      */
     @Override
     public boolean ejecutarRenovacion(String codBarras, String idUsuario) {
-        //espacio para verificar reserva
-
         LibroJpaController libroJpaController = new LibroJpaController();
         Libro libro = libroJpaController.findLibro(codBarras);
 
         if (verificarCondicionesRecurso(libro, codBarras)) {
-            PrestamoLibroDAOProf prestamoLibroDAOProf = new PrestamoLibroDAOProf(15);
-            PrestamoLibroProf prestamoLibroProf = prestamoLibroDAOProf.readDAO(prestamoLibroDAOProf.readCodigoDAO(codBarras));
+            if (!consultarReservas(codBarras)) {
+                PrestamoLibroDAOProf prestamoLibroDAOProf = new PrestamoLibroDAOProf(15);
+                PrestamoLibroProf prestamoLibroProf = prestamoLibroDAOProf.readDAO(prestamoLibroDAOProf.readCodigoDAO(codBarras));
 
-            if (prestamoLibroProf != null) {
-                if (prestamoLibroProf.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
-                    prestamoLibroProf.setNumRenovaciones(prestamoLibroProf.getNumRenovaciones() + 1);
+                if (prestamoLibroProf != null) {
+                    if (prestamoLibroProf.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
+                        prestamoLibroProf.setNumRenovaciones(prestamoLibroProf.getNumRenovaciones() + 1);
 
-                    if (prestamoLibroDAOProf.updateDAO(prestamoLibroProf)) {
-                        //espacio para el envio del correo
+                        if (prestamoLibroDAOProf.updateDAO(prestamoLibroProf)) {
+                            notificarPrestamoEmail(idUsuario, libro);
 
-                        alert.showAlert("Anuncio", "Renovación", "La renovación del libro: " + codBarras
-                                + ", se realizó con exito");
-                        
-                        return true;
+                            alert.showAlert("Anuncio", "Renovación exitosa", "La renovación del libro: " + codBarras
+                                    + ", se realizó con éxito");
+
+                            return true;
+                        } else {
+                            alert.showAlert("Anuncio", "Renovación fallida", "La renovación del libro: " + codBarras
+                                    + ", no se pudo realizar");
+                        }
                     } else {
-                        alert.showAlert("Anuncio", "Renovación", "La renovación del libro: " + codBarras
-                                + ", no se pudo realizar");
+                        alert.showAlert("Anuncio", "Limite máximo de renovación", "El profesor: " + idUsuario
+                                + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
+                                + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
                     }
                 } else {
-                    alert.showAlert("Anuncio", "Renovación", "El profesor: " + idUsuario
-                            + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
-                            + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
+                    alert.showAlert("Anuncio", "Préstamo no encontrado", "No se encontró un préstamo actual "
+                            + "asociado al libro, con el código: " + codBarras + ".");
                 }
             } else {
-                alert.showAlert("Anuncio", "Renovación", "No se encontró un préstamo actual "
-                        + "asociado al libro con el código: " + codBarras + ".");
+                alert.showAlert("Anuncio", "Libro reservado", "El libro con el código: " + codBarras
+                        + " , que desea renovar, se encuentra reservado por otro usuario."
+                        + "\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
             }
         }
 
@@ -86,21 +104,38 @@ public class RenovacionColgenProfFab implements IRenovacion {
     }
 
     /**
-     * el metódo realiza la construcción del correo, para notificar al profesor
-     * de que resucro se renovó.
+     * el método realiza la concatenación de los datos necesarios para la
+     * construcción del e-mail al profesor, notificandole de la renovación del
+     * libro.
      *
-     * @param codEstudiante
-     * @param codBarras
-     * @param tituloRecurso
-     * @param fechaRenovacion
-     * @param fechaDevolucion
+     * @param idProfesor
+     * @param libro
      */
-    private void notificarRenovacion(String idProfesor, String codBarras, String tituloRecurso, Date fechaRenovacion, Date fechaDevolucion) {
+    private void notificarPrestamoEmail(String idProfesor, Libro libro) {
+        ProfesorJpaController profesorJpaController = new ProfesorJpaController();
+        Profesor profesor = profesorJpaController.findProfesor(idProfesor);
 
+        PrestamoLibroDAOProf prestamoLibroDAOProf = new PrestamoLibroDAOProf();
+        PrestamoLibroProf prestamoLibroProf = prestamoLibroDAOProf.readDAO(prestamoLibroDAOProf.readCodigoDAO(libro.getCodbarralibro()));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = profesor.getApellidos().toUpperCase() + ";"
+                + profesor.getNombres().toUpperCase() + ";"
+                + "Identificación: " + idProfesor + ";"
+                + libro.getTitulo() + ";"
+                + libro.getCodbarralibro() + ";"
+                + formatoFecha.format(new Date().getTime()) + ";"
+                + formatoFecha.format((Date) prestamoLibroProf.getFechaDevolucion()) + ";"
+                + libro.getCodcategoriacoleccion().getNombrecol() + ";"
+                + profesor.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeRenovacion");
     }
 
     /**
-     * el metódo vrifica ciertas restricciones sobre el libro a renovar.
+     * el método vrifica ciertas restricciones sobre el libro a renovar.
      *
      * @param libro
      * @param codBarras

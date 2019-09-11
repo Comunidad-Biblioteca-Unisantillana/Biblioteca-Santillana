@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +14,17 @@ import recursos.controllers.MapaJpaController;
 import recursos.entitys.Mapa;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:45 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionMapaEstFab implements IDevolucion {
 
@@ -39,9 +45,7 @@ public class DevolucionMapaEstFab implements IDevolucion {
                     PrestamoMapaDAOEst prestDAOEst = new PrestamoMapaDAOEst();
                     PrestamoMapaEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
-                        DevolucionMapaEst devEst = new DevolucionMapaEst(prestEst.getCodPrestamoMapaEst(), idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                        DevolucionMapaEst devEst = new DevolucionMapaEst(prestEst.getCodPrestamoMapaEst(), idBibliotecario, estadoRecurso);
                         DevolucionMapaDAOEst devDAOEst = new DevolucionMapaDAOEst();
                         devDAOEst.createDAO(devEst);
 
@@ -50,6 +54,8 @@ public class DevolucionMapaEstFab implements IDevolucion {
 
                         prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
+
+                        notificarDevolucion(prestEst.getCodEstudiante(), mapa, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución mapa", "La devolución del usuario con codigo"
                                 + prestEst.getCodEstudiante()
                                 + "se realizo con exito");
@@ -72,7 +78,8 @@ public class DevolucionMapaEstFab implements IDevolucion {
         List<PrestamoMapaEst> prestamos = prestDAOEst.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraMapa().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraMapa().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoMapaEst();
                 break;
             }
@@ -80,7 +87,36 @@ public class DevolucionMapaEstFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String codEstudiante, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole de la devoluciòn del
+     * mapa.
+     *
+     * @param codEstudiante
+     * @param mapa
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String codEstudiante, Mapa mapa, int codPrestamo) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        DevolucionMapaDAOEst devDAOEst = new DevolucionMapaDAOEst();
+        DevolucionMapaEst devEst = devDAOEst.readDAO(devDAOEst.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + mapa.getTitulo() + ";"
+                + mapa.getCodbarramapa() + ";"
+                + formatoFecha.format((Date) devEst.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
+
 }

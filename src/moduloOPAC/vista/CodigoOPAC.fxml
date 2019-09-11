@@ -46,7 +46,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#BtnBuscarCodigo" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarCodigo" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

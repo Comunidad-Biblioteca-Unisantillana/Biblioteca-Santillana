@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import general.modelo.ConnectionBD;
+import java.sql.Date;
 import moduloPrestamo.entitys.PrestamoLibroEst;
 
 /**
@@ -84,7 +85,8 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Estudiante WHERE codPrestLibroEst = '" + codigo + "';");
+            rs = stmt.executeQuery("SELECT * FROM Prestamo_Libro_Estudiante "
+                    + "WHERE codPrestLibroEst = '" + codigo + "';");
 
             while (rs.next()) {
                 prestamo = new PrestamoLibroEst();
@@ -139,7 +141,7 @@ public class PrestamoLibroDAOEst extends PrestamoRecursoDAOAbs<PrestamoLibroEst>
             pps.setString(1, prestamo.getCodBarraLibro());
             pps.setString(2, prestamo.getCodEstudiante());
             pps.setString(3, prestamo.getIdBibliotecario());
-            pps.setDate(4, prestamo.getFechaPrestamo());
+            pps.setDate(4, (Date) prestamo.getFechaPrestamo());
             pps.setInt(5, prestamo.getNumRenovaciones());
             pps.setString(6, prestamo.getDevuelto());
             pps.setInt(7, prestamo.getCodPrestamoLibroEst());

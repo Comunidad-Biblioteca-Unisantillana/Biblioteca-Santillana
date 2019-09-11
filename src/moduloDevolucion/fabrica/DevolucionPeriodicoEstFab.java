@@ -1,7 +1,7 @@
 package moduloDevolucion.fabrica;
 
 import controller.exceptions.NonexistentEntityException;
-import java.sql.Date;
+import general.modelo.NotificacionEmail;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +14,17 @@ import recursos.controllers.PeriodicoJpaController;
 import recursos.entitys.Periodico;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import usuarios.control.EstudianteJpaController;
+import usuarios.entitys.Estudiante;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:52 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionPeriodicoEstFab implements IDevolucion {
 
@@ -39,10 +45,8 @@ public class DevolucionPeriodicoEstFab implements IDevolucion {
                     PrestamoPeriodicoDAOEst prestDAOEst = new PrestamoPeriodicoDAOEst();
                     PrestamoPeriodicoEst prestEst = prestDAOEst.readDAO(codPrestamo);
                     if (prestEst.getDevuelto().equalsIgnoreCase("no")) {
-                        java.util.Date fechaDevolucion =  new java.util.Date();
-                        
                         DevolucionPeriodicoEst devEst = new DevolucionPeriodicoEst(prestEst.getCodPrestamoPeriodicoEst(),
-                                idBibliotecario, new Date(fechaDevolucion.getTime()), estadoRecurso);
+                                idBibliotecario, estadoRecurso);
                         DevolucionPeriodicoDAOEst devDAOEst = new DevolucionPeriodicoDAOEst();
                         devDAOEst.createDAO(devEst);
 
@@ -51,6 +55,8 @@ public class DevolucionPeriodicoEstFab implements IDevolucion {
 
                         prestEst.setDevuelto("si");
                         prestDAOEst.updateDAO(prestEst);
+
+                        notificarDevolucion(prestEst.getCodEstudiante(), periodico, codPrestamo);
                         alert.showAlert("Anuncio", "Devolución periodico", "La devolución del usuario con codigo"
                                 + prestEst.getCodEstudiante()
                                 + "se realizo con exito");
@@ -73,7 +79,8 @@ public class DevolucionPeriodicoEstFab implements IDevolucion {
         List<PrestamoPeriodicoEst> prestamos = prestDAOEst.readAllDAO();
         int codPrestamo = 0;
         for (int i = 0; i < prestamos.size(); i++) {
-            if (prestamos.get(i).getCodBarraPeriodico().equalsIgnoreCase(codBarras)) {
+            if (prestamos.get(i).getCodBarraPeriodico().equalsIgnoreCase(codBarras)
+                    && prestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                 codPrestamo = prestamos.get(i).getCodPrestamoPeriodicoEst();
                 break;
             }
@@ -81,7 +88,36 @@ public class DevolucionPeriodicoEstFab implements IDevolucion {
         return codPrestamo;
     }
 
-    public void notificarDevolucion(String codEstudiante, String tituloRecurso, java.util.Date fechaDevolucion) {
+    /**
+     * el método realiza concatenación de los datos necesarios para la
+     * construcción del e-mail al estudiante, notificandole de la devoluciòn del
+     * periòdico.
+     *
+     * @param codEstudiante
+     * @param periodico
+     * @param codPrestamo
+     */
+    public void notificarDevolucion(String codEstudiante, Periodico periodico, int codPrestamo) {
+        EstudianteJpaController estudianteJpaController = new EstudianteJpaController();
+        Estudiante estudiante = estudianteJpaController.findEstudiante(codEstudiante);
 
+        DevolucionPeriodicoDAOEst devDAOEst = new DevolucionPeriodicoDAOEst();
+        DevolucionPeriodicoEst devEst = devDAOEst.readDAO(devDAOEst.readCodigoDAO(codPrestamo));
+
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datos = estudiante.getApellido().toUpperCase() + ";"
+                + estudiante.getNombre().toUpperCase() + ";"
+                + "Código: " + codEstudiante + ";"
+                + periodico.getNombreperiodico()+ ";"
+                + periodico.getCodbarraperiodico() + ";"
+                + formatoFecha.format((Date) devEst.getFechaDevolucion()) + ";"
+                + "null;"
+                + "null;"
+                + estudiante.getCorreoelectronico();
+
+        NotificacionEmail em = new NotificacionEmail();
+        em.gestionarNotificacion(datos, "mensajeDevolucion");
     }
+    
 }

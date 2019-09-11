@@ -7,6 +7,7 @@ import moduloPrestamo.control.PrestamoBibliotecarioController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import general.vista.InformacionEmpresaStage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,11 +31,10 @@ import moduloLogin.vista.LoginUnisantillanaStage;
  * @author stiven valencia
  * @creado: 05/09/2018
  * @author Miguel Fernández
- * @modificado: 21/08/2019
+ * @modificado: 09/09/2019
  */
 public class CuentaBibliotecarioController implements Initializable {
 
-    private CuentaBibliotecarioStage stage;
     @FXML
     private BorderPane rootModulo;
     @FXML
@@ -53,6 +53,10 @@ public class CuentaBibliotecarioController implements Initializable {
     private ImageView imgIconMulta;
     @FXML
     private ImageView imgIconRenovacion;
+    @FXML
+    private ImageView imgIconConsultarUsuario;
+    @FXML
+    private JFXButton btnConsultarUsuario;
     @FXML
     private JFXButton btnOPAC;
     @FXML
@@ -80,14 +84,26 @@ public class CuentaBibliotecarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imd = new IniciarMenuDesplegable(drawer, anchorDrawer, hamburger);
+        imgIconConsultarUsuario.setImage(new Image("/general/recursos/img/iconOPAC.png"));
         imgIconPrestamo.setImage(new Image("/general/recursos/img/iconPrestamo.png"));
         imgIconReserva.setImage(new Image("/general/recursos/img/iconReserva.png"));
         imgIconDevolucion.setImage(new Image("/general/recursos/img/iconDevolucion.png"));
         imgIconMulta.setImage(new Image("/general/recursos/img/iconMulta.png"));
         imgIconOPAC.setImage(new Image("/general/recursos/img/iconOPAC.png"));
         imgIconRenovacion.setImage(new Image("/general/recursos/img/iconOPAC.png"));
-        loadOPAC();
-        valoresPorDefecto("OPAC");
+        loadConsultaUusuario();
+        valoresPorDefecto("consultaUsuario");
+    }
+
+    /**
+     * el método cambia un módulo por el de consulta usuario.
+     *
+     * @param event
+     */
+    @FXML
+    private void btnConsultarUsuarioPressed(ActionEvent event) {
+        loadConsultaUusuario();
+        valoresPorDefecto("consultaUsuario");
     }
 
     /**
@@ -161,7 +177,16 @@ public class CuentaBibliotecarioController implements Initializable {
      * selecionado.
      */
     private void valoresPorDefecto(String modulo) {
-        if (modulo.equals("OPAC")) {
+        if (modulo.equals("consultaUsuario")) {
+            btnConsultarUsuario.setDisable(true);
+            btnOPAC.setDisable(false);
+            btnPrestamo.setDisable(false);
+            btnReserva.setDisable(false);
+            btnDevolucion.setDisable(false);
+            btnMulta.setDisable(false);
+            btnRenovacion.setDisable(false);
+        } else if (modulo.equals("OPAC")) {
+            btnConsultarUsuario.setDisable(false);
             btnOPAC.setDisable(true);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(false);
@@ -169,6 +194,7 @@ public class CuentaBibliotecarioController implements Initializable {
             btnMulta.setDisable(false);
             btnRenovacion.setDisable(false);
         } else if (modulo.equals("prestamo")) {
+            btnConsultarUsuario.setDisable(false);
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(true);
             btnReserva.setDisable(false);
@@ -176,6 +202,7 @@ public class CuentaBibliotecarioController implements Initializable {
             btnMulta.setDisable(false);
             btnRenovacion.setDisable(false);
         } else if (modulo.equals("reserva")) {
+            btnConsultarUsuario.setDisable(false);
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(true);
@@ -183,6 +210,7 @@ public class CuentaBibliotecarioController implements Initializable {
             btnMulta.setDisable(false);
             btnRenovacion.setDisable(false);
         } else if (modulo.equals("devolucion")) {
+            btnConsultarUsuario.setDisable(false);
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(false);
@@ -190,6 +218,7 @@ public class CuentaBibliotecarioController implements Initializable {
             btnMulta.setDisable(false);
             btnRenovacion.setDisable(false);
         } else if (modulo.equals("multa")) {
+            btnConsultarUsuario.setDisable(false);
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(false);
@@ -197,6 +226,7 @@ public class CuentaBibliotecarioController implements Initializable {
             btnMulta.setDisable(true);
             btnRenovacion.setDisable(false);
         } else {
+            btnConsultarUsuario.setDisable(false);
             btnOPAC.setDisable(false);
             btnPrestamo.setDisable(false);
             btnReserva.setDisable(false);
@@ -226,9 +256,21 @@ public class CuentaBibliotecarioController implements Initializable {
      */
     @FXML
     private void itemAcercaDe(ActionEvent event) {
-
+        new InformacionEmpresaStage();
     }
 
+    /**
+     * el metódo carga el módulo de consultar datos usuario del bibliotecario.
+     */
+    private void loadConsultaUusuario() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moduloLogin/vista/ConsultarUsuario.fxml"));
+            rootModulo.setCenter(loader.load());
+        } catch (IOException ex) {
+            System.out.println("Error al cargar la vista PrestamoBibliotecario.fxml");
+        }
+    }
+    
     /**
      * el metódo carga el módulo préstamo del bibliotecario.
      */
@@ -335,15 +377,6 @@ public class CuentaBibliotecarioController implements Initializable {
      */
     public void setIdBibliotecario(String idBibliotecario) {
         this.idBibliotecario = idBibliotecario;
-    }
-
-    /**
-     * el metódo asigna stage de bibliotecario.
-     *
-     * @param stage
-     */
-    public void setStage(CuentaBibliotecarioStage stage) {
-        this.stage = stage;
     }
 
 }

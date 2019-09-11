@@ -4,6 +4,9 @@ import usuarios.control.EstudianteJpaController;
 import usuarios.control.ProfesorJpaController;
 import general.vista.AlertBox;
 import general.vista.IAlertBox;
+import moduloMulta.modelo.IVerificaMulta;
+import moduloMulta.modelo.VerificaMultaEstudiante;
+import moduloMulta.modelo.VerificaMultaProfesor;
 
 /**
  * Clase que se encarga de generar un préstamo de un recurso.
@@ -23,7 +26,7 @@ public class GeneradorPrestamo {
     }
 
     /**
-     * el metódo se encarga de crear un préstamoñ
+     * el método se encarga de crear un préstamo a un usuario.
      *
      * @param codBarra
      * @param codUsuario
@@ -39,29 +42,38 @@ public class GeneradorPrestamo {
             EstudianteJpaController estJPA = new EstudianteJpaController();
 
             if (estJPA.findEstudiante(codUsuario) != null) {
-                //aqui quedaria el metódo que consulta las multas del estudiante.
-
-                if (generarPrestamoEstudiante(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
-                    alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
-                            + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
+                if (!consultarMulta(codUsuario, tipoUsuario)) {
+                    if (generarPrestamoEstudiante(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
+                        alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
+                                + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
+                    } else {
+                        alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
+                                + tipoPrestamo + ": " + codBarra + " al estudiante: " + codUsuario + ".");
+                    }
                 } else {
-                    alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
-                            + tipoPrestamo + ": " + codBarra + " al estudiante: " + codUsuario + ".");
+                    alert.showAlert("Anuncio", "Estudiante multado", "El estudiante: " + codUsuario
+                            + ", tiene cargado en su cuenta una multa. Por lo tanto no se le puede prestar el/la "
+                            + tipoPrestamo + ": " + codBarra + ", hasta que cancele la multa.");
                 }
             } else {
                 alert.showAlert("Anuncio", "Error usuario", "No hay ningún estudiante asociado al código: " + codUsuario + ".");
             }
         } else if (tipoUsuario.equalsIgnoreCase("profesor")) {
             ProfesorJpaController profJPA = new ProfesorJpaController();
-            //aqui quedaria el metódo que consulta las multas del profesor.
 
             if (profJPA.findProfesor(codUsuario) != null) {
-                if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
-                    alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
-                            + ": " + codBarra + " al estudiante: " + codUsuario + ", se realizó con éxito.");
+                if (!consultarMulta(codUsuario, tipoUsuario)) {
+                    if (generarPrestamoProfesor(codBarra, codUsuario, idBibliotecario, tipoPrestamo)) {
+                        alert.showAlert("Anuncio", "Préstamo", "El préstamo del/de(la) " + tipoPrestamo
+                                + ": " + codBarra + " al profesor: " + codUsuario + ", se realizó con éxito.");
+                    } else {
+                        alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
+                                + tipoPrestamo + ": " + codBarra + " al profesor: " + codUsuario + ".");
+                    }
                 } else {
-                    alert.showAlert("Anuncio", "Error préstamo", "No se pudo realizar el préstamo del/de(la) "
-                            + tipoPrestamo + ": " + codBarra + " al profesor: " + codUsuario + ".");
+                    alert.showAlert("Anuncio", "Profesor multado", "El profesor: " + codUsuario
+                            + ", tiene cargado en su cuenta una multa. Por lo tanto no se le puede prestar el/la "
+                            + tipoPrestamo + ": " + codBarra + ", hasta que cancele la multa.");
                 }
             } else {
                 alert.showAlert("Anuncio", "Error usuario", "No hay ningún profesor asociado a la identificación: " + codUsuario + ".");
@@ -70,64 +82,54 @@ public class GeneradorPrestamo {
     }
 
     /**
-     * el metódo genera un préstamo de un estudiante.
+     * el método genera un préstamo de un estudiante.
      *
      * @param codBarras
      * @param codEstudiante
      * @param idBibliotecario
      * @param tipoPrestamo
-     * @return
+     * @return boolean
      */
     private boolean generarPrestamoEstudiante(String codBarras, String codEstudiante, String idBibliotecario, String tipoPrestamo) {
         FabricaPrestamo fabPrestamo = new FabricaPrestamo();
         IPrestamo prestamoEstudiante = fabPrestamo.getPrestamo(tipoPrestamo, "estudiante");//no se tienen encuenta el null
 
-        if (prestamoEstudiante.ejecutarPrestamo(codBarras, codEstudiante, idBibliotecario)) {
-            return true;
-        }
-
-        return false;
+        return prestamoEstudiante.ejecutarPrestamo(codBarras, codEstudiante, idBibliotecario);
     }
 
     /**
-     * el metdo genera un préstamo de un profesor.
+     * el método genera un préstamo de un profesor.
      *
      * @param codBarras
      * @param idProfesor
      * @param idBibliotecario
      * @param nombreRecurso
-     * @return
+     * @return boolean
      */
     private boolean generarPrestamoProfesor(String codBarras, String idProfesor, String idBibliotecario, String tipoPrestamo) {
         FabricaPrestamo fabPrestamo = new FabricaPrestamo();
         IPrestamo prestamoEstudiante = fabPrestamo.getPrestamo(tipoPrestamo, "profesor");//no se tienen encuenta el null
 
-        if (prestamoEstudiante.ejecutarPrestamo(codBarras, idProfesor, idBibliotecario)) {
-            return true;
+        return prestamoEstudiante.ejecutarPrestamo(codBarras, idProfesor, idBibliotecario);
+    }
+
+    /**
+     * el método consulta las multas de un usuario, por medio del código.
+     *
+     * @param codUsuario
+     * @param tipoUsuario
+     * @return boolean
+     */
+    public boolean consultarMulta(String codUsuario, String tipoUsuario) {
+        IVerificaMulta iVerificaMulta;
+
+        if (tipoUsuario.equalsIgnoreCase("estudiante")) {
+            iVerificaMulta = new VerificaMultaEstudiante();
+        } else {
+            iVerificaMulta = new VerificaMultaProfesor();
         }
 
-        return false;
-    }
-
-    /**
-     * el metódo consulta las multas del estudiante por medio de su
-     * identificación.
-     *
-     * @param idProfesor
-     * @return
-     */
-    public boolean consultarMultaProfesor(String idProfesor) {
-        return false;
-    }
-
-    /**
-     * el metódo consulta las multas del profesor por medio de su código.
-     *
-     * @param codEstudiante
-     * @return
-     */
-    public boolean consultarMultaEstudiante(String codEstudiante) {
-        return false;
+        return iVerificaMulta.verificarMultaUsuario(codUsuario);
     }
 
 }

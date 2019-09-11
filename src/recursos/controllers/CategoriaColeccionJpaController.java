@@ -556,7 +556,7 @@ public class CategoriaColeccionJpaController implements Serializable {
      *
      * @return
      */
-    private List<CategoriaColeccion> findCategoriaColeccionEntities() {
+    public List<CategoriaColeccion> findCategoriaColeccionEntities() {
         return findCategoriaColeccionEntities(true, -1, -1);
     }
 

@@ -29,7 +29,6 @@ public class CuentaBibliotecarioStage extends Stage {
             Parent root = loader.load();
             System.out.println(root.getClass().getName());
             cbcc = loader.getController();
-            cbcc.setStage(this);
             Scene scene = new Scene(root);
             setScene(scene);
             setTitle("Cuenta Bibliotecario");

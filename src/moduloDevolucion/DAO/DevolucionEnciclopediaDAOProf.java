@@ -12,8 +12,9 @@ import moduloDevolucion.entitys.DevolucionEnciclopediaProf;
 
 /**
  * @author Camilo Jaramillo
- * @version 1.0
- * @created 04-ago.-2019 10:37:27 a. m.
+ * @creado: 04/08/2019
+ * @author Miguel Fernández
+ * @modificado: 08/09/2019
  */
 public class DevolucionEnciclopediaDAOProf extends DevolucionRecursoDAOAbs<DevolucionEnciclopediaProf> {
 
@@ -76,7 +77,8 @@ public class DevolucionEnciclopediaDAOProf extends DevolucionRecursoDAOAbs<Devol
 
             while (rs.next()) {
                 DevolucionEnciclopediaProf devolucionTmp = new DevolucionEnciclopediaProf(rs.getInt("codPrestEncProf"), rs.getString("idBibliotecario"),
-                        rs.getDate("fechaDevolucion"), rs.getString("estadoDevolucion"));
+                        rs.getString("estadoDevolucion"));
+                devolucionTmp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 devolucionTmp.setCodDevolucionEnciclopediaProf(rs.getInt("codDevEncProf"));
                 devoluciones.add(devolucionTmp);
             }
@@ -100,8 +102,9 @@ public class DevolucionEnciclopediaDAOProf extends DevolucionRecursoDAOAbs<Devol
             rs = stmt.executeQuery("SELECT * FROM Devolucion_Enciclopedia_Profesor WHERE codDevEncProf = " + codigo + ";");
 
             while (rs.next()) {
-                devolucion = new DevolucionEnciclopediaProf(rs.getInt("codPrestEncProf"), rs.getString("idBibliotecario"), rs.getDate("fechaDevolucion"),
+                devolucion = new DevolucionEnciclopediaProf(rs.getInt("codPrestEncProf"), rs.getString("idBibliotecario"),
                         rs.getString("estadoDevolucion"));
+                devolucion.setFechaDevolucion(rs.getDate("fechaDevolucion"));
                 devolucion.setCodDevolucionEnciclopediaProf(rs.getInt("codDevEncProf"));
             }
             rs.close();
@@ -138,6 +141,36 @@ public class DevolucionEnciclopediaDAOProf extends DevolucionRecursoDAOAbs<Devol
             System.out.println("No se pudo realizar el update de devolucion enciclopedia del profesor");
         }
         return false;
+    }
+
+    /**
+     * el método realiza la consulta del código de la devolución de una
+     * enciclopedia del profesor en la BD, por medio del código del préstamo.
+     *
+     * @param codPrestamo
+     * @return codDevolucion
+     */
+    @Override
+    public int readCodigoDAO(int codPrestamo) {
+        Statement stmt;
+        ResultSet rs;
+        int codDevolucion = -1;
+
+        try {
+            stmt = connection.getConnection().createStatement();
+            rs = stmt.executeQuery("SELECT codDevEncProf FROM Devolucion_Enciclopedia_Profesor "
+                    + "WHERE codPrestEncProf = '" + codPrestamo + "';");
+
+            while (rs.next()) {
+                codDevolucion = rs.getInt("codDevEncProf");
+            }
+
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al realizar el readCodigoDAO, en devolución enciclopedia profesor");
+        }
+
+        return codDevolucion;
     }
 
 }
