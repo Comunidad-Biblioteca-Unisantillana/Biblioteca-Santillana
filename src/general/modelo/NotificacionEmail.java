@@ -60,7 +60,7 @@ public class NotificacionEmail {
             message.setFrom(new InternetAddress((String) properties.get("mail.smtp.user")));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceptor));
             message.setSubject(asunto);
-            message.setText(contenido, "ISO-8859-1", "html");
+            message.setContent(contenido, "text/html");
 
             Transport.send(message);
             System.out.println("Sent message successfully....");

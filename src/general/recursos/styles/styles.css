@@ -36,6 +36,13 @@ and open the template in the editor.
     -fx-background-color: #D6DCE5;
     -fx-text-fill: #2E86C1;
 }
+
+.buttonDrawer:disabled{
+    -fx-text-fill: #004777;
+    -fx-background-color: #E6F5FF;
+    -fx-font-weight: bold;
+    
+}
 .jfx-hamburger StackPane { 
     -fx-background-color: white;
 }
@@ -82,4 +89,13 @@ JFXComboBox{
     -fx-font-size: 11.6pt;
     -fx-text-fill: white;
     -fx-padding: 0 0 0 10;   
+}
+
+.salir{
+    -fx-font-size: 14px;
+    -fx-background-color: red;
+}
+.salir:hover{
+     -fx-background-color: #FF4B4B;
+
 }

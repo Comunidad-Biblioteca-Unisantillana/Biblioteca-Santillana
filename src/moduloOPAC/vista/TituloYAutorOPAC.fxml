@@ -12,11 +12,11 @@
 
 <GridPane maxHeight="716.0" maxWidth="1366.0" prefHeight="716.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloOPAC.control.TituloYAutorOPACController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="279.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="311.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="71.0" prefWidth="315.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="129.0" prefWidth="186.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="129.0" prefWidth="275.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="62.0" prefWidth="326.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="71.0" prefWidth="243.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="129.0" prefWidth="192.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="129.0" prefWidth="294.0" />
       <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
@@ -24,19 +24,19 @@
       <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="368.0" minHeight="21.0" prefHeight="86.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="503.0" minHeight="7.0" prefHeight="52.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="500.0" minHeight="15.0" prefHeight="63.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="500.0" minHeight="8.0" prefHeight="66.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="84.0" prefHeight="455.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="368.0" minHeight="21.0" prefHeight="67.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="503.0" minHeight="7.0" prefHeight="76.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="500.0" minHeight="20.0" prefHeight="68.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="500.0" minHeight="20.0" prefHeight="68.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="84.0" prefHeight="505.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <GridPane fx:id="gridPaneMenu" GridPane.rowSpan="3">
+      <GridPane fx:id="gridPaneMenu" alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowSpan="4" GridPane.valignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="202.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="220.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
       <Label alignment="CENTER" prefHeight="37.0" prefWidth="277.0" text="Título" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -55,7 +55,8 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarTituloAutor" prefHeight="32.0" prefWidth="170.0" text="Buscar recurso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnBuscarTituloAutor" prefHeight="32.0" prefWidth="170.0" text="Buscar Recurso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+
          <font>
             <Font size="15.0" />
          </font>
@@ -73,13 +74,12 @@
       </JFXTextField>
       <JFXComboBox fx:id="cboTipoBusqueda" prefHeight="35.0" prefWidth="192.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
       <Label alignment="CENTER" prefHeight="37.0" prefWidth="277.0" text="Tipo de búsqueda" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <GridPane fx:id="gridPaneTabla" alignment="CENTER" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+      <GridPane fx:id="gridPaneTabla" alignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="248.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="489.0" minHeight="10.0" prefHeight="435.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="505.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <opaqueInsets>
             <Insets />
