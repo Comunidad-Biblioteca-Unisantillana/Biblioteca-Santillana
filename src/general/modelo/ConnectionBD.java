@@ -23,7 +23,7 @@ public class ConnectionBD {
     private ConnectionBD() {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql:PruebaBiblioteca", "postgres", "root");
+            connection = DriverManager.getConnection("jdbc:postgresql:PruebaBiblioteca", "postgres", "1234");
             System.out.println("Conecto a la BBDD");
         } catch (ClassNotFoundException e) {
             System.err.println("No se pudo conectar a la BBDD");
@@ -54,7 +54,7 @@ public class ConnectionBD {
      * @throws SQLException
      */
     public Connection getConnection() throws SQLException {
-        DriverManager.getConnection("jdbc:postgresql:PruebaBiblioteca", "postgres", "root");
+        DriverManager.getConnection("jdbc:postgresql:PruebaBiblioteca", "postgres", "1234");
         return connection;
     }
 
