@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package moduloPrestamo.fabrica;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import moduloMulta.modelo.VerificaMultaEstudiante;
 
 import moduloPrestamo.DAO.PrestamoMapaDAOEst;
 import moduloPrestamo.entitys.PrestamoMapaEst;
+import moduloReserva.fabrica.ReservaColgenEstFab;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import recursos.controllers.MapaJpaController;
@@ -28,31 +26,40 @@ public class PrestamoMapaEstFabTest {
     public PrestamoMapaEstFabTest() {
     }
    
-    /**
-     * Prueba #1
-     * Metodo que se encarga de probar que todos los estudiantes<br>
-     * puedan registrar prestamos
-     */
-    @Test
-    public void testEjecutarPrestamoEstudiantes() {
-        System.out.println("--------------------------Prueba 1--------------------------------------");
-        String codBarras = "459883";
-        String idBibliotecario = "1102515566";
-        EstudianteJpaController controlEst = new EstudianteJpaController();
-        List<Estudiante> estudiantes = controlEst.findEstudianteEntities();
-        PrestamoMapaEstFab instance = new PrestamoMapaEstFab();
-        boolean result = false;
-        for (int i = 0; i < estudiantes.size(); i++) {
-            result = instance.ejecutarPrestamo(codBarras, estudiantes.get(i).getCodestudiante(), idBibliotecario);
-            if (result) {
-                readAndDeletePrestamoTest(instance);
-            } else {
-                System.out.println("Error con el codigo de estudiante: " + estudiantes.get(i).getCodestudiante());
-                break;
-            }
-        }
-        assertEquals(true, result);
-    }
+   /**
+	 * Prueba #1 Metodo que se encarga de probar que todos los estudiantes<br>
+	 * puedan registrar prestamos
+	 */
+	@Test
+	public void testEjecutarPrestamoEstudiantes() {
+		System.out.println("--------------------------Prueba 1--------------------------------------");
+		String codBarras = "254922";
+		String idBibliotecario = "1102515566";
+		EstudianteJpaController controlEst = new EstudianteJpaController();
+		List<Estudiante> estudiantes = controlEst.findEstudianteEntities();
+		PrestamoMapaEstFab instance = new PrestamoMapaEstFab();
+		ReservaColgenEstFab instance2 = new ReservaColgenEstFab();
+		VerificaMultaEstudiante instance3 = new VerificaMultaEstudiante();
+		boolean result = false;
+		boolean resultReserva = false;
+		boolean resultMulta = false;
+		for (int i = 0; i < estudiantes.size(); i++) {
+			result = instance.ejecutarPrestamo(codBarras, estudiantes.get(i).getCodestudiante(), idBibliotecario);
+			resultReserva = instance2.consultarReservas(codBarras);
+			resultMulta = instance3.buscarMultaLibro(estudiantes.get(i).getCodestudiante());
+			if (result && resultReserva) {
+				readAndDeletePrestamoTest(instance);
+			} else {
+				System.out.println("Error con el codigo de estudiante: " + estudiantes.get(i).getCodestudiante());
+				break;
+			}
+			if (resultMulta) {
+				System.out.println("El estudiante: " + estudiantes.get(i).getCodestudiante() + "Cuenta con una multa");
+			}
+		}
+		assertEquals(true, result);
+		
+	}
 
     /**
      * Metodo que se encarga de mostrar los prestamos<br>

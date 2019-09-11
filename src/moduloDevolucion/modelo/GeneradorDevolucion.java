@@ -8,7 +8,6 @@ package moduloDevolucion.modelo;
 public class GeneradorDevolucion {
 
     public GeneradorDevolucion() {
-
     }
 
     public String createDevolucion(String codBarras, String idBibliotecario, String tipoRecurso, String estadoRecurso) {

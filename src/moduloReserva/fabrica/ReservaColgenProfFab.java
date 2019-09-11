@@ -62,6 +62,9 @@ public class ReservaColgenProfFab implements IReserva {
 
                                 ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
                                 resDAO.createDAO(reserva);
+                                System.out.println("Actualizando dispinibilidad.....");
+                                libro.setDisponibilidad("reservado");
+                                control.edit(libro);
                                 return true;
                             } else {
                                 System.out.println("El prestamo es null");

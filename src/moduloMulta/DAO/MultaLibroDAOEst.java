@@ -20,7 +20,6 @@ import moduloMulta.entitys.MultaLibroEst;
  */
 public class MultaLibroDAOEst extends MultaDAOAbs<MultaLibroEst> {
 
-    private ConnectionBD connection;
 
     /**
      * constructor de la clase sin paràmetros.
@@ -44,7 +43,7 @@ public class MultaLibroDAOEst extends MultaDAOAbs<MultaLibroEst> {
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);
-            pps.setInt(1, multa.getCodMultaLibroEst());
+            pps.setInt(1, multa.getCodPrestamoLibroEst());
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
@@ -55,7 +54,7 @@ public class MultaLibroDAOEst extends MultaDAOAbs<MultaLibroEst> {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el CreateDAO, en multa libro estudiante");
+            System.out.println("Error al realizar el CreateDAO, en multa libro estudiante " + e.getMessage());
         }
 
         return false;
