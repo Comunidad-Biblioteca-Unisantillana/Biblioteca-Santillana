@@ -89,9 +89,7 @@ public class ReservaLibroEstFabTest {
             resultado = false;
         }
     }
-    
-    
-    
+
     /**
      * Prueba 3 que verifica si el codigo de usuario no existe
      */
@@ -189,10 +187,10 @@ public class ReservaLibroEstFabTest {
         }
         assertEquals(true, result);
     }
-    
+
     /**
      * Prueba 10 que se encarga de que un recurso a reservar este prestado
-     * Prueba 12 
+     * Prueba 12
      */
     public void pruebas_10() {
         System.out.println("PRUEBA 3 y 4");
@@ -218,7 +216,7 @@ public class ReservaLibroEstFabTest {
         if (!codigoLibro.equalsIgnoreCase("NA")) {//si no se encuentra un libro las pruebas fallan
             for (int i = 0; i < est.size(); i++) {
                 System.out.println("ejecutando prueba");
-                resultado = generador.createReserva(codigoLibro, est.get(i).getCodestudiante(), "estudiante", "1102515566");
+                resultado = generador.createReserva(codigoLibro, "1760187", "estudiante", "1102515566");
                 if (resultado) {
                     try {
                         System.out.println("borrando los cambios que se hicieron en las pruebas");
@@ -227,9 +225,7 @@ public class ReservaLibroEstFabTest {
                         Libro libro = libroJPA.findLibro(codigoLibro);
                         libro.setDisponibilidad("prestado");
                         libroJPA.edit(libro);
-                        if (i == 10) {
-                            break;
-                        }
+                        break;
                     } catch (NonexistentEntityException ex) {
                     } catch (Exception ex) {
                     }
@@ -244,7 +240,8 @@ public class ReservaLibroEstFabTest {
     }
 
     /**
-     * Prueba 11 que se encarga de revizar que un recurso se encuentre disponible
+     * Prueba 11 que se encarga de revizar que un recurso se encuentre
+     * disponible
      */
     public void prueba_11() {
         System.out.println("PRUEBA 3 y 4");
@@ -317,8 +314,6 @@ public class ReservaLibroEstFabTest {
         }
 
     }
-    
-    
 
     /**
      * Prueba 9 Metodo que prueba que el recurso no se encuentre "disponible" al
@@ -344,17 +339,17 @@ public class ReservaLibroEstFabTest {
         }
         assertEquals(false, result);
     }
-    
-    public void prueba_12_15_16_17(){
+
+    public void prueba_12_15_16_17() {
         GeneradorPrestamo generador = new GeneradorPrestamo();
         GeneradorReserva generadorReserva = new GeneradorReserva();
         GeneradorDevolucion generadorDevolucion = new GeneradorDevolucion();
-        
+
         try {
             generador.createPrestamo("507468", "1760167", "1102515566", "libro", "estudiante");
             generadorReserva.createReserva("507468", "1760204", "estudiante", "1102515566");
             generadorDevolucion.createDevolucion("507468", "1102515566", "libro", "bueno");
-            
+
             ReservaColgenDAOEst reservaDAO = new ReservaColgenDAOEst();
             ReservaColgenEstudiante reserva = reservaDAO.readDAO("507468");
             System.out.println("Fecha retencion: " + reserva.getFechaRetencion().getTime());
@@ -365,8 +360,7 @@ public class ReservaLibroEstFabTest {
             libro.setDisponibilidad("disponible");
             libroJPA.edit(libro);
             reservaDAO.deleteDAO("507468", "1760204");
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(ReservaLibroEstFabTest.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -31,7 +31,7 @@ public class DevolucionPeriodicoEstFabTest {
     @Test
     public void testEjecutarDevolucion() {
         System.out.println("ejecutarDevolucion");
-        String codBarras = "158570";
+        String codBarras = "158585";
         String idBibliotecario = "1102515566";
         String estadoRecurso = "bueno";
         DevolucionPeriodicoEstFab instance = new DevolucionPeriodicoEstFab();
@@ -110,7 +110,7 @@ public class DevolucionPeriodicoEstFabTest {
         List<Periodico> per = controlper.findPeriodicoEntities();
         boolean result = false;
         for (int i = 0; i < per.size(); i++) {
-            if (per.get(i).getCodbarraperiodico().equalsIgnoreCase("254920")) {
+            if (per.get(i).getCodbarraperiodico().equalsIgnoreCase("158584")) {
                 if (per.get(i).getDisponibilidad().equalsIgnoreCase("disponible")) {
                     try {
                         result = true;

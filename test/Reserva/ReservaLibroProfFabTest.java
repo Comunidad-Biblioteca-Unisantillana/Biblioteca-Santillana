@@ -32,6 +32,15 @@ public class ReservaLibroProfFabTest {
      */
     @Test
     public void testCodigo() {
+        prueba_1_2();
+        prueba_3();
+        prueba_4();
+        codigoCategoriaColeccion();
+        pruebas_10();
+        prueba_11();
+        testCodbarrasEst();
+        testdisponibilidad();
+        
         prueba_12_15_16_17();
     }
 
@@ -173,7 +182,7 @@ public class ReservaLibroProfFabTest {
 
     /**
      * Prueba 10 que se encarga de que un recurso a reservar este prestado
-     * Prueba 12
+     * 
      */
     public void pruebas_10() {
         System.out.println("PRUEBA 3 y 4");
@@ -199,7 +208,7 @@ public class ReservaLibroProfFabTest {
         if (!codigoLibro.equalsIgnoreCase("NA")) {//si no se encuentra un libro las pruebas fallan
             for (int i = 0; i < est.size(); i++) {
                 System.out.println("ejecutando prueba");
-                resultado = generador.createReserva(codigoLibro, est.get(i).getIdprofesor(), "estudiante", "1102515566");
+                resultado = generador.createReserva(codigoLibro, "91393849", "profesor", "1102515566");
                 if (resultado) {
                     try {
                         System.out.println("borrando los cambios que se hicieron en las pruebas");
@@ -208,9 +217,7 @@ public class ReservaLibroProfFabTest {
                         Libro libro = libroJPA.findLibro(codigoLibro);
                         libro.setDisponibilidad("prestado");
                         libroJPA.edit(libro);
-                        if (i == 10) {
-                            break;
-                        }
+                        break;
                     } catch (NonexistentEntityException ex) {
                     } catch (Exception ex) {
                     }
