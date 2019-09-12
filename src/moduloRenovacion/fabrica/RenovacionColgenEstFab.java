@@ -70,24 +70,31 @@ public class RenovacionColgenEstFab implements IRenovacion {
                 PrestamoLibroEst prestamoLibroEst = prestamoLibroDAOEst.readDAO(prestamoLibroDAOEst.readCodigoDAO(codBarras));
 
                 if (prestamoLibroEst != null) {
-                    if (prestamoLibroEst.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
-                        prestamoLibroEst.setNumRenovaciones(prestamoLibroEst.getNumRenovaciones() + 1);
+                    if (prestamoLibroEst.getCodEstudiante().equals(idUsuario)) {
+                        if (prestamoLibroEst.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
+                            prestamoLibroEst.setNumRenovaciones(prestamoLibroEst.getNumRenovaciones() + 1);
 
-                        if (prestamoLibroDAOEst.updateDAO(prestamoLibroEst)) {
-                            notificarPrestamoEmail(idUsuario, libro);
+                            if (prestamoLibroDAOEst.updateDAO(prestamoLibroEst)) {
+                                notificarPrestamoEmail(idUsuario, libro);
 
-                            alert.showAlert("Anuncio", "Renovación exitosa", "La renovación del libro: " + codBarras
-                                    + ", se realizó con exito");
+                                alert.showAlert("Anuncio", "Renovación exitosa", "La renovación del libro: " + codBarras
+                                        + ", se realizó con exito");
 
-                            return true;
+                                return true;
+                            } else {
+                                alert.showAlert("Anuncio", "Renovación fallida", "La renovación del libro: " + codBarras
+                                        + ", no se pudo realizar");
+                            }
                         } else {
-                            alert.showAlert("Anuncio", "Renovación fallida", "La renovación del libro: " + codBarras
-                                    + ", no se pudo realizar");
+                            alert.showAlert("Anuncio", "Limite máximo de renovación", "El estudiante: " + idUsuario
+                                    + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
+                                    + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
                         }
                     } else {
-                        alert.showAlert("Anuncio", "Limite máximo de renovación", "El estudiante: " + idUsuario
-                                + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
-                                + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
+                        alert.showAlert("Anuncio", "El usuario no coincide", "El estudiante: " + idUsuario
+                                + " que esta intentando renovar el libro, no corresponde al usuario: "
+                                + prestamoLibroEst.getCodEstudiante()+ " que solicito el préstamo. Por favor verifique "
+                                + "el código del libro a renovar o el código del estudiante.");
                     }
                 } else {
                     alert.showAlert("Anuncio", "Préstamo no encontrado", "No se encontró un préstamo actual "

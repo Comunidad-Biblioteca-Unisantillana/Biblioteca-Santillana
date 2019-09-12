@@ -67,14 +67,21 @@ public class ReservaColgenEstFab implements IReserva {
                             PrestamoLibroProf prestamo1 = (PrestamoLibroProf) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
 
                             if (prestamo != null || prestamo1 != null) {
-                                ReservaColgenEstudiante reserva = new ReservaColgenEstudiante(codBarras, codUsuario, idBibliotecario);
+                                String codUser = (prestamo1 == null) ? prestamo.getCodEstudiante() : prestamo1.getIdProfesor();
 
-                                ReservaColgenDAOEst resDAO = new ReservaColgenDAOEst();
-                                resDAO.createDAO(reserva);
-                                System.out.println("Actualizando dispinibilidad.....");
-                                libro.setDisponibilidad("reservado");
-                                control.edit(libro);
-                                return true;
+                                if (!codUser.equals(codUsuario)) {
+                                    ReservaColgenEstudiante reserva = new ReservaColgenEstudiante(codBarras, codUsuario, idBibliotecario);
+
+                                    ReservaColgenDAOEst resDAO = new ReservaColgenDAOEst();
+                                    resDAO.createDAO(reserva);
+                                    System.out.println("Actualizando dispinibilidad.....");
+                                    libro.setDisponibilidad("reservado");
+                                    control.edit(libro);
+                                    return true;
+                                } else {
+                                    alert.showAlert("Anuncio", "Estudiante con préstamo", "El estudiante: " + codUsuario
+                                            + ", no puede reservar el libro que se le ha prestado.");
+                                }
                             } else {
                                 System.out.println("El prestamo es null");
                             }
@@ -93,6 +100,7 @@ public class ReservaColgenEstFab implements IReserva {
             }
         } catch (Exception e) {
         }
+
         return false;
     }
 

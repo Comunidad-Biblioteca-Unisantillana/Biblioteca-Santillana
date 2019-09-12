@@ -73,7 +73,7 @@ public class PrestamoLibroProfFab implements IPrestamo {
                     ReservaColgenDAOProf reservaColgenDAOProf = new ReservaColgenDAOProf();
                     ReservaColgenProfesor reserva = reservaColgenDAOProf.readDAO(codBarras);
 
-                    if (reserva.getIdProfesor().equalsIgnoreCase(codUsuario)) {
+                    if (reserva.getIdProfesor().equals(codUsuario)) {
                         PrestamoLibroProf prestLibProf = new PrestamoLibroProf();
                         prestLibProf.setCodBarraLibro(codBarras);
                         prestLibProf.setIdProfesor(codUsuario);

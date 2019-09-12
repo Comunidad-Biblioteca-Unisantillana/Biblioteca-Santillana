@@ -38,7 +38,7 @@ public class MultaMapaDAOEst extends MultaDAOAbs<MultaMapaEst> {
     public boolean createDAO(MultaMapaEst multa) {
         String sqlSentence = "INSERT INTO multa_mapa_estudiante (codprestmapaest, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -47,8 +47,6 @@ public class MultaMapaDAOEst extends MultaDAOAbs<MultaMapaEst> {
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
-            pps.setString(5, multa.getEstadoCancelacion());
-            pps.setString(6, multa.getDescripcionCancelacion());
 
             if (pps.executeUpdate() > 0) {
                 return true;
@@ -139,7 +137,8 @@ public class MultaMapaDAOEst extends MultaDAOAbs<MultaMapaEst> {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM multa_mapa_estudiante WHERE codmultmapaest = " + codigo);
+            rs = stmt.executeQuery("SELECT * FROM multa_mapa_estudiante WHERE codmultmapaest = '" + codigo + "'"
+                    + " AND estadocancelacion = 'no pagada';");
 
             while (rs.next()) {
                 multa = new MultaMapaEst();

@@ -1,6 +1,5 @@
 package moduloMulta.DAO;
 
-import general.modelo.ConnectionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,9 +34,9 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
      */
     @Override
     public boolean createDAO(MultaEnciclopediaProf multa) {
-        String sqlSentence = "INSERT INTO multa_encilopedia_profesor (codprestencprof, diasatrasados, codpreciomulta, "
+        String sqlSentence = "INSERT INTO multa_enciclopedia_profesor (codprestencprof, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -138,7 +137,8 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM multa_enciclopedia_profesor WHERE codmultaencprof = " + codigo);
+            rs = stmt.executeQuery("SELECT * FROM multa_enciclopedia_profesor WHERE codmultaencprof = '" + codigo + "'"
+                    + "AND estadocancelacion = 'no pagada';");
 
             while (rs.next()) {
                 multa = new MultaEnciclopediaProf();

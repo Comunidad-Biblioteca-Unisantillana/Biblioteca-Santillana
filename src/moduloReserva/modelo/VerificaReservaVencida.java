@@ -23,38 +23,21 @@ import recursos.entitys.Libro;
  * @author Miguel Fernàndez
  * @modificado: 08/09/2019
  */
-public class VerificaReservaVencida extends Thread {
+public class VerificaReservaVencida {
 
     private ConnectionBD connection;
-    private static VerificaReservaVencida instance = null;
 
     /**
      * constructor de la clase sin paràmetros.
      */
-    private VerificaReservaVencida() {
+    public VerificaReservaVencida() {
         connection = ConnectionBD.getInstance();
-    }
-
-    /**
-     * mètodo de la clase thread.
-     */
-    @Override
-    public void run() {
-        while (true) {
-            System.out.println("buscando fecha vencida...");
-            reserva();
-            try {
-                sleep((long) 60000);//espera una hora(3.6e+6), minuto(60000), segundo(1000)
-            } catch (InterruptedException ex) {
-                System.out.println("Error con la funciòn sleep.");
-            }
-        }
     }
 
     /**
      * el mètodo busca una reserva que se ha vencido y la elimina.
      */
-    private void reserva() {
+    public void reserva() {
         Date fechaActual = new Date();
         ArrayList<ReservaColgenUsuario> listReservas = readReservaColgenUsuario();
 
@@ -143,13 +126,6 @@ public class VerificaReservaVencida extends Thread {
         }
 
         reserva.deleteDAO(codBarraLibro, codUsuario);
-    }
-    
-    public static final VerificaReservaVencida getInstance() {
-        if (instance == null) {
-            instance = new VerificaReservaVencida();
-        }
-        return instance;
     }
 
 }
