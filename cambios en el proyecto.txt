@@ -1,0 +1,47 @@
+> cambios en la interfaz CuentaBibliotecario.fxml
+
+> se mueven las clases FabicaPrestamo y IPrestamo de nuevo a modelo.
+
+> módulo de renovacion:
+  • se crea el paquete fabrica.
+  • se mueven las clases respectivas.
+
+> módulo de reserva:
+  • se crean los paquete vista y control. 
+  • se mueven las clases y los fxml respectivos.
+
+> módulo de devolución:
+  • se crean los paquetes vista, modelo y control.
+  • se mueven las clases y los fxml respectivos.
+
+> módulo de multa:
+  • se crean los paquetes vista, control y modelo.
+  • se mueven las clases y los fxml respectivos.
+  • se mueven los paquetes entitys y modulomultadao.
+
+> módulo de login:
+  • se crean los paquetes vista, control y modelo.
+  • se mueven las clases y los fxml respectivos.
+
+> se crea el paquete usuarios:
+  • se mueve el paquete entitys de usuario.
+  • se crean los paquetes vista y control.
+  • se mueven las clases de usuario.controllers al paquete control.
+  • se mueven las clases y los fxml respectivos.
+
+> se crea el paquete general:
+  • se mueven los paquetes control, modelo, vista y recursos.
+  • se crea paquete img y styles en recursos.
+
+> otros:
+  • se elimina la clase reservaLibro de el paquete entitys, porque ya se crearon las clases pertinentes en reserva.
+  • se elimina el paquete controllers.exception, porque habia otro paquete igual y se corrigen las clases que marcaron error en al eliminar el paquete.
+  • se corrige error en la clase busquedaPalabraClave del módulo OPAC.
+  • se modifican las rutas en los métodos del controlador de cuenta bibliotecario de las vistas de devolución, reserva, multa y datosUsario.
+  • se modifica la ruta en el método del controlador de cuenta estudiante-profesor de las vistas multa y datosUsario.
+  • se corrigen las rutas de la vista y el controlador en LoginUnisantillanaStage y een el fxml.
+  • se corrigen las rutas en todos los paquetes conforme a la ruta de los estilos y las imagenes.
+  • se cambia el nombre del paquete recuros1 a recursos.
+  • se elimina el paquete usuario con las subcapertas controllers y controller.exceptions, porque habia otro paquete igual y se corrigen las clases que marcaron error en al eliminar el paquete.
+  • se corrigen efectos visuales con respecto al menú en la clase IniciarMenuDesplegable.
+  • se elimina el paquete modeloDAO con las clases InterfaceCRUD, InterfacePersonaCRUD, LoginBibliotecarioDAO, LoginEstudianteDAO y LoginProfesorDAO, porque los diferentes módulos tienen una clase     con los métodos crud y en usuarios se aplica el JPA.

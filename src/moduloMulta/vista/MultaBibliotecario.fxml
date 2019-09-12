@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloMulta.control.MultaBibliotecarioController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" prefWidth="300.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" prefWidth="180.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" prefWidth="300.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <TableView fx:id="tableMulta" maxWidth="-Infinity" prefHeight="400.0" prefWidth="1243.0" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <columns>
+            <TableColumn fx:id="colCodMulta" editable="false" maxWidth="120.0" prefWidth="120.0" text="Código multa" visible="false" />
+            <TableColumn fx:id="colCodUsuario" editable="false" prefWidth="194.0" text="Código usuario" />
+            <TableColumn fx:id="colNombreUsuario" editable="false" maxWidth="237.0" minWidth="0.0" prefWidth="183.0" text="Nombre" />
+            <TableColumn fx:id="colFechaMulta" prefWidth="119.0" text="Fecha multa" />
+            <TableColumn fx:id="colCodBarraRecurso" prefWidth="141.0" text="Código recurso" />
+            <TableColumn fx:id="colTituloRecurso" prefWidth="290.4000244140625" text="Título recurso" />
+            <TableColumn fx:id="colDiasAtrasados" editable="false" minWidth="5.0" prefWidth="135.99993896484375" text="Días atrasados" />
+            <TableColumn fx:id="colValorTot" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="72.0" text="Valor" />
+            <TableColumn fx:id="colCancelado" maxWidth="125.60002441406255" minWidth="1.0" prefWidth="102.4000244140625" text="Cancelado" />
+         </columns>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </TableView>
+      <Label fx:id="lblCodUsuario" prefHeight="21.0" prefWidth="185.0" text="Código Usuario" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <JFXTextField fx:id="codUserHisMulTxt" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnConsultarPressed" prefHeight="35.0" prefWidth="168.0" text="Consultar" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </JFXButton>
+      <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#btnCancelarMultaPressed" prefHeight="35.0" prefWidth="192.0" text="Anular Multa" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </JFXButton>
+      <Label alignment="CENTER" prefHeight="38.0" prefWidth="165.0" style="-fx-font-size: 30;" text="MULTA" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="40.0" />
+         </GridPane.margin>
+      </Label>
+      <HBox maxHeight="40.0" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: #154360;" stylesheets="@../../general/recursos/styles/styles.css" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+         <children>
+            <JFXButton fx:id="btnMultaEstudiante" buttonType="RAISED" onAction="#btnMultaEstudiantePressed" prefHeight="40.0" prefWidth="250.0" styleClass="buttonDrawer" text="Multa estudiante" />
+            <JFXButton fx:id="btnMultaProfesor" buttonType="RAISED" onAction="#btnMultaProfesorPressed" prefHeight="40.0" prefWidth="250.0" styleClass="buttonDrawer" text="Multa profesor" />
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </HBox>
+   </children>
+</GridPane>

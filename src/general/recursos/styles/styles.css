@@ -1,0 +1,101 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/07/2019, 05:25:20 PM
+    Author     : Julian
+*/
+.button {
+    -fx-cursor: hand;
+    -fx-background-color: #026AA7;
+    -fx-background-radius: 5;
+    -fx-border-color: #2E86C1;
+    -fx-border-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+}
+
+.button:hover {
+    -fx-background-color: #3c8dbd;
+}
+
+.buttonDrawer {
+    -fx-cursor: hand;
+    -fx-background-color: #2E86C1;
+    -fx-background-radius: 0;
+    -fx-border-color: #21618C;
+    -fx-border-radius: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+    -fx-border-width: 1;
+}
+
+.buttonDrawer:hover {
+    -fx-background-color: #D6DCE5;
+    -fx-text-fill: #2E86C1;
+}
+
+.buttonDrawer:disabled{
+    -fx-text-fill: #004777;
+    -fx-background-color: #E6F5FF;
+    -fx-font-weight: bold;
+    
+}
+.jfx-hamburger StackPane { 
+    -fx-background-color: white;
+}
+
+.hamburger{
+    -fx-background-color: #2E86C1;
+    -fx-border-color:  #21618C;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.hamburger:hover{
+    -fx-background-color: #D6DCE5;
+
+}
+
+.jfx-text-field ,.jfx-text-area {
+    -fx-pref-width: 185px;
+    -fx-font-size: 11.6pt;
+    -fx-text-fill: black;
+    -jfx-unfocus-color : #026AA7;
+    -jfx-focus-color : white;
+    -fx-background-color: #E6E6E6;
+}
+
+.anchorCenter {
+    -fx-background-image: url(/general/recursos/img/fondo_grande_3.png);
+}
+
+.jfx-combo-box > .list-cell > .text,
+.jfx-combo-box > .list-cell > .label,
+JFXComboBox{
+    -fx-cursor: hand;
+    -fx-text-fill: WHITE;
+    -fx-fill: WHITE;
+    -fx-background-color: #2E86C1;
+    -fx-font-size: 11pt;    
+}
+
+.label {
+    -fx-pref-height: 34px;
+    -fx-background-color: #2E86C1;
+    -fx-background-radius: 5;
+    -fx-font-size: 11.6pt;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 0 10;   
+}
+
+.salir{
+    -fx-font-size: 14px;
+    -fx-background-color: red;
+}
+.salir:hover{
+     -fx-background-color: #FF4B4B;
+
+}
