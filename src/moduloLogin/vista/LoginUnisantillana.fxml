@@ -51,16 +51,10 @@
                      </input>
                   </DropShadow>
                </effect>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
             </JFXButton>
             <ImageView fx:id="imgIconUsuarioTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgIconPasswordTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
             <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="194.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" unFocusColor="WHITE">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
             </JFXComboBox>
             <JFXButton layoutX="89.0" layoutY="548.0" onAction="#btnSalirPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" styleClass="salir" text="Salir" textFill="WHITE">
                <font>
@@ -73,9 +67,6 @@
                      </input>
                   </DropShadow>
                </effect>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
             </JFXButton>
          </children>
          <opaqueInsets>

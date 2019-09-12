@@ -20,7 +20,6 @@ import moduloMulta.entitys.MultaRevistaProf;
  */
 public class MultaRevistaDAOProf extends MultaDAOAbs<MultaRevistaProf> {
 
-
     /**
      * constructor de la clase sin paràmetros.
      */
@@ -38,7 +37,7 @@ public class MultaRevistaDAOProf extends MultaDAOAbs<MultaRevistaProf> {
     public boolean createDAO(MultaRevistaProf multa) {
         String sqlSentence = "INSERT INTO multa_revista_profesor (codprestrevistaprof, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -47,8 +46,6 @@ public class MultaRevistaDAOProf extends MultaDAOAbs<MultaRevistaProf> {
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
-            pps.setString(5, multa.getEstadoCancelacion());
-            pps.setString(6, multa.getDescripcionCancelacion());
 
             if (pps.executeUpdate() > 0) {
                 return true;
@@ -139,7 +136,8 @@ public class MultaRevistaDAOProf extends MultaDAOAbs<MultaRevistaProf> {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM multa_revista_profesor WHERE codmultarevistaprof = " + codigo);
+            rs = stmt.executeQuery("SELECT * FROM multa_revista_profesor WHERE codmultarevistaprof = '" + codigo + "'"
+                    + " AND estadocancelacion = 'no pagada';");
 
             while (rs.next()) {
                 multa = new MultaRevistaProf();

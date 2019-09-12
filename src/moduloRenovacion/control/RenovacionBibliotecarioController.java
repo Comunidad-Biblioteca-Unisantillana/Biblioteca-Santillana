@@ -61,21 +61,10 @@ public class RenovacionBibliotecarioController implements Initializable {
         if (!codBarras.isEmpty() && !codUsuario.isEmpty()) {
             GeneradorRenovacion generadorRenovacion = new GeneradorRenovacion();
             generadorRenovacion.createRenovacion(codBarras, codUsuario, tipoUsuario);
-            limpiarCampos();
         } else {
             alert.showAlert("Anuncio", "Campo vacio", "Por favor, no deje ningún campo vacio "
                     + "para poder realizar la renovación del libro.");
         }
-    }
-
-    /**
-     * el metódo limpia el campo de txtCodBarras, txtcodUsuario y pone el
-     * comobox por defecto en "Estudiante".
-     */
-    private void limpiarCampos() {
-        txtCodBarras.setText("");
-        txtcodUsuario.setText("");
-        cboTipoUsuario.setValue("Estudiante");
     }
 
 }

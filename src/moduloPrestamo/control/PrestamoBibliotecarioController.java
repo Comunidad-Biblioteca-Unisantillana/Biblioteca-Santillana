@@ -75,7 +75,6 @@ public class PrestamoBibliotecarioController implements Initializable {
                 GeneradorPrestamo generador = new GeneradorPrestamo();
                 generador.createPrestamo(codBarrasPresTxt.getText().toLowerCase(), codUserPresTxt.getText().toLowerCase(),
                         idBibliotecario, cboTipoPrestamo.getValue().toLowerCase(), cboTipoUsuario.getValue().toLowerCase());
-                limpiarCampos();
             } catch (Exception ex) {
                 System.out.println("Error al generar el préstamo del recurso");
             }

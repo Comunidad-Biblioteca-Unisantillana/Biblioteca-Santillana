@@ -1,6 +1,5 @@
 package moduloMulta.DAO;
 
-import general.modelo.ConnectionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +37,7 @@ public class MultaLibroDAOProf extends MultaDAOAbs<MultaLibroProf> {
     public boolean createDAO(MultaLibroProf multa) {
         String sqlSentence = "INSERT INTO multa_libro_profesor (codprestlibroprof, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -139,7 +138,8 @@ public class MultaLibroDAOProf extends MultaDAOAbs<MultaLibroProf> {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM multa_libro_profesor WHERE codmultalibroprof = " + codigo);
+            rs = stmt.executeQuery("SELECT * FROM multa_libro_profesor WHERE codmultalibroprof = '" + codigo + "'"
+                    + " AND estadocancelacion = 'no pagada';");
 
             while (rs.next()) {
                 multa = new MultaLibroProf();
