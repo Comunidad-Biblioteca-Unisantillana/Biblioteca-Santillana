@@ -57,6 +57,10 @@ public class ConnectionBD {
         DriverManager.getConnection("jdbc:postgresql:PruebaBiblioteca", "postgres", "1234");
         return connection;
     }
+    
+    public static void deleteInstance(){
+        instance = null;
+    }
 
     /**
      * Método que cierra la conexión abierta con la base de datos.

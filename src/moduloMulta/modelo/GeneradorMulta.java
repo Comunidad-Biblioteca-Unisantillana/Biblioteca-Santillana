@@ -1,5 +1,8 @@
 package moduloMulta.modelo;
 
+import general.modelo.ConnectionBD;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,14 +29,21 @@ public class GeneradorMulta extends Thread {
             try {
                 for (String tipoUsuario1 : tipoUsuario) {
                     for (String tipoMulta1 : tipoMulta) {
+                        ConnectionBD.getInstance().closeConnection();
+                        ConnectionBD.deleteInstance();
+                        sleep(1000);
+                        ConnectionBD.getInstance().getConnection();
+                        
                         System.out.println("multa " + tipoUsuario1 + " del recurso " + tipoMulta1);
                         multa = multaFab.getMulta(tipoMulta1, tipoUsuario1);
                         multa.generarMulta();
                         multa.actualizarDiasAtrasadosMulta();
-                        sleep(100000);
+                        sleep(1);
                     }
                 }
             } catch (InterruptedException ex) {
+                Logger.getLogger(GeneradorMulta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
                 Logger.getLogger(GeneradorMulta.class.getName()).log(Level.SEVERE, null, ex);
             }
 

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import general.modelo.ConnectionBD;
 import moduloLogin.vista.LoginUnisantillanaStage;
+import moduloMulta.modelo.GeneradorMulta;
 
 /**
  *
@@ -13,10 +14,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        LoginUnisantillanaStage.getInstance();
+//        LoginUnisantillanaStage.getInstance();
         ConnectionBD.getInstance();
-        //VerificaReservaVencida.getInstance().start();
-        //GeneradorMulta.getInstance().start();
+//        VerificaReservaVencida.getInstance().start();
+        GeneradorMulta.getInstance().start();
     }
 
     /**

@@ -4,12 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/vista/InformacionEmpresa.fxml</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/vista/MultaBibliotecario.fxml</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/vista/MultaEstudianteProfesor.fxml</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/modelo/NotificacionEmail.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/modelo/ConnectionBD.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/control/ControlPrecioMultaJpaController.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/usuarios/vista/CuentaBibliotecario.fxml</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
         </group>
     </open-files>
 </project-private>

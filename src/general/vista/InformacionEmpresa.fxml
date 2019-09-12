@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="496.0" stylesheets="@../recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="496.0" stylesheets="@../recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="270.0" fitWidth="474.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../recursos/img/Logo%20SolBiTec.png" />
          </image>
       </ImageView>
-      <JFXTextArea editable="false" layoutX="11.0" layoutY="252.0" maxWidth="-Infinity" minWidth="474.0" prefHeight="134.0" prefWidth="474.0" text="SIGB - V2.0&#10;Versión del producto&#10;De que se trata&#10;">
+      <JFXTextArea editable="false" layoutX="11.0" layoutY="252.0" maxWidth="-Infinity" minWidth="474.0" prefHeight="152.0" prefWidth="474.0" text="Versión del producto&#10;SIGB 2.0&#10;&#10;Información Build&#10;Versión 2.0&#10;Fecha: 2019-9-12&#10;&#10;">
          <font>
             <Font size="10.0" />
-         </font></JFXTextArea>
+         </font>
+         <padding>
+            <Insets left="10.0" top="5.0" />
+         </padding></JFXTextArea>
    </children>
 </AnchorPane>
