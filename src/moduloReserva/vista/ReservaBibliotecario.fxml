@@ -38,16 +38,7 @@
             <Insets left="15.0" />
          </GridPane.margin>
       </Label>
-<<<<<<< HEAD:build/classes/vista/ReservaBibliotecario.fxml
-      <Label prefHeight="21.0" prefWidth="172.0" text="Fecha limite reserva:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="15.0" />
-         </GridPane.margin>
-      </Label>
-      <Label prefWidth="185.0" text="Código estudiante" textFill="WHITE" GridPane.rowIndex="2">
-=======
       <Label prefWidth="185.0" text="Código usuario" textFill="WHITE" GridPane.rowIndex="2">
->>>>>>> desarrollo:src/moduloReserva/vista/ReservaBibliotecario.fxml
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -63,16 +54,12 @@
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextField fx:id="txtCodUserReserva" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin></JFXTextField>
-<<<<<<< HEAD:build/classes/vista/ReservaBibliotecario.fxml
-      <JFXTextField fx:id="txtCodEstReserva" unFocusColor="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-=======
       <Label alignment="CENTER" prefHeight="38.0" prefWidth="173.0" style="-fx-font-size: 30;" text="RESERVAS" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
       <JFXComboBox fx:id="cboTipoUsuario" prefHeight="29.0" prefWidth="257.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
->>>>>>> desarrollo:src/moduloReserva/vista/ReservaBibliotecario.fxml
          <GridPane.margin>
             <Insets left="20.0" right="20.0" />
          </GridPane.margin>

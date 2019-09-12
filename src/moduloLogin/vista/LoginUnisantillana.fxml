@@ -40,11 +40,7 @@
                   <Font size="17.0" />
                </font>
             </JFXPasswordField>
-<<<<<<< HEAD:build/classes/vista/LoginUnisantillana.fxml
-            <JFXButton layoutX="87.0" layoutY="482.0" onAction="#btnAccederPressed" prefHeight="70.0" prefWidth="375.0" ripplerFill="WHITE" text="Acceder" textFill="WHITE">
-=======
             <JFXButton layoutX="87.0" layoutY="482.0" onAction="#btnAccederPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" styleClass="acceder" text="Acceder" textFill="WHITE">
->>>>>>> desarrollo:src/moduloLogin/vista/LoginUnisantillana.fxml
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -60,11 +56,7 @@
             <ImageView fx:id="imgIconPasswordTxt" fitHeight="41.0" fitWidth="39.0" layoutX="100.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
             <JFXComboBox fx:id="comboLogin" focusColor="#477acc" layoutX="207.0" layoutY="194.0" onAction="#btnComboLoginPressed" prefHeight="38.0" prefWidth="135.0" unFocusColor="WHITE">
             </JFXComboBox>
-<<<<<<< HEAD:build/classes/vista/LoginUnisantillana.fxml
-            <JFXButton layoutX="87.0" layoutY="564.0" onAction="#btnSalirPressed" prefHeight="40.0" prefWidth="375.0" ripplerFill="WHITE" text="Salir" textFill="WHITE">
-=======
             <JFXButton layoutX="89.0" layoutY="548.0" onAction="#btnSalirPressed" prefHeight="55.0" prefWidth="375.0" ripplerFill="WHITE" styleClass="salir" text="Salir" textFill="WHITE">
->>>>>>> desarrollo:src/moduloLogin/vista/LoginUnisantillana.fxml
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
