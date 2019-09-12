@@ -33,9 +33,7 @@ public class RenovacionColgenProfFabTest {
         boolean expResult = true;
         boolean result = instance.ejecutarRenovacion(codBarras, idUsuario);
         assertEquals(expResult, result);
-
     }
-
     /**
      * Método que se encarga de renovar un libro de la colección reserva.
      */
