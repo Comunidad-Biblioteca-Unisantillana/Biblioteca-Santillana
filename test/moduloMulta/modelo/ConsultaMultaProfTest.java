@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package moduloMulta.modelo;
 
 import javafx.collections.ObservableList;
@@ -20,7 +15,7 @@ public class ConsultaMultaProfTest {
     }
     
     /**
-     * Método que verifica todas las multas de todos los estudiantes.
+     * Test que verifica todas las multas de todos los estudiantes.
      */
     @Test
     public void testGetMultasAll() {
@@ -34,7 +29,7 @@ public class ConsultaMultaProfTest {
         assertEquals(true, resultado);
     }
     /**
-     * Método que verifica todas las multas de un profesor.
+     * Test que verifica todas las multas de un profesor.
      */
     @Test
     public void testGetMultasUsuario() {

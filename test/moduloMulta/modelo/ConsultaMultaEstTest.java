@@ -19,7 +19,7 @@ public class ConsultaMultaEstTest {
     public ConsultaMultaEstTest() {
     }
     /**
-     * Método que verifica todas las multas de todos los estudiantes.
+     * Test que verifica todas las multas de todos los estudiantes.
      */
     @Test
     public void testGetMultasAll() {

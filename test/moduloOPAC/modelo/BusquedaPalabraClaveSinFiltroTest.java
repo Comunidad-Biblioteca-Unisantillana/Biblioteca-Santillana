@@ -27,6 +27,7 @@ public class BusquedaPalabraClaveSinFiltroTest {
         String entidad = "libro";
         BusquedaPalabraClave instance = new BusquedaPalabraClave("hu");
         ObservableList<Recurso> recursos = instance.buscarRecursos(entidad);
+
         boolean resultado = true;
         if (recursos.isEmpty()) {
             resultado = false;
@@ -41,13 +42,18 @@ public class BusquedaPalabraClaveSinFiltroTest {
     public void testBuscarRecursosPorPalabraClaveSinFiltroErroneo() {
         System.out.println("buscar recursos por palabra clave");
         String entidad = "todos";
-        BusquedaPalabraClave instance = new BusquedaPalabraClave("hu9dq");
-        ObservableList<Recurso> recursos = instance.buscarRecursos(entidad);
-        boolean resultado = true;
-        if (recursos.isEmpty()) {
-            resultado = false;
+        String palabras[] = {"husq1 hu1ss", "1234", "uaml", "vajra"};
+        
+        for (String palabra : palabras) {
+            BusquedaPalabraClave instance = new BusquedaPalabraClave(palabra);
+            ObservableList<Recurso> recursos = instance.buscarRecursos(entidad);
+
+            boolean resultado = true;
+            if (recursos.isEmpty()) {
+                resultado = false;
+            }
+            assertEquals(false, resultado);
         }
-        assertEquals(false, resultado);
     }
 
 }

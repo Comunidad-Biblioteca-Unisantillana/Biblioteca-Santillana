@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="496.0" stylesheets="@../recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -12,6 +13,9 @@
             <Image url="@../recursos/img/Logo%20SolBiTec.png" />
          </image>
       </ImageView>
-      <JFXTextArea editable="false" layoutX="11.0" layoutY="252.0" maxWidth="-Infinity" minWidth="474.0" prefHeight="134.0" prefWidth="474.0" />
+      <JFXTextArea editable="false" layoutX="11.0" layoutY="252.0" maxWidth="-Infinity" minWidth="474.0" prefHeight="134.0" prefWidth="474.0" text="SIGB - V2.0&#10;Versión del producto&#10;De que se trata&#10;">
+         <font>
+            <Font size="10.0" />
+         </font></JFXTextArea>
    </children>
 </AnchorPane>
