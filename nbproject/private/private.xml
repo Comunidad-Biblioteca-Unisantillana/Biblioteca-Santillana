@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloRenovacion/fabrica/RenovacionColgenEstFabTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloRenovacion/fabrica/RenovacionColgenProfFabTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloOPAC/modelo/BusquedaTituloYAutorTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloOPAC/modelo/Busqueda_ISBN_ISSNTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/moduloOPAC/modelo/BusquedaCodigoBarrasTest.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/control/ControlPrecioMultaJpaController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
