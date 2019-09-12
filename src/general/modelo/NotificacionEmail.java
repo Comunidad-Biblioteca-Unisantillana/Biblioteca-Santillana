@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -60,13 +62,14 @@ public class NotificacionEmail {
             message.setFrom(new InternetAddress((String) properties.get("mail.smtp.user")));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceptor));
             message.setSubject(asunto);
-            message.setContent(contenido, "text/html");
+            message.setText(contenido);//, "text/html");
 
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (AddressException ex) {
             System.out.println("Error al con la dirección del correo del emisor o receptor.\n");
         } catch (MessagingException ex) {
+            Logger.getLogger(NotificacionEmail.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al enviar el correo al usuario.\n");
         }
     }
@@ -103,7 +106,7 @@ public class NotificacionEmail {
                     contenido = contenido.replaceAll("texto7", xDatos[6]);
                 }
 
-                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo") 
+                if (nombreMensaje.equalsIgnoreCase("mensajePrestamo")
                         || nombreMensaje.equalsIgnoreCase("mensajeRenovacion")) {
                     if (xDatos[7].equalsIgnoreCase("general")) {
                         contenido = contenido.replaceAll("texto8", "Por favor recuerde que debe devolverlo o renovarlo "

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="710.0" maxWidth="1366.0" prefHeight="710.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloMulta.control.MultaEstudianteProfesorController">
+<GridPane maxHeight="710.0" maxWidth="1366.0" prefHeight="710.0" prefWidth="1366.0" stylesheets="@../../general/recursos/styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduloMulta.control.MultaEstudianteProfesorController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="683.0" />
@@ -21,9 +21,9 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="364.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <TableView fx:id="tableMulta" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="2">
+      <TableView fx:id="tableMulta" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="510.0" prefWidth="1066.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="2">
          <columns>
-            <TableColumn fx:id="colCodMulta" editable="false" prefWidth="133.00003051757812" text="Código multa" />
+            <TableColumn fx:id="colCodMulta" editable="false" prefWidth="133.00003051757812" text="Código multa" visible="false" />
             <TableColumn fx:id="colCodBarra" prefWidth="148.0" text="Código recurso" />
             <TableColumn fx:id="tituloRecurso" prefWidth="425.0" text="Titulo recurso" />
             <TableColumn fx:id="colTipo" prefWidth="111.0" text="Tipo" />

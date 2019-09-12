@@ -5,6 +5,7 @@
  */
 package moduloMulta.control;
 
+import controller.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,7 +15,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import moduloMulta.control.exceptions.NonexistentEntityException;
 import moduloMulta.entitys.ControlPrecioMulta;
 
 /**

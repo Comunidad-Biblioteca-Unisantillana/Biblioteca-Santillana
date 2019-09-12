@@ -22,45 +22,49 @@ import moduloMulta.vista.CancelarMultaStage;
  * @author Storkolm
  */
 public class CancelarMultaController {
-    
+
     private String tipoUsuario;
-    
+
     private CancelarMultaStage stage;
     private TableView<Multa> tableMulta;
 
     @FXML
     private JFXTextArea areaJustificación;
-    
+
     @FXML
-    private void btnConfirmarPresed(ActionEvent e){
+    private void btnConfirmarPresed(ActionEvent e) {
         IAlertBox alert = new AlertBox();
-        if(!areaJustificación.getText().isEmpty()){
+        if (!areaJustificación.getText().isEmpty()) {
             ConsultaMultaAbs anular;
-            
-            if(tipoUsuario.equalsIgnoreCase("estudiante")){
-                anular =  new ConsultaMultaEst();
-            }else{
-                anular =  new ConsultaMultaProf();
+
+            if (tipoUsuario.equalsIgnoreCase("estudiante")) {
+                anular = new ConsultaMultaEst();
+            } else {
+                anular = new ConsultaMultaProf();
             }
             Multa multa = tableMulta.getItems().get(tableMulta.getSelectionModel().getSelectedIndex());
-            
-            if(anular.eliminarMulta(multa.getCodMulta(), multa.getTipoRecurso(), areaJustificación.getText())){
-                alert.showAlert("Anuncio", "Multa " + tipoUsuario, "La multa ha sido anulada");
-                tableMulta.getItems().remove(tableMulta.getSelectionModel().getSelectedIndex());
+
+            if (areaJustificación.getText().length() < 500) {
+                if (anular.eliminarMulta(multa.getCodMulta(), multa.getTipoRecurso(), areaJustificación.getText())) {
+                    alert.showAlert("Anuncio", "Multa " + tipoUsuario, "La multa ha sido anulada");
+                    tableMulta.getItems().remove(tableMulta.getSelectionModel().getSelectedIndex());
+                }
+            } else {
+                alert.showAlert("Anuncio", "Cantidad de caracteres", "El campo motivo de cancelación no debe superar los 500 caracteres.");
             }
-        }else{
+        } else {
             alert.showAlert("Anuncio", "Multa " + tipoUsuario, "Escriba el motivo de la cancelación");
         }
-        
+
     }
-    
-    private Multa getMulta(){
+
+    private Multa getMulta() {
         Multa multa = tableMulta.getItems().get(tableMulta.getSelectionModel().getSelectedIndex());
         return multa;
     }
-    
+
     @FXML
-    private void btnCancelarPresed(ActionEvent e){
+    private void btnCancelarPresed(ActionEvent e) {
         stage.close();
     }
 

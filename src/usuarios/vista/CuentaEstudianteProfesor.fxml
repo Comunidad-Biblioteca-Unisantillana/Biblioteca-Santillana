@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="usuarios.control.CuentaEstudianteProfesorController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="usuarios.control.CuentaEstudianteProfesorController">
    <top>
       <MenuBar stylesheets="@../../general/recursos/styles/stylesMenu.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#itemSalirPressed" text="Salir" />
               <MenuItem mnemonicParsing="false" onAction="#itemAcercaDePressed" text="Acerca de" />
+              <MenuItem mnemonicParsing="false" onAction="#itemSalirPressed" text="Salir" />
             </items>
           </Menu>
         </menus>
