@@ -1,5 +1,13 @@
 package moduloMulta.modelo;
 
+
+import general.modelo.ConnectionBD;
+
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  * @author Camilo Jaramillo
  * @version 1.0

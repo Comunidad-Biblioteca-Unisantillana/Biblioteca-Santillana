@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import general.modelo.ConnectionBD;
 import moduloLogin.vista.LoginUnisantillanaStage;
 
+
 /**
  *
  * @author stive
@@ -15,6 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         LoginUnisantillanaStage.getInstance();
         ConnectionBD.getInstance();
+
     }
 
     /**
