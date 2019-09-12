@@ -22,43 +22,43 @@ public class DevolucionRevistaProfFabTest {
     public DevolucionRevistaProfFabTest() {
     }
 
-//    /**
-//     * Test para verificar si devuelve un recurso prestado. NOTA: para realizar
-//     * este test,se debe tener en cuenta que el codBarras del recurso debe estar
-//     * prestado.
-//     */
-//    @Test
-//    public void testEjecutarDevolucion() {
-//        System.out.println("ejecutarDevolucion");
-//        String codBarras = "421264";
-//        String idBibliotecario = "1102515566";
-//        String estadoRecurso = "bueno";
-//        DevolucionRevistaProfFab instance = new DevolucionRevistaProfFab();
-//        boolean expResult = true;
-//        boolean result = instance.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso);
-//        if (result) {
-//            try {
-//                //borramos devolucion
-//                DevolucionRevistaDAOProf devolucionDAO = new DevolucionRevistaDAOProf();
-//                List<DevolucionRevistaProf> devolucion = devolucionDAO.readAllDAO();
-//                devolucionDAO.deleteDAO(devolucion.get(devolucion.size() - 1).getCodDevolucionRevistaProf());
-//                //editamos la disponibilidad del recurso a prestado
-//                RevistaJpaController revistaJPA = new RevistaJpaController();
-//                Revista revista = revistaJPA.findRevista(codBarras);
-//                revista.setDisponibilidad("prestado");
-//                revistaJPA.edit(revista);
-//                //editamos el prestamo
-//                PrestamoRevistaDAOProf prestamoDAO = new PrestamoRevistaDAOProf();
-//                List<PrestamoRevistaProf> prestamos = prestamoDAO.readAllDAO();
-//                prestamos.get(prestamos.size()-1).setDevuelto("no");
-//                prestamoDAO.updateDAO(prestamos.get(prestamos.size()-1));
-//                
-//            } catch (NonexistentEntityException ex) {
-//            } catch (Exception ex) {
-//            }
-//        }
-//        assertEquals(expResult, result);
-//    }
+    /**
+     * Test para verificar si devuelve un recurso prestado. NOTA: para realizar
+     * este test,se debe tener en cuenta que el codBarras del recurso debe estar
+     * prestado.
+     */
+    @Test
+    public void testEjecutarDevolucion() {
+        System.out.println("ejecutarDevolucion");
+        String codBarras = "421264";
+        String idBibliotecario = "1102515566";
+        String estadoRecurso = "bueno";
+        DevolucionRevistaProfFab instance = new DevolucionRevistaProfFab();
+        boolean expResult = true;
+        boolean result = instance.ejecutarDevolucion(codBarras, idBibliotecario, estadoRecurso);
+        if (result) {
+            try {
+                //borramos devolucion
+                DevolucionRevistaDAOProf devolucionDAO = new DevolucionRevistaDAOProf();
+                List<DevolucionRevistaProf> devolucion = devolucionDAO.readAllDAO();
+                devolucionDAO.deleteDAO(devolucion.get(devolucion.size() - 1).getCodDevolucionRevistaProf());
+                //editamos la disponibilidad del recurso a prestado
+                RevistaJpaController revistaJPA = new RevistaJpaController();
+                Revista revista = revistaJPA.findRevista(codBarras);
+                revista.setDisponibilidad("prestado");
+                revistaJPA.edit(revista);
+                //editamos el prestamo
+                PrestamoRevistaDAOProf prestamoDAO = new PrestamoRevistaDAOProf();
+                List<PrestamoRevistaProf> prestamos = prestamoDAO.readAllDAO();
+                prestamos.get(prestamos.size()-1).setDevuelto("no");
+                prestamoDAO.updateDAO(prestamos.get(prestamos.size()-1));
+                
+            } catch (NonexistentEntityException ex) {
+            } catch (Exception ex) {
+            }
+        }
+        assertEquals(expResult, result);
+    }
 
     @Test
     public void testCamposVacios() {

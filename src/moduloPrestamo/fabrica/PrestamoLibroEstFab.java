@@ -73,7 +73,7 @@ public class PrestamoLibroEstFab implements IPrestamo {
                     ReservaColgenDAOEst reservaColgenDAOEst = new ReservaColgenDAOEst();
                     ReservaColgenEstudiante reserva = reservaColgenDAOEst.readDAO(codBarras);
 
-                    if (reserva.getCodEstudiante().equalsIgnoreCase(codUsuario)) {
+                    if (reserva.getCodEstudiante().equals(codUsuario)) {
                         PrestamoLibroEst prestLibEst = new PrestamoLibroEst();
                         prestLibEst.setCodBarraLibro(codBarras);
                         prestLibEst.setCodEstudiante(codUsuario);

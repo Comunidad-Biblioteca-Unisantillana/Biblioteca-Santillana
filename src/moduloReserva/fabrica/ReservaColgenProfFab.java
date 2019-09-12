@@ -58,11 +58,21 @@ public class ReservaColgenProfFab implements IReserva {
                             PrestamoLibroEst prestamo1 = (PrestamoLibroEst) presDAO.readDAO(presDAO.readCodigoDAO(codBarras));
 
                             if (prestamo != null || prestamo1 != null) {
-                                ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, idBibliotecario, codUsuario);
+                                String codUser = (prestamo == null) ? prestamo1.getCodEstudiante() : prestamo.getIdProfesor();
 
-                                ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
-                                resDAO.createDAO(reserva);
-                                return true;
+                                if (!codUser.equals(codUsuario)) {
+                                    ReservaColgenProfesor reserva = new ReservaColgenProfesor(codBarras, idBibliotecario, codUsuario);
+
+                                    ReservaColgenDAOProf resDAO = new ReservaColgenDAOProf();
+                                    resDAO.createDAO(reserva);
+                                    System.out.println("Actualizando dispinibilidad.....");
+                                    libro.setDisponibilidad("reservado");
+                                    control.edit(libro);
+                                    return true;
+                                } else {
+                                    alert.showAlert("Anuncio", "Profesor con préstamo", "El profesor: " + codUsuario
+                                            + ", no puede reservar el libro que se le ha prestado.");
+                                }
                             } else {
                                 System.out.println("El prestamo es null");
                             }

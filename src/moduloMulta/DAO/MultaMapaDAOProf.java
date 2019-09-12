@@ -1,6 +1,5 @@
 package moduloMulta.DAO;
 
-import general.modelo.ConnectionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,7 +36,7 @@ public class MultaMapaDAOProf extends MultaDAOAbs<MultaMapaProf> {
     public boolean createDAO(MultaMapaProf multa) {
         String sqlSentence = "INSERT INTO multa_mapa_profesor (codprestmapaprof, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -46,8 +45,6 @@ public class MultaMapaDAOProf extends MultaDAOAbs<MultaMapaProf> {
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
-            pps.setString(5, multa.getEstadoCancelacion());
-            pps.setString(6, multa.getDescripcionCancelacion());
 
             if (pps.executeUpdate() > 0) {
                 return true;
@@ -173,7 +170,7 @@ public class MultaMapaDAOProf extends MultaDAOAbs<MultaMapaProf> {
         ResultSet rs;
         String sqlSentence = "SELECT mmp.codmultamapaprof FROM multa_mapa_profesor mmp, prestamo_mapa_profesor pmp "
                 + "WHERE mmp.codprestmapaprof = pmp.codprestmapaprof AND "
-                + "pmp.idprofesor = ? AND mmp.estadocancelacion = 'no pagada';";
+                + "pmp.idprofesor = ? AND estadocancelacion = 'no pagada';";
 
         try {
             pps = connection.getConnection().prepareStatement(sqlSentence);

@@ -117,7 +117,8 @@ public class MultaDiccionarioProfFab implements IMulta {
         if (listaPrestamos != null) {
             for (int i = 0; i < listaPrestamos.size(); i++) {
                 if (listaPrestamos.get(i) != null) {
-                    if (listaPrestamos.get(i).getCodPrestamoDiccionarioProf() == codigoPrestamo) {
+                    if (listaPrestamos.get(i).getCodPrestamoDiccionarioProf() == codigoPrestamo
+                            && listaPrestamos.get(i).getDevuelto().equalsIgnoreCase("no")) {
                         return new Date(listaPrestamos.get(i).getFechaDevolucion().getTime());
                     }
                 }

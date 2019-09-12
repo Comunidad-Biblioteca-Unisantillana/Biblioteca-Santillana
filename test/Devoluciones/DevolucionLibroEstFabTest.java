@@ -1,4 +1,4 @@
-package moduloDevolucion.fabrica;
+package Devoluciones;
 
 import controller.exceptions.NonexistentEntityException;
 import org.junit.*;
@@ -67,7 +67,7 @@ public class DevolucionLibroEstFabTest {
         String estadoRecurso[] = {"bueno", "buen5645o", " "};
         boolean result =true;
         for(int i=0; i<codBarras.length ;i++){
-            DevolucionLibroProfFab instance = new DevolucionLibroProfFab();
+            DevolucionLibroEstFab instance = new DevolucionLibroEstFab();
             for(int j=0; j<idBibliotecario.length;j++){
                 for(int k=0 ;k<estadoRecurso.length;k++){
                     result = instance.ejecutarDevolucion(codBarras[i], idBibliotecario[j], estadoRecurso[k]);
@@ -87,7 +87,7 @@ public class DevolucionLibroEstFabTest {
             "/**/ -*/*-//*-/ewd*", "123123123"};
         boolean result = true;
         for (String codBarra : codBarras) {
-            DevolucionLibroProfFab instance = new DevolucionLibroProfFab();
+            DevolucionLibroEstFab instance = new DevolucionLibroEstFab();
             try {
                 instance.ejecutarDevolucion(codBarra, idBibliotecario, estadoRecurso);
                 result = true;

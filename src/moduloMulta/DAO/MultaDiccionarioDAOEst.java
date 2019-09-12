@@ -36,7 +36,7 @@ public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
     public boolean createDAO(MultaDiccionarioEst multa) {
         String sqlSentence = "INSERT INTO multa_diccionario_estudiante (codprestdicest, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -137,7 +137,8 @@ public class MultaDiccionarioDAOEst extends MultaDAOAbs<MultaDiccionarioEst> {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM multa_diccionario_estudiante WHERE codmultadicest = " + codigo);
+            rs = stmt.executeQuery("SELECT * FROM multa_diccionario_estudiante WHERE codmultadicest = '" + codigo + "'"
+                    + " AND estadocancelacion = 'no pagada';");
 
             while (rs.next()) {
                 multa = new MultaDiccionarioEst();

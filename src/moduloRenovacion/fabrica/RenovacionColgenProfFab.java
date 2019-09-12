@@ -70,24 +70,31 @@ public class RenovacionColgenProfFab implements IRenovacion {
                 PrestamoLibroProf prestamoLibroProf = prestamoLibroDAOProf.readDAO(prestamoLibroDAOProf.readCodigoDAO(codBarras));
 
                 if (prestamoLibroProf != null) {
-                    if (prestamoLibroProf.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
-                        prestamoLibroProf.setNumRenovaciones(prestamoLibroProf.getNumRenovaciones() + 1);
+                    if (prestamoLibroProf.getIdProfesor().equals(idUsuario)) {
+                        if (prestamoLibroProf.getNumRenovaciones() < libro.getCodcategoriacoleccion().getCantmaxrenovacionesest()) {
+                            prestamoLibroProf.setNumRenovaciones(prestamoLibroProf.getNumRenovaciones() + 1);
 
-                        if (prestamoLibroDAOProf.updateDAO(prestamoLibroProf)) {
-                            notificarPrestamoEmail(idUsuario, libro);
+                            if (prestamoLibroDAOProf.updateDAO(prestamoLibroProf)) {
+                                notificarPrestamoEmail(idUsuario, libro);
 
-                            alert.showAlert("Anuncio", "Renovación exitosa", "La renovación del libro: " + codBarras
-                                    + ", se realizó con éxito");
+                                alert.showAlert("Anuncio", "Renovación exitosa", "La renovación del libro: " + codBarras
+                                        + ", se realizó con éxito");
 
-                            return true;
+                                return true;
+                            } else {
+                                alert.showAlert("Anuncio", "Renovación fallida", "La renovación del libro: " + codBarras
+                                        + ", no se pudo realizar");
+                            }
                         } else {
-                            alert.showAlert("Anuncio", "Renovación fallida", "La renovación del libro: " + codBarras
-                                    + ", no se pudo realizar");
+                            alert.showAlert("Anuncio", "Limite máximo de renovación", "El profesor: " + idUsuario
+                                    + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
+                                    + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
                         }
                     } else {
-                        alert.showAlert("Anuncio", "Limite máximo de renovación", "El profesor: " + idUsuario
-                                + ", ya llegó al limite de máximo(tres) de renovaciones del libro: " + codBarras
-                                + ".\n\nRecuerde devolver el recurso en la fecha establecida para evitar sanciones.");
+                        alert.showAlert("Anuncio", "El usuario no coincide", "El profesor: " + idUsuario
+                                + " que esta intentando renovar el libro, no corresponde al usuario: "
+                                + prestamoLibroProf.getIdProfesor() + " que solicito el préstamo. Por favor verifique "
+                                + "el código del libro a renovar o la identificación del profesor.");
                     }
                 } else {
                     alert.showAlert("Anuncio", "Préstamo no encontrado", "No se encontró un préstamo actual "

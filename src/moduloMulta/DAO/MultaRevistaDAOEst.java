@@ -39,7 +39,7 @@ public class MultaRevistaDAOEst extends MultaDAOAbs<MultaRevistaEst> {
     public boolean createDAO(MultaRevistaEst multa) {
         String sqlSentence = "INSERT INTO multa_revista_estudiante (codprestrevistaest, diasatrasados, codpreciomulta, "
                 + "valortotalmulta, estadocancelacion, descripcioncancelacion, fechamulta)"
-                + " VALUES (?,?,?,?,?,?, current_date);";
+                + " VALUES (?,?,?,?, 'no pagada', 'no aplica', current_date);";
         PreparedStatement pps;
 
         try {
@@ -48,8 +48,6 @@ public class MultaRevistaDAOEst extends MultaDAOAbs<MultaRevistaEst> {
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
-            pps.setString(5, multa.getEstadoCancelacion());
-            pps.setString(6, multa.getDescripcionCancelacion());
 
             if (pps.executeUpdate() > 0) {
                 return true;
@@ -140,7 +138,8 @@ public class MultaRevistaDAOEst extends MultaDAOAbs<MultaRevistaEst> {
 
         try {
             stmt = connection.getConnection().createStatement();
-            rs = stmt.executeQuery("SELECT * FROM multa_revista_estudiante WHERE codmultarevistaest = " + codigo);
+            rs = stmt.executeQuery("SELECT * FROM multa_revista_estudiante WHERE codmultarevistaest = '" + codigo + "'"
+                    + " AND estadocancelacion = 'no pagada';");
 
             while (rs.next()) {
                 multa = new MultaRevistaEst();
