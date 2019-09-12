@@ -143,8 +143,8 @@ public class PrestamoLibroEstFab implements IPrestamo {
                 + libro.getCodcategoriacoleccion().getNombrecol() + ";"
                 + estudiante.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajePrestamo");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajePrestamo");
+        notificacionEmail.start();
     }
 
 }

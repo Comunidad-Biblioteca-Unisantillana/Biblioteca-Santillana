@@ -116,8 +116,8 @@ public class DevolucionRevistaEstFab implements IDevolucion {
                 + "null;"
                 + estudiante.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajeDevolucion");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajeDevolucion");
+        notificacionEmail.start();
     }
     
 }

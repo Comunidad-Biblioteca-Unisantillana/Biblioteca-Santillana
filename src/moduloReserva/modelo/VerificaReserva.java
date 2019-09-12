@@ -89,8 +89,8 @@ public class VerificaReserva {
                 + formatoFecha.format((Date) reservaColgenEst.getFechaLimiteReserva()) + ";"
                 + estudiante.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajeRetencion");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajeRetencion");
+        notificacionEmail.start();
     }
 
     /**
@@ -103,7 +103,7 @@ public class VerificaReserva {
     public void notificarRetencionEmailProf(Libro libro) {
         ReservaColgenDAOProf reservaColgenDAOProf = new ReservaColgenDAOProf();
         ReservaColgenProfesor reservaColgenProf = reservaColgenDAOProf.readDAO(libro.getCodbarralibro());
-        
+
         ProfesorJpaController profesorJpaController = new ProfesorJpaController();
         Profesor profesor = profesorJpaController.findProfesor(reservaColgenProf.getIdProfesor());
 
@@ -119,8 +119,8 @@ public class VerificaReserva {
                 + formatoFecha.format((Date) reservaColgenProf.getFechaLimiteReserva()) + ";"
                 + profesor.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajeRetencion");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajeRetencion");
+        notificacionEmail.start();
     }
 
     /**

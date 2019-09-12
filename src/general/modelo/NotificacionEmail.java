@@ -25,10 +25,19 @@ import javax.mail.internet.MimeMessage;
  * @author Miguel Fernàndez
  * @modificado: 6/08/2019
  */
-public class NotificacionEmail {
+public class NotificacionEmail extends Thread {
 
-    public NotificacionEmail() {
+    private String datos;
+    private String nombreMensaje;
 
+    public NotificacionEmail(String datos, String nombreMensaje) {
+        this.datos = datos;
+        this.nombreMensaje = nombreMensaje;
+    }
+
+    @Override
+    public void run() {
+        gestionarNotificacion(datos, nombreMensaje);
     }
 
     /**
@@ -75,11 +84,13 @@ public class NotificacionEmail {
     }
 
     /**
+     * el método se encarga de extraer el mensaje del correo del txt y asignarle
+     * los datos del usuario y el recurso.
      *
      * @param datos
      * @param nombreMensaje
      */
-    public void gestionarNotificacion(String datos, String nombreMensaje) {
+    private void gestionarNotificacion(String datos, String nombreMensaje) {
         String asunto, contenido = "", textoTemp;
         String xDatos[] = datos.split(";");
         File archivo = new File("src/general/recursos/txt/" + nombreMensaje + ".txt");

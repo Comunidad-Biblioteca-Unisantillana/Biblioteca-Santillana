@@ -137,8 +137,8 @@ public class RenovacionColgenProfFab implements IRenovacion {
                 + libro.getCodcategoriacoleccion().getNombrecol() + ";"
                 + profesor.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajeRenovacion");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajeRenovacion");
+        notificacionEmail.start();
     }
 
     /**

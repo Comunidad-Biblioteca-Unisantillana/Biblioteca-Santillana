@@ -107,8 +107,8 @@ public class PrestamoPeriodicoEstFab implements IPrestamo {
                 + "hemeroteca;"
                 + estudiante.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajePrestamo");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajePrestamo");
+        notificacionEmail.start();
     }
 
 }
