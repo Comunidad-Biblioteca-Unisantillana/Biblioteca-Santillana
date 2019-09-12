@@ -43,12 +43,12 @@ public class CancelarMultaController {
                 anular = new ConsultaMultaProf();
             }
             Multa multa = tableMulta.getItems().get(tableMulta.getSelectionModel().getSelectedIndex());
-
+            System.out.println(multa.getCodBarrasRecurso());
             if (areaJustificación.getText().length() < 500) {
                 if (anular.eliminarMulta(multa.getCodMulta(), multa.getTipoRecurso(), areaJustificación.getText())) {
                     alert.showAlert("Anuncio", "Multa " + tipoUsuario, "La multa ha sido anulada");
                     tableMulta.getItems().remove(tableMulta.getSelectionModel().getSelectedIndex());
-                stage.close();
+                    stage.close();
                 }
             } else {
                 alert.showAlert("Anuncio", "Cantidad de caracteres", "El campo motivo de cancelación no debe superar los 500 caracteres.");

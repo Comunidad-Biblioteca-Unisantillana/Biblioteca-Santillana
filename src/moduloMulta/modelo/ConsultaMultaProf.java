@@ -35,7 +35,7 @@ public class ConsultaMultaProf extends ConsultaMultaAbs<Multa>{
     public boolean eliminarMulta(int codMulta, String tipoRecurso,String descripcion) {
         String atributo;
         if (tipoRecurso.length() > 9) {
-            atributo = "codMulta" + tipoRecurso.substring(0, 2) + "Prof";
+            atributo = "codMulta" + tipoRecurso.substring(0, 3) + "Prof";
         } else {
             atributo = "codMulta" + tipoRecurso + "Prof";
         }

@@ -33,7 +33,7 @@ public class ConsultaMultaEst extends ConsultaMultaAbs<Multa> {
     public boolean eliminarMulta(int codMulta, String tipoRecurso,String descripcion) {
         String atributo;
         if (tipoRecurso.length() > 9) {
-            atributo = "codMulta" + tipoRecurso.substring(0, 2) + "Est";
+            atributo = "codMulta" + tipoRecurso.substring(0, 3) + "Est";
         } else {
             atributo = "codMulta" + tipoRecurso + "Est";
         }
@@ -48,7 +48,7 @@ public class ConsultaMultaEst extends ConsultaMultaAbs<Multa> {
                 return true;
             }
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return false;
     }
