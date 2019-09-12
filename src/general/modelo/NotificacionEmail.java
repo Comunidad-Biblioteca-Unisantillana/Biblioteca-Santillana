@@ -39,8 +39,8 @@ public class NotificacionEmail {
      */
     private void enviarEmail(String asunto, String contenido, String emailReceptor) {
         Properties properties = System.getProperties();
-        properties.put("mail.smtp.user", "bibliotecaunisantillana@gmail.com");
-        properties.put("mail.password", "PostgreSql1234");
+        properties.put("mail.smtp.user", "bibliotecaunisanti@gmail.com");
+        properties.put("mail.password", "unisanti12345");
         properties.put("mail.transport.protocol", "smtp");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -62,7 +62,7 @@ public class NotificacionEmail {
             message.setFrom(new InternetAddress((String) properties.get("mail.smtp.user")));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceptor));
             message.setSubject(asunto);
-            message.setText(contenido);//, "text/html");
+            message.setContent(contenido, "text/html");
 
             Transport.send(message);
             System.out.println("Sent message successfully....");
