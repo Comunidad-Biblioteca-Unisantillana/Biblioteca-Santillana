@@ -46,14 +46,12 @@ public class MultaLibroDAOProf extends MultaDAOAbs<MultaLibroProf> {
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
-            pps.setString(5, multa.getEstadoCancelacion());
-            pps.setString(6, multa.getDescripcionCancelacion());
 
             if (pps.executeUpdate() > 0) {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el CreateDAO, en multa libro profesor");
+            System.out.println("Error al realizar el CreateDAO, en multa libro profesor" + e.getMessage());
         }
 
         return false;

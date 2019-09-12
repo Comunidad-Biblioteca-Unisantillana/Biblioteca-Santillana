@@ -51,7 +51,7 @@ public class PrestamoMapaDAOProf extends PrestamoRecursoDAOAbs<PrestamoMapaProf>
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Error al realizar el createDAO, en préstamo mapa profesor");
+            System.out.println("Error al realizar el createDAO, en préstamo mapa profesor" + e.getMessage());
         }
 
         return false;

@@ -16,8 +16,8 @@ public class TareasProgramadas {
        GeneradorMulta generadorMulta = new GeneradorMulta();
        generadorMulta.multas();
        
-       VerificaReservaVencida verificaReservaVencida = new VerificaReservaVencida();
-       verificaReservaVencida.reserva();
+//       VerificaReservaVencida verificaReservaVencida = new VerificaReservaVencida();
+//       verificaReservaVencida.reserva();
     }
     
 }

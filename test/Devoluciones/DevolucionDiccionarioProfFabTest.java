@@ -31,7 +31,7 @@ public class DevolucionDiccionarioProfFabTest {
     @Test
     public void testEjecutarDevolucion() {
         System.out.println("ejecutarDevolucion");
-        String codBarras = "254911";
+        String codBarras = "254906";
         String idBibliotecario = "1102515566";
         String estadoRecurso = "bueno";
         DevolucionDiccionarioProfFab instance = new DevolucionDiccionarioProfFab();

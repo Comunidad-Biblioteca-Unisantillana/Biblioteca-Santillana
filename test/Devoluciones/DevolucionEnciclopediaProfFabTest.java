@@ -30,7 +30,7 @@ public class DevolucionEnciclopediaProfFabTest {
      @Test
     public void testEjecutarDevolucion() {
         System.out.println("ejecutarDevolucion");
-        String codBarras = "484963";
+        String codBarras = "484966";
         String idBibliotecario = "1102515566";
         String estadoRecurso = "bueno";
         DevolucionEnciclopediaProfFab instance = new DevolucionEnciclopediaProfFab();
@@ -113,7 +113,7 @@ public class DevolucionEnciclopediaProfFabTest {
         List<Enciclopedia> lib = controlib.findEnciclopediaEntities();
         boolean result = false;
         for (int i = 0; i < lib.size(); i++) {
-            if (lib.get(i).getCodbarraenciclopedia().equalsIgnoreCase("254920")) {
+            if (lib.get(i).getCodbarraenciclopedia().equalsIgnoreCase("484964")) {
                 if(lib.get(i).getDisponibilidad().equalsIgnoreCase("disponible"))
                 try {
                     result = true;

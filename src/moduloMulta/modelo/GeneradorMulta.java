@@ -20,7 +20,7 @@ public class GeneradorMulta {
     }
 
     public void multas() {
-        String tipoUsuario[] = {"estudiante", "profesor"};
+        String tipoUsuario[] = {"profesor","estudiante"};
         String tipoMulta[] = {"diccionario", "enciclopedia", "libro", "mapa", "periodico", "revista"};
 
         IMulta multa;

@@ -45,8 +45,7 @@ public class MultaEnciclopediaDAOProf extends MultaDAOAbs<MultaEnciclopediaProf>
             pps.setInt(2, multa.getDiasAtrasados());
             pps.setInt(3, multa.getCodPrecioMulta());
             pps.setInt(4, multa.getValorMulta());
-            pps.setString(5, multa.getEstadoCancelacion());
-            pps.setString(6, multa.getDescripcionCancelacion());
+
 
             if (pps.executeUpdate() > 0) {
                 return true;

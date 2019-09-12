@@ -31,7 +31,7 @@ public class DevolucionMapaProfFabTest {
     @Test
     public void testEjecutarDevolucion() {
         System.out.println("ejecutarDevolucion");
-        String codBarras = "459859";
+        String codBarras = "459874";
         String idBibliotecario = "1102515566";
         String estadoRecurso = "bueno";
         DevolucionMapaProfFab instance = new DevolucionMapaProfFab();
@@ -111,7 +111,7 @@ public class DevolucionMapaProfFabTest {
         List<Mapa> lib = controlib.findMapaEntities();
         boolean result = false;
         for (int i = 0; i < lib.size(); i++) {
-            if (lib.get(i).getCodbarramapa().equalsIgnoreCase("254920")) {
+            if (lib.get(i).getCodbarramapa().equalsIgnoreCase("459868")) {
                 if (lib.get(i).getDisponibilidad().equalsIgnoreCase("disponible")) {
                     try {
                         result = true;
