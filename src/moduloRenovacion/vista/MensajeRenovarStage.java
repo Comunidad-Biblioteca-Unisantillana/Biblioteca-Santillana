@@ -1,6 +1,8 @@
 package moduloRenovacion.vista;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,9 +47,10 @@ public class MensajeRenovarStage extends Stage {
             });
 
             show();
-        } catch (IOException e) {
+        } catch (IOException ex) {
+            Logger.getLogger(MensajeRenovarStage.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Error al generar ventana FichaTecnicaStage");
-        }
+        } 
     }
 
     /**

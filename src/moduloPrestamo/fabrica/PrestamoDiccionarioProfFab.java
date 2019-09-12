@@ -109,8 +109,8 @@ public class PrestamoDiccionarioProfFab implements IPrestamo {
                 + "referencia;"
                 + profesor.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajePrestamo");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajePrestamo");
+        notificacionEmail.start();
     }
 
 }

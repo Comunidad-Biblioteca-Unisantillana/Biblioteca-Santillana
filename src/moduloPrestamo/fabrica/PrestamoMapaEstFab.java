@@ -107,8 +107,8 @@ public class PrestamoMapaEstFab implements IPrestamo {
                 + "mapoteca;"
                 + estudiante.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajePrestamo");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajePrestamo");
+        notificacionEmail.start();
     }
 
 }

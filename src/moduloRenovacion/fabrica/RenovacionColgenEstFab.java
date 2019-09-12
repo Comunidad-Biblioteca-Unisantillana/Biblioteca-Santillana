@@ -93,7 +93,7 @@ public class RenovacionColgenEstFab implements IRenovacion {
                     } else {
                         alert.showAlert("Anuncio", "El usuario no coincide", "El estudiante: " + idUsuario
                                 + " que esta intentando renovar el libro, no corresponde al usuario: "
-                                + prestamoLibroEst.getCodEstudiante()+ " que solicito el préstamo. Por favor verifique "
+                                + prestamoLibroEst.getCodEstudiante() + " que solicito el préstamo. Por favor verifique "
                                 + "el código del libro a renovar o el código del estudiante.");
                     }
                 } else {
@@ -137,8 +137,8 @@ public class RenovacionColgenEstFab implements IRenovacion {
                 + libro.getCodcategoriacoleccion().getNombrecol() + ";"
                 + estudiante.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajeRenovacion");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajeRenovacion");
+        notificacionEmail.start();
     }
 
     /**

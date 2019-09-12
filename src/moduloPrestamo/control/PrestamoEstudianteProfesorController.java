@@ -122,7 +122,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
             if (estadoRenovarRecurso == false) {
                 Prestamo prestamo = tablePrestamo.getSelectionModel().getSelectedItem();
                 estadoRenovarRecurso = true;
-
+                
                 MensajeRenovarStage mensajeRenovarStage = new MensajeRenovarStage();
                 mensajeRenovarStage.cargarDatosMensajeRenovarController(prestamo, codUsuario, tipoUsuario, this);
             } else {
@@ -165,7 +165,7 @@ public class PrestamoEstudianteProfesorController implements Initializable {
      * el metódo modifica el estado en que se encuentra la ventana para renovar
      * el recurso, para poder renovar otro.
      *
-     * @param estadoVentanaFicha
+     * @param estadoRenovarRecurso
      */
     public void setEstadoRenovarRecurso(boolean estadoRenovarRecurso) {
         this.estadoRenovarRecurso = estadoRenovarRecurso;

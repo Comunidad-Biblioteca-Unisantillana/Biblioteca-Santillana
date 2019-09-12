@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/modelo/ConnectionBD.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/Devoluciones/DevolucionEnciclopediaProfFabTest.java</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/Devoluciones/DevolucionPeriodicoEstFabTest.java</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/TareasProgramadas.java</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/Devoluciones/DevolucionDiccionarioProfFabTest.java</file>
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/DAO/MultaLibroDAOProf.java</file>
             <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/moduloMulta/modelo/GeneradorMulta.java</file>
-=======
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/general/vista/InformacionEmpresa.fxml</file>
-            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/src/bibliotecasanti/Main.java</file>
->>>>>>> test
+            <file>file:/C:/Users/Stiven/Documents/Proyectos%20U/Biblioteca-Santillana/test/Devoluciones/DevolucionPeriodicoProfFabTest.java</file>
         </group>
     </open-files>
 </project-private>

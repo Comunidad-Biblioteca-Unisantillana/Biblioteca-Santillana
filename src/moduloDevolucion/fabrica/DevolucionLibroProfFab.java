@@ -166,8 +166,8 @@ public class DevolucionLibroProfFab implements IDevolucion {
                 + "null;"
                 + profesor.getCorreoelectronico();
 
-        NotificacionEmail em = new NotificacionEmail();
-        em.gestionarNotificacion(datos, "mensajeDevolucion");
+        NotificacionEmail notificacionEmail = new NotificacionEmail(datos, "mensajeDevolucion");
+        notificacionEmail.start();
     }
     
 }
